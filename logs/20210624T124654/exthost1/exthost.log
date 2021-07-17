@@ -1,0 +1,329 @@
+[2021-06-24 12:46:58.352] [exthost] [info] extension host started
+[2021-06-24 12:46:58.530] [exthost] [info] ExtensionService#_doActivateExtension vscode.microsoft-authentication {"startup":false,"extensionId":{"value":"vscode.microsoft-authentication","_lower":"vscode.microsoft-authentication"},"activationEvent":"onAuthenticationRequest:microsoft"}
+[2021-06-24 12:46:58.531] [exthost] [info] ExtensionService#loadCommonJSModule file:///c:/Users/danie/AppData/Local/Programs/Microsoft VS Code/resources/app/extensions/microsoft-authentication/dist/extension.js
+[2021-06-24 12:46:58.555] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"extensionId":{"value":"vscode.debug-auto-launch","_lower":"vscode.debug-auto-launch"},"activationEvent":"*"}
+[2021-06-24 12:46:58.593] [exthost] [info] ExtensionService#loadCommonJSModule file:///c:/Users/danie/AppData/Local/Programs/Microsoft VS Code/resources/app/extensions/debug-auto-launch/dist/extension
+[2021-06-24 12:46:58.602] [exthost] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"extensionId":{"value":"vscode.github","_lower":"vscode.github"},"activationEvent":"*"}
+[2021-06-24 12:46:58.602] [exthost] [info] ExtensionService#loadCommonJSModule file:///c:/Users/danie/AppData/Local/Programs/Microsoft VS Code/resources/app/extensions/git/dist/main
+[2021-06-24 12:46:58.660] [exthost] [info] ExtensionService#_doActivateExtension vscode.npm {"startup":true,"extensionId":{"value":"vscode.npm","_lower":"vscode.npm"},"activationEvent":"workspaceContains:package.json"}
+[2021-06-24 12:46:58.661] [exthost] [info] ExtensionService#loadCommonJSModule file:///c:/Users/danie/AppData/Local/Programs/Microsoft VS Code/resources/app/extensions/npm/dist/npmMain
+[2021-06-24 12:46:58.691] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.js-debug {"startup":true,"extensionId":{"value":"msjsdiag.vscode-react-native","_lower":"msjsdiag.vscode-react-native"},"activationEvent":"workspaceContains:node_modules/react-native"}
+[2021-06-24 12:46:58.692] [exthost] [info] ExtensionService#loadCommonJSModule file:///c:/Users/danie/AppData/Local/Programs/Microsoft VS Code/resources/app/extensions/ms-vscode.js-debug/src/extension.js
+[2021-06-24 12:46:59.068] [exthost] [info] ExtensionService#_doActivateExtension msjsdiag.vscode-react-native {"startup":true,"extensionId":{"value":"msjsdiag.vscode-react-native","_lower":"msjsdiag.vscode-react-native"},"activationEvent":"workspaceContains:node_modules/react-native"}
+[2021-06-24 12:46:59.068] [exthost] [info] ExtensionService#loadCommonJSModule file:///c:/Users/danie/.vscode/extensions/msjsdiag.vscode-react-native-1.5.1/dist/rn-extension
+[2021-06-24 12:46:59.182] [exthost] [info] ExtensionService#_doActivateExtension vscode.github {"startup":true,"extensionId":{"value":"vscode.github","_lower":"vscode.github"},"activationEvent":"*"}
+[2021-06-24 12:46:59.183] [exthost] [info] ExtensionService#loadCommonJSModule file:///c:/Users/danie/AppData/Local/Programs/Microsoft VS Code/resources/app/extensions/github/dist/extension.js
+[2021-06-24 12:46:59.285] [exthost] [info] ExtensionService#_doActivateExtension vscode.github-authentication {"startup":false,"extensionId":{"value":"vscode.github-authentication","_lower":"vscode.github-authentication"},"activationEvent":"onAuthenticationRequest:github"}
+[2021-06-24 12:46:59.286] [exthost] [info] ExtensionService#loadCommonJSModule file:///c:/Users/danie/AppData/Local/Programs/Microsoft VS Code/resources/app/extensions/github-authentication/dist/extension.js
+[2021-06-24 12:46:59.706] [exthost] [info] eager extensions activated
+[2021-06-24 12:46:59.709] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":false,"extensionId":{"value":"vscode.emmet","_lower":"vscode.emmet"},"activationEvent":"onStartupFinished"}
+[2021-06-24 12:46:59.709] [exthost] [info] ExtensionService#loadCommonJSModule file:///c:/Users/danie/AppData/Local/Programs/Microsoft VS Code/resources/app/extensions/emmet/dist/node/emmetNodeMain
+[2021-06-24 12:46:59.725] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":false,"extensionId":{"value":"vscode.merge-conflict","_lower":"vscode.merge-conflict"},"activationEvent":"onStartupFinished"}
+[2021-06-24 12:46:59.726] [exthost] [info] ExtensionService#loadCommonJSModule file:///c:/Users/danie/AppData/Local/Programs/Microsoft VS Code/resources/app/extensions/merge-conflict/dist/mergeConflictMain
+[2021-06-24 12:46:59.733] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode-remote.remote-wsl-recommender {"startup":false,"extensionId":{"value":"ms-vscode-remote.remote-wsl-recommender","_lower":"ms-vscode-remote.remote-wsl-recommender"},"activationEvent":"onStartupFinished"}
+[2021-06-24 12:46:59.733] [exthost] [info] ExtensionService#loadCommonJSModule file:///c:/Users/danie/AppData/Local/Programs/Microsoft VS Code/resources/app/extensions/ms-vscode-remote.remote-wsl-recommender/dist/extension.js
+[2021-06-24 12:46:59.748] [exthost] [info] ExtensionService#_doActivateExtension vscode.testing-editor-contributions {"startup":false,"extensionId":{"value":"vscode.testing-editor-contributions","_lower":"vscode.testing-editor-contributions"},"activationEvent":"onStartupFinished"}
+[2021-06-24 12:46:59.748] [exthost] [info] ExtensionService#loadCommonJSModule file:///c:/Users/danie/AppData/Local/Programs/Microsoft VS Code/resources/app/extensions/testing-editor-contributions/dist/extension.js
+[2021-06-24 12:47:10.585] [exthost] [info] ExtensionService#_doActivateExtension vscode.typescript-language-features {"startup":false,"extensionId":{"value":"vscode.typescript-language-features","_lower":"vscode.typescript-language-features"},"activationEvent":"onLanguage:javascript"}
+[2021-06-24 12:47:10.585] [exthost] [info] ExtensionService#loadCommonJSModule file:///c:/Users/danie/AppData/Local/Programs/Microsoft VS Code/resources/app/extensions/typescript-language-features/dist/extension
+[2021-06-24 12:51:18.498] [exthost] [info] ExtensionService#_doActivateExtension vscode.extension-editing {"startup":false,"extensionId":{"value":"vscode.extension-editing","_lower":"vscode.extension-editing"},"activationEvent":"onLanguage:typescript"}
+[2021-06-24 12:51:18.498] [exthost] [info] ExtensionService#loadCommonJSModule file:///c:/Users/danie/AppData/Local/Programs/Microsoft VS Code/resources/app/extensions/extension-editing/dist/extensionEditingMain
+[2021-06-24 13:21:12.025] [exthost] [info] ExtensionService#_doActivateExtension vscode.configuration-editing {"startup":false,"extensionId":{"value":"vscode.configuration-editing","_lower":"vscode.configuration-editing"},"activationEvent":"onLanguage:json"}
+[2021-06-24 13:21:12.077] [exthost] [info] ExtensionService#loadCommonJSModule file:///c:/Users/danie/AppData/Local/Programs/Microsoft VS Code/resources/app/extensions/configuration-editing/dist/configurationEditingMain
+[2021-06-24 13:21:12.511] [exthost] [info] ExtensionService#_doActivateExtension vscode.json-language-features {"startup":false,"extensionId":{"value":"vscode.json-language-features","_lower":"vscode.json-language-features"},"activationEvent":"onLanguage:json"}
+[2021-06-24 13:21:12.511] [exthost] [info] ExtensionService#loadCommonJSModule file:///c:/Users/danie/AppData/Local/Programs/Microsoft VS Code/resources/app/extensions/json-language-features/client/dist/node/jsonClientMain
+[2021-06-24 13:21:16.304] [exthost] [error] [vscode.json-language-features] provider FAILED
+[2021-06-24 13:21:16.304] [exthost] [error] Canceled: Canceled
+	at b.makeCancelError (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\json-language-features\client\dist\node\jsonClientMain.js:1:64563)
+	at b.handleFailedRequest (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\json-language-features\client\dist\node\jsonClientMain.js:1:64414)
+	at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\json-language-features\client\dist\node\jsonClientMain.js:1:24756
+	at runNextTicks (internal/process/task_queues.js:58:5)
+	at processImmediate (internal/timers.js:434:9)
+[2021-06-24 13:52:55.172] [exthost] [error] [vscode.typescript-language-features] provider FAILED
+[2021-06-24 13:52:55.191] [exthost] [error] Error: <semantic> TypeScript Server Error (4.3.2)
+Debug Failure. False expression.
+Error: Debug Failure. False expression.
+    at collectAutoImports (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124407:26)
+    at getGlobalCompletions (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124329:17)
+    at tryGetGlobalSymbols (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124236:25)
+    at getCompletionData (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124009:22)
+    at getSymbolCompletionFromEntryId (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:123582:34)
+    at Object.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:123614:36)
+    at Proxy.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:153364:35)
+    at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:164587:57
+    at Object.mapDefined (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:612:30)
+    at IOSession.Session.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:164585:33)
+    at Session.handlers.ts.Map.ts.getEntries._a.<computed> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:163426:61)
+    at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165205:88
+    at IOSession.Session.executeWithRequestId (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165196:28)
+    at IOSession.Session.executeCommand (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165205:33)
+    at IOSession.Session.onMessage (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165231:35)
+    at Interface.<anonymous> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:167833:31)
+    at Interface.emit (events.js:315:20)
+    at Interface._onLine (readline.js:337:10)
+    at Interface._normalWrite (readline.js:482:12)
+    at Socket.ondata (readline.js:194:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at Pipe.onStreamRead (internal/stream_base_commons.js:188:23)
+	at Function.create (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:75687)
+	at dispatchResponse (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:69551)
+	at dispatchMessage (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:68410)
+	at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:67920
+	at l.fire (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:57:1835)
+	at g.onLengthData (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:434282)
+	at Socket.<anonymous> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:433930)
+	at Socket.emit (events.js:315:20)
+	at addChunk (internal/streams/readable.js:309:12)
+	at readableAddChunk (internal/streams/readable.js:284:9)
+	at Socket.Readable.push (internal/streams/readable.js:223:10)
+	at Pipe.onStreamRead (internal/stream_base_commons.js:188:23)
+[2021-06-24 13:52:55.209] [exthost] [error] [vscode.typescript-language-features] provider FAILED
+[2021-06-24 13:52:55.209] [exthost] [error] Error: <semantic> TypeScript Server Error (4.3.2)
+Debug Failure. False expression.
+Error: Debug Failure. False expression.
+    at collectAutoImports (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124407:26)
+    at getGlobalCompletions (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124329:17)
+    at tryGetGlobalSymbols (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124236:25)
+    at getCompletionData (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124009:22)
+    at getSymbolCompletionFromEntryId (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:123582:34)
+    at Object.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:123614:36)
+    at Proxy.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:153364:35)
+    at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:164587:57
+    at Object.mapDefined (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:612:30)
+    at IOSession.Session.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:164585:33)
+    at Session.handlers.ts.Map.ts.getEntries._a.<computed> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:163426:61)
+    at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165205:88
+    at IOSession.Session.executeWithRequestId (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165196:28)
+    at IOSession.Session.executeCommand (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165205:33)
+    at IOSession.Session.onMessage (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165231:35)
+    at Interface.<anonymous> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:167833:31)
+    at Interface.emit (events.js:315:20)
+    at Interface._onLine (readline.js:337:10)
+    at Interface._normalWrite (readline.js:482:12)
+    at Socket.ondata (readline.js:194:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at Pipe.onStreamRead (internal/stream_base_commons.js:188:23)
+	at Function.create (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:75687)
+	at dispatchResponse (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:69551)
+	at dispatchMessage (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:68410)
+	at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:67920
+	at l.fire (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:57:1835)
+	at g.onLengthData (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:434282)
+	at Socket.<anonymous> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:433930)
+	at Socket.emit (events.js:315:20)
+	at addChunk (internal/streams/readable.js:309:12)
+	at readableAddChunk (internal/streams/readable.js:284:9)
+	at Socket.Readable.push (internal/streams/readable.js:223:10)
+	at Pipe.onStreamRead (internal/stream_base_commons.js:188:23)
+[2021-06-24 13:53:38.732] [exthost] [error] [vscode.typescript-language-features] provider FAILED
+[2021-06-24 13:53:38.732] [exthost] [error] Error: <semantic> TypeScript Server Error (4.3.2)
+Debug Failure. False expression.
+Error: Debug Failure. False expression.
+    at collectAutoImports (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124407:26)
+    at getGlobalCompletions (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124329:17)
+    at tryGetGlobalSymbols (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124236:25)
+    at getCompletionData (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124009:22)
+    at getSymbolCompletionFromEntryId (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:123582:34)
+    at Object.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:123614:36)
+    at Proxy.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:153364:35)
+    at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:164587:57
+    at Object.mapDefined (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:612:30)
+    at IOSession.Session.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:164585:33)
+    at Session.handlers.ts.Map.ts.getEntries._a.<computed> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:163426:61)
+    at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165205:88
+    at IOSession.Session.executeWithRequestId (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165196:28)
+    at IOSession.Session.executeCommand (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165205:33)
+    at IOSession.Session.onMessage (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165231:35)
+    at Interface.<anonymous> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:167833:31)
+    at Interface.emit (events.js:315:20)
+    at Interface._onLine (readline.js:337:10)
+    at Interface._normalWrite (readline.js:482:12)
+    at Socket.ondata (readline.js:194:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at Pipe.onStreamRead (internal/stream_base_commons.js:188:23)
+	at Function.create (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:75687)
+	at dispatchResponse (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:69551)
+	at dispatchMessage (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:68410)
+	at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:67920
+	at l.fire (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:57:1835)
+	at g.onLengthData (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:434282)
+	at Socket.<anonymous> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:433930)
+	at Socket.emit (events.js:315:20)
+	at addChunk (internal/streams/readable.js:309:12)
+	at readableAddChunk (internal/streams/readable.js:284:9)
+	at Socket.Readable.push (internal/streams/readable.js:223:10)
+	at Pipe.onStreamRead (internal/stream_base_commons.js:188:23)
+[2021-06-24 14:07:51.049] [exthost] [error] [vscode.typescript-language-features] provider FAILED
+[2021-06-24 14:07:51.049] [exthost] [error] Error: <semantic> TypeScript Server Error (4.3.2)
+Debug Failure. False expression.
+Error: Debug Failure. False expression.
+    at collectAutoImports (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124407:26)
+    at getGlobalCompletions (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124329:17)
+    at tryGetGlobalSymbols (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124236:25)
+    at getCompletionData (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124009:22)
+    at getSymbolCompletionFromEntryId (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:123582:34)
+    at Object.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:123614:36)
+    at Proxy.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:153364:35)
+    at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:164587:57
+    at Object.mapDefined (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:612:30)
+    at IOSession.Session.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:164585:33)
+    at Session.handlers.ts.Map.ts.getEntries._a.<computed> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:163426:61)
+    at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165205:88
+    at IOSession.Session.executeWithRequestId (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165196:28)
+    at IOSession.Session.executeCommand (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165205:33)
+    at IOSession.Session.onMessage (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165231:35)
+    at Interface.<anonymous> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:167833:31)
+    at Interface.emit (events.js:315:20)
+    at Interface._onLine (readline.js:337:10)
+    at Interface._normalWrite (readline.js:482:12)
+    at Socket.ondata (readline.js:194:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at Pipe.onStreamRead (internal/stream_base_commons.js:188:23)
+	at Function.create (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:75687)
+	at dispatchResponse (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:69551)
+	at dispatchMessage (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:68410)
+	at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:67920
+	at l.fire (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:57:1835)
+	at g.onLengthData (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:434282)
+	at Socket.<anonymous> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:433930)
+	at Socket.emit (events.js:315:20)
+	at addChunk (internal/streams/readable.js:309:12)
+	at readableAddChunk (internal/streams/readable.js:284:9)
+	at Socket.Readable.push (internal/streams/readable.js:223:10)
+	at Pipe.onStreamRead (internal/stream_base_commons.js:188:23)
+[2021-06-24 14:07:51.049] [exthost] [error] [vscode.typescript-language-features] provider FAILED
+[2021-06-24 14:07:51.049] [exthost] [error] Error: <semantic> TypeScript Server Error (4.3.2)
+Debug Failure. False expression.
+Error: Debug Failure. False expression.
+    at collectAutoImports (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124407:26)
+    at getGlobalCompletions (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124329:17)
+    at tryGetGlobalSymbols (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124236:25)
+    at getCompletionData (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124009:22)
+    at getSymbolCompletionFromEntryId (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:123582:34)
+    at Object.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:123614:36)
+    at Proxy.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:153364:35)
+    at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:164587:57
+    at Object.mapDefined (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:612:30)
+    at IOSession.Session.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:164585:33)
+    at Session.handlers.ts.Map.ts.getEntries._a.<computed> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:163426:61)
+    at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165205:88
+    at IOSession.Session.executeWithRequestId (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165196:28)
+    at IOSession.Session.executeCommand (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165205:33)
+    at IOSession.Session.onMessage (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165231:35)
+    at Interface.<anonymous> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:167833:31)
+    at Interface.emit (events.js:315:20)
+    at Interface._onLine (readline.js:337:10)
+    at Interface._normalWrite (readline.js:482:12)
+    at Socket.ondata (readline.js:194:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at Pipe.onStreamRead (internal/stream_base_commons.js:188:23)
+	at Function.create (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:75687)
+	at dispatchResponse (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:69551)
+	at dispatchMessage (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:68410)
+	at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:67920
+	at l.fire (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:57:1835)
+	at g.onLengthData (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:434282)
+	at Socket.<anonymous> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:433930)
+	at Socket.emit (events.js:315:20)
+	at addChunk (internal/streams/readable.js:309:12)
+	at readableAddChunk (internal/streams/readable.js:284:9)
+	at Socket.Readable.push (internal/streams/readable.js:223:10)
+	at Pipe.onStreamRead (internal/stream_base_commons.js:188:23)
+[2021-06-24 14:09:09.312] [exthost] [error] [vscode.typescript-language-features] provider FAILED
+[2021-06-24 14:09:09.312] [exthost] [error] Error: <semantic> TypeScript Server Error (4.3.2)
+Debug Failure. False expression.
+Error: Debug Failure. False expression.
+    at collectAutoImports (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124407:26)
+    at getGlobalCompletions (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124329:17)
+    at tryGetGlobalSymbols (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124236:25)
+    at getCompletionData (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124009:22)
+    at getSymbolCompletionFromEntryId (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:123582:34)
+    at Object.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:123614:36)
+    at Proxy.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:153364:35)
+    at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:164587:57
+    at Object.mapDefined (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:612:30)
+    at IOSession.Session.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:164585:33)
+    at Session.handlers.ts.Map.ts.getEntries._a.<computed> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:163426:61)
+    at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165205:88
+    at IOSession.Session.executeWithRequestId (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165196:28)
+    at IOSession.Session.executeCommand (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165205:33)
+    at IOSession.Session.onMessage (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165231:35)
+    at Interface.<anonymous> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:167833:31)
+    at Interface.emit (events.js:315:20)
+    at Interface._onLine (readline.js:337:10)
+    at Interface._normalWrite (readline.js:482:12)
+    at Socket.ondata (readline.js:194:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at Pipe.onStreamRead (internal/stream_base_commons.js:188:23)
+	at Function.create (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:75687)
+	at dispatchResponse (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:69551)
+	at dispatchMessage (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:68410)
+	at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:67920
+	at l.fire (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:57:1835)
+	at g.onLengthData (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:434282)
+	at Socket.<anonymous> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:433930)
+	at Socket.emit (events.js:315:20)
+	at addChunk (internal/streams/readable.js:309:12)
+	at readableAddChunk (internal/streams/readable.js:284:9)
+	at Socket.Readable.push (internal/streams/readable.js:223:10)
+	at Pipe.onStreamRead (internal/stream_base_commons.js:188:23)
+[2021-06-24 14:13:17.635] [exthost] [error] [vscode.typescript-language-features] provider FAILED
+[2021-06-24 14:13:17.635] [exthost] [error] Error: <semantic> TypeScript Server Error (4.3.2)
+Debug Failure. False expression.
+Error: Debug Failure. False expression.
+    at collectAutoImports (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124407:26)
+    at getGlobalCompletions (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124329:17)
+    at tryGetGlobalSymbols (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124236:25)
+    at getCompletionData (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:124009:22)
+    at getSymbolCompletionFromEntryId (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:123582:34)
+    at Object.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:123614:36)
+    at Proxy.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:153364:35)
+    at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:164587:57
+    at Object.mapDefined (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:612:30)
+    at IOSession.Session.getCompletionEntryDetails (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:164585:33)
+    at Session.handlers.ts.Map.ts.getEntries._a.<computed> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:163426:61)
+    at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165205:88
+    at IOSession.Session.executeWithRequestId (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165196:28)
+    at IOSession.Session.executeCommand (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165205:33)
+    at IOSession.Session.onMessage (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:165231:35)
+    at Interface.<anonymous> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\node_modules\typescript\lib\tsserver.js:167833:31)
+    at Interface.emit (events.js:315:20)
+    at Interface._onLine (readline.js:337:10)
+    at Interface._normalWrite (readline.js:482:12)
+    at Socket.ondata (readline.js:194:10)
+    at Socket.emit (events.js:315:20)
+    at addChunk (internal/streams/readable.js:309:12)
+    at readableAddChunk (internal/streams/readable.js:284:9)
+    at Socket.Readable.push (internal/streams/readable.js:223:10)
+    at Pipe.onStreamRead (internal/stream_base_commons.js:188:23)
+	at Function.create (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:75687)
+	at dispatchResponse (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:69551)
+	at dispatchMessage (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:68410)
+	at c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:67920
+	at l.fire (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:57:1835)
+	at g.onLengthData (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:434282)
+	at Socket.<anonymous> (c:\Users\danie\AppData\Local\Programs\Microsoft VS Code\resources\app\extensions\typescript-language-features\dist\extension.js:1:433930)
+	at Socket.emit (events.js:315:20)
+	at addChunk (internal/streams/readable.js:309:12)
+	at readableAddChunk (internal/streams/readable.js:284:9)
+	at Socket.Readable.push (internal/streams/readable.js:223:10)
+	at Pipe.onStreamRead (internal/stream_base_commons.js:188:23)
+[2021-06-24 18:20:47.037] [exthost] [info] extension host terminating: renderer closed the socket

@@ -1,0 +1,1046 @@
+Looking for git in: C:\Program Files\Git\cmd\git.exe
+Using git 2.32.0.windows.1 from C:\Program Files\Git\cmd\git.exe
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\.buckconfig' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\.editorconfig' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\.eslintrc.js' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\.flowconfig' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\.gitattributes' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\.gitignore' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\.prettierrc.js' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\.vscode' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\.watchmanconfig' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\android' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\App.js' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\app.json' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\babel.config.js' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\Backups' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\blob_storage' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\Cache' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\CachedData' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\CachedExtensions' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\Code Cache' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\Cookies' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\Cookies-journal' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\Crashpad' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\Dictionaries' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\GPUCache' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\index.js' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\ios' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\languagepacks.json' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\Local Storage' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\logs' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\machineid' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\metro.config.js' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\node_modules' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\package-lock.json' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\package.json' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\storage.json' failed; ex=spawn C:\Program Files\Git\cmd\git.exe ENOENT {
+  "gitErrorCode": "NotAGitRepository"
+}Error: spawn C:\Program Files\Git\cmd\git.exe ENOENT
+	at Process.ChildProcess._handle.onexit (internal/child_process.js:269:19)
+	at onErrorNT (internal/child_process.js:465:16)
+	at processTicksAndRejections (internal/process/task_queues.js:80:21)
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\User' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\__tests__' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home\Itens' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home\Itens' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home\Itens' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home\Itens' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Itens' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Itens' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\TelaLogin' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Itens' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Itens' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Itens' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Itens' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Itens' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\android' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\android' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\android' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\android' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\TabContainer' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
+Opening repository for path='c:\Users\danie\OneDrive\Documentos\EAD_AULAS\5 sem\engenharia de software\ProjetoFinal\MeuMenu\src\Tabs\Home' failed; ex=Failed to execute git {
+  "exitCode": 128,
+  "gitErrorCode": "NotAGitRepository",
+  "gitCommand": "rev-parse",
+  "stdout": "",
+  "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+}
