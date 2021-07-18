@@ -1,12 +1,13 @@
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import React, { useState } from 'react';
 
-import { TextInput } from 'react-native';
+import { TextInput , Image} from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { View, SafeAreaView, Text, StyleSheet ,ScrollView, Modal, Button} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {Picker} from '@react-native-picker/picker';
 import { set } from 'react-native-reanimated';
+import { Switch } from 'react-native';
 
 const EspecialidadesData = [
 
@@ -111,7 +112,7 @@ const NovaEspecialideComponent = () => {
 
 };
 
-const AdicionarItem = () => {
+const AdicionarItem = ({children}) => {
 
     const [novaEspecialidade, setNovaEspecialidade] = useState(false);
     return (
@@ -125,7 +126,7 @@ const AdicionarItem = () => {
         >
             <View style={stylesInfoLoja.ModalCentralizado}>
                 <View style = {stylesInfoLoja.ModalView}>
-                    <NovaEspecialideComponent />
+                    {children}
                     <TouchableOpacity 
                         style = {stylesInfoLoja.CadastrarHorarioAtendimentoBotao}
                         onPress ={() => {setNovaEspecialidade(!novaEspecialidade)}}
@@ -178,24 +179,23 @@ const Especialidades = ({setor, setSetor}) => {
     return (
 
         <SafeAreaView style = {{backgroundColor: 'white'}}>
-            
-                {itemsListArr}
-               
-            
+                {itemsListArr}  
         </SafeAreaView>
 
     );
 
 };
 // <AdicionarItem/>
-const OptionsHeader = ({title}) => {
+const OptionsHeader = ({title, children}) => {
 
     return (
         <View style = {stylesInfoLoja.HeaderEspecialidades}>
             <Text style = {stylesInfoLoja.HeaderEspecialidadesText}>
                 {title} 
             </Text>
-            <AdicionarItem />
+            <AdicionarItem>
+                {children}
+            </AdicionarItem>
         </View>
 
     );
@@ -212,7 +212,7 @@ const TimePicker = ({setTime,texto}) => {
       };
     return (
         <View>
-            {(!isDisabled) && <RNDateTimePicker minuteInterval = {10} is24Hour = {true} mode = 'time' value={new Date()} onChange = {onChange}/>}
+            {(!isDisabled) && <RNDateTimePicker is24Hour = {true} mode = 'time' value={new Date()} onChange = {onChange}/>}
             <TouchableOpacity style = {stylesInfoLoja.TimePickerStyle} onPress = {() => setIsDisabled(false)}>
                 <Text style = {stylesInfoLoja.TimePickerTextStyle}>{texto}</Text>
                 <Icon name = 'clock-o' type = 'font-awesome' size ={20}/>
@@ -267,11 +267,11 @@ const NovoHorarioAtendimento = () => {
             <View style = {stylesInfoLoja.TimeSelectorContainer}>
                 <View style = {stylesInfoLoja.HorarioInicioFimContainer}>
                     <Text style = {stylesInfoLoja.HorarioTitle}>Horario de Inicio</Text>
-                    <TimePicker setTime = {setHoraInicio} texto = {horaInicio.getMinutes() == 0? horaInicio.getHours()+ ":" + '00': horaInicio.getHours()+ ":" + horaInicio.getMinutes()}/>
+                    <TimePicker setTime = {setHoraInicio} texto = {horaInicio.getMinutes() < 10? horaInicio.getHours()+ ":" + '0' + horaInicio.getMinutes(): horaInicio.getHours()+ ":" + horaInicio.getMinutes()}/>
                 </View>
                 <View style = {stylesInfoLoja.HorarioInicioFimContainer}>
                     <Text style = {stylesInfoLoja.HorarioTitle}>Horario do Fim</Text>
-                    <TimePicker setTime = {setHoraFim} texto = {horaFim.getMinutes() == 0? horaFim.getHours()+ ":" + '00': horaFim.getHours()+ ":" + horaFim.getMinutes()}/>
+                    <TimePicker setTime = {setHoraFim} texto = {horaFim.getMinutes() < 10? horaFim.getHours()+ ":" + '0' + horaFim.getMinutes(): horaFim.getHours()+ ":" + horaFim.getMinutes()}/>
                 </View> 
             </View>
         </View>
@@ -280,45 +280,6 @@ const NovoHorarioAtendimento = () => {
 
 };
 
-const NovoHorario = () =>{
-
-    const [novoHorarioVisible, setNovoHorarioVisible] = useState(false);
-    return (
-
-    <View style = {{height: 50,paddingTop: 10}}>
-
-        <Modal
-            animationType = 'fade'
-            transparent = {true}
-            visible = {novoHorarioVisible}     
-        >
-            <View style={stylesInfoLoja.ModalCentralizado}>
-                <View style = {stylesInfoLoja.ModalView}>
-                    <NovoHorarioAtendimento/>
-                    <TouchableOpacity 
-                        style = {stylesInfoLoja.CadastrarHorarioAtendimentoBotao}
-                        onPress ={() => {setNovoHorarioVisible(!novoHorarioVisible)}}
-                    >
-                        <Text style = {stylesInfoLoja.CadastrarHorarioAtendimentoText}>
-                            Definir Horario!
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        </Modal>
-        <TouchableOpacity 
-            style = {stylesInfoLoja.AdicionarHorarioAtendimentoBotao}
-            onPress ={() => {setNovoHorarioVisible(!novoHorarioVisible)}}
-        >
-            <Icon name = 'plus' type = 'font-awesome' size = {27} color = 'blue'/>
-        </TouchableOpacity>
-    </View>
-);
-
-};
-/*<Text style = {stylesInfoLoja.AdicionarHorarioAtendimentoText}>
-                Adicionar
-            </Text>*/
 const DataHorariosAtendimento = [
 
     {
@@ -347,8 +308,6 @@ const DataHorariosAtendimento = [
     },
 
 ]
-
-
 
 const HorariosDeAtendimento = ({setor, setSetor}) => {
 
@@ -385,24 +344,69 @@ const HorariosDeAtendimento = ({setor, setSetor}) => {
     
     }
 
-    //console.log(selectedId);
-    //<Icon style = {{paddingRight: 10,paddingLeft: 10}} name = 'times' type = 'font-awesome' size = {20} color = 'red'/>
     const listHorariosAtendimento = DataHorariosAtendimento.map(item => (<RenderItem key = {item.id} item = {item} setSelectedId = {setSelectedId} selectedId = {selectedId} setor = {setor} setSetor = {setSetor}/>));
 
     return (
 
-        <View>
+        <SafeAreaView >
+            {listHorariosAtendimento}  
+        </SafeAreaView>
+    );
+};
 
-            {listHorariosAtendimento}
-            
-            
+
+const RenderMetodoDePagamento = ({texto,isPix,iconName, color}) => {
+    const [switchOn, setSwitchOn] = useState(false);
+        
+    return (
+        <View style = {{alignItens: 'center', justifyContent: 'space-between', flexDirection: 'row', width: '100%', height: 70}}>
+            <View style = {stylesInfoLoja.MetodosDePagementoContainer}>
+                
+                {isPix &&
+                    <View style = {{marginLeft: 10,width: 50, alignItems: 'center'}}>
+                        <Image
+                            style={{width: 35, height: 35}}
+                            source={require('../../../assets/pix.png')}
+                        />
+                    </View> 
+                }
+                {!isPix && 
+                    <Icon
+                        style = {{marginLeft: 10, width: 50}}
+                        name = {iconName}
+                        type = 'font-awesome'
+                        size = {35}
+                        color = {color}
+                    />
+                }
+                <Text style = {stylesInfoLoja.TextoMetodoDePagamento}>{texto}</Text>
+            </View>
+            <Switch
+                //style = {{backgroundColor: 'red'}} 
+                rackColor = {{false: '#767577', true: '#81b0ff'}}
+                thumbColor = {switchOn? '#fff' : '#f4f3f4'}
+                onValueChange = {() => {setSwitchOn((prevVal) => !prevVal)}}
+                value = {switchOn}
+            />
         </View>
+    );
+}
+
+const MetodosDePagemento = () => {
+
+
+    return (
+
+        <SafeAreaView>
+            <RenderMetodoDePagamento texto = 'Cartão de Credito' isPix = {false} iconName = 'credit-card-alt' color = 'blue'/>
+            <RenderMetodoDePagamento texto = 'Cartão de Debito' isPix = {false} iconName = 'credit-card-alt' color = 'red'/>
+            <RenderMetodoDePagamento texto = 'Dinheiro' isPix = {false} iconName = 'money' color = 'green'/>
+            <RenderMetodoDePagamento texto = 'Pix' isPix = {true} iconName = 'plus' color = 'green'/>
+
+        </SafeAreaView>
 
     );
-
-
 };
-//<NovoHorario /> 
 
 const InfoLoja = () =>{
 
@@ -413,29 +417,42 @@ const InfoLoja = () =>{
         <SafeAreaView style={stylesInfoLoja.container}>
             <ScrollView style = {stylesInfoLoja.scrollOptions}>
                 
-                < OptionsHeader title = 'Especialidades'/>
+                < OptionsHeader title = 'Especialidades'>
+                    <NovaEspecialideComponent/>
+                </OptionsHeader>
                 
                 <Especialidades setor = {setorSelecionadoAtual} setSetor = {setSetorSelecionadoAtual}/>
 
-                < OptionsHeader title = 'Horarios de Atendimento'/>
+                < OptionsHeader title = 'Horarios de Atendimento'>
+                    <NovoHorarioAtendimento/>
+                </OptionsHeader>
 
                 <HorariosDeAtendimento setor = {setorSelecionadoAtual} setSetor = {setSetorSelecionadoAtual}/>
-                   
-                
-                
-                
-                
+            
+                < OptionsHeader title = 'Metodos de Pagamento'>
+                    <NovoHorarioAtendimento/>
+                </OptionsHeader>
+
+                <MetodosDePagemento />
 
             </ScrollView>
-            
-                
-                 
+                    
         </SafeAreaView>
     );
 }
 
 stylesInfoLoja = StyleSheet.create({
 
+    MetodosDePagementoContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    TextoMetodoDePagamento:{
+        fontSize: 20,
+        
+        marginLeft: 20,
+
+    },
     container: {
         alignItems: "center",
         flex: 1,
@@ -482,8 +499,6 @@ stylesInfoLoja = StyleSheet.create({
         
         flexDirection: 'column',
         
-        //backgroundColor: 'red',
-        
     },
     TouchItemStyle: {
         flex: 1,
@@ -520,7 +535,8 @@ stylesInfoLoja = StyleSheet.create({
         paddingBottom: 10,
         paddingLeft: 10,
         
-        //paddingTop: 20,
+        //paddingTop: 70,
+        //top: 60,
         width: '100%',
         backgroundColor: '#10d177',
         justifyContent: 'space-between',
