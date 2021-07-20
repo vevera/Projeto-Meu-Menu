@@ -2,31 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-/*const Campo = ({nome, setEstado}) =>{
-
-    return (
-        <View style = {styles.InputView}>
-                <Text style = { styles.HeaderText}>
-                    {nome}
-                </Text>
-                <TextInput 
-                    style = {styles.InputText}
-                />
-        </View>
-    );
-}*/
-
 import Campo from './campo.js';
-
-const Separador = ({nome, padding}) => {
-    return (
-        <View style = {{width: "100%", paddingTop: padding}}>
-            <View style = {styles.Separador}>
-                <Text style = {styles.SeparadorText}>{nome}</Text>
-            </View>
-        </View>
-    );
-}
 
 const InvalidPassWord = ({valid}) => {
 
@@ -119,9 +95,10 @@ styles = StyleSheet.create({
 
         width: '60%',
         height: 40,
-        backgroundColor: 'rgba(0,0,128,1)',
+        backgroundColor: '#10d177',
         borderRadius: 20,
         alignSelf: 'center',
+        justifyContent: 'center',
     },
 
     CadastrarButtonText: {
@@ -133,7 +110,6 @@ styles = StyleSheet.create({
 
     CadastrarView: {
         paddingTop: 50,
-        paddingBottom: 10,
     },
     
     Separador: {
@@ -170,7 +146,8 @@ styles = StyleSheet.create({
     InvalidPassWord: {
 
         alignSelf: 'center',
-        alignItems: 'center'
+        width: '90%',
+        //alignItems: 'center'
 
     },
     InvalidPassWordText: {

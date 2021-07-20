@@ -79,32 +79,14 @@ const Item = ({item, itemTouchIconContainer, selectedId, setSelectedId,  itemSty
 
 }
 
-/*const AdicionarItem = () => {
-
-    return (
-        <View style = {stylesInfoLoja.AdicionarItemContainer}>
-            <View style = {stylesInfoLoja.AdicionarItemStyle}>
-                <TextInput
-                    blurOnSubmit={false}
-                    placeholder = 'Adicione uma Especialidade..'
-                />
-                <Icon style = {{paddingRight: 10}} name = 'plus' type = 'font-awesome' size = {20} color = 'green'/>
-            </View>
-        </View>
-
-    );
-
-};*/
-
-
 const NovaEspecialideComponent = () => {
 
     return (
 
         <View style = {{borderRadius: 10, borderWidth: 1, width: '90%', marginBottom: 20, marginTop: 20,alignSelf: 'center'}}>
             <TextInput
-                style = {{fontSize: 30}}
-                //placeholder = 'Nova especialidade...'
+                style = {{fontSize: 25}}
+                placeholder = 'Especialidade...'
             />
         </View>
 
@@ -112,7 +94,7 @@ const NovaEspecialideComponent = () => {
 
 };
 
-const AdicionarItem = ({children}) => {
+const AdicionarItem = ({children, buttonTitle}) => {
 
     const [novaEspecialidade, setNovaEspecialidade] = useState(false);
     return (
@@ -132,7 +114,7 @@ const AdicionarItem = ({children}) => {
                         onPress ={() => {setNovaEspecialidade(!novaEspecialidade)}}
                     >
                         <Text style = {stylesInfoLoja.CadastrarHorarioAtendimentoText}>
-                            Definir Especialidade!
+                            {buttonTitle}
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -142,7 +124,7 @@ const AdicionarItem = ({children}) => {
             style = {stylesInfoLoja.AdicionarHorarioAtendimentoBotao}
             onPress ={() => {setNovaEspecialidade(!novaEspecialidade)}}
         >
-            <Icon name = 'plus' type = 'antdesign' size = {30} color = '#228b22'/>
+            <Icon name = 'plus' type = 'antdesign' size = {29} color = '#228b22'/>
         </TouchableOpacity>
         
     </View>
@@ -186,16 +168,17 @@ const Especialidades = ({setor, setSetor}) => {
 
 };
 // <AdicionarItem/>
-const OptionsHeader = ({title, children}) => {
+const OptionsHeader = ({title, children, buttonAdd, btnTitle}) => {
 
     return (
         <View style = {stylesInfoLoja.HeaderEspecialidades}>
             <Text style = {stylesInfoLoja.HeaderEspecialidadesText}>
                 {title} 
             </Text>
-            <AdicionarItem>
+            {buttonAdd && 
+            <AdicionarItem buttonTitle = {btnTitle}>
                 {children}
-            </AdicionarItem>
+            </AdicionarItem>}
         </View>
 
     );
@@ -266,11 +249,11 @@ const NovoHorarioAtendimento = () => {
 
             <View style = {stylesInfoLoja.TimeSelectorContainer}>
                 <View style = {stylesInfoLoja.HorarioInicioFimContainer}>
-                    <Text style = {stylesInfoLoja.HorarioTitle}>Horario de Inicio</Text>
+                    <Text style = {stylesInfoLoja.HorarioTitle}>Horario de Inicio:</Text>
                     <TimePicker setTime = {setHoraInicio} texto = {horaInicio.getMinutes() < 10? horaInicio.getHours()+ ":" + '0' + horaInicio.getMinutes(): horaInicio.getHours()+ ":" + horaInicio.getMinutes()}/>
                 </View>
                 <View style = {stylesInfoLoja.HorarioInicioFimContainer}>
-                    <Text style = {stylesInfoLoja.HorarioTitle}>Horario do Fim</Text>
+                    <Text style = {stylesInfoLoja.HorarioTitle}>Horario do Fim:</Text>
                     <TimePicker setTime = {setHoraFim} texto = {horaFim.getMinutes() < 10? horaFim.getHours()+ ":" + '0' + horaFim.getMinutes(): horaFim.getHours()+ ":" + horaFim.getMinutes()}/>
                 </View> 
             </View>
@@ -365,7 +348,7 @@ const RenderMetodoDePagamento = ({texto,isPix,iconName, color}) => {
                 {isPix &&
                     <View style = {{marginLeft: 10,width: 50, alignItems: 'center'}}>
                         <Image
-                            style={{width: 35, height: 35}}
+                            style={{width: 30, height: 30}}
                             source={require('../../../assets/pix.png')}
                         />
                     </View> 
@@ -375,16 +358,16 @@ const RenderMetodoDePagamento = ({texto,isPix,iconName, color}) => {
                         style = {{marginLeft: 10, width: 50}}
                         name = {iconName}
                         type = 'font-awesome'
-                        size = {35}
+                        size = {30}
                         color = {color}
                     />
                 }
                 <Text style = {stylesInfoLoja.TextoMetodoDePagamento}>{texto}</Text>
             </View>
             <Switch
-                //style = {{backgroundColor: 'red'}} 
-                rackColor = {{false: '#767577', true: '#81b0ff'}}
-                thumbColor = {switchOn? '#fff' : '#f4f3f4'}
+                style = {{marginRight: 10}} 
+                rackColor = {{false: 'red', true: 'green'}}
+                thumbColor = {switchOn? 'green' : '#ff4040'}
                 onValueChange = {() => {setSwitchOn((prevVal) => !prevVal)}}
                 value = {switchOn}
             />
@@ -417,21 +400,19 @@ const InfoLoja = () =>{
         <SafeAreaView style={stylesInfoLoja.container}>
             <ScrollView style = {stylesInfoLoja.scrollOptions}>
                 
-                < OptionsHeader title = 'Especialidades'>
+                < OptionsHeader title = 'Especialidades' buttonAdd = {true} btnTitle = 'Adicionar Especialidade!'>
                     <NovaEspecialideComponent/>
                 </OptionsHeader>
                 
                 <Especialidades setor = {setorSelecionadoAtual} setSetor = {setSetorSelecionadoAtual}/>
 
-                < OptionsHeader title = 'Horarios de Atendimento'>
+                < OptionsHeader title = 'Horarios de Atendimento' buttonAdd = {true} btnTitle = 'Adicionar Horario!'>
                     <NovoHorarioAtendimento/>
                 </OptionsHeader>
 
                 <HorariosDeAtendimento setor = {setorSelecionadoAtual} setSetor = {setSetorSelecionadoAtual}/>
             
-                < OptionsHeader title = 'Metodos de Pagamento'>
-                    <NovoHorarioAtendimento/>
-                </OptionsHeader>
+                < OptionsHeader title = 'Metodos de Pagamento' buttonAdd = {false}/>
 
                 <MetodosDePagemento />
 
@@ -448,7 +429,7 @@ stylesInfoLoja = StyleSheet.create({
         alignItems: 'center',
     },
     TextoMetodoDePagamento:{
-        fontSize: 20,
+        fontSize: 17,
         
         marginLeft: 20,
 
@@ -484,26 +465,27 @@ stylesInfoLoja = StyleSheet.create({
     },
 
     ItemStyle: {
-        alignItems: 'flex-start',
+        alignItems: 'center',
         marginTop: 2,
         marginBottom: 4,
         backgroundColor: '#f8f8ff',
         borderRadius: 8,
         width: '95%',
+        height: 80,
         alignSelf: 'center',
     },
     ItemTouchIconContainer: {
         width: '100%',
-        
-        justifyContent: 'space-between',
-        
-        flexDirection: 'column',
+        //backgroundColor: 'pink',
+        height: '100%',
+       
         
     },
     TouchItemStyle: {
         flex: 1,
         paddingBottom: 15,
-        paddingTop: 15,
+        paddingTop: 10,
+       
     },
     IconTextStyle: {
         fontSize: 17,
@@ -537,6 +519,7 @@ stylesInfoLoja = StyleSheet.create({
         
         //paddingTop: 70,
         //top: 60,
+        height: 60,
         width: '100%',
         backgroundColor: '#10d177',
         justifyContent: 'space-between',
@@ -573,15 +556,17 @@ stylesInfoLoja = StyleSheet.create({
     HorarioInicioFimContainer: {
        
         width: '100%', 
+    
         justifyContent: 'center',
         alignItems: 'center',
-        
+        //alignSelf: 'center',
         flexDirection: 'row',
     },
     HorarioTitle: {
         paddingRight: 20,
         fontSize: 18,
         fontWeight: 'bold',
+        width: 180,
 
     },
     IntervaloDiaTitle: {
@@ -611,13 +596,15 @@ stylesInfoLoja = StyleSheet.create({
         marginLeft: 20,
         marginRight: 20,
         marginBottom: 30,
+        marginTop: 20,
         height: 50,
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
     },
     CadastrarHorarioAtendimentoText:{
-        fontSize: 20,
+       
+        fontSize: 17,
         fontWeight: 'bold',
         color: 'white',
 
@@ -683,6 +670,7 @@ stylesInfoLoja = StyleSheet.create({
         //borderColor: 'gray',
         backgroundColor: '#f8f8ff',
         borderRadius: 8,
+        height: 80,
         width: '95%',
         alignSelf: 'center',
     },

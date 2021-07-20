@@ -32,13 +32,14 @@ const MeuMenu = () => {
               title: "Cadastre-se",
               headerShown: true,
               headerStyle: {
-                backgroundColor: '#27FB6B',
+                backgroundColor: '#10d177',
               },
               headerTitleStyle: {
                 
                 color: "white",
                 //alignSelf: 'center',
               },
+              headerTintColor: 'white',
             }}
           /> 
           <Stack.Screen
@@ -93,9 +94,9 @@ const MeuMenu = () => {
           name="Login"
           component={Login}
 
-          //options={{
-          //  title: "Cadastro de Produto",
-          //}}
+          options={{
+            headerShown: false,
+          }}
         />
         <Stack.Screen
           name="CadastroProd"
