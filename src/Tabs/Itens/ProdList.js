@@ -96,25 +96,27 @@ function func(aux) {
 export default (props) => {
   function Footer() {
     return (
-      <View>
-        <Button
+      <View style = {{height: 40, width: '100%'}}>
+        <TouchableOpacity
+          style = {{height: '100%', width: '100%', flexDirection: "row", alignItems: "center", justifyContent: "center"}}
           onPress={() => props.navigation.navigate("CadastroProd")}
-          type="clear"
-          title="Adicionar Produto"
-          icon={<Icon name="add" size={30} color="red" />}
-        />
+        >
+          <Icon name="add" size={30} color="red" />
+          <Text style = {{fontSize: 17, fontWeight: "bold"}}>Adicionar Produto</Text>
+        </TouchableOpacity>
       </View>
     );
   }
   function FooterCat() {
     return (
-      <View>
-        <Button
+      <View style = {{height: 40, width: '100%'}}>
+        <TouchableOpacity
+          style = {{height: '100%', width: '100%', flexDirection: "row", alignItems: "center", justifyContent: "center"}}
           onPress={() => props.navigation.navigate("CadastroCat")}
-          type="clear"
-          title="Adicionar Categoria"
-          icon={<Icon name="add" size={30} color="red" />}
-        />
+        >
+          <Icon name="add" size={30} color="red" />
+          <Text style = {{fontSize: 17, fontWeight: "bold"}}>Adicionar Categoria</Text>
+        </TouchableOpacity>
       </View>
     );
   }
