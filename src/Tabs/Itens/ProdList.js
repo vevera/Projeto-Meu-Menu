@@ -152,14 +152,19 @@ const styles = StyleSheet.create({
   container: {
     marginTop: "8%",
     flex: 0,
-
+    backgroundColor: "white",
     //paddingTop: StatusBar.currentHeight,
     //marginHorizontal: 12,
   },
   item: {
-    //backgroundColor: "white",
-    padding: 15,
-    marginVertical: 4,
+    //alignItems: "center",
+    marginTop: 2,
+    marginBottom: 4,
+    backgroundColor: "#f8f8ff",
+    borderRadius: 8,
+    width: "95%",
+    height: 80,
+    alignSelf: "center",
   },
   header: {
     width: "100%",

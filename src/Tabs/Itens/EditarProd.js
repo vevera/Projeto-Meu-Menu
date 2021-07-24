@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+import { TouchableOpacity } from "react-native";
+import { Modal } from "react-native";
+import { View } from "react-native";
+import { Touchable } from "react-native";
 import {
   SafeAreaView,
-  TextInput,
   Text,
-  View,
   StyleSheet,
   ScrollView,
   Image,
 } from "react-native";
-import { Button, Input } from "react-native-elements";
+import { Button, Input, Icon } from "react-native-elements";
+import { SimpleModal } from "./SimpleModal";
 
 export const addData = [
   {
@@ -34,10 +37,77 @@ export const addData = [
 ];
 
 const RenderItem = ({ item }) => {
+  const [shouldShow, setshouldShow] = useState(false);
+
   return (
-    <Text style={{ fontSize: 18, margin: 10 }}>
-      {item.title} - R${item.price}
-    </Text>
+    <SafeAreaView>
+      <TouchableOpacity onPress={() => setshouldShow(!shouldShow)}>
+        <Text style={style.item}>
+          {item.title}
+          {"\n"}
+          Valor: R${item.price}
+        </Text>
+      </TouchableOpacity>
+      {shouldShow ? (
+        <SafeAreaView
+          style={{ flexDirection: "row", justifyContent: "center" }}
+        >
+          <TouchableOpacity
+            style={{
+              borderWidth: 1,
+              borderColor: "rgba(0,0,0,0.2)",
+              alignItems: "center",
+              justifyContent: "center",
+              width: 100,
+              height: 50,
+              elevation: 3,
+              backgroundColor: "#fff",
+              borderRadius: 50,
+              alignSelf: "center",
+              marginBottom: 10,
+              flexDirection: "row",
+              marginHorizontal: 7,
+            }}
+            onPress={() => {
+              <Text>
+                {prod.name} {prod.price}
+              </Text>;
+              navigation.goBack();
+            }}
+          >
+            <Text style={{ fontSize: 15, fontWeight: "bold", color: "blue" }}>
+              Atualizar
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{
+              borderWidth: 1,
+              borderColor: "rgba(0,0,0,0.2)",
+              alignItems: "center",
+              justifyContent: "center",
+              width: 100,
+              height: 50,
+              elevation: 3,
+              backgroundColor: "#fff",
+              borderRadius: 50,
+              alignSelf: "center",
+              marginBottom: 10,
+            }}
+            onPress={() => {
+              <Text>
+                {prod.name} {prod.price}
+              </Text>;
+              navigation.goBack();
+            }}
+          >
+            <Text style={{ fontSize: 15, fontWeight: "bold", color: "red" }}>
+              Remover
+            </Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+      ) : null}
+    </SafeAreaView>
   );
 };
 
@@ -47,42 +117,126 @@ const itemsListArr = addData.map((item) => (
 
 export default ({ route, navigation }) => {
   const [prod, setprod] = useState(route.params ? route.params : {});
+  const [isModalVisible, setisModalVisible] = useState(false);
+  const changeModalVisible = (bool) => {
+    setisModalVisible(bool);
+  };
+  const setData = (data) => {
+    setprod(data);
+  };
   return (
-    <ScrollView style={style.form}>
-      <Image source={require("../../../assets/cinza.png")} style={style.image} />
-      <Text style={style.text}>Produto</Text>
-      <Input
-        onChangeText={(name) => setprod({ ...prod, name })}
-        placeholder="informe o nome do produto"
-        rightIcon={{ type: "font-awesome", name: "edit" }}
-        value={prod.name ? prod.name : ""}
-      />
-      <Text style={style.text}>Preço</Text>
-      <Input
-        onChangeText={(price) => setprod({ ...prod, price })}
-        placeholder="informe o preço do produto"
-        rightIcon={{ type: "font-awesome", name: "edit" }}
-        //keyboardType="numeric"
-        value={prod.price.toString() ? prod.price.toString() : ""}
-      />
-      <Text style={style.text2}>Opções Adicionais</Text>
+    <View>
+      <ScrollView style={style.form}>
+        <Image
+          source={require("../../../assets/cinza.png")}
+          style={style.image}
+        />
+        <Text style={style.text}>Produto</Text>
+        <Input
+          onChangeText={(name) => setprod({ ...prod, name })}
+          placeholder="informe o nome do produto"
+          rightIcon={{ type: "font-awesome", name: "edit" }}
+          value={prod.name ? prod.name : ""}
+        />
+        <Text style={style.text}>Preço</Text>
+        <Input
+          onChangeText={(price) => setprod({ ...prod, price })}
+          placeholder="informe o preço do produto"
+          rightIcon={{ type: "font-awesome", name: "edit" }}
+          //keyboardType="numeric"
+          value={prod.price.toString() ? prod.price.toString() : ""}
+        />
+        <Text style={style.header}>Opções Adicionais</Text>
 
-      <SafeAreaView>{itemsListArr}</SafeAreaView>
+        <SafeAreaView>{itemsListArr}</SafeAreaView>
 
-      <Text style={style.text2}>Promoções</Text>
-      <Text style={style.text}>Exemplo</Text>
+        <TouchableOpacity
+          style={{
+            borderWidth: 1,
+            borderColor: "rgba(0,0,0,0.2)",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 100,
+            height: 50,
+            elevation: 3,
+            backgroundColor: "#fff",
+            borderRadius: 50,
+            alignSelf: "center",
+            marginBottom: 10,
+          }}
+          onPress={() => {
+            <Text>
+              {prod.name} {prod.price}
+            </Text>;
+            navigation.goBack();
+          }}
+        >
+          <Icon name={"add"} size={30} color="#01a699" />
+        </TouchableOpacity>
 
-      <Button
-        containerStyle={style.button}
-        title="Salvar"
-        onPress={() => {
-          <Text>
-            {prod.name} {prod.price}
-          </Text>;
-          navigation.goBack();
-        }}
-      />
-    </ScrollView>
+        <Text style={style.header}>Promoção</Text>
+
+        <TouchableOpacity onPress={() => changeModalVisible(true)}>
+          <Text style={style.itemP}>
+            Produto: {prod.name}
+            {"\n"}
+            Desconto: 50%
+            {"\n"}
+            Novo valor: {(prod.price * 50) / 100}
+            {"\n"}
+            Validade: 16:00 04/10
+            {"\n"}
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{
+            borderWidth: 1,
+            borderColor: "rgba(0,0,0,0.2)",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 100,
+            height: 50,
+            elevation: 3,
+            backgroundColor: "#fff",
+            borderRadius: 50,
+            alignSelf: "center",
+            marginBottom: 10,
+          }}
+          onPress={() => {
+            <Text>
+              {prod.name} {prod.price}
+            </Text>;
+            navigation.goBack();
+          }}
+        >
+          <Icon name={"add"} size={30} color="#01a699" />
+        </TouchableOpacity>
+
+        <Button
+          containerStyle={style.button}
+          title="Salvar"
+          onPress={() => {
+            <Text>
+              {prod.name} {prod.price}
+            </Text>;
+            navigation.goBack();
+          }}
+        />
+      </ScrollView>
+      <Modal
+        transparent={true}
+        animationType="fade"
+        marginTop="100"
+        visible={isModalVisible}
+        onRequestClose={() => changeModalVisible(false)}
+      >
+        <SimpleModal
+          changeModalVisible={changeModalVisible}
+          setData={setData}
+        />
+      </Modal>
+    </View>
   );
 };
 
@@ -90,8 +244,10 @@ const style = StyleSheet.create({
   form: {
     marginTop: "8%",
     //marginBottom: 40,
+    backgroundColor: "white",
     flex: 0,
     padding: 12,
+    //alignItems: "center",
   },
   input: {
     height: 40,
@@ -106,7 +262,40 @@ const style = StyleSheet.create({
   text2: {
     padding: 10,
     fontSize: 30,
+
+    //textAlign: "center",
+  },
+  header: {
+    width: "100%",
     textAlign: "center",
+    fontSize: 27,
+    fontWeight: "bold",
+    height: 40,
+    backgroundColor: "#036d19",
+    color: "white",
+  },
+  item: {
+    flexDirection: "row",
+    padding: 10,
+    fontSize: 20,
+    marginTop: 2,
+    marginBottom: 4,
+    backgroundColor: "#f8f8ff",
+    borderRadius: 8,
+    width: "95%",
+    height: 80,
+    alignSelf: "center",
+  },
+  itemP: {
+    padding: 10,
+    fontSize: 20,
+    marginTop: 2,
+    marginBottom: 4,
+    backgroundColor: "#f8f8ff",
+    borderRadius: 8,
+    width: "95%",
+    //height: 80,
+    alignSelf: "center",
   },
   button: {
     marginBottom: 40,
@@ -122,5 +311,25 @@ const style = StyleSheet.create({
     width: "100%",
     height: 200,
     marginBottom: 14,
+  },
+  btnAdd: {
+    marginBottom: 40,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    //elevation: 3,
+    backgroundColor: "white",
+  },
+  btnProm: {
+    marginBottom: 40,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    //elevation: 3,
+    backgroundColor: "white",
   },
 });
