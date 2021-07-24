@@ -2,7 +2,7 @@ import RNDateTimePicker from '@react-native-community/datetimepicker';
 import React, { useState } from 'react';
 
 import { TextInput , Image} from 'react-native';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Platform, StatusBar } from 'react-native';
 import { View, SafeAreaView, Text, StyleSheet ,ScrollView, Modal, Button} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {Picker} from '@react-native-picker/picker';
@@ -435,8 +435,9 @@ stylesInfoLoja = StyleSheet.create({
 
     },
     container: {
-        alignItems: "center",
         flex: 1,
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+        alignItems: "center",
         backgroundColor: 'white',
 
     },
