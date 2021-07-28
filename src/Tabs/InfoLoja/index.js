@@ -83,12 +83,24 @@ const NovaEspecialideComponent = () => {
 
     return (
 
-        <View style = {{borderRadius: 10, borderWidth: 1, width: '90%', marginBottom: 20, marginTop: 20,alignSelf: 'center'}}>
-            <TextInput
-                style = {{fontSize: 25}}
-                placeholder = 'Especialidade...'
-            />
+        <View>
+
+            <Text style = {{paddingTop: 8, paddingLeft: 20, fontSize: 20, color: '#191970', fontWeight: 'bold'}}>
+                Especialidade: 
+            </Text>
+            <View style = {{borderRadius: 4, borderWidth: 0.6, width: '90%', marginBottom: 20, marginTop: 20,alignSelf: 'center'}}>
+            
+            
+
+                <TextInput
+                    style = {{fontSize: 17}}
+                    placeholder = 'Digite aqui...'
+                />
+            </View>
+
         </View>
+
+
 
     );
 
@@ -205,13 +217,15 @@ const TimePicker = ({setTime,texto}) => {
 
 };
 
-const DiaPicker = ({valorSelecionado,setValorSelecionado}) => {
+const DiaPicker = ({valorSelecionado,setValorSelecionado, texto}) => {
 
 return (
 
     <View style = {stylesInfoLoja.StyleDataPickerContainer}>
+        <Text style = {{fontSize: 17, fontWeight: 'bold', color: '#3d2b1f'}}>{texto} </Text>
         <Picker
             style = {stylesInfoLoja.DiaPickerStyle}
+            mode = 'dropdown'
             selectedValue = {valorSelecionado}
             onValueChange = {(itemValue, itemIndex) => setValorSelecionado(itemValue)}
         >
@@ -241,21 +255,24 @@ const NovoHorarioAtendimento = () => {
        
         <View >  
             <View style = {stylesInfoLoja.DiaPickerContainer}>
-                <Text style = {stylesInfoLoja.IntervaloDiaTitle}>Dias de Funcionamento</Text>
-                <DiaPicker valorSelecionado = {diaInicio} setValorSelecionado = {setDiaInicio}/>
-                <DiaPicker valorSelecionado = {diaFim} setValorSelecionado = {setDiaFim}/>
-
+                <Text style = {stylesInfoLoja.IntervaloDiaTitle}>Selecione os Dias/Horarios</Text>
+                <View style = {{paddingLeft: 20, alignSelf: 'flex-start', alignItems: 'flex-end'}}>
+                    <DiaPicker valorSelecionado = {diaInicio} setValorSelecionado = {setDiaInicio} texto = 'De:'/>
+                    <DiaPicker valorSelecionado = {diaFim} setValorSelecionado = {setDiaFim} texto = 'a:'/>
+                
+                </View>
+                 
             </View>
 
             <View style = {stylesInfoLoja.TimeSelectorContainer}>
                 <View style = {stylesInfoLoja.HorarioInicioFimContainer}>
-                    <Text style = {stylesInfoLoja.HorarioTitle}>Horario de Inicio:</Text>
+                    <Text style = {stylesInfoLoja.HorarioTitle}>Das: </Text>
                     <TimePicker setTime = {setHoraInicio} texto = {horaInicio.getMinutes() < 10? horaInicio.getHours()+ ":" + '0' + horaInicio.getMinutes(): horaInicio.getHours()+ ":" + horaInicio.getMinutes()}/>
                 </View>
                 <View style = {stylesInfoLoja.HorarioInicioFimContainer}>
-                    <Text style = {stylesInfoLoja.HorarioTitle}>Horario do Fim:</Text>
+                    <Text style = {stylesInfoLoja.HorarioTitle}>Até as: </Text>
                     <TimePicker setTime = {setHoraFim} texto = {horaFim.getMinutes() < 10? horaFim.getHours()+ ":" + '0' + horaFim.getMinutes(): horaFim.getHours()+ ":" + horaFim.getMinutes()}/>
-                </View> 
+                </View>
             </View>
         </View>
        
@@ -544,39 +561,42 @@ stylesInfoLoja = StyleSheet.create({
     TimePickerTextStyle: {
         paddingRight: 8,
         fontSize: 20,
-        fontWeight: 'bold',
+        
 
     },
     TimeSelectorContainer: {
-        paddingTop: 25,
-        width: '100%',
-        alignItems: 'center',
-        //flexDirection: 'row',
-
+        paddingTop: 5,
+        
+        
+        
     },
     HorarioInicioFimContainer: {
        
-        width: '100%', 
-    
-        justifyContent: 'center',
+        //justifyContent: 'center',
         alignItems: 'center',
-        //alignSelf: 'center',
+        paddingLeft: 20,
+        alignSelf: 'flex-start',
         flexDirection: 'row',
     },
     HorarioTitle: {
+        color: '#3d2b1f',
         paddingRight: 20,
-        fontSize: 18,
+        fontSize: 17,
         fontWeight: 'bold',
-        width: 180,
+        width: 80,
 
     },
     IntervaloDiaTitle: {
       alignSelf: 'center', 
       fontWeight: 'bold', 
       fontSize: 18,
+      color: '#191970'
     },
     DiaPickerStyle: {
-        
+        //alignSelf: 'center',
+        width: '60%',
+        color: '#000000'
+       
     },
     PickerItemStyle: {
 
@@ -585,7 +605,12 @@ stylesInfoLoja = StyleSheet.create({
 
     },
     StyleDataPickerContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
         paddingTop: 20,
+       
+       
 
     },
     DiaPickerContainer: {
