@@ -38,7 +38,7 @@ export default ({ route, navigation }) => {
 const style = StyleSheet.create({
   form: {
     padding: 12,
-    marginTop: "8%",
+    //marginTop: "8%",
   },
   input: {
     height: 40,

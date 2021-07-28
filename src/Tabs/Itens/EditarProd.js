@@ -9,9 +9,12 @@ import {
   StyleSheet,
   ScrollView,
   Image,
+  FlatList,
 } from "react-native";
 import { Button, Input, Icon } from "react-native-elements";
+import ListItem from "./ListaRender";
 import { SimpleModal } from "./SimpleModal";
+//import { ImagePicker } from "./Imagem";
 
 export const addData = [
   {
@@ -35,6 +38,28 @@ export const addData = [
     price: 1,
   },
 ];
+
+function ListaOp() {
+  return (
+    <View>
+      <FlatList
+        data={addData}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <ListItem
+            data={item}
+            handleRight={() => alert("Opcional excluido!")}
+          />
+        )}
+        ItemSeparatorComponent={() => <Separator />}
+      />
+    </View>
+  );
+}
+const ShowList = <ListaOp />;
+const Separator = () => (
+  <View style={{ flex: 1, height: 1, backgroundColor: "#FFF" }} />
+);
 
 const RenderItem = ({ item }) => {
   const [shouldShow, setshouldShow] = useState(false);
@@ -147,9 +172,7 @@ export default ({ route, navigation }) => {
           value={prod.price.toString() ? prod.price.toString() : ""}
         />
         <Text style={style.header}>Opções Adicionais</Text>
-
-        <SafeAreaView>{itemsListArr}</SafeAreaView>
-
+        <SafeAreaView>{ShowList}</SafeAreaView>
         <TouchableOpacity
           style={{
             borderWidth: 1,
@@ -173,9 +196,7 @@ export default ({ route, navigation }) => {
         >
           <Icon name={"add"} size={30} color="#01a699" />
         </TouchableOpacity>
-
         <Text style={style.header}>Promoção</Text>
-
         <TouchableOpacity onPress={() => changeModalVisible(true)}>
           <Text style={style.itemP}>
             Produto: {prod.name}
@@ -188,7 +209,6 @@ export default ({ route, navigation }) => {
             {"\n"}
           </Text>
         </TouchableOpacity>
-
         <TouchableOpacity
           style={{
             borderWidth: 1,
@@ -212,7 +232,6 @@ export default ({ route, navigation }) => {
         >
           <Icon name={"add"} size={30} color="#01a699" />
         </TouchableOpacity>
-
         <Button
           containerStyle={style.button}
           title="Salvar"
@@ -242,7 +261,7 @@ export default ({ route, navigation }) => {
 
 const style = StyleSheet.create({
   form: {
-    marginTop: "8%",
+    //marginTop: "8%",
     //marginBottom: 40,
     backgroundColor: "white",
     flex: 0,
@@ -331,5 +350,9 @@ const style = StyleSheet.create({
     borderRadius: 4,
     //elevation: 3,
     backgroundColor: "white",
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#FFF",
   },
 });

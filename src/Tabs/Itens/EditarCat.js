@@ -7,7 +7,10 @@ export default ({ route, navigation }) => {
   const [title, setTitle] = useState(route.params ? route.params : {});
   return (
     <View style={style.form}>
-      <Image source={require("../../../assets/cinza.png")} style={style.image} />
+      <Image
+        source={require("../../../assets/cinza.png")}
+        style={style.image}
+      />
       <Text style={style.text}>Categoria</Text>
       <Input
         onChangeText={(title) => setTitle({ title })}
@@ -39,7 +42,7 @@ export default ({ route, navigation }) => {
 const style = StyleSheet.create({
   form: {
     padding: 12,
-    marginTop: "8%",
+    //marginTop: "8%",
   },
   input: {
     height: 40,

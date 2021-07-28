@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { TouchableOpacityBase } from "react-native";
+import { Platform } from "react-native";
 import {
   View,
   Image,
@@ -9,9 +11,18 @@ import {
   Text,
 } from "react-native";
 
-export default ({navigation}) => {
+export default ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [errorLogin, setErrorLogin] = useState("");
+
+  useEffect(() => {}, []);
+
   return (
-    <KeyboardAvoidingView style={styles.background}>
+    <KeyboardAvoidingView
+      style={styles.background}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
       <View style={styles.containerLogo}>
         <Image
           style={{
@@ -25,25 +36,51 @@ export default ({navigation}) => {
         <TextInput
           style={styles.input}
           placeholder="Email"
+          type="text"
+          onChangeText={(text) => {
+            setEmail(text);
+          }}
+          value={email}
           autoCorrect={false}
-          onChangeText={() => {}}
         />
 
         <TextInput
           style={styles.input}
+          secureTextEntry={true}
           placeholder="Senha"
           autoCorrect={false}
-          onChangeText={() => {}}
+          type="text"
+          onChangeText={(text) => {
+            setSenha(text);
+          }}
+          value={senha}
         />
+        {errorLogin === true ? (
+          <View>
+            <Text style={{ color: "red" }}> E-mail ou senha inválidos</Text>
+          </View>
+        ) : (
+          <View></View>
+        )}
+        {email === "" || senha === "" ? (
+          <TouchableOpacity style={styles.btnsubmit} disabled={true}>
+            <Text style={styles.textsubmit}>Acessar</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.btnsubmit}
+            onPress={() => navigation.navigate("ProdList")}
+          >
+            <Text style={styles.textsubmit}>Acessar</Text>
+          </TouchableOpacity>
+        )}
 
         <TouchableOpacity
-          style={styles.btnsubmit}
-          onPress={() => navigation.navigate("ProdList")}
+          onPress={() => {
+            navigation.navigate("CadastroLogin");
+          }}
+          style={styles.btnregister}
         >
-          <Text style={styles.textsubmit}>Acessar</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress = { () => {navigation.navigate("CadastroLogin")}} style={styles.btnregister}>
           <Text style={styles.textregister}>Cadastrar</Text>
         </TouchableOpacity>
       </View>
@@ -78,12 +115,13 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   btnsubmit: {
-    backgroundColor: "#35aaff",
-    width: "90%",
-    height: 45,
-    alignItems: "center",
+    width: 200,
+    height: 50,
     justifyContent: "center",
-    borderRadius: 7,
+    alignItems: "center",
+    backgroundColor: "darkorange",
+    borderRadius: 50,
+    marginTop: 10,
   },
   textsubmit: {
     color: "#fff",
@@ -94,5 +132,16 @@ const styles = StyleSheet.create({
   },
   textregister: {
     color: "#fff",
+  },
+  contentAlert: {
+    marginTop: 20,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  warningAlert: {
+    paddingLeft: 10,
+    color: "#bdbdbd",
+    fontSize: 16,
   },
 });

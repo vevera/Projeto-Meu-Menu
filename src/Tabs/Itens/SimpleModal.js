@@ -7,9 +7,10 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
+import { Input } from "react-native-elements";
 
 const WIDTH = Dimensions.get("window").width;
-const HEIGHT_MODAL = 150;
+const HEIGHT_MODAL = 300;
 
 const SimpleModal = (props) => {
   closeModal = (bool, data) => {
@@ -28,23 +29,34 @@ const SimpleModal = (props) => {
       <TouchableOpacity disabled={true} style={StyleSheet.container}>
         <View style={styles.modal}>
           <View style={styles.textView}>
-            <Text style={(styles.text, { fontSize: 20 })}>
-              Sample model header
+            <Text
+              style={(styles.text, { fontSize: 50 }, { alignSelf: "center" })}
+            >
+              Promoção
             </Text>
-            <Text style={styles.text}>Sample model description</Text>
+            <Text style={styles.text}>Desconto (em %)</Text>
+            <Input
+              placeholder="informe a % de desconto"
+              rightIcon={{ type: "font-awesome", name: "edit" }}
+            />
+            <Text style={styles.text}>Validade (em dias)</Text>
+            <Input
+              placeholder="informe a validade"
+              rightIcon={{ type: "font-awesome", name: "edit" }}
+            />
           </View>
           <View style={styles.buttonsView}>
             <TouchableOpacity
               style={styles.TouchableOpacity}
               onPress={() => closeModal(false)}
             >
-              <Text style={(styles.text, { color: "blue" })}>Ok</Text>
+              <Text style={(styles.text, { color: "blue" })}>Aplicar</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.TouchableOpacity}
               onPress={() => closeModal(false)}
             >
-              <Text style={(styles.text, { color: "blue" })}>Cancel</Text>
+              <Text style={(styles.text, { color: "blue" })}>Cancelar</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -68,7 +80,7 @@ const styles = StyleSheet.create({
   },
   textView: {
     flex: 1,
-    alignItems: "center",
+    //alignItems: "center",
   },
   text: {
     margin: 5,
