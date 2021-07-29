@@ -88,7 +88,7 @@ const NovaEspecialideComponent = () => {
             <Text style = {{paddingTop: 8, paddingLeft: 20, fontSize: 20, color: '#191970', fontWeight: 'bold'}}>
                 Especialidade: 
             </Text>
-            <View style = {{borderRadius: 4, borderWidth: 0.6, width: '90%', marginBottom: 20, marginTop: 20,alignSelf: 'center'}}>
+            <View style = {{borderBottomWidth: 0.5 ,width: '80%', marginBottom: 15, marginTop: 20,alignSelf: 'center'}}>
             
             
 
@@ -179,7 +179,7 @@ const Especialidades = ({setor, setSetor}) => {
     );
 
 };
-// <AdicionarItem/>
+
 const OptionsHeader = ({title, children, buttonAdd, btnTitle}) => {
 
     return (
@@ -355,11 +355,12 @@ const HorariosDeAtendimento = ({setor, setSetor}) => {
 };
 
 
+
 const RenderMetodoDePagamento = ({texto,isPix,iconName, color}) => {
     const [switchOn, setSwitchOn] = useState(false);
         
     return (
-        <View style = {{alignItens: 'center', justifyContent: 'space-between', flexDirection: 'row', width: '100%', height: 70}}>
+        <View style = {{alignItens: 'center', justifyContent: 'space-between', flexDirection: 'row', width: '100%', height: 70, paddingBottom: 15}}>
             <View style = {stylesInfoLoja.MetodosDePagementoContainer}>
                 
                 {isPix &&
@@ -383,13 +384,64 @@ const RenderMetodoDePagamento = ({texto,isPix,iconName, color}) => {
             </View>
             <Switch
                 style = {{marginRight: 10}} 
-                rackColor = {{false: 'red', true: 'green'}}
-                thumbColor = {switchOn? 'green' : '#ff4040'}
+                thumbColor = {switchOn? 'green' : 'gray'}
                 onValueChange = {() => {setSwitchOn((prevVal) => !prevVal)}}
                 value = {switchOn}
             />
         </View>
     );
+}
+
+
+const RenderMetodoDePagamentoPix = ({texto}) => {
+
+    const [switchOn, setSwitchOn] = useState(false);
+    const [chave, setChave] = useState('12345678');
+    const [editable, setEditable] = useState(false);
+    const iconName = editable? 'check' : 'edit';
+
+    return (
+        <View style = {{paddingBottom: 15}}>
+            <View style = {{alignItens: 'center', justifyContent: 'space-between', flexDirection: 'row', width: '100%', height: 70}}>
+                <View style = {stylesInfoLoja.MetodosDePagementoContainer}>
+                    <View style = {{marginLeft: 10,width: 50, alignItems: 'center'}}>
+                        <Image
+                            style={{width: 30, height: 30}}
+                            source={require('../../../assets/pix.png')}
+                        />
+                    </View> 
+                    <Text style = {stylesInfoLoja.TextoMetodoDePagamento}>{texto}</Text>
+                </View>
+                <Switch
+                    style = {{marginRight: 10}} 
+                    thumbColor = {switchOn? 'green' : 'gray'}
+                    onValueChange = {() => {setSwitchOn((prevVal) => !prevVal)}}
+                    value = {switchOn}
+                />
+            </View>
+            {switchOn && <View>
+                <Text style = {{marginLeft: 30, fontSize: 15.6, alignSelf: 'flex-end', width: '80%'}}>Digite uma chave Pix: </Text>
+                <View style = {stylesInfoLoja.ChavePixView}>
+                    <TextInput
+                        style = {{fontSize: 16, color: '#b13b46', flex: 1}}
+                        placeholder = 'Digite...'
+                        defaultValue = {chave}
+                        editable= {editable}
+
+                    />
+                    <Icon  
+                        color = 'green' 
+                        name = {iconName} 
+                        font = 'font-awesome' 
+                        size = {27} 
+                        onPress = {() => {setEditable(!editable)}}
+                    />
+                </View>
+            </View>}
+
+        </View>
+    );
+
 }
 
 const MetodosDePagemento = () => {
@@ -401,13 +453,15 @@ const MetodosDePagemento = () => {
             <RenderMetodoDePagamento texto = 'Cartão de Credito' isPix = {false} iconName = 'credit-card-alt' color = 'blue'/>
             <RenderMetodoDePagamento texto = 'Cartão de Debito' isPix = {false} iconName = 'credit-card-alt' color = 'red'/>
             <RenderMetodoDePagamento texto = 'Dinheiro' isPix = {false} iconName = 'money' color = 'green'/>
-            <RenderMetodoDePagamento texto = 'Pix' isPix = {true} iconName = 'plus' color = 'green'/>
+            <RenderMetodoDePagamentoPix texto = 'Pix'/>
+
 
         </SafeAreaView>
 
     );
 };
-
+//<RenderMetodoDePagamento texto = 'Pix' isPix = {true} iconName = 'plus' color = 'green'/>
+            
 const InfoLoja = () =>{
 
     const [setorSelecionadoAtual, setSetorSelecionadoAtual] = useState('');
@@ -440,6 +494,16 @@ const InfoLoja = () =>{
 }
 
 stylesInfoLoja = StyleSheet.create({
+
+    ChavePixView: {
+        flexDirection: 'row', 
+        justifyContent: 'space-around',
+        alignItems: "center", 
+        width: '70%', 
+        alignSelf: 'flex-end', 
+        marginRight: 20,
+    },
+
 
     MetodosDePagementoContainer: {
         flexDirection: 'row',
