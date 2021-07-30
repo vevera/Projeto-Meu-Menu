@@ -27,11 +27,12 @@ const InvalidPassWord = ({valid}) => {
 
 const telaCadastro = ({navigation}) => {
 
-    const [nome, setNome] = useState("daniel");
-    const [email, setEmail] = useState("danielemail");
-    const [senha, setSenha] = useState("1234");
+    const [nome, setNome] = useState("");
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
     const [confirmarSenha, setConfirmarSenha] = useState("");
     const [validPassword,setValid] = useState(true);
+    const [numeroDoTelegram, setNumeroDoTelegram] = useState("");
 
     function insertLogin () {
 
@@ -65,10 +66,11 @@ const telaCadastro = ({navigation}) => {
         <SafeAreaView>
             <ScrollView>
 
-                <Campo nome = 'Nome do Estabelecimento' setEstado = {setNome} secure = {false} iconName = 'cutlery'/>
-                <Campo nome = 'Email' setEstado = {setEmail} secure = {false} iconName = 'envelope'/>
-                <Campo nome = 'Senha' setEstado = {setSenha} secure = {true} iconName = 'lock' />
-                <Campo nome = 'Confirmar Senha' setEstado = {setConfirmarSenha} secure = {true} iconName = 'lock'/>
+                <Campo nome = 'Nome do Estabelecimento' setEstado = {setNome} secure = {false} iconName = 'cutlery' keyboardtype = 'default'/>
+                <Campo nome = 'Email' setEstado = {setEmail} secure = {false} iconName = 'envelope' keyboardtype = 'default'/>
+                <Campo nome = 'Número do Telegram' setEstado = {setNumeroDoTelegram} secure = {false} iconName = 'telegram' keyboardtype = 'phone-pad'/>
+                <Campo nome = 'Senha' setEstado = {setSenha} secure = {true} iconName = 'lock' keyboardtype = 'default'/>
+                <Campo nome = 'Confirmar Senha' setEstado = {setConfirmarSenha} secure = {true} iconName = 'lock' keyboardtype = 'default'/>
                 <InvalidPassWord valid = {validPassword}/>
 
                 <View style = {styles.CadastrarView}>

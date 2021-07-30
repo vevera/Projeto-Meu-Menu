@@ -108,7 +108,7 @@ const NovaEspecialideComponent = () => {
 
 const AdicionarItem = ({children, buttonTitle}) => {
 
-    const [novaEspecialidade, setNovaEspecialidade] = useState(false);
+    const [modalAtiva, setModalAtiva] = useState(false);
     return (
 
     <View style = {{height: 50,paddingTop: 10}}>
@@ -116,14 +116,18 @@ const AdicionarItem = ({children, buttonTitle}) => {
         <Modal
             animationType = 'fade'
             transparent = {true}
-            visible = {novaEspecialidade}     
+            visible = {modalAtiva}
+            onRequestClose={() => {
+                
+                setModalAtiva(!modalAtiva);
+              }}    
         >
             <View style={stylesInfoLoja.ModalCentralizado}>
                 <View style = {stylesInfoLoja.ModalView}>
                     {children}
                     <TouchableOpacity 
                         style = {stylesInfoLoja.CadastrarHorarioAtendimentoBotao}
-                        onPress ={() => {setNovaEspecialidade(!novaEspecialidade)}}
+                        onPress ={() => {setModalAtiva(!modalAtiva)}}
                     >
                         <Text style = {stylesInfoLoja.CadastrarHorarioAtendimentoText}>
                             {buttonTitle}
@@ -134,7 +138,7 @@ const AdicionarItem = ({children, buttonTitle}) => {
         </Modal>
         <TouchableOpacity 
             style = {stylesInfoLoja.AdicionarHorarioAtendimentoBotao}
-            onPress ={() => {setNovaEspecialidade(!novaEspecialidade)}}
+            onPress ={() => {setModalAtiva(!modalAtiva)}}
         >
             <Icon name = 'plus' type = 'antdesign' size = {29} color = '#228b22'/>
         </TouchableOpacity>
@@ -460,7 +464,6 @@ const MetodosDePagemento = () => {
 
     );
 };
-//<RenderMetodoDePagamento texto = 'Pix' isPix = {true} iconName = 'plus' color = 'green'/>
             
 const InfoLoja = () =>{
 

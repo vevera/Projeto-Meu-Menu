@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TextInput} from 'react-native';
 import {Icon} from 'react-native-elements';
 
-export default function Campo({nome, setEstado, secure, iconName}){
+export default function Campo({nome, setEstado, secure, iconName, keyboardtype}){
 
     return (
         <View style = {styles.InputView}>
@@ -14,7 +14,7 @@ export default function Campo({nome, setEstado, secure, iconName}){
                     <TextInput 
                         style = {styles.InputText}
                         onChangeText = {(text) => {setEstado(text)}}
-                    
+                        keyboardType = {keyboardtype}
                         secureTextEntry = {secure}
                     />
                 </View>
