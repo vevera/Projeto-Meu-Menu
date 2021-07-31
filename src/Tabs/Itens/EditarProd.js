@@ -4,6 +4,7 @@ import { Modal } from "react-native";
 import { View } from "react-native";
 import { Touchable } from "react-native";
 import {
+  Alert,
   SafeAreaView,
   Text,
   StyleSheet,
@@ -152,27 +153,34 @@ export default ({ route, navigation }) => {
   return (
     <View>
       <ScrollView style={style.form}>
-        <Image
-          source={require("../../../assets/cinza.png")}
-          style={style.image}
-        />
-        <Text style={style.text}>Produto</Text>
-        <Input
-          onChangeText={(name) => setprod({ ...prod, name })}
-          placeholder="informe o nome do produto"
-          rightIcon={{ type: "font-awesome", name: "edit" }}
-          value={prod.name ? prod.name : ""}
-        />
-        <Text style={style.text}>Preço</Text>
-        <Input
-          onChangeText={(price) => setprod({ ...prod, price })}
-          placeholder="informe o preço do produto"
-          rightIcon={{ type: "font-awesome", name: "edit" }}
-          //keyboardType="numeric"
-          value={prod.price.toString() ? prod.price.toString() : ""}
-        />
+        <Image style={style.imagem} source={{ uri: prod.image }} />
+        <View>
+          <Text style={style.text}>Produto</Text>
+          <Input
+            onChangeText={(name) => setprod({ ...prod, name })}
+            placeholder="informe o nome do produto"
+            rightIcon={{ type: "font-awesome", name: "edit" }}
+            value={prod.name ? prod.name : ""}
+          />
+          <Text style={style.text}>Preço</Text>
+          <Input
+            onChangeText={(price) => setprod({ ...prod, price })}
+            placeholder="informe o preço do produto"
+            rightIcon={{ type: "font-awesome", name: "edit" }}
+            keyboardType="numeric"
+            value={prod.price.toString() ? prod.price.toString() : ""}
+          />
+          <Text style={style.text}>Informações</Text>
+          <Input
+            onChangeText={(info) => setprod({ ...prod, info })}
+            placeholder="informe o preço do produto"
+            rightIcon={{ type: "font-awesome", name: "edit" }}
+            //keyboardType="numeric"
+            value={prod.info ? prod.info : ""}
+          />
+        </View>
         <Text style={style.header}>Opções Adicionais</Text>
-        <SafeAreaView>{ShowList}</SafeAreaView>
+        <SafeAreaView>{itemsListArr}</SafeAreaView>
         <TouchableOpacity
           style={{
             borderWidth: 1,
@@ -209,39 +217,67 @@ export default ({ route, navigation }) => {
             {"\n"}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        <View style={{ flexDirection: "row", alignSelf: "center" }}>
+          <TouchableOpacity
+            style={{
+              borderWidth: 1,
+              borderColor: "rgba(0,0,0,0.2)",
+              alignItems: "center",
+              justifyContent: "center",
+              width: 100,
+              height: 50,
+              elevation: 3,
+              backgroundColor: "#fff",
+              borderRadius: 50,
+              alignSelf: "center",
+              marginBottom: 10,
+              marginHorizontal: "1%",
+            }}
+            onPress={() => {
+              <Text>
+                {prod.name} {prod.price}
+              </Text>;
+              navigation.goBack();
+            }}
+          >
+            <Icon name={"remove"} size={30} color="#ff0000" />
+          </TouchableOpacity>
+        </View>
+        <View
           style={{
-            borderWidth: 1,
-            borderColor: "rgba(0,0,0,0.2)",
-            alignItems: "center",
-            justifyContent: "center",
-            width: 100,
-            height: 50,
-            elevation: 3,
-            backgroundColor: "#fff",
-            borderRadius: 50,
+            flexDirection: "row",
             alignSelf: "center",
-            marginBottom: 10,
-          }}
-          onPress={() => {
-            <Text>
-              {prod.name} {prod.price}
-            </Text>;
-            navigation.goBack();
           }}
         >
-          <Icon name={"add"} size={30} color="#01a699" />
-        </TouchableOpacity>
-        <Button
-          containerStyle={style.button}
-          title="Salvar"
-          onPress={() => {
-            <Text>
-              {prod.name} {prod.price}
-            </Text>;
-            navigation.goBack();
-          }}
-        />
+          <Button
+            containerStyle={style.buttonR}
+            title="Remover"
+            type="clear"
+            titleStyle={{
+              color: "red",
+              fontWeight: "bold",
+              textDecorationLine: "underline",
+            }}
+            //buttonStyle={{ backgroundColor: "lightred" }}
+            onPress={() => {
+              Alert.alert("Remover", "Deseja Remover o produto?");
+            }}
+          />
+          <Button
+            containerStyle={style.buttonS}
+            title="Salvar"
+            type="clear"
+            titleStyle={{
+              color: "blue",
+              fontWeight: "bold",
+              textDecorationLine: "underline",
+            }}
+            //buttonStyle={{ backgroundColor: "green" }}
+            onPress={() => {
+              Alert.alert("Salvar", "Deseja aplicar as alterações do Produto?");
+            }}
+          />
+        </View>
       </ScrollView>
       <Modal
         transparent={true}
@@ -316,19 +352,37 @@ const style = StyleSheet.create({
     //height: 80,
     alignSelf: "center",
   },
-  button: {
+  buttonR: {
+    marginHorizontal: "10%",
     marginBottom: 40,
+    marginTop: 20,
+    width: "40%",
+    borderRadius: 50,
     //alignItems: "center",
     //justifyContent: "center",
     //paddingVertical: 12,
     //paddingHorizontal: 32,
     //borderRadius: 4,
-    elevation: 3,
-    //backgroundColor: "black",
+    //elevation: 3,
   },
-  image: {
+  buttonS: {
+    marginHorizontal: "10%",
+    marginBottom: 40,
+    marginTop: 20,
+    width: "40%",
+    borderRadius: 50,
+    //alignItems: "center",
+    //justifyContent: "center",
+    //paddingVertical: 12,
+    //paddingHorizontal: 32,
+    //borderRadius: 4,
+    //elevation: 3,
+  },
+  imagem: {
     width: "100%",
     height: 200,
+    //width: "30%",
+    //height: 100,
     marginBottom: 14,
   },
   btnAdd: {

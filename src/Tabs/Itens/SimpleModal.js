@@ -13,7 +13,7 @@ const WIDTH = Dimensions.get("window").width;
 const HEIGHT_MODAL = 300;
 
 const SimpleModal = (props) => {
-  closeModal = (bool, data) => {
+  const closeModal = (bool, data) => {
     props.changeModalVisible(bool);
     //props.setData(data);
   };

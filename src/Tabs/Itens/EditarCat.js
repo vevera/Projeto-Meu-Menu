@@ -7,10 +7,6 @@ export default ({ route, navigation }) => {
   const [title, setTitle] = useState(route.params ? route.params : {});
   return (
     <View style={style.form}>
-      <Image
-        source={require("../../../assets/cinza.png")}
-        style={style.image}
-      />
       <Text style={style.text}>Categoria</Text>
       <Input
         onChangeText={(title) => setTitle({ title })}
