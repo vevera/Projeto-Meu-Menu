@@ -22,23 +22,16 @@ export default ({ navigation }) => {
 
   function login(senha, email) {
     console.log("semha: " + senha + " email: " + email);
-    fetch(`http://192.168.1.6:5000/store/login`, {
-      method: "GET",
-      headers: new Headers({
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      }),
 
-      params: {
-        email: encodeURIComponent(email),
-        password: encodeURIComponent(senha),
-      },
+    fetch(`http://192.168.1.103:5000/store/login?email=${encodeURIComponent(email)}&password=${encodeURIComponent(senha)}`, {
+      method: "GET",
     })
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-    console.log("saida:" + variavel);
+      .then((response) => response.text())
+      .then((texto) => {console.log(texto)})
+      //.then((json) => setvariavel(json))
+      //.catch((error) => console.error(error))
+      //.finally(() => setLoading(false));
+    //console.log("saida:" + variavel);
   }
 
   return (
