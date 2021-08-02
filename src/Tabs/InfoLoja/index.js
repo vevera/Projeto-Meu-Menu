@@ -1,5 +1,5 @@
 import RNDateTimePicker from '@react-native-community/datetimepicker';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { TextInput , Image} from 'react-native';
 import { TouchableOpacity, Platform, StatusBar } from 'react-native';
@@ -8,6 +8,7 @@ import {Icon} from 'react-native-elements';
 import {Picker} from '@react-native-picker/picker';
 import { set } from 'react-native-reanimated';
 import { Switch } from 'react-native';
+import { Swipeable } from 'react-native-gesture-handler';
 
 const EspecialidadesData = [
 
@@ -29,7 +30,7 @@ const EspecialidadesData = [
 const RemoveUpdateButtons = () => {
 
     return (
-        <View style = {{flexDirection: 'row',}}>
+        <View style = {{flexDirection: 'column', justifyContent: 'space-between', backgroundColor: '#f8f8ff',}}>
                 <TouchableOpacity style = {stylesInfoLoja.RemoverHorarioAtendimento}>
                     <Text style = {stylesInfoLoja.RemoverHorarioAtendimentoText}>
                         Remover
@@ -46,40 +47,35 @@ const RemoveUpdateButtons = () => {
     );
 }
 
-const Item = ({item, itemTouchIconContainer, selectedId, setSelectedId,  itemStyle, textStyle,  touchItemStyle, setor, setSetor}) => {
-
-    const buttonAble = selectedId == item.id ? true : false;
-    const setorSelcionado = setor == 'Especialidades' ? true : false;
-    const [able, setAble] = useState(true);
+const Item = ({item, itemTouchIconContainer, itemStyle, textStyle,  touchItemStyle}) => {
 
     return (
         <View style = {itemStyle}>
             <View style = {itemTouchIconContainer}>
                 <TouchableOpacity 
-                    style = {touchItemStyle} 
-                    onPress = {() => {
-                        if(selectedId != item.id){
-                            setAble(true);
-                        }
-                        else{
-                            setAble(!able);
-                        }
-                        setSetor('Especialidades');
-                        setSelectedId(item.id);
-                        
-                    }}
+                    style = {touchItemStyle}
+                    onPress = {() => {console.log(item.id)}} 
                 >
-                    <Text style = {textStyle}>{item.especialidade}</Text>
+                    <Text style = {textStyle}>{item}</Text>
                 
                 </TouchableOpacity>
-                {(buttonAble && able && setorSelcionado) && (<RemoveUpdateButtons />)}
             </View>
         </View>
     );
 
 }
 
-const NovaEspecialideComponent = () => {
+const NovaEspecialideComponent = ({setModalAtiva, modalAtiva}) => {
+
+    const [especialidade, setEspecialidade] = useState("");
+
+    function adicionarEspecialidade() {
+
+        fetch(`http://192.168.1.103:5000/insert/fornecedor?nome=${encodeURIComponent(nome)}&email=${encodeURIComponent(email)}&senha=${encodeURIComponent(senha)}`, {method: 'POST'})
+        .then(resposta => resposta.text())
+        .then(article => {console.log(article)})
+
+    }
 
     return (
 
@@ -90,13 +86,21 @@ const NovaEspecialideComponent = () => {
             </Text>
             <View style = {{borderBottomWidth: 0.5 ,width: '80%', marginBottom: 15, marginTop: 20,alignSelf: 'center'}}>
             
-            
-
                 <TextInput
                     style = {{fontSize: 17}}
                     placeholder = 'Digite aqui...'
+                    onChangeText = {(text) => {setEspecialidade(text)}}
                 />
             </View>
+
+            <TouchableOpacity 
+                style = {stylesInfoLoja.CadastrarHorarioAtendimentoBotao}
+                onPress ={() => {setModalAtiva(!modalAtiva)}}
+            >
+                <Text style = {stylesInfoLoja.CadastrarHorarioAtendimentoText}>
+                    Adicionar
+                </Text>
+            </TouchableOpacity>
 
         </View>
 
@@ -106,7 +110,7 @@ const NovaEspecialideComponent = () => {
 
 };
 
-const AdicionarItem = ({children, buttonTitle}) => {
+const AdicionarItem = ({Componente, buttonTitle, setAtualizarData, atualizarData}) => {
 
     const [modalAtiva, setModalAtiva] = useState(false);
     return (
@@ -124,15 +128,7 @@ const AdicionarItem = ({children, buttonTitle}) => {
         >
             <View style={stylesInfoLoja.ModalCentralizado}>
                 <View style = {stylesInfoLoja.ModalView}>
-                    {children}
-                    <TouchableOpacity 
-                        style = {stylesInfoLoja.CadastrarHorarioAtendimentoBotao}
-                        onPress ={() => {setModalAtiva(!modalAtiva)}}
-                    >
-                        <Text style = {stylesInfoLoja.CadastrarHorarioAtendimentoText}>
-                            {buttonTitle}
-                        </Text>
-                    </TouchableOpacity>
+                    <Componente setModalAtiva = {setModalAtiva} modalAtiva = {modalAtiva} setAtualizarData = {setAtualizarData} atualizarData = {atualizarData}/>
                 </View>
             </View>
         </Modal>
@@ -147,44 +143,100 @@ const AdicionarItem = ({children, buttonTitle}) => {
     )
 
 };
-/**/
-const Especialidades = ({setor, setSetor}) => {
+const RenderEspecialidade = ({item}) => {
 
-    const[selectedId, setSelectedId] = useState('');
+    const Remove = () => {
 
-    const RenderItem = ({item}) => {
+        function Delete() {
+            
+            /*fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(1)}/schedules/delete`, {
+                method: 'POST',
+                headers: new Headers({
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }),
+                body: JSON.stringify({
+                    schedule_id: item.id,
+               })
+            })
+            .then(res => res.text()) // or res.json()
+            .then(res => console.log(res))
+            .then(() => {setAtualizarData(!atualizarData)})*/
 
-        return(
+        }
+
+        return (
+            <View style = {{flexDirection: 'column', justifyContent: 'center', backgroundColor: '#f8f8ff'}}>
+                    <TouchableOpacity 
+                        style = {stylesInfoLoja.RemoverHorarioAtendimento}
+                        onPress = {Delete}
+                    >
+                        <Icon type = 'font-awesome' name = 'trash' size = {45} color = "white"/>
+                    </TouchableOpacity>
+            </View>
+        );
+    }
+
+    return(
+        <Swipeable
+            renderRightActions = {Remove}
+        >
             <Item
                 item = {item}
                 itemStyle = {stylesInfoLoja.ItemStyle}
                 textStyle = {stylesInfoLoja.IconTextStyle}
                 touchItemStyle = {stylesInfoLoja.TouchItemStyle}
                 itemTouchIconContainer = {stylesInfoLoja.ItemTouchIconContainer}
-                selectedId = {selectedId}
-                setSelectedId = {setSelectedId}
-                setor = {setor}
-                setSetor = {setSetor}
             />
-        );
+        </Swipeable>
+    );
 
-    };
+};
+const Especialidades = () => {
 
-    
+    //store/<store_id>/specialtys
 
-    const itemsListArr = EspecialidadesData.map(item => (<RenderItem key = {item.id} item = {item}/>));
+    const [dadosEspecialidades, setDadosEspecialidades] = useState("");
+    const [atualizarData,setAtualizarData] = useState(true);
+    const [listEspecialidades, setListEspecialidades] = useState(null);
+
+    function setaDados() {
+        fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(1)}/specialtys`, {
+                method: 'GET',
+            })
+            .then(resposta => resposta.json())
+            .then(article => {setDadosEspecialidades(article)})
+    }
+    useEffect(()=> {
+
+        setaDados();
+
+    },[atualizarData])
+
+    useEffect(() => {
+
+        if (dadosEspecialidades != ""){
+
+            console.log(dadosEspecialidades["specialtys"]);
+            setListEspecialidades(  
+                 
+                dadosEspecialidades["specialtys"].map(item => (<RenderEspecialidade key = {item.id} item = {item}/>))
+            );
+        }
+
+    },[dadosEspecialidades])
 
     return (
 
         <SafeAreaView style = {{backgroundColor: 'white'}}>
-                {itemsListArr}  
+            {listEspecialidades}
         </SafeAreaView>
 
     );
 
 };
-
-const OptionsHeader = ({title, children, buttonAdd, btnTitle}) => {
+//{itemsListArr}  
+const OptionsHeader = ({title, Filho, buttonAdd, btnTitle, atualizarData, setAtualizarData}) => {
 
     return (
         <View style = {stylesInfoLoja.HeaderEspecialidades}>
@@ -192,9 +244,12 @@ const OptionsHeader = ({title, children, buttonAdd, btnTitle}) => {
                 {title} 
             </Text>
             {buttonAdd && 
-            <AdicionarItem buttonTitle = {btnTitle}>
-                {children}
-            </AdicionarItem>}
+            <AdicionarItem 
+                Componente = {Filho} 
+                buttonTitle = {btnTitle} 
+                atualizarData = {atualizarData} 
+                setAtualizarData = {setAtualizarData}
+            />}
         </View>
 
     );
@@ -233,13 +288,13 @@ return (
             selectedValue = {valorSelecionado}
             onValueChange = {(itemValue, itemIndex) => setValorSelecionado(itemValue)}
         >
-            <Picker.Item style = {stylesInfoLoja.PickerItemStyle} label = 'Segunda' value = 'Segunda'/>
-            <Picker.Item style = {stylesInfoLoja.PickerItemStyle} label = 'Terça' value = 'Terça'/>
-            <Picker.Item style = {stylesInfoLoja.PickerItemStyle} label = 'Quarta' value = 'Quarta'/>
-            <Picker.Item style = {stylesInfoLoja.PickerItemStyle} label = 'Quinta' value = 'Quinta'/>
-            <Picker.Item style = {stylesInfoLoja.PickerItemStyle} label = 'Sexta' value = 'Sexta'/>
-            <Picker.Item style = {stylesInfoLoja.PickerItemStyle} label = 'Sabado' value = 'Sabado'/>
-            <Picker.Item style = {stylesInfoLoja.PickerItemStyle} label = 'Domingo' value = 'Domingo'/>
+            <Picker.Item style = {stylesInfoLoja.PickerItemStyle} label = 'Segunda' value = {1}/>
+            <Picker.Item style = {stylesInfoLoja.PickerItemStyle} label = 'Terça' value = {2}/>
+            <Picker.Item style = {stylesInfoLoja.PickerItemStyle} label = 'Quarta' value = {3}/>
+            <Picker.Item style = {stylesInfoLoja.PickerItemStyle} label = 'Quinta' value = {4}/>
+            <Picker.Item style = {stylesInfoLoja.PickerItemStyle} label = 'Sexta' value = {5}/>
+            <Picker.Item style = {stylesInfoLoja.PickerItemStyle} label = 'Sabado' value = {6}/>
+            <Picker.Item style = {stylesInfoLoja.PickerItemStyle} label = 'Domingo' value = {7}/>
         </Picker>
     </View>
 
@@ -248,13 +303,35 @@ return (
 };
 
 
-const NovoHorarioAtendimento = () => {
-    const [diaInicio, setDiaInicio] = useState("");
-    const [diaFim, setDiaFim] = useState("");
+const NovoHorarioAtendimento = ({setModalAtiva, modalAtiva, setAtualizarData, atualizarData}) => {
+    const [diaInicio, setDiaInicio] = useState(1);
+    const [diaFim, setDiaFim] = useState(2);
 
     const [horaInicio, setHoraInicio] = useState(new Date());
     const [horaFim, setHoraFim] = useState(new Date());
 
+    function adicionarHorario() {
+
+        fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(1)}/schedules`, {
+            method: 'POST',
+            headers: new Headers({
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify({
+                dow_start: diaInicio,
+                dow_end: diaFim,
+                opens_at: horaInicio.getHours() + ":" + horaInicio.getMinutes(),
+                closes_at: horaFim.getHours() +":"+ horaFim.getMinutes(),
+           })
+        })
+        .then(resposta => resposta.text())
+        .then(article => {console.log(article)})
+        .then(() => {setAtualizarData(!atualizarData)})
+
+    }
+    //"dow_start="+{diaInicio}+"&dow_end="+{diaFim}+"&opens_at="+{horaInicio}+"&closes_at="+{horaFim} // <-- Post parameters
+    
     return (
        
         <View >  
@@ -278,86 +355,108 @@ const NovoHorarioAtendimento = () => {
                     <TimePicker setTime = {setHoraFim} texto = {horaFim.getMinutes() < 10? horaFim.getHours()+ ":" + '0' + horaFim.getMinutes(): horaFim.getHours()+ ":" + horaFim.getMinutes()}/>
                 </View>
             </View>
+            <TouchableOpacity 
+                style = {stylesInfoLoja.CadastrarHorarioAtendimentoBotao}
+                onPress ={() => {setModalAtiva(!modalAtiva); adicionarHorario();}}
+            >
+                <Text style = {stylesInfoLoja.CadastrarHorarioAtendimentoText}>
+                    Adicionar
+                </Text>
+            </TouchableOpacity>
         </View>
        
     );
 
 };
 
-const DataHorariosAtendimento = [
+const RenderHorario = ({item, setAtualizarData, atualizarData}) =>{
 
-    {
-        id: 1,
-        dias: 'Segunda - Sexta',
-        horario: '08:00 - 18:00',
 
-    },
-    {
-        id: 2,
-        dias: 'Quarta - Quinta',
-        horario: '21:00 - 22:00',
+    const diasSemana = ['','Segunda','Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado', 'Domingo']
 
-    },
-    {
-        id: 3,
-        dias: 'Domingo - Domingo',
-        horario: '17:00 - 22:00',
+    const Remove = () => {
 
-    },
-    {
-        id: 4,
-        dias: 'Segunda - Terça',
-        horario: '17:00 - 22:00',
+        function Delete() {
+            
+            fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(1)}/schedules/delete`, {
+                method: 'POST',
+                headers: new Headers({
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }),
+                body: JSON.stringify({
+                    schedule_id: item.id,
+               })
+            })
+            .then(res => res.text()) // or res.json()
+            .then(res => console.log(res))
+            .then(() => {setAtualizarData(!atualizarData)})
 
-    },
+        }
 
-]
-
-const HorariosDeAtendimento = ({setor, setSetor}) => {
-
-    const [selectedId, setSelectedId] = useState('');
-   
-    const RenderItem = ({item, setSelectedId, selectedId}) =>{
-
-        const buttonAble = selectedId == item.id ? true : false;
-        const setorSelcionado = setor == 'Horario de Atendimento' ? true : false;
-        const [able, setAble] = useState(true);
-        
         return (
+            <View style = {{flexDirection: 'column', justifyContent: 'center', backgroundColor: '#f8f8ff'}}>
+                    <TouchableOpacity 
+                        style = {stylesInfoLoja.RemoverHorarioAtendimento}
+                        onPress = {Delete}
+                    >
+                        <Icon type = 'font-awesome' name = 'trash' size = {45} color = "white"/>
+                    </TouchableOpacity>
+            </View>
+        );
+    }
+    return (
+        <Swipeable
+            renderRightActions = {Remove}
+        >
             <View style = {stylesInfoLoja.StyleHorarioAtendimentoContainer}> 
                 <TouchableOpacity 
                     style = {stylesInfoLoja.StyleItemContainer} 
-                    onPress = {() => {
-                        if(selectedId != item.id){
-                            setAble(true);
-                        }
-                        else{
-                            setAble(!able);
-                        }
-                        setSelectedId(item.id);
-                        setSetor('Horario de Atendimento');   
-                    }}>
-                    <Text style = {stylesInfoLoja.StyleItemTextDia}>{item.dias}</Text>
-                    <Text style = {stylesInfoLoja.StyleItemTextHora}>{item.horario}</Text>
-       
-                </TouchableOpacity>
-                {(buttonAble && able && setorSelcionado) && (<RemoveUpdateButtons />)}
-                
+                >
+                    <Text style = {stylesInfoLoja.StyleItemTextDia}>{diasSemana[item.dow_start]} - {diasSemana[item.dow_end]}</Text>
+                    <Text style = {stylesInfoLoja.StyleItemTextHora}>{item.opens_at.substring(0, 5)} - {item.closes_at.substring(0, 5)}</Text>
+   
+                </TouchableOpacity> 
             </View>
-        );
-    
+        </Swipeable>
+    );
+//{(buttonAble && able) && (<RemoveUpdateButtons />)}
+}
+const HorariosDeAtendimento = ({atualizarData, setAtualizarData}) => {
+
+    const [DataHorarios, setDataHorarios] = useState("");
+    const [listHorarios, setListHorarios] = useState(null);
+
+    function setaDados() {
+        fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(1)}/schedules`, {
+                method: 'GET',
+            })
+            .then(resposta => resposta.json())
+            .then(article => {setDataHorarios(article);})
     }
+    
+    useEffect(() => {
 
-    const listHorariosAtendimento = DataHorariosAtendimento.map(item => (<RenderItem key = {item.id} item = {item} setSelectedId = {setSelectedId} selectedId = {selectedId} setor = {setor} setSetor = {setSetor}/>));
+        setaDados();
+       
+    },[atualizarData])
 
+    useEffect(() => {
+
+        if (DataHorarios != ""){
+            setListHorarios(DataHorarios["response"].map(item => (<RenderHorario key = {item.id} item = {item} setAtualizarData = {setAtualizarData} atualizarData = {atualizarData}/>)));
+        }
+
+    },[DataHorarios])
+     
     return (
 
         <SafeAreaView >
-            {listHorariosAtendimento}  
+            {listHorarios}
         </SafeAreaView>
     );
 };
-
+//{listHorariosAtendimento} 
 
 
 const RenderMetodoDePagamento = ({texto,isPix,iconName, color}) => {
@@ -464,6 +563,26 @@ const MetodosDePagemento = () => {
 
     );
 };
+
+const HorarioAtendimentoSection = () => {
+
+    const [atualizarData, setAtualizarData] = useState(true);
+    
+    return (
+        <SafeAreaView>
+            < OptionsHeader 
+                Filho = {NovoHorarioAtendimento} 
+                title = 'Horarios de Atendimento' 
+                buttonAdd = {true} 
+                btnTitle = 'Adicionar Horario!' 
+                atualizarData = {atualizarData}
+                setAtualizarData = {setAtualizarData}
+            />
+            <HorariosDeAtendimento atualizarData = {atualizarData} setAtualizarData = {setAtualizarData}/>
+        </SafeAreaView>
+    );
+
+}
             
 const InfoLoja = () =>{
 
@@ -474,18 +593,13 @@ const InfoLoja = () =>{
         <SafeAreaView style={stylesInfoLoja.container}>
             <ScrollView style = {stylesInfoLoja.scrollOptions}>
                 
-                < OptionsHeader title = 'Especialidades' buttonAdd = {true} btnTitle = 'Adicionar Especialidade!'>
-                    <NovaEspecialideComponent/>
-                </OptionsHeader>
+                < OptionsHeader Filho = {NovaEspecialideComponent} title = 'Especialidades' buttonAdd = {true} btnTitle = 'Adicionar Especialidade!'/>
+               
                 
                 <Especialidades setor = {setorSelecionadoAtual} setSetor = {setSetorSelecionadoAtual}/>
 
-                < OptionsHeader title = 'Horarios de Atendimento' buttonAdd = {true} btnTitle = 'Adicionar Horario!'>
-                    <NovoHorarioAtendimento/>
-                </OptionsHeader>
+                <HorarioAtendimentoSection />
 
-                <HorariosDeAtendimento setor = {setorSelecionadoAtual} setSetor = {setSetorSelecionadoAtual}/>
-            
                 < OptionsHeader title = 'Metodos de Pagamento' buttonAdd = {false}/>
 
                 <MetodosDePagemento />
@@ -768,11 +882,14 @@ stylesInfoLoja = StyleSheet.create({
         alignSelf: 'center',
     },
     RemoverHorarioAtendimento: {
-        marginLeft: 10,
+        
+        
+        height: '90%',
+        marginRight: 10,
         backgroundColor: 'red',
-        borderRadius: 15,
-        width: '30%',
+        width: 100,
         alignItems: 'center',
+        justifyContent: 'center',
         //alignSelf: 'center',
     },
     RemoverHorarioAtendimentoText: {
@@ -782,12 +899,15 @@ stylesInfoLoja = StyleSheet.create({
 
     },
     AtualizarHorarioAtendimento: {
-        marginLeft: 10,
+        marginBottom: 10,
+        //height: '45%',
+        marginRight: 10,
         backgroundColor: '#191970',
-        borderRadius: 15,
-        width: '30%',
+        borderRadius: 7,
+        width: 100,
         alignItems: 'center',
-        //alignSelf: 'center',
+        
+        
     },
     AtualizarHorarioAtendimentoText: {
         fontSize: 20,
