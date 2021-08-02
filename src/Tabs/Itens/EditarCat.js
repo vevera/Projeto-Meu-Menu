@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { TextInput, Text, View, StyleSheet, Button, Image } from "react-native";
-import { Input } from "react-native-elements";
+import { Text, View, StyleSheet } from "react-native";
+import { Button, Input, Icon } from "react-native-elements";
 //import {  } from "react-native-gesture-handler";
 
 export default ({ route, navigation }) => {
@@ -24,13 +24,41 @@ export default ({ route, navigation }) => {
         //keyboardType="numeric"
         //value={prod.price.toString() ? prod.price.toString() : ""}
       />
-      <Button
-        title="Salvar"
-        onPress={() => {
-          <Text>Salvo!</Text>;
-          navigation.goBack();
+      <View
+        style={{
+          flexDirection: "row",
+          alignSelf: "center",
         }}
-      />
+      >
+        <Button
+          containerStyle={style.buttonR}
+          title="Remover"
+          type="clear"
+          titleStyle={{
+            color: "red",
+            fontWeight: "bold",
+            textDecorationLine: "underline",
+          }}
+          //buttonStyle={{ backgroundColor: "lightred" }}
+          onPress={() => {
+            Alert.alert("Remover", "Deseja Remover o produto?");
+          }}
+        />
+        <Button
+          containerStyle={style.buttonS}
+          title="Salvar"
+          type="clear"
+          titleStyle={{
+            color: "blue",
+            fontWeight: "bold",
+            textDecorationLine: "underline",
+          }}
+          //buttonStyle={{ backgroundColor: "green" }}
+          onPress={() => {
+            Alert.alert("Salvar", "Deseja aplicar as alterações do Produto?");
+          }}
+        />
+      </View>
     </View>
   );
 };
@@ -54,5 +82,19 @@ const style = StyleSheet.create({
     width: "100%",
     height: 200,
     marginBottom: 14,
+  },
+  buttonR: {
+    marginHorizontal: "10%",
+    marginBottom: 40,
+    marginTop: 20,
+    width: "40%",
+    borderRadius: 50,
+  },
+  buttonS: {
+    marginHorizontal: "10%",
+    marginBottom: 40,
+    marginTop: 20,
+    width: "40%",
+    borderRadius: 50,
   },
 });

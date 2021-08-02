@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { TextInput, Text, View, StyleSheet, Button } from "react-native";
+import { TextInput, Text, View, StyleSheet } from "react-native";
 //import {  } from "react-native-gesture-handler";
-
-import { Input } from "react-native-elements";
+import { Button, Input, Icon } from "react-native-elements";
 
 export default ({ route, navigation }) => {
   const [title, setTitle] = useState(route.params ? route.params : {});
@@ -26,9 +25,17 @@ export default ({ route, navigation }) => {
         //value={prod.price.toString() ? prod.price.toString() : ""}
       />
       <Button
+        containerStyle={style.buttonS}
         title="Salvar"
+        type="clear"
+        titleStyle={{
+          color: "blue",
+          fontWeight: "bold",
+          textDecorationLine: "underline",
+        }}
+        //buttonStyle={{ backgroundColor: "green" }}
         onPress={() => {
-          navigation.goBack();
+          Alert.alert("Salvar", "Deseja aplicar as alterações do Produto?");
         }}
       />
     </View>
@@ -49,5 +56,13 @@ const style = StyleSheet.create({
   text: {
     padding: 10,
     fontSize: 20,
+  },
+  buttonS: {
+    alignSelf: "center",
+    marginHorizontal: "10%",
+    marginBottom: 40,
+    marginTop: 20,
+    width: "40%",
+    borderRadius: 50,
   },
 });
