@@ -1,19 +1,15 @@
-import RNDateTimePicker from '@react-native-community/datetimepicker';
 import React, { useEffect, useState } from 'react';
-
-import { TextInput , Image} from 'react-native';
-import { TouchableOpacity, Platform, StatusBar } from 'react-native';
-import { View, SafeAreaView, Text, StyleSheet ,ScrollView, Modal, Button} from 'react-native';
+import { TextInput} from 'react-native';
+import { TouchableOpacity} from 'react-native';
+import { View, SafeAreaView, Text} from 'react-native';
 import {Icon} from 'react-native-elements';
-import {Picker} from '@react-native-picker/picker';
-import { set } from 'react-native-reanimated';
-import { Switch } from 'react-native';
 import { Swipeable } from 'react-native-gesture-handler';
+
+import OptionsHeader from './optionsHeader';
 
 let row = [];
 
 const Item = ({item, itemTouchIconContainer, itemStyle, textStyle,  touchItemStyle, indice}) => {
-
     return (
         <View style = {itemStyle}>
             <View style = {itemTouchIconContainer}>
@@ -27,7 +23,6 @@ const Item = ({item, itemTouchIconContainer, itemStyle, textStyle,  touchItemSty
             </View>
         </View>
     );
-
 }
 
 const NovaEspecialideComponent = ({setModalAtiva, modalAtiva, atualizarData, setAtualizarData, especialidadesAtuais}) => {
@@ -62,12 +57,10 @@ const NovaEspecialideComponent = ({setModalAtiva, modalAtiva, atualizarData, set
     return (
 
         <View>
-
             <Text style = {{paddingTop: 8, paddingLeft: 20, fontSize: 20, color: '#191970', fontWeight: 'bold'}}>
                 Especialidade: 
             </Text>
             <View style = {{borderBottomWidth: 0.5 ,width: '80%', marginBottom: 15, marginTop: 20,alignSelf: 'center'}}>
-            
                 <TextInput
                     style = {{fontSize: 17}}
                     placeholder = 'Digite aqui...'
@@ -83,56 +76,10 @@ const NovaEspecialideComponent = ({setModalAtiva, modalAtiva, atualizarData, set
                     Adicionar
                 </Text>
             </TouchableOpacity>
-
         </View>
-
-
-
     );
 
 };
-
-const AdicionarItem = ({Componente, buttonTitle, setAtualizarData, atualizarData, especialidesList}) => {
-
-    const [modalAtiva, setModalAtiva] = useState(false);
-    return (
-
-    <View style = {{height: 50,paddingTop: 10}}>
-
-        <Modal
-            animationType = 'fade'
-            transparent = {true}
-            visible = {modalAtiva}
-            onRequestClose={() => {
-                
-                setModalAtiva(!modalAtiva);
-              }}    
-        >
-            <View style={stylesInfoLoja.ModalCentralizado}>
-                <View style = {stylesInfoLoja.ModalView}>
-                    <Componente 
-                        setModalAtiva = {setModalAtiva} 
-                        modalAtiva = {modalAtiva} 
-                        setAtualizarData = {setAtualizarData} 
-                        atualizarData = {atualizarData} 
-                        especialidadesAtuais = {especialidesList}
-                    />
-                </View>
-            </View>
-        </Modal>
-        <TouchableOpacity 
-            style = {stylesInfoLoja.AdicionarHorarioAtendimentoBotao}
-            onPress ={() => {setModalAtiva(!modalAtiva)}}
-        >
-            <Icon name = 'plus' type = 'antdesign' size = {29} color = '#228b22'/>
-        </TouchableOpacity>
-        
-    </View>
-    )
-
-};
-
-
 
 const RenderEspecialidade = ({item, indice, atualizarData, setAtualizarData, especialidadesAtuais}) => {
 
@@ -211,7 +158,6 @@ const Especialidades = ({atualizarData, setAtualizarData, setListaDeEspecialidad
             }
             catch (error){
                 console.log('especialidades error');
-                //console.log(error)
             }
         }
     }
@@ -251,28 +197,6 @@ const Especialidades = ({atualizarData, setAtualizarData, setListaDeEspecialidad
     );
 
 };
-
-const OptionsHeader = ({title, Filho, buttonAdd, btnTitle, atualizarData, setAtualizarData, especialidesList}) => {
-
-    return (
-        <View style = {stylesInfoLoja.HeaderEspecialidades}>
-            <Text style = {stylesInfoLoja.HeaderEspecialidadesText}>
-                {title} 
-            </Text>
-            {buttonAdd && 
-            <AdicionarItem 
-                Componente = {Filho} 
-                buttonTitle = {btnTitle} 
-                atualizarData = {atualizarData} 
-                setAtualizarData = {setAtualizarData}
-                especialidesList = {especialidesList}
-            />}
-        </View>
-
-    );
-
-};
-
 const SectionEspecialidade = () => {
 
     const [atualizarData, setAtualizarData] = useState(true);
@@ -280,7 +204,6 @@ const SectionEspecialidade = () => {
 
     return (
         <SafeAreaView>
-
             < OptionsHeader 
                 Filho = {NovaEspecialideComponent} 
                 title = 'Especialidades' 
@@ -296,10 +219,8 @@ const SectionEspecialidade = () => {
                 setAtualizarData = {setAtualizarData} 
                 setListaDeEspecialidades = {setEspecialidadeList}
             />
-
         </SafeAreaView>
     );
-
 };
 
 export default SectionEspecialidade;

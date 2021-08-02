@@ -1,14 +1,12 @@
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import React, { useEffect, useState } from 'react';
-
-import { TextInput , Image} from 'react-native';
-import { TouchableOpacity, Platform, StatusBar } from 'react-native';
-import { View, SafeAreaView, Text, StyleSheet ,ScrollView, Modal, Button} from 'react-native';
+import { TouchableOpacity} from 'react-native';
+import { View, SafeAreaView, Text} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {Picker} from '@react-native-picker/picker';
-import { set } from 'react-native-reanimated';
-import { Switch } from 'react-native';
 import { Swipeable } from 'react-native-gesture-handler';
+
+import OptionsHeader from './optionsHeader';
 
 const TimePicker = ({setTime,texto}) => {
     const [isDisabled, setIsDisabled] = useState(true);
@@ -27,7 +25,6 @@ const TimePicker = ({setTime,texto}) => {
             </TouchableOpacity>
         </View>
     );
-
 };
 
 const DiaPicker = ({valorSelecionado,setValorSelecionado, texto}) => {
@@ -56,7 +53,6 @@ return (
 
 };
 
-
 const NovoHorarioAtendimento = ({setModalAtiva, modalAtiva, setAtualizarData, atualizarData}) => {
     const [diaInicio, setDiaInicio] = useState(1);
     const [diaFim, setDiaFim] = useState(2);
@@ -84,8 +80,6 @@ const NovoHorarioAtendimento = ({setModalAtiva, modalAtiva, setAtualizarData, at
         .then(() => {setAtualizarData(!atualizarData)})
 
     }
-    //"dow_start="+{diaInicio}+"&dow_end="+{diaFim}+"&opens_at="+{horaInicio}+"&closes_at="+{horaFim} // <-- Post parameters
-    
     return (
        
         <View >  
@@ -94,9 +88,7 @@ const NovoHorarioAtendimento = ({setModalAtiva, modalAtiva, setAtualizarData, at
                 <View style = {{paddingLeft: 20, alignSelf: 'flex-start', alignItems: 'flex-end'}}>
                     <DiaPicker valorSelecionado = {diaInicio} setValorSelecionado = {setDiaInicio} texto = 'De:'/>
                     <DiaPicker valorSelecionado = {diaFim} setValorSelecionado = {setDiaFim} texto = 'a:'/>
-                
-                </View>
-                 
+                </View> 
             </View>
 
             <View style = {stylesInfoLoja.TimeSelectorContainer}>
@@ -174,7 +166,6 @@ const RenderHorario = ({item, setAtualizarData, atualizarData}) =>{
             </View>
         </Swipeable>
     );
-//{(buttonAble && able) && (<RemoveUpdateButtons />)}
 }
 const HorariosDeAtendimento = ({atualizarData, setAtualizarData}) => {
 
@@ -201,10 +192,8 @@ const HorariosDeAtendimento = ({atualizarData, setAtualizarData}) => {
                 console.log("horarios erro");
                 //console.log(error);
             }
-        }
-          
+        }      
     }
-    
     useEffect(() => {
 
         setaDados();
@@ -220,9 +209,29 @@ const HorariosDeAtendimento = ({atualizarData, setAtualizarData}) => {
     },[DataHorarios])
      
     return (
-
         <SafeAreaView style = {{minHeight: 50}}>
             {listHorarios}
         </SafeAreaView>
     );
 };
+
+const SectionHorarioAtendimento = () => {
+
+    const [atualizarData, setAtualizarData] = useState(true);
+    return (
+        <SafeAreaView>
+            < OptionsHeader 
+                Filho = {NovoHorarioAtendimento} 
+                title = 'Horarios de Atendimento' 
+                buttonAdd = {true} 
+                btnTitle = 'Adicionar Horario!' 
+                atualizarData = {atualizarData}
+                setAtualizarData = {setAtualizarData}
+            />
+            <HorariosDeAtendimento atualizarData = {atualizarData} setAtualizarData = {setAtualizarData}/>
+        </SafeAreaView>
+    );
+
+}
+
+export default SectionHorarioAtendimento;
