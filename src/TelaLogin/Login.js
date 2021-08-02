@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Alert } from "react-native";
 import { TouchableOpacityBase } from "react-native";
 import { Platform } from "react-native";
 import {
@@ -15,8 +16,30 @@ export default ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [errorLogin, setErrorLogin] = useState("");
+  const [variavel, setvariavel] = useState("");
 
   useEffect(() => {}, []);
+
+  function login(senha, email) {
+    console.log("semha: " + senha + " email: " + email);
+    fetch(`http://192.168.1.6:5000/store/login`, {
+      method: "GET",
+      headers: new Headers({
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      }),
+
+      params: {
+        email: encodeURIComponent(email),
+        password: encodeURIComponent(senha),
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
+    console.log("saida:" + variavel);
+  }
 
   return (
     <KeyboardAvoidingView
@@ -46,7 +69,7 @@ export default ({ navigation }) => {
 
         <TextInput
           style={styles.input}
-          secureTextEntry={true}
+          //secureTextEntry={true}
           placeholder="Senha"
           autoCorrect={false}
           type="text"
@@ -63,13 +86,13 @@ export default ({ navigation }) => {
           <View></View>
         )}
         {email === "" || senha === "" ? (
-          <TouchableOpacity style={styles.btnsubmit} disabled={true}>
+          <TouchableOpacity style={styles.btnsubmit} onPress={() => {}}>
             <Text style={styles.textsubmit}>Acessar</Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
             style={styles.btnsubmit}
-            onPress={() => navigation.navigate("ProdList")}
+            onPress={() => login(senha, email)}
           >
             <Text style={styles.textsubmit}>Acessar</Text>
           </TouchableOpacity>
