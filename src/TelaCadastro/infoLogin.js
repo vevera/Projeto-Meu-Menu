@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView} from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Campo from './campo.js';
@@ -29,19 +29,40 @@ const telaCadastro = ({navigation}) => {
 
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
+    const [numeroDoTelegram, setNumeroDoTelegram] = useState("");
+
     const [senha, setSenha] = useState("");
     const [confirmarSenha, setConfirmarSenha] = useState("");
     const [validPassword,setValid] = useState(true);
-    const [numeroDoTelegram, setNumeroDoTelegram] = useState("");
 
-    function insertLogin () {
+    const [aviso, setAviso] = useState(false);
+    
 
-        fetch(`http://192.168.1.103:5000/insert/fornecedor?nome=${encodeURIComponent(nome)}&email=${encodeURIComponent(email)}&senha=${encodeURIComponent(senha)}`, {method: 'POST'})
-        .then(resposta => resposta.text())
-        .then(article => {console.log(article)})
+    function testaCampo(campo){
 
-    };
+        if(/[a-z0-9]/i.test(campo)){
+            return true;
+        }
+        return false;
 
+    }
+
+    function passaAdiante(){
+
+        if(testaCampo(nome) && testaCampo(email) && testaCampo(numeroDoTelegram) && testaCampo(senha) && validPassword){
+
+            navigation.navigate('CadastroEndereco');
+            setAviso(false);
+
+        }
+        else{
+
+            setAviso(true);
+        }
+
+    }
+
+    
     useEffect(() => {
 
         if(confirmarSenha != ""){
@@ -71,10 +92,11 @@ const telaCadastro = ({navigation}) => {
                 <Campo nome = 'Número do Telegram' setEstado = {setNumeroDoTelegram} secure = {false} iconName = 'telegram' keyboardtype = 'phone-pad'/>
                 <Campo nome = 'Senha' setEstado = {setSenha} secure = {true} iconName = 'lock' keyboardtype = 'default'/>
                 <Campo nome = 'Confirmar Senha' setEstado = {setConfirmarSenha} secure = {true} iconName = 'lock' keyboardtype = 'default'/>
-                <InvalidPassWord valid = {validPassword}/>
+                
+                {aviso && <Text style = {{alignSelf: 'center', marginTop: 5, fontSize: 16, color: 'red'}}>Campo(s) vazio(s) ou Senhas Diferentes</Text>}
 
                 <View style = {styles.CadastrarView}>
-                    <TouchableOpacity style = {styles.CadastrarButton} onPress = {() => {insertLogin(); navigation.navigate('LojistaNavigator');}}>
+                    <TouchableOpacity style = {styles.CadastrarButton} onPress = {passaAdiante}>
                         <Text style = {styles.CadastrarButtonText}>
                             Proximo
                         </Text>
@@ -111,7 +133,7 @@ styles = StyleSheet.create({
     },
 
     CadastrarView: {
-        paddingTop: 50,
+        marginTop: 20,
     },
     
     Separador: {
