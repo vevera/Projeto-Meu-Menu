@@ -37,7 +37,6 @@ const MeuMenu = () => {
               headerTitleStyle: {
                 
                 color: "white",
-                //alignSelf: 'center',
               },
               headerTintColor: 'white',
             }}
@@ -46,16 +45,16 @@ const MeuMenu = () => {
             name = 'CadastroEndereco'
             component = {infoEndereco}
             options={{
-              title: "Cadastro de Endereço",
+              title: "Cadastre-se",
               headerShown: true,
               headerStyle: {
-                backgroundColor: '#27FB6B',
+                backgroundColor: '#10d177',
               },
               headerTitleStyle: {
                 
                 color: "white",
-                //alignSelf: 'center',
               },
+              headerTintColor: 'white',
             }}
           />
           <Stack.Screen
