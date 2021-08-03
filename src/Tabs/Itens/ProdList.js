@@ -24,20 +24,19 @@ const DATA = [
         info: "Calabresa, queijo, tomate, pimenta",
         image:
           "https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg",
+        promo: { desconto: 50, validade: "16:00 04/10" },
       },
       {
         name: "Burguer",
         price: 12,
         info: "Carne, queijo, bacon",
-        image:
-          "https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg",
+        promo: {},
       },
       {
         name: "Risotto",
         price: 12,
         info: "tradicional",
-        image:
-          "https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg",
+        promo: {},
       },
     ],
   },
@@ -49,22 +48,19 @@ const DATA = [
         name: "French Fries",
         price: 10,
         info: "batata, bacon, molho especial",
-        image:
-          "https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg",
+        promo: {},
       },
       {
         name: "Onion Rings",
         price: 12,
         info: "Cebola, molho especial",
-        image:
-          "https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg",
+        promo: {},
       },
       {
         name: "Fried Shrimps",
         price: 8,
         info: "Especial",
-        image:
-          "https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg",
+        promo: {},
       },
     ],
   },
@@ -76,22 +72,19 @@ const DATA = [
         name: "Water",
         price: 3,
         info: "250ml, sem gás",
-        image:
-          "https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg",
+        promo: {},
       },
       {
         name: "Coke",
         price: 4,
         info: "500ml",
-        image:
-          "https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg",
+        promo: {},
       },
       {
         name: "Beer",
         price: 4,
         info: "250ml",
-        image:
-          "https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg",
+        promo: {},
       },
     ],
   },
@@ -103,35 +96,45 @@ const DATA = [
         name: "Cheese Cake",
         price: 9,
         info: "queijo, bolo",
-        image:
-          "https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg",
+        promo: {},
       },
       {
         name: "Ice Cream",
         price: 6,
         info: "Chocolate, morango e creme",
-        image:
-          "https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg",
+        promo: {},
       },
       {
         name: "Fried Shrimps",
         price: 8,
         info: "Epecial",
-        image:
-          "https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg",
+        promo: {},
       },
     ],
   },
 ];
 
-const Item = ({ title, image, info, price }) => (
-  <View style={styles.item}>
+function temImagem(imagem) {
+  return imagem ? (
     <Image
       style={styles.imagem}
       source={{
-        uri: image,
+        uri: imagem,
       }}
     />
+  ) : (
+    <Image
+      style={styles.imagem}
+      source={{
+        uri: "https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png",
+      }}
+    />
+  );
+}
+
+const Item = ({ title, image, info, price }) => (
+  <View style={styles.item}>
+    {temImagem(image)}
     <View>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.subtitulo}>{info}</Text>

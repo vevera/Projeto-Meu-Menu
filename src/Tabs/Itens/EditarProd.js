@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { Modal } from "react-native";
 import { View } from "react-native";
-import { Touchable } from "react-native";
 import {
   Alert,
   SafeAreaView,
@@ -16,7 +15,6 @@ import { Button, Input, Icon } from "react-native-elements";
 import ListItem from "./ListaRender";
 import { SimpleModal } from "./SimpleModal";
 import { Swipeable } from "react-native-gesture-handler";
-//import { ImagePicker } from "./Imagem";
 
 export const addData = [
   {
@@ -93,12 +91,7 @@ const RenderItem = ({ item }) => {
   };
   return (
     <SafeAreaView>
-      <Swipeable
-        //ref={(ref) => {
-        //  row[indice] = ref;
-        //}}
-        renderRightActions={Remove}
-      >
+      <Swipeable renderRightActions={Remove}>
         <Text style={style.item}>
           {item.title}
           {"\n"}
@@ -117,16 +110,95 @@ export default ({ route, navigation }) => {
   const [prod, setprod] = useState(route.params ? route.params : {});
   const [isModalVisible, setisModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
+  const [showPromotion, setShowPromotion] = useState(false);
+
   const changeModalVisible = (bool) => {
     setisModalVisible(bool);
   };
   const setData = (data) => {
     setprod(data);
   };
+
+  function temImagem(imagem) {
+    return imagem ? (
+      <Image style={style.imagem} source={{ uri: imagem }} />
+    ) : (
+      <Image
+        style={style.imagem}
+        source={{
+          uri: "https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png",
+        }}
+      />
+    );
+  }
+
+  function promocaoAtiva(promocao) {
+    if (promocao.desconto != null) {
+      return (
+        <View style={{ flexDirection: "column" }}>
+          <TouchableOpacity onPress={() => changeModalVisible(true)}>
+            <Text style={style.itemP}>
+              Produto: {prod.name}
+              {"\n"}
+              Desconto: {promocao.desconto}%{"\n"}
+              Novo valor: {(prod.price * promocao.desconto) / 100}
+              {"\n"}
+              Validade: {promocao.validade}
+              {"\n"}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              borderWidth: 1,
+              borderColor: "rgba(0,0,0,0.2)",
+              alignItems: "center",
+              justifyContent: "center",
+              width: 100,
+              height: 50,
+              elevation: 3,
+              backgroundColor: "#fff",
+              borderRadius: 50,
+              alignSelf: "center",
+              marginBottom: 10,
+              marginHorizontal: "1%",
+            }}
+            onPress={() => {}}
+          >
+            <Icon name={"remove"} size={30} color="#ff0000" />
+          </TouchableOpacity>
+        </View>
+      );
+    } else {
+      return (
+        <TouchableOpacity
+          style={{
+            borderWidth: 1,
+            borderColor: "rgba(0,0,0,0.2)",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 100,
+            height: 50,
+            elevation: 3,
+            backgroundColor: "#fff",
+            borderRadius: 50,
+            alignSelf: "center",
+            marginBottom: 10,
+          }}
+          onPress={() => {}}
+        >
+          <Icon name={"add"} size={30} color="#01a699" />
+        </TouchableOpacity>
+      );
+    }
+  }
+
   return (
     <View>
       <ScrollView style={style.form}>
-        <Image style={style.imagem} source={{ uri: prod.image }} />
+        {temImagem(prod.image)}
+        <TouchableOpacity style={{ alignItems: "center" }}>
+          <Text style={{ fontWeight: "bold" }}>Atualizar imagem{"\n"}</Text>
+        </TouchableOpacity>
         <View>
           <Text style={style.text}>Produto</Text>
           <Input
@@ -175,44 +247,7 @@ export default ({ route, navigation }) => {
           <Icon name={"add"} size={30} color="#01a699" />
         </TouchableOpacity>
         <Text style={style.header}>Promoção</Text>
-        <TouchableOpacity onPress={() => changeModalVisible(true)}>
-          <Text style={style.itemP}>
-            Produto: {prod.name}
-            {"\n"}
-            Desconto: 50%
-            {"\n"}
-            Novo valor: {(prod.price * 50) / 100}
-            {"\n"}
-            Validade: 16:00 04/10
-            {"\n"}
-          </Text>
-        </TouchableOpacity>
-        <View style={{ flexDirection: "row", alignSelf: "center" }}>
-          <TouchableOpacity
-            style={{
-              borderWidth: 1,
-              borderColor: "rgba(0,0,0,0.2)",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 100,
-              height: 50,
-              elevation: 3,
-              backgroundColor: "#fff",
-              borderRadius: 50,
-              alignSelf: "center",
-              marginBottom: 10,
-              marginHorizontal: "1%",
-            }}
-            onPress={() => {
-              <Text>
-                {prod.name} {prod.price}
-              </Text>;
-              //navigation.goBack();
-            }}
-          >
-            <Icon name={"remove"} size={30} color="#ff0000" />
-          </TouchableOpacity>
-        </View>
+        {promocaoAtiva(prod.promo)}
         <View
           style={{
             flexDirection: "row",

@@ -8,6 +8,7 @@ import {
   Dimensions,
 } from "react-native";
 import { Input } from "react-native-elements";
+import { Slider, Icon } from "react-native-elements";
 
 const WIDTH = Dimensions.get("window").width;
 const HEIGHT_MODAL = 300;
@@ -35,6 +36,40 @@ const SimpleModal = (props) => {
               Promoção
             </Text>
             <Text style={styles.text}>Desconto (em %)</Text>
+            <View
+              style={{
+                flex: 1,
+                alignItems: "stretch",
+                justifyContent: "center",
+              }}
+            >
+              <Slider
+                value={1}
+                //onValueChange={setValue}
+                maximumValue={100}
+                minimumValue={1}
+                step={1}
+                trackStyle={{ height: 10, backgroundColor: "transparent" }}
+                thumbStyle={{
+                  height: 20,
+                  width: 20,
+                  backgroundColor: "transparent",
+                }}
+                thumbProps={{
+                  children: (
+                    <Icon
+                      name="heartbeat"
+                      type="font-awesome"
+                      size={20}
+                      reverse
+                      containerStyle={{ bottom: 20, right: 20 }}
+                      color="#f50"
+                    />
+                  ),
+                }}
+              />
+            </View>
+
             <Input
               placeholder="informe a % de desconto"
               rightIcon={{ type: "font-awesome", name: "edit" }}
