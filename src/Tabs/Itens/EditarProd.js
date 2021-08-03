@@ -15,6 +15,7 @@ import {
 import { Button, Input, Icon } from "react-native-elements";
 import ListItem from "./ListaRender";
 import { SimpleModal } from "./SimpleModal";
+import { Swipeable } from "react-native-gesture-handler";
 //import { ImagePicker } from "./Imagem";
 
 export const addData = [
@@ -63,76 +64,47 @@ const Separator = () => (
 );
 
 const RenderItem = ({ item }) => {
-  const [shouldShow, setshouldShow] = useState(false);
+  //const [shouldShow, setshouldShow] = useState(false);
+  const Remove = () => {
+    function Delete() {}
 
+    return (
+      <View
+        style={{
+          flexDirection: "column",
+          justifyContent: "center",
+          backgroundColor: "#f8f8ff",
+        }}
+      >
+        <TouchableOpacity
+          style={{
+            backgroundColor: "red",
+            width: 70,
+            height: 70,
+            borderRadius: 10,
+            justifyContent: "center",
+          }}
+          onPress={Delete}
+        >
+          <Icon type="font-awesome" name="trash" size={45} color="white" />
+        </TouchableOpacity>
+      </View>
+    );
+  };
   return (
     <SafeAreaView>
-      <TouchableOpacity onPress={() => setshouldShow(!shouldShow)}>
+      <Swipeable
+        //ref={(ref) => {
+        //  row[indice] = ref;
+        //}}
+        renderRightActions={Remove}
+      >
         <Text style={style.item}>
           {item.title}
           {"\n"}
           Valor: R${item.price}
         </Text>
-      </TouchableOpacity>
-      {shouldShow ? (
-        <SafeAreaView
-          style={{ flexDirection: "row", justifyContent: "center" }}
-        >
-          <TouchableOpacity
-            style={{
-              borderWidth: 1,
-              borderColor: "rgba(0,0,0,0.2)",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 100,
-              height: 50,
-              elevation: 3,
-              backgroundColor: "#fff",
-              borderRadius: 50,
-              alignSelf: "center",
-              marginBottom: 10,
-              flexDirection: "row",
-              marginHorizontal: 7,
-            }}
-            onPress={() => {
-              <Text>
-                {prod.name} {prod.price}
-              </Text>;
-              navigation.goBack();
-            }}
-          >
-            <Text style={{ fontSize: 15, fontWeight: "bold", color: "blue" }}>
-              Atualizar
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={{
-              borderWidth: 1,
-              borderColor: "rgba(0,0,0,0.2)",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 100,
-              height: 50,
-              elevation: 3,
-              backgroundColor: "#fff",
-              borderRadius: 50,
-              alignSelf: "center",
-              marginBottom: 10,
-            }}
-            onPress={() => {
-              <Text>
-                {prod.name} {prod.price}
-              </Text>;
-              navigation.goBack();
-            }}
-          >
-            <Text style={{ fontSize: 15, fontWeight: "bold", color: "red" }}>
-              Remover
-            </Text>
-          </TouchableOpacity>
-        </SafeAreaView>
-      ) : null}
+      </Swipeable>
     </SafeAreaView>
   );
 };
@@ -144,6 +116,7 @@ const itemsListArr = addData.map((item) => (
 export default ({ route, navigation }) => {
   const [prod, setprod] = useState(route.params ? route.params : {});
   const [isModalVisible, setisModalVisible] = useState(false);
+  const [addModalVisible, setAddModalVisible] = useState(false);
   const changeModalVisible = (bool) => {
     setisModalVisible(bool);
   };
@@ -196,10 +169,7 @@ export default ({ route, navigation }) => {
             marginBottom: 10,
           }}
           onPress={() => {
-            <Text>
-              {prod.name} {prod.price}
-            </Text>;
-            navigation.goBack();
+            setAddModalVisible(!addModalVisible);
           }}
         >
           <Icon name={"add"} size={30} color="#01a699" />
@@ -237,7 +207,7 @@ export default ({ route, navigation }) => {
               <Text>
                 {prod.name} {prod.price}
               </Text>;
-              navigation.goBack();
+              //navigation.goBack();
             }}
           >
             <Icon name={"remove"} size={30} color="#ff0000" />
@@ -260,7 +230,21 @@ export default ({ route, navigation }) => {
             }}
             //buttonStyle={{ backgroundColor: "lightred" }}
             onPress={() => {
-              Alert.alert("Remover", "Deseja Remover o produto?");
+              Alert.alert(
+                "Remover produto",
+                "Cuidado, essa ação irá remover o produto! Deseja continuar?",
+                [
+                  {
+                    text: "CANCELAR",
+                    onPress: () => console.log("CANCEL Pressed"),
+                  },
+                  {
+                    text: "CONFIRMAR",
+                    onPress: () => console.log("OK Pressed"),
+                  },
+                ],
+                { cancelable: false }
+              );
             }}
           />
           <Button
@@ -274,28 +258,87 @@ export default ({ route, navigation }) => {
             }}
             //buttonStyle={{ backgroundColor: "green" }}
             onPress={() => {
-              Alert.alert("Salvar", "Deseja aplicar as alterações do Produto?");
+              Alert.alert(
+                "Salvar alterações",
+                "Deseja aplicar as alterações do Produto?",
+                [
+                  {
+                    text: "CANCELAR",
+                    onPress: () => console.log("CANCEL Pressed"),
+                  },
+                  {
+                    text: "CONFIRMAR",
+                    onPress: () => console.log("OK Pressed"),
+                  },
+                ],
+                { cancelable: false }
+              );
             }}
           />
         </View>
       </ScrollView>
-      <Modal
-        transparent={true}
-        animationType="fade"
-        marginTop="100"
-        visible={isModalVisible}
-        onRequestClose={() => changeModalVisible(false)}
-      >
-        <SimpleModal
-          changeModalVisible={changeModalVisible}
-          setData={setData}
-        />
-      </Modal>
+      <View>
+        <Modal
+          transparent={true}
+          animationType="fade"
+          marginTop="100"
+          visible={isModalVisible}
+          onRequestClose={() => changeModalVisible(false)}
+        >
+          <SimpleModal
+            changeModalVisible={changeModalVisible}
+            setData={setData}
+          />
+        </Modal>
+      </View>
+
+      <View>
+        <Modal
+          visible={addModalVisible}
+          transparent={true}
+          animationType="fade"
+          marginTop="100"
+        >
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "white",
+            }}
+          >
+            <Text style={style.textView}>Adicionar Opicional</Text>
+            <Text style={style.textadd}>Nome do adicional</Text>
+            <Input
+              placeholder="informe o nomedo adicional"
+              rightIcon={{ type: "font-awesome", name: "edit" }}
+            />
+            <Text style={style.textadd}>Preço</Text>
+            <Input
+              placeholder="informe o custo do adicional"
+              rightIcon={{ type: "font-awesome", name: "edit" }}
+            />
+            <Button
+              style={{ marginBottom: 10 }}
+              title="Salvar alterações"
+              onPress={() => {
+                setAddModalVisible(!addModalVisible);
+              }}
+            ></Button>
+          </View>
+        </Modal>
+      </View>
     </View>
   );
 };
 
 const style = StyleSheet.create({
+  modalAdicionar: {
+    flex: 1,
+    backgroundColor: "green",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   form: {
     //marginTop: "8%",
     //marginBottom: 40,
@@ -396,5 +439,15 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFF",
+  },
+  textView: {
+    margin: 5,
+    fontSize: 26,
+    fontWeight: "bold",
+  },
+  textadd: {
+    margin: 5,
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });

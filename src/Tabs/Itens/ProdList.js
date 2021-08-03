@@ -124,7 +124,7 @@ const DATA = [
   },
 ];
 
-const Item = ({ title, image, info }) => (
+const Item = ({ title, image, info, price }) => (
   <View style={styles.item}>
     <Image
       style={styles.imagem}
@@ -134,14 +134,11 @@ const Item = ({ title, image, info }) => (
     />
     <View>
       <Text style={styles.title}>{title}</Text>
-      <Text>{info}</Text>
+      <Text style={styles.subtitulo}>{info}</Text>
+      <Text style={styles.subtitulo}>à partir de R$:{price}</Text>
     </View>
   </View>
 );
-
-function func(aux) {
-  return "  -  R$" + aux;
-}
 
 export default (props) => {
   function Footer() {
@@ -200,16 +197,17 @@ export default (props) => {
               >
                 <View>
                   <Item
-                    title={item.name + func(item.price)}
+                    title={item.name}
                     image={item.image}
                     info={item.info}
+                    price={item.price}
                   />
                 </View>
               </TouchableOpacity>
             </View>
           )}
           renderSectionHeader={({ section: { title } }) => (
-            <View>
+            <View style={{ backgroundColor: "#036d19", height: 50 }}>
               <TouchableOpacity
                 onPress={() => props.navigation.navigate("EditarCat", title)}
               >
@@ -246,15 +244,20 @@ const styles = StyleSheet.create({
     height: 80,
     alignSelf: "center",
   },
+  subtitulo: {
+    fontWeight: "bold",
+    color: "grey",
+  },
   header: {
-    marginTop: "2%",
+    //marginTop: "2%",
+    marginHorizontal: "2%",
     marginBottom: "2%",
     width: "100%",
-    textAlign: "center",
-    fontSize: 27,
+    //textAlign: "center",
+    fontSize: 25,
     fontWeight: "bold",
-    height: 40,
-    backgroundColor: "#036d19",
+    //height: 50,
+    //backgroundColor: "#036d19",
     color: "white",
   },
   title: {
@@ -263,7 +266,7 @@ const styles = StyleSheet.create({
   },
   imagem: {
     marginHorizontal: "2%",
-    alignSelf: "center",
+    alignSelf: "flex-end",
     width: 80,
     height: "90%",
     borderRadius: 10,

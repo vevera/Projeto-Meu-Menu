@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Alert } from "react-native";
 import { Button, Input, Icon } from "react-native-elements";
 //import {  } from "react-native-gesture-handler";
 
@@ -41,7 +41,21 @@ export default ({ route, navigation }) => {
           }}
           //buttonStyle={{ backgroundColor: "lightred" }}
           onPress={() => {
-            Alert.alert("Remover", "Deseja Remover o produto?");
+            Alert.alert(
+              "Remover",
+              "Cuidado, essa ação também removerá os produtos associados a esta categoria! Deseja continuar?",
+              [
+                {
+                  text: "CANCELAR",
+                  onPress: () => console.log("CANCEL Pressed"),
+                },
+                {
+                  text: "CONFIRMAR",
+                  onPress: () => console.log("OK Pressed"),
+                },
+              ],
+              { cancelable: false }
+            );
           }}
         />
         <Button
@@ -55,7 +69,21 @@ export default ({ route, navigation }) => {
           }}
           //buttonStyle={{ backgroundColor: "green" }}
           onPress={() => {
-            Alert.alert("Salvar", "Deseja aplicar as alterações do Produto?");
+            Alert.alert(
+              "Salvar",
+              "Deseja aplicar as alterações da Categoria?",
+              [
+                {
+                  text: "CANCELAR",
+                  onPress: () => console.log("CANCEL Pressed"),
+                },
+                {
+                  text: "CONFIRMAR",
+                  onPress: () => console.log("OK Pressed"),
+                },
+              ],
+              { cancelable: false }
+            );
           }}
         />
       </View>
