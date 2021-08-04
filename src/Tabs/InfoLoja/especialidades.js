@@ -142,24 +142,32 @@ const Especialidades = ({idLoja, atualizarData, setAtualizarData, setListaDeEspe
     const [dadosEspecialidades, setDadosEspecialidades] = useState("");
     const [listEspecialidades, setListEspecialidades] = useState(null);
     
+    function timeout(ms, promise) {
+        return new Promise((resolve, reject) => {
+          const timer = setTimeout(() => {
+            reject(new Error('TIMEOUT'))
+          }, ms)
+      
+          promise
+            .then(value => {
+              clearTimeout(timer)
+              resolve(value)
+            })
+            .catch(reason => {
+              clearTimeout(timer)
+              reject(reason)
+            })
+        })
+    }
+
     async function setaDados() {
 
-        let loop = true;
-        while(loop){
-            try{
-                const resposta = await fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(idLoja)}/specialtys`, {
-                        method: 'GET',
-                        timeout: 3000,
-                });
-                const article = await resposta.json();
-                setDadosEspecialidades(article);
-                loop = false;
-                console.log('loop especialidades false');
-            }
-            catch (error){
-                console.log('especialidades error');
-            }
-        }
+        timeout(5000, fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(idLoja)}/specialtys`, {
+            method: 'GET',
+        }))
+        .then(resposta => {console.log(resposta); return resposta.json()})
+        .then(article => setDadosEspecialidades(article))
+        .catch(error => console.log(error))
     }
     useEffect(()=> {
 

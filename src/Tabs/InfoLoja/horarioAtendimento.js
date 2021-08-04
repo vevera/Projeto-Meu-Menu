@@ -53,7 +53,7 @@ return (
 
 };
 
-const NovoHorarioAtendimento = ({setModalAtiva, modalAtiva, setAtualizarData, atualizarData}) => {
+const NovoHorarioAtendimento = ({idLoja, setModalAtiva, modalAtiva, setAtualizarData, atualizarData}) => {
     const [diaInicio, setDiaInicio] = useState(1);
     const [diaFim, setDiaFim] = useState(2);
 
@@ -62,7 +62,7 @@ const NovoHorarioAtendimento = ({setModalAtiva, modalAtiva, setAtualizarData, at
 
     function adicionarHorario() {
 
-        fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(1)}/schedules`, {
+        fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(idLoja)}/schedules`, {
             method: 'POST',
             headers: new Headers({
                 'Accept': 'application/json',
@@ -115,7 +115,7 @@ const NovoHorarioAtendimento = ({setModalAtiva, modalAtiva, setAtualizarData, at
 
 };
 
-const RenderHorario = ({item, setAtualizarData, atualizarData}) =>{
+const RenderHorario = ({idLoja, item, setAtualizarData, atualizarData}) =>{
 
 
     const diasSemana = ['','Segunda','Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado', 'Domingo']
@@ -124,7 +124,7 @@ const RenderHorario = ({item, setAtualizarData, atualizarData}) =>{
 
         function Delete() {
             
-            fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(1)}/schedules/delete`, {
+            fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(idLoja)}/schedules/delete`, {
                 method: 'POST',
                 headers: new Headers({
                     'Accept': 'application/json',
@@ -167,32 +167,38 @@ const RenderHorario = ({item, setAtualizarData, atualizarData}) =>{
         </Swipeable>
     );
 }
-const HorariosDeAtendimento = ({atualizarData, setAtualizarData}) => {
+const HorariosDeAtendimento = ({idLoja, atualizarData, setAtualizarData}) => {
 
     const [DataHorarios, setDataHorarios] = useState("");
     const [listHorarios, setListHorarios] = useState(null);
 
+    function timeout(ms, promise) {
+        return new Promise((resolve, reject) => {
+          const timer = setTimeout(() => {
+            reject(new Error('TIMEOUT'))
+          }, ms)
+      
+          promise
+            .then(value => {
+              clearTimeout(timer)
+              resolve(value)
+            })
+            .catch(reason => {
+              clearTimeout(timer)
+              reject(reason)
+            })
+        })
+    }
+
     async function setaDados() {
 
-        let loop = true;
-        while(loop){
-            try {
-                const response = await fetch(`http://192.168.1.103:5000/store/1/schedules`, {
-                    method: 'GET',
-                    timeout: 3000,
-                });
-                //console.log(response);
-                const article = await response.json();
-                setDataHorarios(article);
-                loop = false;
-                console.log("loop horarios agora é falso");
-                //console.log(response);
+        timeout(5000, fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(idLoja)}/schedules`, {
+            method: 'GET',
+        }))
+        .then(resposta => {console.log(resposta); return resposta.json()})
+        .then(article => setDataHorarios(article))
+        .catch(error => console.log(error))
 
-            } catch (error) {
-                console.log("horarios erro");
-                //console.log(error);
-            }
-        }      
     }
     useEffect(() => {
 
@@ -203,7 +209,7 @@ const HorariosDeAtendimento = ({atualizarData, setAtualizarData}) => {
     useEffect(() => {
 
         if (DataHorarios != ""){
-            setListHorarios(DataHorarios["response"].map(item => (<RenderHorario key = {item.id} item = {item} setAtualizarData = {setAtualizarData} atualizarData = {atualizarData}/>)));
+            setListHorarios(DataHorarios["response"].map(item => (<RenderHorario key = {item.id} idLoja = {idLoja} item = {item} setAtualizarData = {setAtualizarData} atualizarData = {atualizarData}/>)));
         }
 
     },[DataHorarios])
@@ -215,12 +221,13 @@ const HorariosDeAtendimento = ({atualizarData, setAtualizarData}) => {
     );
 };
 
-const SectionHorarioAtendimento = () => {
+const SectionHorarioAtendimento = ({id}) => {
 
     const [atualizarData, setAtualizarData] = useState(true);
     return (
         <SafeAreaView>
             < OptionsHeader 
+                idLoja = {id}
                 Filho = {NovoHorarioAtendimento} 
                 title = 'Horarios de Atendimento' 
                 buttonAdd = {true} 
@@ -228,7 +235,7 @@ const SectionHorarioAtendimento = () => {
                 atualizarData = {atualizarData}
                 setAtualizarData = {setAtualizarData}
             />
-            <HorariosDeAtendimento atualizarData = {atualizarData} setAtualizarData = {setAtualizarData}/>
+            <HorariosDeAtendimento idLoja = {id} atualizarData = {atualizarData} setAtualizarData = {setAtualizarData}/>
         </SafeAreaView>
     );
 
