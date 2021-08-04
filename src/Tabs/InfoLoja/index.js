@@ -6,9 +6,9 @@ import SectionEspecialidade from './especialidades';
 import SectionHorarioAtendimento from './horarioAtendimento';
 import MetodosDePagementoSection from './metodosPagamento';
       
-const InfoLoja = () =>{
+const InfoLoja = ({route}) =>{
 
-    const [setorSelecionadoAtual, setSetorSelecionadoAtual] = useState('');
+    const idLoja = route.params;
 
     return(
 
@@ -16,9 +16,9 @@ const InfoLoja = () =>{
             <ScrollView style = {stylesInfoLoja.scrollOptions}>
                 
                 
-                <SectionEspecialidade />
+                <SectionEspecialidade id = {idLoja.idLoja}/>
                 
-                <SectionHorarioAtendimento />
+                <SectionHorarioAtendimento id = {idLoja.idLoja}/>
 
                 <MetodosDePagementoSection />
 
@@ -138,7 +138,7 @@ stylesInfoLoja = StyleSheet.create({
         //top: 60,
         height: 60,
         width: '100%',
-        backgroundColor: '#10d177',
+        backgroundColor: '#036d19',
         justifyContent: 'space-between',
         alignItems: 'center',
        

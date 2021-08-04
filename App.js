@@ -73,23 +73,7 @@ const MeuMenu = () => {
               },
             }}
           />
-          <Stack.Screen
-            name="ProdList"
-            component={ProdList}
-            options={({ navigation }) => {
-              return {
-                title: "Categorias & Produtos",
-                headerShown: false,
-              //headerRight: () => (
-              //  <Button
-              //    onPress={() => navigation.navigate("CadastroProd")}
-              //    type="clear"
-              //    icon={<Icon name="add" size={25} color="white" />}
-              //  />
-              //),
-              };
-            }}
-        />
+          
         <Stack.Screen
           name="Login"
           component={Login}

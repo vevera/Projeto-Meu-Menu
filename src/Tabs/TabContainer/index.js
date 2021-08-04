@@ -13,7 +13,10 @@ import Endereco from "../Endereço/index.js";
 
 const Tab = createBottomTabNavigator();
 
-const TabNavigator = () =>{
+const TabNavigator = ({route}) =>{
+
+    const idLoja = route.params;
+    console.log(idLoja);
 
     return(
         <NavigationContainer independent= {true}>
@@ -41,10 +44,10 @@ const TabNavigator = () =>{
                     inactiveTintColor: 'gray',
                 }}
             >
-                <Tab.Screen name = "Inicio" component = {Home}/>
-                <Tab.Screen name = "Produtos" component = {Itens}/>
-                <Tab.Screen name = "Informações" component = {InfoLoja}/>
-                <Tab.Screen name = "Endereço" component = {Endereco}/>
+                <Tab.Screen name = "Inicio" component = {Home} initialParams={{idLoja}}/>
+                <Tab.Screen name = "Produtos" component = {Itens} initialParams={{idLoja}}/>
+                <Tab.Screen name = "Informações" component = {InfoLoja} initialParams={{idLoja}}/>
+                <Tab.Screen name = "Endereço" component = {Endereco} initialParams={{idLoja}}/>
             </Tab.Navigator>
 
         </NavigationContainer>

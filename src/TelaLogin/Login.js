@@ -13,10 +13,10 @@ import {
 } from 'react-native';
 
 export default ({navigation}) => {
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [email, setEmail] = useState('airton.neto@delfosim.com');
+  const [senha, setSenha] = useState('droped123');
   const [errorLogin, setErrorLogin] = useState('');
-  const [variavel, setvariavel] = useState('');
+  const [variavel, setvariavel] = useState(null);
 
   useEffect(() => {}, []);
 
@@ -31,15 +31,32 @@ export default ({navigation}) => {
         method: 'GET',
       },
     )
-      .then(response => response.text())
-      .then(texto => {
-        setvariavel(texto);
-      });
-    if (variavel != 'Non Authorized') {
-      navigation.navigate('ProdList', variavel[0]);
-    } else {
-      Alert.alert('Error');
-    }
+      .then((response) => {
+        
+        if (response.ok){
+          
+          return response.json()
+        
+        }
+        else{
+
+          return null
+
+        }
+       
+      })
+      .then((json) => {
+        console.log(json); setvariavel(json); return json;
+      })
+      .then(
+        (resposta) => {
+          if (resposta != null) {
+            console.log(resposta.id);
+            navigation.navigate('LojistaNavigator', resposta.id);
+        } else {
+          Alert.alert('Error');
+        }}
+      )   
   }
 
   return (

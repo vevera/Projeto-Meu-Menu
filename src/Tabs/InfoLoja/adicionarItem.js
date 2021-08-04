@@ -3,7 +3,7 @@ import { TouchableOpacity} from 'react-native';
 import { View, Modal} from 'react-native';
 import {Icon} from 'react-native-elements';
 
-const AdicionarItem = ({Componente, buttonTitle, setAtualizarData, atualizarData, especialidesList}) => {
+const AdicionarItem = ({idLoja, Componente, buttonTitle, setAtualizarData, atualizarData, especialidesList}) => {
 
     const [modalAtiva, setModalAtiva] = useState(false);
     return (
@@ -21,7 +21,8 @@ const AdicionarItem = ({Componente, buttonTitle, setAtualizarData, atualizarData
         >
             <View style={stylesInfoLoja.ModalCentralizado}>
                 <View style = {stylesInfoLoja.ModalView}>
-                    <Componente 
+                    <Componente
+                        idLoja = {idLoja}
                         setModalAtiva = {setModalAtiva} 
                         modalAtiva = {modalAtiva} 
                         setAtualizarData = {setAtualizarData} 
@@ -35,7 +36,7 @@ const AdicionarItem = ({Componente, buttonTitle, setAtualizarData, atualizarData
             style = {stylesInfoLoja.AdicionarHorarioAtendimentoBotao}
             onPress ={() => {setModalAtiva(!modalAtiva)}}
         >
-            <Icon name = 'plus' type = 'antdesign' size = {29} color = '#228b22'/>
+            <Icon name = 'plus' type = 'antdesign' size = {29} color = 'lightgreen'/>
         </TouchableOpacity>
         
     </View>

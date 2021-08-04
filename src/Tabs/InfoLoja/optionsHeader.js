@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text} from 'react-native';
 import AdicionarItem from './adicionarItem';
 
-const OptionsHeader = ({title, Filho, buttonAdd, btnTitle, atualizarData, setAtualizarData, especialidesList}) => {
+const OptionsHeader = ({idLoja, title, Filho, buttonAdd, btnTitle, atualizarData, setAtualizarData, especialidesList}) => {
 
     return (
         <View style = {stylesInfoLoja.HeaderEspecialidades}>
@@ -10,7 +10,8 @@ const OptionsHeader = ({title, Filho, buttonAdd, btnTitle, atualizarData, setAtu
                 {title} 
             </Text>
             {buttonAdd && 
-            <AdicionarItem 
+            <AdicionarItem
+                idLoja = {idLoja}
                 Componente = {Filho} 
                 buttonTitle = {btnTitle} 
                 atualizarData = {atualizarData} 

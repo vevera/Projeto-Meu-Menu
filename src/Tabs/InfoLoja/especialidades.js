@@ -25,7 +25,7 @@ const Item = ({item, itemTouchIconContainer, itemStyle, textStyle,  touchItemSty
     );
 }
 
-const NovaEspecialideComponent = ({setModalAtiva, modalAtiva, atualizarData, setAtualizarData, especialidadesAtuais}) => {
+const NovaEspecialideComponent = ({idLoja, setModalAtiva, modalAtiva, atualizarData, setAtualizarData, especialidadesAtuais}) => {
 
     const [especialidade, setEspecialidade] = useState("");
 
@@ -38,7 +38,7 @@ const NovaEspecialideComponent = ({setModalAtiva, modalAtiva, atualizarData, set
         
         console.log(listaDeEspecialidades);
 
-        fetch(`http://192.168.1.103:5000/store/1/specialtys`, {
+        fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(idLoja)}/specialtys`, {
             method: 'PUT',
             headers: new Headers({
                 'Accept': 'application/json',
@@ -81,7 +81,7 @@ const NovaEspecialideComponent = ({setModalAtiva, modalAtiva, atualizarData, set
 
 };
 
-const RenderEspecialidade = ({item, indice, atualizarData, setAtualizarData, especialidadesAtuais}) => {
+const RenderEspecialidade = ({idLoja, item, indice, atualizarData, setAtualizarData, especialidadesAtuais}) => {
 
     const Remove = () => {
 
@@ -92,7 +92,7 @@ const RenderEspecialidade = ({item, indice, atualizarData, setAtualizarData, esp
         
             console.log(listaDeEspecialidades);
 
-            fetch(`http://192.168.1.103:5000/store/1/specialtys`, {
+            fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(idLoja)}/specialtys`, {
                 method: 'PUT',
                 headers: new Headers({
                     'Accept': 'application/json',
@@ -137,7 +137,7 @@ const RenderEspecialidade = ({item, indice, atualizarData, setAtualizarData, esp
     );
 
 };
-const Especialidades = ({atualizarData, setAtualizarData, setListaDeEspecialidades}) => {
+const Especialidades = ({idLoja, atualizarData, setAtualizarData, setListaDeEspecialidades}) => {
 
     const [dadosEspecialidades, setDadosEspecialidades] = useState("");
     const [listEspecialidades, setListEspecialidades] = useState(null);
@@ -147,7 +147,7 @@ const Especialidades = ({atualizarData, setAtualizarData, setListaDeEspecialidad
         let loop = true;
         while(loop){
             try{
-                const resposta = await fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(1)}/specialtys`, {
+                const resposta = await fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(idLoja)}/specialtys`, {
                         method: 'GET',
                         timeout: 3000,
                 });
@@ -175,6 +175,7 @@ const Especialidades = ({atualizarData, setAtualizarData, setListaDeEspecialidad
             setListEspecialidades(  
                 dadosEspecialidades["specialtys"].map((item, index) => (
                     <RenderEspecialidade 
+                        idLoja = {idLoja}
                         key = {index} 
                         item = {item} 
                         indice = {index}
@@ -197,14 +198,15 @@ const Especialidades = ({atualizarData, setAtualizarData, setListaDeEspecialidad
     );
 
 };
-const SectionEspecialidade = () => {
+const SectionEspecialidade = ({id}) => {
 
     const [atualizarData, setAtualizarData] = useState(true);
     const [especialidesList, setEspecialidadeList] = useState([]);
 
     return (
         <SafeAreaView>
-            < OptionsHeader 
+            < OptionsHeader
+                idLoja = {id} 
                 Filho = {NovaEspecialideComponent} 
                 title = 'Especialidades' 
                 buttonAdd = {true} 
@@ -215,6 +217,7 @@ const SectionEspecialidade = () => {
             />
 
             <Especialidades 
+                id = {id}
                 atualizarData = {atualizarData} 
                 setAtualizarData = {setAtualizarData} 
                 setListaDeEspecialidades = {setEspecialidadeList}
