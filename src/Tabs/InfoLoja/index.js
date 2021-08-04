@@ -9,6 +9,7 @@ import MetodosDePagementoSection from './metodosPagamento';
 const InfoLoja = ({route}) =>{
 
     const idLoja = route.params;
+    console.log(idLoja);
 
     return(
 

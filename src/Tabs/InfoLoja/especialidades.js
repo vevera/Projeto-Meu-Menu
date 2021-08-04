@@ -217,7 +217,7 @@ const SectionEspecialidade = ({id}) => {
             />
 
             <Especialidades 
-                id = {id}
+                idLoja = {id}
                 atualizarData = {atualizarData} 
                 setAtualizarData = {setAtualizarData} 
                 setListaDeEspecialidades = {setEspecialidadeList}
