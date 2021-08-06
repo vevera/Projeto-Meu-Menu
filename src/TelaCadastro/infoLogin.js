@@ -51,7 +51,7 @@ const telaCadastro = ({navigation}) => {
 
         if(testaCampo(nome) && testaCampo(email) && testaCampo(numeroDoTelegram) && testaCampo(senha) && validPassword){
 
-            navigation.navigate('CadastroEndereco');
+            navigation.navigate('CadastroEndereco', {name: nome, email: email, phone: numeroDoTelegram, password: senha});
             setAviso(false);
 
         }

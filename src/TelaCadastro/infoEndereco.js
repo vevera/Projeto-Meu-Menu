@@ -1,8 +1,13 @@
 import React, {useState} from 'react'
-import {Text, View, TouchableOpacity} from 'react-native'
+import {Text, View, TouchableOpacity, Alert} from 'react-native'
 import Campo from './campo.js';
+import login from './loginConnection.js';
 
-export default function infoEndereco({navigation}){
+
+export default function infoEndereco({route, navigation}){
+
+    const params = route.params;
+    console.log(params);
 
     const [aviso, setAviso] = useState(false);
 
@@ -21,11 +26,24 @@ export default function infoEndereco({navigation}){
 
     }
 
-    function passaAdiante(){
+    async function passaAdiante(){
 
         if(testaCampo(pais) & testaCampo(cidade) & testaCampo(rua) & testaCampo(bairro)){
-
-            navigation.navigate('LojistaNavigator');
+            
+            login(
+                params.name,
+                params.phone,
+                params.email,
+                params.password,
+                [],
+                pais,
+                cidade,
+                bairro,
+                rua
+            )
+            .then((resp) => {resp? Alert.alert("Sucesso!", "Cadastro concluido!"):Alert.alert("Falha!", "Não foi possivel concluir o cadastro!")});
+            await navigation.navigate('Login');
+             
             setAviso(false);
 
         }

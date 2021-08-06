@@ -49,7 +49,7 @@ export default function Endereco() {
 
             
             <View style = {{width:"100%",paddingTop: 20}}>
-                <CampoDoEndereco nome = 'Estado' setEstado = {setEstadoReg} secure = {false} defaultVal = 'Ceara'/>
+                <CampoDoEndereco nome = 'País' setEstado = {setEstadoReg} secure = {false} defaultVal = 'Ceara'/>
                 <CampoDoEndereco nome = 'Cidade' setEstado = {setCidade} secure = {false} defaultVal = 'Cascavel'/>
                 <CampoDoEndereco nome = 'Rua' setEstado = {setRua} secure = {false} defaultVal = 'Rua das Lurdes'/>
                 <CampoDoEndereco nome = 'Bairro' setEstado = {setBairro} secure = {false} defaultVal = 'Rio Novo'/>

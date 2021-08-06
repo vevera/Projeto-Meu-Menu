@@ -21,7 +21,7 @@ const MeuMenu = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="LojistaNavigator"
+        initialRouteName="Login"
         //initialRouteName = 'Login'
       >
         <Stack.Screen
