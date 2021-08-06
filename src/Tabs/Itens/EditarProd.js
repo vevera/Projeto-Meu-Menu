@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { TouchableOpacity } from "react-native";
-import { Modal } from "react-native";
-import { View } from "react-native";
+import React, {useState} from 'react';
+import {TouchableOpacity} from 'react-native';
+import {Modal} from 'react-native';
+import {View} from 'react-native';
 import {
   Alert,
   SafeAreaView,
@@ -10,31 +10,32 @@ import {
   ScrollView,
   Image,
   FlatList,
-} from "react-native";
-import { Button, Input, Icon } from "react-native-elements";
-import ListItem from "./ListaRender";
-import { SimpleModal } from "./SimpleModal";
-import { Swipeable } from "react-native-gesture-handler";
+} from 'react-native';
+import {Button, Input, Icon} from 'react-native-elements';
+import ListItem from './ListaRender';
+import {SimpleModal} from './SimpleModal';
+import {Swipeable} from 'react-native-gesture-handler';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 export const addData = [
   {
-    id: "1",
-    title: "Opção Adicional 1",
+    id: '1',
+    title: 'Opção Adicional 1',
     price: 1,
   },
   {
-    id: "2",
-    title: "Opção Adicional 2",
+    id: '2',
+    title: 'Opção Adicional 2',
     price: 3,
   },
   {
-    id: "3",
-    title: "Opção Adicional 3",
+    id: '3',
+    title: 'Opção Adicional 3',
     price: 2,
   },
   {
-    id: "4",
-    title: "Opção Adicional 4",
+    id: '4',
+    title: 'Opção Adicional 4',
     price: 1,
   },
 ];
@@ -44,11 +45,11 @@ function ListaOp() {
     <View>
       <FlatList
         data={addData}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (
           <ListItem
             data={item}
-            handleRight={() => alert("Opcional excluido!")}
+            handleRight={() => alert('Opcional excluido!')}
           />
         )}
         ItemSeparatorComponent={() => <Separator />}
@@ -58,32 +59,32 @@ function ListaOp() {
 }
 const ShowList = <ListaOp />;
 const Separator = () => (
-  <View style={{ flex: 1, height: 1, backgroundColor: "#FFF" }} />
+  <View style={{flex: 1, height: 1, backgroundColor: '#FFF'}} />
 );
 
-const RenderItem = ({ item }) => {
+const RenderItem = ({item}) => {
   //const [shouldShow, setshouldShow] = useState(false);
   const Remove = () => {
-    function Delete() {}
+    function removerAdicional() {
+      console.log('remover opção adicional');
+    }
 
     return (
       <View
         style={{
-          flexDirection: "column",
-          justifyContent: "center",
-          backgroundColor: "#f8f8ff",
-        }}
-      >
+          flexDirection: 'column',
+          justifyContent: 'center',
+          backgroundColor: '#f8f8ff',
+        }}>
         <TouchableOpacity
           style={{
-            backgroundColor: "red",
+            backgroundColor: 'red',
             width: 70,
             height: 70,
             borderRadius: 10,
-            justifyContent: "center",
+            justifyContent: 'center',
           }}
-          onPress={Delete}
-        >
+          onPress={removerAdicional()}>
           <Icon type="font-awesome" name="trash" size={45} color="white" />
         </TouchableOpacity>
       </View>
@@ -94,7 +95,7 @@ const RenderItem = ({ item }) => {
       <Swipeable renderRightActions={Remove}>
         <Text style={style.item}>
           {item.title}
-          {"\n"}
+          {'\n'}
           Valor: R${item.price}
         </Text>
       </Swipeable>
@@ -102,31 +103,32 @@ const RenderItem = ({ item }) => {
   );
 };
 
-const itemsListArr = addData.map((item) => (
+const itemsListArr = addData.map(item => (
   <RenderItem key={item.id} item={item} />
 ));
 
-export default ({ route, navigation }) => {
+export default ({route, navigation}) => {
   const [prod, setprod] = useState(route.params ? route.params : {});
   const [isModalVisible, setisModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
   const [showPromotion, setShowPromotion] = useState(false);
 
-  const changeModalVisible = (bool) => {
+  const changeModalVisible = bool => {
     setisModalVisible(bool);
   };
-  const setData = (data) => {
+  const setData = data => {
     setprod(data);
   };
 
   function temImagem(imagem) {
-    return imagem ? (
-      <Image style={style.imagem} source={{ uri: imagem }} />
+    console.log(imagem);
+    return (imagem != null) & (imagem != 'data:image/jpg;base64,') ? (
+      <Image style={style.imagem} source={{uri: imagem}} />
     ) : (
       <Image
         style={style.imagem}
         source={{
-          uri: "https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png",
+          uri: 'https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png',
         }}
       />
     );
@@ -135,35 +137,34 @@ export default ({ route, navigation }) => {
   function promocaoAtiva(promocao) {
     if (promocao.desconto != null) {
       return (
-        <View style={{ flexDirection: "column" }}>
+        <View style={{flexDirection: 'column'}}>
           <TouchableOpacity onPress={() => changeModalVisible(true)}>
             <Text style={style.itemP}>
               Produto: {prod.name}
-              {"\n"}
-              Desconto: {promocao.desconto}%{"\n"}
+              {'\n'}
+              Desconto: {promocao.desconto}%{'\n'}
               Novo valor: {(prod.price * promocao.desconto) / 100}
-              {"\n"}
+              {'\n'}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
               borderWidth: 1,
-              borderColor: "rgba(0,0,0,0.2)",
-              alignItems: "center",
-              justifyContent: "center",
+              borderColor: 'rgba(0,0,0,0.2)',
+              alignItems: 'center',
+              justifyContent: 'center',
               width: 100,
               height: 50,
               elevation: 3,
-              backgroundColor: "#fff",
+              backgroundColor: '#fff',
               borderRadius: 50,
-              alignSelf: "center",
+              alignSelf: 'center',
               marginTop: 15,
               marginBottom: 10,
-              marginHorizontal: "1%",
+              marginHorizontal: '1%',
             }}
-            onPress={() => {}}
-          >
-            <Icon name={"remove"} size={30} color="#ff0000" />
+            onPress={() => {}}>
+            <Icon name={'remove'} size={30} color="#ff0000" />
           </TouchableOpacity>
         </View>
       );
@@ -172,57 +173,111 @@ export default ({ route, navigation }) => {
         <TouchableOpacity
           style={{
             borderWidth: 1,
-            borderColor: "rgba(0,0,0,0.2)",
-            alignItems: "center",
-            justifyContent: "center",
+            borderColor: 'rgba(0,0,0,0.2)',
+            alignItems: 'center',
+            justifyContent: 'center',
             width: 100,
             height: 50,
             elevation: 3,
-            backgroundColor: "#fff",
+            backgroundColor: '#fff',
             borderRadius: 50,
-            alignSelf: "center",
+            alignSelf: 'center',
             marginBottom: 10,
           }}
-          onPress={() => {}}
-        >
-          <Icon name={"add"} size={30} color="#01a699" />
+          onPress={() => {}}>
+          <Icon name={'add'} size={30} color="#01a699" />
         </TouchableOpacity>
       );
     }
   }
 
+  const [base64Image, setBase64Image] = useState('');
+
+  const chooseFile = () => {
+    let options = {
+      mediaType: 'photo',
+      includeBase64: true,
+      maxWidth: 300,
+      maxHeight: 550,
+      quality: 1,
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+    launchImageLibrary(options, response => {
+      if (response.didCancel) {
+        alert('User cancelled camera picker');
+        return;
+      } else if (response.errorCode == 'camera_unavailable') {
+        alert('Camera not available on device');
+        return;
+      } else if (response.errorCode == 'permission') {
+        alert('Permission not satisfied');
+        return;
+      } else if (response.errorCode == 'others') {
+        alert(response.errorMessage);
+        return;
+      }
+
+      setBase64Image(response.assets[0].base64);
+    });
+  };
+
+  const [nomeProduto, setNomeProduto] = useState(prod.name);
+  const [precoProduto, setPrecoProduto] = useState(prod.price.toString());
+  const [infoProduto, setInfoProduto] = useState(prod.info);
+
+  function atualizarProduto() {
+    console.log('Atualizar');
+    console.log('Nome = ', nomeProduto);
+    console.log('Preço = ', precoProduto);
+    console.log('info = ', infoProduto);
+  }
+
+  function removerProduto() {
+    console.log('Remover');
+    console.log('Nome = ', nomeProduto);
+    console.log('Preço = ', precoProduto);
+    console.log('info = ', infoProduto);
+  }
+
   return (
     <View>
       <ScrollView style={style.form}>
-        {temImagem(prod.image)}
-        <TouchableOpacity style={{ alignItems: "center" }}>
-          <Text style={{ fontWeight: "bold", textDecorationLine: "underline" }}>
-            Atualizar Imagem{"\n"}
+        {temImagem(
+          base64Image === ''
+            ? prod.image
+            : `data:image/jpg;base64,${base64Image}`,
+        )}
+        <TouchableOpacity style={{alignItems: 'center'}} onPress={chooseFile}>
+          <Text style={{fontWeight: 'bold', textDecorationLine: 'underline'}}>
+            Atualizar Imagem{'\n'}
           </Text>
         </TouchableOpacity>
         <View>
           <Text style={style.text}>Produto</Text>
           <Input
-            onChangeText={(name) => setprod({ ...prod, name })}
+            onChangeText={name => setNomeProduto(name)}
             placeholder="informe o nome do produto"
-            rightIcon={{ type: "font-awesome", name: "edit" }}
-            value={prod.name ? prod.name : ""}
+            rightIcon={{type: 'font-awesome', name: 'edit'}}
+            value={nomeProduto ? nomeProduto : ''}
           />
           <Text style={style.text}>Preço</Text>
           <Input
-            onChangeText={(price) => setprod({ ...prod, price })}
+            onChangeText={price => setPrecoProduto(price)}
             placeholder="informe o preço do produto"
-            rightIcon={{ type: "font-awesome", name: "edit" }}
+            rightIcon={{type: 'font-awesome', name: 'edit'}}
             keyboardType="numeric"
-            value={prod.price.toString() ? prod.price.toString() : ""}
+            value={precoProduto.toString() ? precoProduto.toString() : ''}
           />
           <Text style={style.text}>Informações</Text>
           <Input
-            onChangeText={(info) => setprod({ ...prod, info })}
+            onChangeText={info => setInfoProduto(info)}
             placeholder="informe o preço do produto"
-            rightIcon={{ type: "font-awesome", name: "edit" }}
+            rightIcon={{type: 'font-awesome', name: 'edit'}}
             //keyboardType="numeric"
-            value={prod.info ? prod.info : ""}
+            value={infoProduto ? infoProduto : ''}
           />
         </View>
         <View style={style.header}>
@@ -232,22 +287,21 @@ export default ({ route, navigation }) => {
         <TouchableOpacity
           style={{
             borderWidth: 1,
-            borderColor: "rgba(0,0,0,0.2)",
-            alignItems: "center",
-            justifyContent: "center",
+            borderColor: 'rgba(0,0,0,0.2)',
+            alignItems: 'center',
+            justifyContent: 'center',
             width: 100,
             height: 50,
             elevation: 3,
-            backgroundColor: "#fff",
+            backgroundColor: '#fff',
             borderRadius: 50,
-            alignSelf: "center",
+            alignSelf: 'center',
             marginBottom: 10,
           }}
           onPress={() => {
             setAddModalVisible(!addModalVisible);
-          }}
-        >
-          <Icon name={"add"} size={30} color="#01a699" />
+          }}>
+          <Icon name={'add'} size={30} color="#01a699" />
         </TouchableOpacity>
         <View style={style.header}>
           <Text style={style.viewHeader}>Promoção</Text>
@@ -255,34 +309,35 @@ export default ({ route, navigation }) => {
         {promocaoAtiva(prod.promo)}
         <View
           style={{
-            flexDirection: "row",
-            alignSelf: "center",
-          }}
-        >
+            flexDirection: 'row',
+            alignSelf: 'center',
+          }}>
           <Button
             containerStyle={style.buttonR}
             title="Remover"
             type="clear"
             titleStyle={{
-              color: "red",
-              fontWeight: "bold",
-              textDecorationLine: "underline",
+              color: 'red',
+              fontWeight: 'bold',
+              textDecorationLine: 'underline',
             }}
             onPress={() => {
               Alert.alert(
-                "Remover produto",
-                "Cuidado, essa ação irá remover o produto! Deseja continuar?",
+                'Remover produto',
+                'Cuidado, essa ação irá remover o produto! Deseja continuar?',
                 [
                   {
-                    text: "CANCELAR",
-                    onPress: () => console.log("CANCEL Pressed"),
+                    text: 'CANCELAR',
+                    onPress: () => {},
                   },
                   {
-                    text: "CONFIRMAR",
-                    onPress: () => console.log("OK Pressed"),
+                    text: 'CONFIRMAR',
+                    onPress: () => {
+                      removerProduto();
+                    },
                   },
                 ],
-                { cancelable: false }
+                {cancelable: false},
               );
             }}
           />
@@ -291,25 +346,27 @@ export default ({ route, navigation }) => {
             title="Salvar"
             type="clear"
             titleStyle={{
-              color: "blue",
-              fontWeight: "bold",
-              textDecorationLine: "underline",
+              color: 'blue',
+              fontWeight: 'bold',
+              textDecorationLine: 'underline',
             }}
             onPress={() => {
               Alert.alert(
-                "Salvar alterações",
-                "Deseja aplicar as alterações do Produto?",
+                'Salvar alterações',
+                'Deseja aplicar as alterações do Produto?',
                 [
                   {
-                    text: "CANCELAR",
-                    onPress: () => console.log("CANCEL Pressed"),
+                    text: 'CANCELAR',
+                    onPress: {},
                   },
                   {
-                    text: "CONFIRMAR",
-                    onPress: () => console.log("OK Pressed"),
+                    text: 'CONFIRMAR',
+                    onPress: () => {
+                      atualizarProduto();
+                    },
                   },
                 ],
-                { cancelable: false }
+                {cancelable: false},
               );
             }}
           />
@@ -321,8 +378,7 @@ export default ({ route, navigation }) => {
           animationType="fade"
           marginTop="100"
           visible={isModalVisible}
-          onRequestClose={() => changeModalVisible(false)}
-        >
+          onRequestClose={() => changeModalVisible(false)}>
           <SimpleModal
             changeModalVisible={changeModalVisible}
             setData={setData}
@@ -337,46 +393,42 @@ export default ({ route, navigation }) => {
           visible={addModalVisible}
           transparent={true}
           animationType="fade"
-          backgroundColor="rgba(0, 0, 0, 0.4)"
-        >
+          backgroundColor="rgba(0, 0, 0, 0.4)">
           <View
             style={{
               flex: 1,
 
-              justifyContent: "center",
-              backgroundColor: "rgba(0,0,0,0.6)",
-            }}
-          >
+              justifyContent: 'center',
+              backgroundColor: 'rgba(0,0,0,0.6)',
+            }}>
             <View
               style={{
-                backgroundColor: "white",
+                backgroundColor: 'white',
                 borderRadius: 10,
-                marginHorizontal: "2%",
-              }}
-            >
+                marginHorizontal: '2%',
+              }}>
               <Text style={style.textView}>Adicionar Opicional</Text>
               <Text style={style.textadd}>Nome do adicional</Text>
               <Input
                 placeholder="informe o nomedo adicional"
-                rightIcon={{ type: "font-awesome", name: "edit" }}
+                rightIcon={{type: 'font-awesome', name: 'edit'}}
               />
               <Text style={style.textadd}>Preço</Text>
               <Input
                 placeholder="informe o custo do adicional"
-                rightIcon={{ type: "font-awesome", name: "edit" }}
+                rightIcon={{type: 'font-awesome', name: 'edit'}}
               />
 
               <View
                 style={{
-                  flexDirection: "row",
-                  alignSelf: "center",
-                }}
-              >
+                  flexDirection: 'row',
+                  alignSelf: 'center',
+                }}>
                 <Button
                   containerStyle={style.buttonR}
                   title="Cancelar"
                   titleStyle={{
-                    color: "white",
+                    color: 'white',
                   }}
                   onPress={() => {
                     setAddModalVisible(!addModalVisible);
@@ -386,7 +438,7 @@ export default ({ route, navigation }) => {
                   containerStyle={style.buttonS}
                   title="Adicionar"
                   titleStyle={{
-                    color: "white",
+                    color: 'white',
                   }}
                   onPress={() => {
                     setAddModalVisible(!addModalVisible);
@@ -404,34 +456,34 @@ export default ({ route, navigation }) => {
 const style = StyleSheet.create({
   viewHeader: {
     fontSize: 27,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     height: 40,
-    color: "white",
-    fontStyle: "italic",
-    textDecorationLine: "underline",
+    color: 'white',
+    fontStyle: 'italic',
+    textDecorationLine: 'underline',
   },
   modalAdicionar: {
     flex: 1,
-    backgroundColor: "green",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: 'green',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   form: {
     //marginTop: "8%",
     //marginBottom: 40,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     flex: 0,
     padding: 12,
     //alignItems: "center",
   },
   input: {
     height: 40,
-    borderColor: "grey",
+    borderColor: 'grey',
     borderWidth: 1,
     marginBottom: 15,
   },
   text: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     padding: 10,
     fontSize: 20,
   },
@@ -442,86 +494,86 @@ const style = StyleSheet.create({
     //textAlign: "center",
   },
   header: {
-    width: "100%",
-    justifyContent: "flex-start",
+    width: '100%',
+    justifyContent: 'flex-start',
     height: 40,
-    backgroundColor: "#036d19",
+    backgroundColor: '#036d19',
     borderRadius: 10,
   },
   item: {
-    flexDirection: "row",
+    flexDirection: 'row',
     padding: 10,
     fontSize: 20,
     marginTop: 2,
     marginBottom: 4,
-    backgroundColor: "#f8f8ff",
+    backgroundColor: '#f8f8ff',
     borderRadius: 8,
-    width: "95%",
+    width: '95%',
     height: 80,
-    alignSelf: "center",
+    alignSelf: 'center',
   },
   itemP: {
     padding: 10,
     fontSize: 20,
     marginTop: 2,
     marginBottom: 4,
-    backgroundColor: "#f8f8ff",
+    backgroundColor: '#f8f8ff',
     borderRadius: 8,
-    width: "95%",
+    width: '95%',
     //height: 80,
-    alignSelf: "center",
+    alignSelf: 'center',
   },
   buttonR: {
-    marginHorizontal: "10%",
+    marginHorizontal: '10%',
     marginBottom: 40,
     marginTop: 20,
-    width: "40%",
+    width: '40%',
     borderRadius: 50,
   },
   buttonS: {
-    marginHorizontal: "10%",
+    marginHorizontal: '10%',
     marginBottom: 40,
     marginTop: 20,
-    width: "40%",
+    width: '40%',
     borderRadius: 50,
   },
   imagem: {
-    width: "100%",
+    width: '100%',
     height: 200,
     marginBottom: 14,
   },
   btnAdd: {
     marginBottom: 40,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 4,
     //elevation: 3,
-    backgroundColor: "white",
+    backgroundColor: 'white',
   },
   btnProm: {
     marginBottom: 40,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 4,
     //elevation: 3,
-    backgroundColor: "white",
+    backgroundColor: 'white',
   },
   container: {
     flex: 1,
-    backgroundColor: "#FFF",
+    backgroundColor: '#FFF',
   },
   textView: {
     margin: 5,
     fontSize: 26,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   textadd: {
     margin: 5,
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });

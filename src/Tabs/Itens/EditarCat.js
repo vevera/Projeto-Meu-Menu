@@ -1,60 +1,76 @@
-import React, { useState } from "react";
-import { Text, View, StyleSheet, Alert } from "react-native";
-import { Button, Input, Icon } from "react-native-elements";
-//import {  } from "react-native-gesture-handler";
+import React, {useState} from 'react';
+import {Text, View, StyleSheet, Alert} from 'react-native';
+import {Button, Input, Icon} from 'react-native-elements';
 
-export default ({ route, navigation }) => {
-  const [title, setTitle] = useState(route.params ? route.params : {});
+export default ({route}) => {
+  const [section, setSection] = useState(route.params ? route.params : {});
+  const [nomeCategoria, setNomeCategoria] = useState(section.title);
+  const [infoCategoria, setInfoCategoria] = useState(section.descricao);
+
+  function atualizarCategoria() {
+    console.log('ATUALIZAR');
+    console.log('nome = ', nomeCategoria);
+    console.log('info = ', infoCategoria);
+  }
+
+  function removerCategoria() {
+    console.log('REMOVER');
+    console.log('nome = ', nomeCategoria);
+    console.log('info = ', infoCategoria);
+  }
+
+  console.log(section);
   return (
     <View style={style.form}>
       <Text style={style.text}>Categoria</Text>
       <Input
-        onChangeText={(title) => setTitle({ title })}
+        onChangeText={title => setNomeCategoria(title)}
         placeholder="informe o nome da Categoria"
-        rightIcon={{ type: "font-awesome", name: "edit" }}
-        value={title ? title : ""}
+        rightIcon={{type: 'font-awesome', name: 'edit'}}
+        value={nomeCategoria ? nomeCategoria : ''}
       />
       <Text style={style.text}>Descrição</Text>
       <Input
-        //onChangeText={(price) => setprod({ ...prod, price })}
+        onChangeText={texto => setInfoCategoria(texto)}
         placeholder="Descrição do produto"
         numberOfLines={4}
         multiline
-        rightIcon={{ type: "font-awesome", name: "edit" }}
+        rightIcon={{type: 'font-awesome', name: 'edit'}}
         //keyboardType="numeric"
-        //value={prod.price.toString() ? prod.price.toString() : ""}
+        value={infoCategoria ? infoCategoria : ''}
       />
       <View
         style={{
-          flexDirection: "row",
-          alignSelf: "center",
-        }}
-      >
+          flexDirection: 'row',
+          alignSelf: 'center',
+        }}>
         <Button
           containerStyle={style.buttonR}
           title="Remover"
           type="clear"
           titleStyle={{
-            color: "red",
-            fontWeight: "bold",
-            textDecorationLine: "underline",
+            color: 'red',
+            fontWeight: 'bold',
+            textDecorationLine: 'underline',
           }}
           //buttonStyle={{ backgroundColor: "lightred" }}
           onPress={() => {
             Alert.alert(
-              "Remover",
-              "Cuidado, essa ação também removerá os produtos associados a esta categoria! Deseja continuar?",
+              'Remover',
+              'Cuidado, essa ação também removerá os produtos associados a esta categoria! Deseja continuar?',
               [
                 {
-                  text: "CANCELAR",
-                  onPress: () => console.log("CANCEL Pressed"),
+                  text: 'CANCELAR',
+                  onPress: () => {},
                 },
                 {
-                  text: "CONFIRMAR",
-                  onPress: () => console.log("OK Pressed"),
+                  text: 'CONFIRMAR',
+                  onPress: () => {
+                    removerCategoria();
+                  },
                 },
               ],
-              { cancelable: false }
+              {cancelable: false},
             );
           }}
         />
@@ -63,26 +79,28 @@ export default ({ route, navigation }) => {
           title="Salvar"
           type="clear"
           titleStyle={{
-            color: "blue",
-            fontWeight: "bold",
-            textDecorationLine: "underline",
+            color: 'blue',
+            fontWeight: 'bold',
+            textDecorationLine: 'underline',
           }}
           //buttonStyle={{ backgroundColor: "green" }}
           onPress={() => {
             Alert.alert(
-              "Salvar",
-              "Deseja aplicar as alterações da Categoria?",
+              'Salvar',
+              'Deseja aplicar as alterações da Categoria?',
               [
                 {
-                  text: "CANCELAR",
-                  onPress: () => console.log("CANCEL Pressed"),
+                  text: 'CANCELAR',
+                  onPress: () => console.log('CANCEL Pressed'),
                 },
                 {
-                  text: "CONFIRMAR",
-                  onPress: () => console.log("OK Pressed"),
+                  text: 'CONFIRMAR',
+                  onPress: () => {
+                    atualizarCategoria();
+                  },
                 },
               ],
-              { cancelable: false }
+              {cancelable: false},
             );
           }}
         />
@@ -98,7 +116,7 @@ const style = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: "grey",
+    borderColor: 'grey',
     borderWidth: 1,
     marginBottom: 15,
   },
@@ -107,22 +125,22 @@ const style = StyleSheet.create({
     fontSize: 20,
   },
   image: {
-    width: "100%",
+    width: '100%',
     height: 200,
     marginBottom: 14,
   },
   buttonR: {
-    marginHorizontal: "10%",
+    marginHorizontal: '10%',
     marginBottom: 40,
     marginTop: 20,
-    width: "40%",
+    width: '40%',
     borderRadius: 50,
   },
   buttonS: {
-    marginHorizontal: "10%",
+    marginHorizontal: '10%',
     marginBottom: 40,
     marginTop: 20,
-    width: "40%",
+    width: '40%',
     borderRadius: 50,
   },
 });

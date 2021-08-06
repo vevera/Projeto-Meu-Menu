@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
 import {TouchableOpacity} from 'react-native';
-import {Text, Image, View, StyleSheet} from 'react-native';
+import {Text, Image, View, StyleSheet, Alert} from 'react-native';
 import {Button, Input, Icon} from 'react-native-elements';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import ImgToBase64 from 'react-native-image-base64';
 import ImagePicker from 'react-native-image-picker';
 
 export default ({route, navigation}) => {
-  const [prod, setprod] = useState(route.params ? route.params : {});
-  const [filePath, setFilePath] = useState({});
+  const [nomeProduto, setNomeProduto] = useState('');
+  const [precoProduto, setPrecoProduto] = useState('');
+  const [infoProduto, setInfoProduto] = useState('');
+  const [base64Image, setBase64Image] = useState('');
 
   const chooseFile = () => {
     let options = {
@@ -23,8 +25,6 @@ export default ({route, navigation}) => {
       },
     };
     launchImageLibrary(options, response => {
-      console.log('Response = ', response);
-
       if (response.didCancel) {
         alert('User cancelled camera picker');
         return;
@@ -38,24 +38,23 @@ export default ({route, navigation}) => {
         alert(response.errorMessage);
         return;
       }
-      console.log(response.ImgToBase64);
-      console.log('base64 -> ', response.assets[0].base64);
-      console.log('uri -> ', response.assets[0].uri);
-      console.log('width -> ', response.assets[0].width);
-      console.log('height -> ', response.assets[0].height);
-      console.log('fileSize -> ', response.assets[0].fileSize);
-      console.log('type -> ', response.assets[0].type);
-      console.log('fileName -> ', response.assets[0].fileName);
 
-      setFilePath(response);
+      setBase64Image(response.assets[0].base64);
     });
   };
+
+  function cadastrarProduto() {
+    console.log('imagem = ', base64Image);
+    console.log('produto = ', nomeProduto);
+    console.log('preço = ', precoProduto);
+    console.log('info = ', infoProduto);
+  }
 
   return (
     <View>
       <View>
         <View>
-          {true ? (
+          {base64Image === '' ? (
             <View
               style={{
                 alignItems: 'center',
@@ -72,33 +71,40 @@ export default ({route, navigation}) => {
               </TouchableOpacity>
             </View>
           ) : (
-            <Image style={style.imagem} resizeMode="contain" />
+            <Image
+              style={style.imagem}
+              source={{uri: `data:image/jpg;base64,${base64Image}`}}
+              resizeMode="contain"
+            />
           )}
         </View>
       </View>
 
       <Text style={style.text}>Produto</Text>
       <Input
-        //onChangeText={(name) => setprod({ ...prod, name })}
+        onChangeText={text => {
+          setNomeProduto(text);
+        }}
         placeholder="informe o nome do produto"
         rightIcon={{type: 'font-awesome', name: 'edit'}}
-        //value={prod.name ? prod.name : ""}
       />
       <Text style={style.text}>Preço</Text>
       <Input
-        //onChangeText={(price) => setprod({ ...prod, price })}
+        onChangeText={text => {
+          setPrecoProduto(text);
+        }}
         placeholder="informe o preço do produto"
         rightIcon={{type: 'font-awesome', name: 'edit'}}
         keyboardType="numeric"
-        //value={prod.price.toString() ? prod.price.toString() : ""}
       />
       <Text style={style.text}>Informações</Text>
       <Input
-        //onChangeText={(price) => setprod({ ...prod, price })}
+        onChangeText={text => {
+          setInfoProduto(text);
+        }}
         placeholder="Informações do produto"
         rightIcon={{type: 'font-awesome', name: 'edit'}}
-        keyboardType="numeric"
-        //value={prod.price.toString() ? prod.price.toString() : ""}
+        //keyboardType="numeric"
       />
       <Button
         containerStyle={style.buttonS}
@@ -109,9 +115,24 @@ export default ({route, navigation}) => {
           fontWeight: 'bold',
           textDecorationLine: 'underline',
         }}
-        //buttonStyle={{ backgroundColor: "green" }}
         onPress={() => {
-          Alert.alert('Salvar', 'Deseja aplicar as alterações do Produto?');
+          Alert.alert(
+            'Salvar',
+            'Deseja aplicar as alterações do Produto?',
+            [
+              {
+                text: 'CANCELAR',
+                onPress: () => {},
+              },
+              {
+                text: 'CONFIRMAR',
+                onPress: () => {
+                  cadastrarProduto();
+                },
+              },
+            ],
+            {cancelable: false},
+          );
         }}
       />
     </View>
