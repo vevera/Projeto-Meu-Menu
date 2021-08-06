@@ -87,6 +87,28 @@ class Store:
             RETURNING *
         """, [specialtys, self.store_id]).to_dict(orient = 'records')[0]
 
+    def address(self):
+        return self.conn.read_query("""
+            SELECT 
+                adress_country,
+                adress_city,
+                adress_borough,
+                adress_street
+            FROM store
+            WHERE id = %s
+        """, [self.store_id]).to_dict(orient = 'records')[0]
+        
+    def update_address(self, adress_country, adress_city, adress_borough, adress_street):        
+        return self.conn.read_query("""
+            UPDATE store
+            SET 
+                adress_country = %s,
+                adress_city = %s,
+                adress_borough = %s,
+                adress_street = %s
+            WHERE id = %s
+            RETURNING *
+        """, [adress_country, adress_city, adress_borough, adress_street, self.store_id]).to_dict(orient = 'records')[0]
         
     def schedules(self):
         return self.conn.read_query("""
