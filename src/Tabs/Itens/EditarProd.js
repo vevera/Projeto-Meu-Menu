@@ -143,8 +143,6 @@ export default ({ route, navigation }) => {
               Desconto: {promocao.desconto}%{"\n"}
               Novo valor: {(prod.price * promocao.desconto) / 100}
               {"\n"}
-              Validade: {promocao.validade}
-              {"\n"}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -159,6 +157,7 @@ export default ({ route, navigation }) => {
               backgroundColor: "#fff",
               borderRadius: 50,
               alignSelf: "center",
+              marginTop: 15,
               marginBottom: 10,
               marginHorizontal: "1%",
             }}
@@ -197,7 +196,9 @@ export default ({ route, navigation }) => {
       <ScrollView style={style.form}>
         {temImagem(prod.image)}
         <TouchableOpacity style={{ alignItems: "center" }}>
-          <Text style={{ fontWeight: "bold" }}>Atualizar imagem{"\n"}</Text>
+          <Text style={{ fontWeight: "bold", textDecorationLine: "underline" }}>
+            Atualizar Imagem{"\n"}
+          </Text>
         </TouchableOpacity>
         <View>
           <Text style={style.text}>Produto</Text>
@@ -224,7 +225,9 @@ export default ({ route, navigation }) => {
             value={prod.info ? prod.info : ""}
           />
         </View>
-        <Text style={style.header}>Opções Adicionais</Text>
+        <View style={style.header}>
+          <Text style={style.viewHeader}>Opções Adicionais</Text>
+        </View>
         <SafeAreaView>{itemsListArr}</SafeAreaView>
         <TouchableOpacity
           style={{
@@ -246,7 +249,9 @@ export default ({ route, navigation }) => {
         >
           <Icon name={"add"} size={30} color="#01a699" />
         </TouchableOpacity>
-        <Text style={style.header}>Promoção</Text>
+        <View style={style.header}>
+          <Text style={style.viewHeader}>Promoção</Text>
+        </View>
         {promocaoAtiva(prod.promo)}
         <View
           style={{
@@ -263,7 +268,6 @@ export default ({ route, navigation }) => {
               fontWeight: "bold",
               textDecorationLine: "underline",
             }}
-            //buttonStyle={{ backgroundColor: "lightred" }}
             onPress={() => {
               Alert.alert(
                 "Remover produto",
@@ -291,7 +295,6 @@ export default ({ route, navigation }) => {
               fontWeight: "bold",
               textDecorationLine: "underline",
             }}
-            //buttonStyle={{ backgroundColor: "green" }}
             onPress={() => {
               Alert.alert(
                 "Salvar alterações",
@@ -323,43 +326,74 @@ export default ({ route, navigation }) => {
           <SimpleModal
             changeModalVisible={changeModalVisible}
             setData={setData}
+            params={prod}
           />
         </Modal>
       </View>
 
       <View>
         <Modal
+          style={{}}
           visible={addModalVisible}
           transparent={true}
           animationType="fade"
-          marginTop="100"
+          backgroundColor="rgba(0, 0, 0, 0.4)"
         >
           <View
             style={{
               flex: 1,
+
               justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "white",
+              backgroundColor: "rgba(0,0,0,0.6)",
             }}
           >
-            <Text style={style.textView}>Adicionar Opicional</Text>
-            <Text style={style.textadd}>Nome do adicional</Text>
-            <Input
-              placeholder="informe o nomedo adicional"
-              rightIcon={{ type: "font-awesome", name: "edit" }}
-            />
-            <Text style={style.textadd}>Preço</Text>
-            <Input
-              placeholder="informe o custo do adicional"
-              rightIcon={{ type: "font-awesome", name: "edit" }}
-            />
-            <Button
-              style={{ marginBottom: 10 }}
-              title="Salvar alterações"
-              onPress={() => {
-                setAddModalVisible(!addModalVisible);
+            <View
+              style={{
+                backgroundColor: "white",
+                borderRadius: 10,
+                marginHorizontal: "2%",
               }}
-            ></Button>
+            >
+              <Text style={style.textView}>Adicionar Opicional</Text>
+              <Text style={style.textadd}>Nome do adicional</Text>
+              <Input
+                placeholder="informe o nomedo adicional"
+                rightIcon={{ type: "font-awesome", name: "edit" }}
+              />
+              <Text style={style.textadd}>Preço</Text>
+              <Input
+                placeholder="informe o custo do adicional"
+                rightIcon={{ type: "font-awesome", name: "edit" }}
+              />
+
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignSelf: "center",
+                }}
+              >
+                <Button
+                  containerStyle={style.buttonR}
+                  title="Cancelar"
+                  titleStyle={{
+                    color: "white",
+                  }}
+                  onPress={() => {
+                    setAddModalVisible(!addModalVisible);
+                  }}
+                />
+                <Button
+                  containerStyle={style.buttonS}
+                  title="Adicionar"
+                  titleStyle={{
+                    color: "white",
+                  }}
+                  onPress={() => {
+                    setAddModalVisible(!addModalVisible);
+                  }}
+                />
+              </View>
+            </View>
           </View>
         </Modal>
       </View>
@@ -368,6 +402,14 @@ export default ({ route, navigation }) => {
 };
 
 const style = StyleSheet.create({
+  viewHeader: {
+    fontSize: 27,
+    fontWeight: "bold",
+    height: 40,
+    color: "white",
+    fontStyle: "italic",
+    textDecorationLine: "underline",
+  },
   modalAdicionar: {
     flex: 1,
     backgroundColor: "green",
@@ -389,6 +431,7 @@ const style = StyleSheet.create({
     marginBottom: 15,
   },
   text: {
+    fontWeight: "bold",
     padding: 10,
     fontSize: 20,
   },
@@ -400,12 +443,10 @@ const style = StyleSheet.create({
   },
   header: {
     width: "100%",
-    textAlign: "center",
-    fontSize: 27,
-    fontWeight: "bold",
+    justifyContent: "flex-start",
     height: 40,
     backgroundColor: "#036d19",
-    color: "white",
+    borderRadius: 10,
   },
   item: {
     flexDirection: "row",
@@ -447,8 +488,6 @@ const style = StyleSheet.create({
   imagem: {
     width: "100%",
     height: 200,
-    //width: "30%",
-    //height: 100,
     marginBottom: 14,
   },
   btnAdd: {

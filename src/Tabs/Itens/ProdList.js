@@ -1,6 +1,5 @@
-import React from "react";
-import { Button } from "react-native-elements/dist/buttons/Button";
-import { Icon } from "react-native-elements/dist/icons/Icon";
+import React from 'react';
+import {Icon} from 'react-native-elements/dist/icons/Icon';
 
 import {
   StyleSheet,
@@ -8,106 +7,105 @@ import {
   View,
   SafeAreaView,
   SectionList,
-  StatusBar,
   TouchableOpacity,
-} from "react-native";
-import { Image } from "react-native";
+} from 'react-native';
+import {Image} from 'react-native';
 
 const DATA = [
   {
-    title: "Main dishes",
-    descricao: "Aqui está a descrição do produto",
+    title: 'Main dishes',
+    descricao: 'Aqui está a descrição do produto',
     data: [
       {
-        name: "Pizza",
+        name: 'Pizza',
         price: 15,
-        info: "Calabresa, queijo, tomate, pimenta",
+        info: 'Calabresa, queijo, tomate, pimenta',
         image:
-          "https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg",
-        promo: { desconto: 50, validade: "16:00 04/10" },
+          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
+        promo: {desconto: 50, validade: '16:00 04/10'},
       },
       {
-        name: "Burguer",
+        name: 'Burguer',
         price: 12,
-        info: "Carne, queijo, bacon",
+        info: 'Carne, queijo, bacon',
         promo: {},
       },
       {
-        name: "Risotto",
+        name: 'Risotto',
         price: 12,
-        info: "tradicional",
+        info: 'tradicional',
         promo: {},
       },
     ],
   },
   {
-    title: "Sides",
-    descricao: "Aqui está a descrição do produto",
+    title: 'Sides',
+    descricao: 'Aqui está a descrição do produto',
     data: [
       {
-        name: "French Fries",
+        name: 'French Fries',
         price: 10,
-        info: "batata, bacon, molho especial",
+        info: 'batata, bacon, molho especial',
         promo: {},
       },
       {
-        name: "Onion Rings",
+        name: 'Onion Rings',
         price: 12,
-        info: "Cebola, molho especial",
+        info: 'Cebola, molho especial',
         promo: {},
       },
       {
-        name: "Fried Shrimps",
+        name: 'Fried Shrimps',
         price: 8,
-        info: "Especial",
+        info: 'Especial',
         promo: {},
       },
     ],
   },
   {
-    title: "Drinks",
-    descricao: "Aqui está a descrição do produto",
+    title: 'Drinks',
+    descricao: 'Aqui está a descrição do produto',
     data: [
       {
-        name: "Water",
+        name: 'Water',
         price: 3,
-        info: "250ml, sem gás",
+        info: '250ml, sem gás',
         promo: {},
       },
       {
-        name: "Coke",
+        name: 'Coke',
         price: 4,
-        info: "500ml",
+        info: '500ml',
         promo: {},
       },
       {
-        name: "Beer",
+        name: 'Beer',
         price: 4,
-        info: "250ml",
+        info: '250ml',
         promo: {},
       },
     ],
   },
   {
-    title: "Desserts",
-    descricao: "Aqui está a descrição do produto",
+    title: 'Desserts',
+    descricao: 'Aqui está a descrição do produto',
     data: [
       {
-        name: "Cheese Cake",
+        name: 'Cheese Cake',
         price: 9,
-        info: "queijo, bolo",
+        info: 'queijo, bolo',
         promo: {},
       },
       {
-        name: "Ice Cream",
+        name: 'Ice Cream',
         price: 6,
-        info: "Chocolate, morango e creme",
+        info: 'Chocolate, morango e creme',
         promo: {},
       },
       {
-        name: "Fried Shrimps",
+        name: 'Fried Shrimps',
         price: 8,
-        info: "Epecial",
+        info: 'Epecial',
         promo: {},
       },
     ],
@@ -126,13 +124,13 @@ function temImagem(imagem) {
     <Image
       style={styles.imagem}
       source={{
-        uri: "https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png",
+        uri: 'https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png',
       }}
     />
   );
 }
 
-const Item = ({ title, image, info, price }) => (
+const Item = ({title, image, info, price}) => (
   <View style={styles.item}>
     {temImagem(image)}
     <View>
@@ -143,22 +141,21 @@ const Item = ({ title, image, info, price }) => (
   </View>
 );
 
-export default (props) => {
+export default props => {
   function Footer() {
     return (
-      <View style={{ height: 40, width: "100%" }}>
+      <View style={{height: 50, width: '100%'}}>
         <TouchableOpacity
           style={{
-            height: "100%",
-            width: "100%",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
+            height: '100%',
+            width: '100%',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
-          onPress={() => props.navigation.navigate("CadastroProd")}
-        >
-          <Icon name="add" size={30} color="red" />
-          <Text style={{ fontSize: 17, fontWeight: "bold" }}>
+          onPress={() => props.navigation.navigate('CadastroProd')}>
+          <Icon name="add" size={35} color="green" />
+          <Text style={{fontSize: 17, fontWeight: 'bold'}}>
             Adicionar Produto
           </Text>
         </TouchableOpacity>
@@ -167,19 +164,18 @@ export default (props) => {
   }
   function FooterCat() {
     return (
-      <View style={{ height: 40, width: "100%" }}>
+      <View style={{height: 50, width: '100%'}}>
         <TouchableOpacity
           style={{
-            height: "100%",
-            width: "100%",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
+            height: '100%',
+            width: '100%',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
-          onPress={() => props.navigation.navigate("CadastroCat")}
-        >
-          <Icon name="add" size={30} color="red" />
-          <Text style={{ fontSize: 17, fontWeight: "bold" }}>
+          onPress={() => props.navigation.navigate('CadastroCat')}>
+          <Icon name="add" size={35} color="green" />
+          <Text style={{fontSize: 17, fontWeight: 'bold'}}>
             Adicionar Categoria
           </Text>
         </TouchableOpacity>
@@ -187,17 +183,15 @@ export default (props) => {
     );
   }
   return (
-    <View style={{ backgroundColor: "white" }}>
+    <View style={{backgroundColor: 'white'}}>
       <SafeAreaView style={styles.container}>
         <SectionList
           sections={DATA}
           keyExtractor={(item, index) => item + index}
-          renderItem={({ item }) => (
+          renderItem={({item}) => (
             <View>
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("EditarProd", item)}
-                //style={styles.item}
-              >
+                onPress={() => props.navigation.navigate('EditarProd', item)}>
                 <View>
                   <Item
                     title={item.name}
@@ -209,11 +203,17 @@ export default (props) => {
               </TouchableOpacity>
             </View>
           )}
-          renderSectionHeader={({ section: { title } }) => (
-            <View style={{ backgroundColor: "#036d19", height: 50 }}>
+          renderSectionHeader={({section: {title}}) => (
+            <View
+              style={{
+                backgroundColor: '#036d19',
+                height: 50,
+                borderRadius: 10,
+                width: '98%',
+                alignSelf: 'center',
+              }}>
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("EditarCat", title)}
-              >
+                onPress={() => props.navigation.navigate('EditarCat', title)}>
                 <Text style={styles.header}>{title}</Text>
               </TouchableOpacity>
             </View>
@@ -228,50 +228,44 @@ export default (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: "8%",
-    //marginHorizontal: "1%",
+    //marginTop: '1%',
     flex: 0,
-    backgroundColor: "white",
-    //paddingTop: StatusBar.currentHeight,
-    //marginHorizontal: 12,
+    backgroundColor: 'white',
   },
   item: {
-    //alignItems: "center",
-    //marginHorizontal: 4,
-    flexDirection: "row",
+    flexDirection: 'row',
     marginTop: 2,
-    marginBottom: 4,
-    backgroundColor: "#f8f8ff",
+    marginBottom: 2,
+    marginTop: 2,
+    backgroundColor: '#f8f8ff',
     borderRadius: 8,
-    width: "95%",
+    width: '95%',
     height: 80,
-    alignSelf: "center",
+    alignSelf: 'center',
   },
   subtitulo: {
-    fontWeight: "bold",
-    color: "grey",
+    fontWeight: 'bold',
+    color: 'grey',
   },
   header: {
-    //marginTop: "2%",
-    marginHorizontal: "2%",
-    marginBottom: "2%",
-    width: "100%",
-    //textAlign: "center",
+    marginHorizontal: '2%',
+    marginBottom: '2%',
+    width: '100%',
     fontSize: 25,
-    fontWeight: "bold",
-    //height: 50,
-    //backgroundColor: "#036d19",
-    color: "white",
+    fontWeight: 'bold',
+    color: 'white',
+    fontStyle: 'italic',
+    textDecorationLine: 'underline',
   },
   title: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   imagem: {
-    marginHorizontal: "2%",
-    alignSelf: "flex-end",
+    marginHorizontal: '2%',
+    alignSelf: 'flex-end',
     width: 80,
-    height: "90%",
+    height: '90%',
     borderRadius: 10,
   },
 });

@@ -1,81 +1,94 @@
-import React, { useState } from "react";
-import { TouchableOpacity } from "react-native";
-import { Text, Image, View, StyleSheet } from "react-native";
-//import {  } from "react-native-gesture-handler";
-import { Button, Input, Icon } from "react-native-elements";
-import ImagePicker from "react-native-image-picker";
-import { launchCamera, launchImageLibrary } from "react-native-image-picker";
+import React, {useState} from 'react';
+import {TouchableOpacity} from 'react-native';
+import {Text, Image, View, StyleSheet} from 'react-native';
+import {Button, Input, Icon} from 'react-native-elements';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import ImgToBase64 from 'react-native-image-base64';
+import ImagePicker from 'react-native-image-picker';
 
-export default ({ route, navigation }) => {
+export default ({route, navigation}) => {
   const [prod, setprod] = useState(route.params ? route.params : {});
+  const [filePath, setFilePath] = useState({});
 
-  const [imageSource, setImageSource] = useState(null);
-
-  function selectImage() {
-    const options = {
-      title: "You can choose one image",
-      maxWidth: 256,
-      maxHeight: 256,
-      noData: true,
-      mediaType: "photo",
+  const chooseFile = () => {
+    let options = {
+      mediaType: 'photo',
+      includeBase64: true,
+      maxWidth: 300,
+      maxHeight: 550,
+      quality: 1,
       storageOptions: {
         skipBackup: true,
+        path: 'images',
       },
     };
+    launchImageLibrary(options, response => {
+      console.log('Response = ', response);
 
-    ImagePicker.launchImageLibrary(options, (response) => {
       if (response.didCancel) {
-        console.log("User cancelled photo picker");
-        Alert.alert("You did not select any image");
-      } else if (response.error) {
-        console.log("ImagePicker Error: ", response.error);
-      } else if (response.customButton) {
-        console.log("User tapped custom button: ", response.customButton);
-      } else {
-        const source = { uri: response.uri };
-
-        setImageSource(source.uri);
+        alert('User cancelled camera picker');
+        return;
+      } else if (response.errorCode == 'camera_unavailable') {
+        alert('Camera not available on device');
+        return;
+      } else if (response.errorCode == 'permission') {
+        alert('Permission not satisfied');
+        return;
+      } else if (response.errorCode == 'others') {
+        alert(response.errorMessage);
+        return;
       }
+      console.log(response.ImgToBase64);
+      console.log('base64 -> ', response.assets[0].base64);
+      console.log('uri -> ', response.assets[0].uri);
+      console.log('width -> ', response.assets[0].width);
+      console.log('height -> ', response.assets[0].height);
+      console.log('fileSize -> ', response.assets[0].fileSize);
+      console.log('type -> ', response.assets[0].type);
+      console.log('fileName -> ', response.assets[0].fileName);
+
+      setFilePath(response);
     });
-  }
+  };
 
   return (
     <View>
       <View>
         <View>
-          {imageSource === null ? (
-            <Image
-              source={{
-                uri: "https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png",
-              }}
-              style={style.imagem}
-              resizeMode="contain"
-            />
+          {true ? (
+            <View
+              style={{
+                alignItems: 'center',
+                margin: '10%',
+              }}>
+              <TouchableOpacity onPress={chooseFile}>
+                <Text
+                  style={{
+                    textDecorationLine: 'underline',
+                    fontWeight: 'bold',
+                  }}>
+                  Escolha uma imagem
+                </Text>
+              </TouchableOpacity>
+            </View>
           ) : (
-            <Image
-              source={{ uri: imageSource }}
-              style={style.imagem}
-              resizeMode="contain"
-            />
+            <Image style={style.imagem} resizeMode="contain" />
           )}
         </View>
-        <TouchableOpacity onPress={selectImage}>
-          <Text>Pick an image</Text>
-        </TouchableOpacity>
       </View>
 
       <Text style={style.text}>Produto</Text>
       <Input
         //onChangeText={(name) => setprod({ ...prod, name })}
         placeholder="informe o nome do produto"
-        rightIcon={{ type: "font-awesome", name: "edit" }}
+        rightIcon={{type: 'font-awesome', name: 'edit'}}
         //value={prod.name ? prod.name : ""}
       />
       <Text style={style.text}>Preço</Text>
       <Input
         //onChangeText={(price) => setprod({ ...prod, price })}
         placeholder="informe o preço do produto"
-        rightIcon={{ type: "font-awesome", name: "edit" }}
+        rightIcon={{type: 'font-awesome', name: 'edit'}}
         keyboardType="numeric"
         //value={prod.price.toString() ? prod.price.toString() : ""}
       />
@@ -83,7 +96,7 @@ export default ({ route, navigation }) => {
       <Input
         //onChangeText={(price) => setprod({ ...prod, price })}
         placeholder="Informações do produto"
-        rightIcon={{ type: "font-awesome", name: "edit" }}
+        rightIcon={{type: 'font-awesome', name: 'edit'}}
         keyboardType="numeric"
         //value={prod.price.toString() ? prod.price.toString() : ""}
       />
@@ -92,13 +105,13 @@ export default ({ route, navigation }) => {
         title="Salvar"
         type="clear"
         titleStyle={{
-          color: "blue",
-          fontWeight: "bold",
-          textDecorationLine: "underline",
+          color: 'blue',
+          fontWeight: 'bold',
+          textDecorationLine: 'underline',
         }}
         //buttonStyle={{ backgroundColor: "green" }}
         onPress={() => {
-          Alert.alert("Salvar", "Deseja aplicar as alterações do Produto?");
+          Alert.alert('Salvar', 'Deseja aplicar as alterações do Produto?');
         }}
       />
     </View>
@@ -113,7 +126,7 @@ const style = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: "grey",
+    borderColor: 'grey',
     borderWidth: 1,
     marginBottom: 15,
   },
@@ -124,19 +137,19 @@ const style = StyleSheet.create({
   text2: {
     padding: 10,
     fontSize: 50,
-    textAlign: "center",
+    textAlign: 'center',
   },
   imagem: {
-    alignSelf: "center",
+    alignSelf: 'center',
     width: 200,
     height: 200,
   },
   buttonS: {
-    alignSelf: "center",
-    marginHorizontal: "10%",
+    alignSelf: 'center',
+    marginHorizontal: '10%',
     marginBottom: 40,
     marginTop: 20,
-    width: "40%",
+    width: '40%',
     borderRadius: 50,
   },
 });

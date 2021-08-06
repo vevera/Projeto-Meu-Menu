@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TouchableOpacityBase } from "react-native";
 import {
   StyleSheet,
@@ -7,13 +7,14 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import { Input } from "react-native-elements";
 import { Slider, Icon } from "react-native-elements";
 
 const WIDTH = Dimensions.get("window").width;
 const HEIGHT_MODAL = 300;
 
 const SimpleModal = (props) => {
+  const [mostrarValor, setMostrarValor] = useState(1);
+  const [valor, setValor] = useState(1);
   const closeModal = (bool, data) => {
     props.changeModalVisible(bool);
     //props.setData(data);
@@ -30,26 +31,28 @@ const SimpleModal = (props) => {
       <TouchableOpacity disabled={true} style={StyleSheet.container}>
         <View style={styles.modal}>
           <View style={styles.textView}>
-            <Text
-              style={(styles.text, { fontSize: 50 }, { alignSelf: "center" })}
-            >
-              Promoção
-            </Text>
-            <Text style={styles.text}>Desconto (em %)</Text>
+            <Text style={styles.textHeader}>Promoção</Text>
+
             <View
               style={{
                 flex: 1,
                 alignItems: "stretch",
                 justifyContent: "center",
+                marginHorizontal: "5%",
               }}
             >
               <Slider
-                value={1}
-                //onValueChange={setValue}
+                value={valor}
                 maximumValue={100}
                 minimumValue={1}
                 step={1}
-                trackStyle={{ height: 10, backgroundColor: "transparent" }}
+                onSlidingComplete={(value) => setMostrarValor(value)}
+                onValueChange={(value) => setValor(value)}
+                trackStyle={{
+                  height: 10,
+                  backgroundColor: "blue",
+                  backgroundColor: "transparent",
+                }}
                 thumbStyle={{
                   height: 20,
                   width: 20,
@@ -58,27 +61,42 @@ const SimpleModal = (props) => {
                 thumbProps={{
                   children: (
                     <Icon
-                      name="heartbeat"
+                      //name="heartbeat"
                       type="font-awesome"
-                      size={20}
+                      size={10}
                       reverse
-                      containerStyle={{ bottom: 20, right: 20 }}
-                      color="#f50"
+                      containerStyle={{ bottom: 10, right: 10 }}
+                      color="lightblue"
+                      //backgroundColor="#f50"
                     />
                   ),
                 }}
               />
             </View>
-
-            <Input
-              placeholder="informe a % de desconto"
-              rightIcon={{ type: "font-awesome", name: "edit" }}
-            />
-            <Text style={styles.text}>Validade (em dias)</Text>
-            <Input
-              placeholder="informe a validade"
-              rightIcon={{ type: "font-awesome", name: "edit" }}
-            />
+          </View>
+          <View style={{ alignItems: "center" }}>
+            <Text
+              style={{
+                marginBottom: 40,
+                fontSize: 20,
+                fontWeight: "bold",
+              }}
+            >
+              Porcentagem de desconto: {valor}%
+            </Text>
+            <Text
+              style={{
+                marginBottom: 40,
+                fontSize: 20,
+                fontWeight: "bold",
+              }}
+            >
+              Novo valor do produto: R$
+              {(
+                props.params.price -
+                props.params.price * (valor / 100)
+              ).toFixed(2)}
+            </Text>
           </View>
           <View style={styles.buttonsView}>
             <TouchableOpacity
@@ -101,6 +119,11 @@ const SimpleModal = (props) => {
 };
 
 const styles = StyleSheet.create({
+  textHeader: {
+    fontSize: 25,
+    alignSelf: "center",
+    margin: "2%",
+  },
   container: {
     flex: 1,
     alignItems: "center",
