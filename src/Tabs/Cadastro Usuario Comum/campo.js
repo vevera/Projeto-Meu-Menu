@@ -5,6 +5,7 @@ import {Icon} from 'react-native-elements';
 export default function Campo({nome, setEstado, secure, iconName, keyboardtype}){
 
     return (
+        
         <View style = {styles.InputView}>
                 <Text style = {styles.HeaderText}>
                     {nome}
