@@ -191,6 +191,11 @@ export default ({route, navigation}) => {
     }
   }
 
+  const id = route.params;
+  const idProd = '';
+  const [nomeProduto, setNomeProduto] = useState(prod.name);
+  const [precoProduto, setPrecoProduto] = useState(prod.price.toString());
+  const [infoProduto, setInfoProduto] = useState(prod.info);
   const [base64Image, setBase64Image] = useState('');
 
   const chooseFile = () => {
@@ -224,10 +229,6 @@ export default ({route, navigation}) => {
     });
   };
 
-  const [nomeProduto, setNomeProduto] = useState(prod.name);
-  const [precoProduto, setPrecoProduto] = useState(prod.price.toString());
-  const [infoProduto, setInfoProduto] = useState(prod.info);
-
   function atualizarProduto() {
     console.log('Atualizar');
     console.log('Nome = ', nomeProduto);
@@ -236,6 +237,24 @@ export default ({route, navigation}) => {
   }
 
   function removerProduto() {
+    fetch(
+      `http://192.168.1.103:5000/store/${encodeURIComponent(id)}/products`,
+      {
+        method: 'DELETE',
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          product_id: idProd,
+        }),
+      },
+    )
+      .then(resposta => resposta.text())
+      .then(article => {
+        Alert.alert('Produto removido com sucesso!');
+      });
+
     console.log('Remover');
     console.log('Nome = ', nomeProduto);
     console.log('Preço = ', precoProduto);

@@ -3,10 +3,10 @@ import {TouchableOpacity} from 'react-native';
 import {Text, Image, View, StyleSheet, Alert} from 'react-native';
 import {Button, Input, Icon} from 'react-native-elements';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import ImgToBase64 from 'react-native-image-base64';
-import ImagePicker from 'react-native-image-picker';
 
 export default ({route, navigation}) => {
+  const id = route.params;
+  const idCat = '';
   const [nomeProduto, setNomeProduto] = useState('');
   const [precoProduto, setPrecoProduto] = useState('');
   const [infoProduto, setInfoProduto] = useState('');
@@ -44,6 +44,28 @@ export default ({route, navigation}) => {
   };
 
   function cadastrarProduto() {
+    fetch(
+      `http://192.168.1.103:5000/store/${encodeURIComponent(id)}/products`,
+      {
+        method: 'POST',
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          name: nomeProduto,
+          description: infoProduto,
+          price: precoProduto,
+          photo: base64Image,
+          category_id: idCat,
+        }),
+      },
+    )
+      .then(resposta => resposta.text())
+      .then(article => {
+        Alert.alert('Produto adicionado com sucesso!');
+      });
+
     console.log('imagem = ', base64Image);
     console.log('produto = ', nomeProduto);
     console.log('preço = ', precoProduto);

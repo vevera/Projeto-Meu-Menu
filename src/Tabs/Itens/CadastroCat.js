@@ -4,10 +4,31 @@ import {TextInput, Text, View, StyleSheet, Alert} from 'react-native';
 import {Button, Input, Icon} from 'react-native-elements';
 
 export default ({route, navigation}) => {
+  const id = route.params;
   const [nomeCategoria, setNomeCategoria] = useState('');
   const [infoCategoria, setInfoCategoria] = useState('');
 
   function cadastrarCategoria() {
+    fetch(
+      `http://192.168.1.103:5000/store/${encodeURIComponent(id)}/categories`,
+      {
+        method: 'POST',
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          name: nomeCategoria,
+          description: infoCategoria,
+          store_id: id,
+        }),
+      },
+    )
+      .then(resposta => resposta.text())
+      .then(article => {
+        Alert.alert('Categoria adicionada com sucesso!');
+      });
+
     console.log('nome = ', nomeCategoria);
     console.log('info = ', infoCategoria);
   }
@@ -53,8 +74,11 @@ export default ({route, navigation}) => {
               },
               {
                 text: 'CONFIRMAR',
+                // TESTAR AQUI
                 onPress: () => {
-                  cadastrarCategoria();
+                  (nomeCategoria === '') | (nomeCategoria === '')
+                    ? {}
+                    : cadastrarCategoria();
                 },
               },
             ],

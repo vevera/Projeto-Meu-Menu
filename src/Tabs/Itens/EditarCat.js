@@ -3,6 +3,8 @@ import {Text, View, StyleSheet, Alert} from 'react-native';
 import {Button, Input, Icon} from 'react-native-elements';
 
 export default ({route}) => {
+  const id = route.params;
+  const idCat = '';
   const [section, setSection] = useState(route.params ? route.params : {});
   const [nomeCategoria, setNomeCategoria] = useState(section.title);
   const [infoCategoria, setInfoCategoria] = useState(section.descricao);
@@ -14,6 +16,24 @@ export default ({route}) => {
   }
 
   function removerCategoria() {
+    fetch(
+      `http://192.168.1.103:5000/store/${encodeURIComponent(id)}/categories`,
+      {
+        method: 'DELETE',
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          category_id: idCat,
+        }),
+      },
+    )
+      .then(resposta => resposta.text())
+      .then(article => {
+        Alert.alert('Categoria removida com sucesso!');
+      });
+
     console.log('REMOVER');
     console.log('nome = ', nomeCategoria);
     console.log('info = ', infoCategoria);

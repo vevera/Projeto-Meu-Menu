@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Alert } from "react-native";
-import { Platform } from "react-native";
+import React, {useState} from 'react';
+import {Alert} from 'react-native';
+import {Platform} from 'react-native';
 import {
   View,
   Image,
@@ -9,24 +9,24 @@ import {
   TextInput,
   StyleSheet,
   Text,
-} from "react-native";
+} from 'react-native';
 
-export default ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+export default ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
   const [errorLogin, setErrorLogin] = useState(false);
   const [variavel, setvariavel] = useState(null);
 
   function login(senha, email) {
     fetch(
       `http://192.168.1.103:5000/store/login?email=${encodeURIComponent(
-        email
+        email,
       )}&password=${encodeURIComponent(senha)}`,
       {
-        method: "GET",
-      }
+        method: 'GET',
+      },
     )
-      .then((response) => {
+      .then(response => {
         if (response.ok) {
           setErrorLogin(true);
           return response.json();
@@ -34,15 +34,15 @@ export default ({ navigation }) => {
           return null;
         }
       })
-      .then((json) => {
+      .then(json => {
         setvariavel(json);
         return json;
       })
-      .then((resposta) => {
+      .then(resposta => {
         if (resposta != null) {
-          navigation.navigate("LojistaNavigator", resposta.id);
+          navigation.navigate('LojistaNavigator', resposta.id);
         } else {
-          Alert.alert("Error");
+          Alert.alert('Error');
         }
       });
   }
@@ -50,15 +50,14 @@ export default ({ navigation }) => {
   return (
     <KeyboardAvoidingView
       style={styles.background}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <View style={styles.containerLogo}>
         <Image
           style={{
             width: 170,
             height: 155,
           }}
-          source={require("../../assets/Op_1.png")}
+          source={require('../../assets/Op_1.png')}
         />
       </View>
       <View style={styles.container}>
@@ -66,7 +65,7 @@ export default ({ navigation }) => {
           style={styles.input}
           placeholder="Email"
           type="text"
-          onChangeText={(text) => {
+          onChangeText={text => {
             setEmail(text);
           }}
           value={email}
@@ -79,15 +78,15 @@ export default ({ navigation }) => {
           placeholder="Senha"
           autoCorrect={false}
           type="text"
-          onChangeText={(text) => {
+          onChangeText={text => {
             setSenha(text);
           }}
           value={senha}
         />
         {errorLogin === true ? (
           <View>
-            <Text style={{ color: "red", textDecorationLine: "underline" }}>
-              {" "}
+            <Text style={{color: 'red', textDecorationLine: 'underline'}}>
+              {' '}
               E-mail ou senha inválidos
             </Text>
           </View>
@@ -96,28 +95,26 @@ export default ({ navigation }) => {
             <Text></Text>
           </View>
         )}
-        {email === "" || senha === "" ? (
+        {email === '' || senha === '' ? (
           <TouchableOpacity
             style={styles.btnsubmit}
-            onPress={() => setErrorLogin(true)}
-          >
+            onPress={() => setErrorLogin(true)}>
             <Text style={styles.textsubmit}>Acessar</Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
             style={styles.btnsubmit}
-            onPress={() => login(senha, email)}
-          >
+            onPress={() => setErrorLogin(false)}
+            onPress={() => login(senha, email)}>
             <Text style={styles.textsubmit}>Acessar</Text>
           </TouchableOpacity>
         )}
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("CadastroLogin");
+            navigation.navigate('CadastroLogin');
           }}
-          style={styles.btnregister}
-        >
+          style={styles.btnregister}>
           <Text style={styles.textregister}>Cadastrar</Text>
         </TouchableOpacity>
       </View>
@@ -128,25 +125,25 @@ export default ({ navigation }) => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#10d177",
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#10d177',
   },
   containerLogo: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   container: {
-    alignItems: "center",
+    alignItems: 'center',
     flex: 1,
-    width: "90%",
-    justifyContent: "center",
+    width: '90%',
+    justifyContent: 'center',
   },
   input: {
-    backgroundColor: "#fff",
-    width: "90%",
+    backgroundColor: '#fff',
+    width: '90%',
     marginBottom: 15,
-    color: "#222",
+    color: '#222',
     fontSize: 17,
     borderRadius: 7,
     padding: 10,
@@ -154,31 +151,31 @@ const styles = StyleSheet.create({
   btnsubmit: {
     width: 200,
     height: 50,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "darkorange",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'darkorange',
     borderRadius: 50,
     marginTop: 10,
   },
   textsubmit: {
-    color: "#fff",
+    color: '#fff',
     fontSize: 18,
   },
   btnregister: {
     marginTop: 10,
   },
   textregister: {
-    color: "#fff",
+    color: '#fff',
   },
   contentAlert: {
     marginTop: 20,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   warningAlert: {
     paddingLeft: 10,
-    color: "#bdbdbd",
+    color: '#bdbdbd',
     fontSize: 16,
   },
 });
