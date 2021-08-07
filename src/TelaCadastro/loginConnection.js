@@ -1,7 +1,7 @@
 
 async function login(name, phone, email, password, specialtys, adress_country, adress_city, adress_borough, adress_street) {
 
-    return fetch(`http://192.168.1.103:5000/store/sign`, {
+    return fetch(`http://ec2-18-231-183-113.sa-east-1.compute.amazonaws.com:5000/store/sign`, {
         method: 'POST',
         headers: new Headers({
             'Accept': 'application/json',

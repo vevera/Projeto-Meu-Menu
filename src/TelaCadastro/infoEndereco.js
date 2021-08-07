@@ -3,7 +3,6 @@ import {Text, View, TouchableOpacity, Alert} from 'react-native'
 import Campo from './campo.js';
 import login from './loginConnection.js';
 
-
 export default function infoEndereco({route, navigation}){
 
     const params = route.params;

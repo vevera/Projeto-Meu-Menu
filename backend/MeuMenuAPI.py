@@ -6,8 +6,8 @@ CONNECTION = {
     'host': 'localhost',
     'port': 5432,
     'database': 'meumenu',
-    'user': 'postgres',
-    'password': 'postgres'
+    'user': 'mme-bd-hml-usr',
+    'password': 'CBeHf*n8ew4E'
 }
 conn = DatabaseDAO(**CONNECTION)
 conn.DEBUG = False
@@ -89,6 +89,11 @@ def app_products(store_id):
     elif request.method == 'DELETE':
         data = request.get_json()
         return store.delete_product(**data)
+    
+@app.route("/store/<store_id>/categories_products", methods = ["GET"])
+def app_categories_products(store_id):
+    store = Store(conn, store_id)
+    return {'response': store.categoria_products()}
 
 @app.route("/store/<store_id>/specialtys", methods = ["GET", "PUT"])
 def app_specialtys(store_id):

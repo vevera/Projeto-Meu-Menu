@@ -62,7 +62,7 @@ const NovoHorarioAtendimento = ({idLoja, setModalAtiva, modalAtiva, setAtualizar
 
     function adicionarHorario() {
 
-        fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(idLoja)}/schedules`, {
+        fetch(`http://ec2-18-231-183-113.sa-east-1.compute.amazonaws.com:5000/store/${encodeURIComponent(idLoja)}/schedules`, {
             method: 'POST',
             headers: new Headers({
                 'Accept': 'application/json',
@@ -78,6 +78,7 @@ const NovoHorarioAtendimento = ({idLoja, setModalAtiva, modalAtiva, setAtualizar
         .then(resposta => resposta.text())
         .then(article => {console.log(article)})
         .then(() => {setAtualizarData(!atualizarData)})
+        .catch(error  => console.log(error))
 
     }
     return (
@@ -124,7 +125,7 @@ const RenderHorario = ({idLoja, item, setAtualizarData, atualizarData}) =>{
 
         function Delete() {
             
-            fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(idLoja)}/schedules/delete`, {
+            fetch(`http://ec2-18-231-183-113.sa-east-1.compute.amazonaws.com:5000/store/${encodeURIComponent(idLoja)}/schedules/delete`, {
                 method: 'POST',
                 headers: new Headers({
                     'Accept': 'application/json',
@@ -137,6 +138,7 @@ const RenderHorario = ({idLoja, item, setAtualizarData, atualizarData}) =>{
             .then(res => res.text()) // or res.json()
             .then(res => console.log(res))
             .then(() => {setAtualizarData(!atualizarData)})
+            .catch(error  => console.log(error))
 
         }
 
@@ -192,7 +194,7 @@ const HorariosDeAtendimento = ({idLoja, atualizarData, setAtualizarData}) => {
 
     async function setaDados() {
 
-        timeout(5000, fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(idLoja)}/schedules`, {
+        timeout(5000, fetch(`http://ec2-18-231-183-113.sa-east-1.compute.amazonaws.com:5000/store/${encodeURIComponent(idLoja)}/schedules`, {
             method: 'GET',
         }))
         .then(resposta => {console.log(resposta); return resposta.json()})

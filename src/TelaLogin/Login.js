@@ -19,7 +19,7 @@ export default ({navigation}) => {
 
   function login(senha, email) {
     fetch(
-      `http://192.168.1.103:5000/store/login?email=${encodeURIComponent(
+      `http://ec2-18-231-183-113.sa-east-1.compute.amazonaws.com:5000/store/login?email=${encodeURIComponent(
         email,
       )}&password=${encodeURIComponent(senha)}`,
       {

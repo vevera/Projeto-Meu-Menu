@@ -9,6 +9,7 @@ import Itens from "../Itens/index.js";
 
 import InfoLoja from "../InfoLoja/index.js";
 import Endereco from "../Endereço/index.js";
+import ListaUsuariosComuns from '../Cadastro Usuario Comum/listaDeUsuarios.js';
 
 
 const Tab = createBottomTabNavigator();
@@ -48,6 +49,8 @@ const TabNavigator = ({route}) =>{
                 <Tab.Screen name = "Produtos" component = {Itens} initialParams={{idLoja}}/>
                 <Tab.Screen name = "Informações" component = {InfoLoja} initialParams={{idLoja}}/>
                 <Tab.Screen name = "Endereço" component = {Endereco} initialParams={{idLoja}}/>
+                <Tab.Screen name = "Cadastro" component = {ListaUsuariosComuns} initialParams={{idLoja}}/>
+                
             </Tab.Navigator>
 
         </NavigationContainer>

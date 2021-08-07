@@ -4,8 +4,8 @@ class Store:
     
     def __init__(self, conn, store_id):
         self.conn = conn
-        self.store_id = store_id
-        
+        self.store_id = store_id   
+              
     def categories(self):
         return self.conn.read_query("""
             SELECT 
@@ -43,6 +43,18 @@ class Store:
         data['photo'] = data['photo'].apply(lambda x: base64.b64encode(x).decode("utf8"))
 
         return data.to_dict(orient = 'records')
+    
+    def one_category_products(self, category_id):
+        data = self.conn.read_query("""
+            SELECT *
+            FROM product
+            LEFT JOIN category
+                ON category_id = %s
+            WHERE store_id = %s
+        """, [category_id, self.store_id])
+        data['photo'] = data['photo'].apply(lambda x: base64.b64encode(x).decode("utf8"))
+
+        return data.to_dict(orient = 'records')
         
     def create_product(self, name, description, price, photo, category_id):
         if self.conn.DEBUG:
@@ -70,6 +82,18 @@ class Store:
 
         return data.to_dict(orient = 'records')[0]
         
+    def categorized_products(self):
+        
+        dataCategory = self.categories()
+        for category in dataCategory:
+            idCategory = category.id
+            dataProducts = self.one_category_products(idCategory)
+            dataCategory.data = dataProducts
+            
+            
+        #print(type(data))
+        
+        return data
     
     def specialtys(self):
         return self.conn.read_query("""

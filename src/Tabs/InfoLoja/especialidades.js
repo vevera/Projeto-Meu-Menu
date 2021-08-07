@@ -38,7 +38,7 @@ const NovaEspecialideComponent = ({idLoja, setModalAtiva, modalAtiva, atualizarD
         
         console.log(listaDeEspecialidades);
 
-        fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(idLoja)}/specialtys`, {
+        fetch(`http://ec2-18-231-183-113.sa-east-1.compute.amazonaws.com:5000/store/${encodeURIComponent(idLoja)}/specialtys`, {
             method: 'PUT',
             headers: new Headers({
                 'Accept': 'application/json',
@@ -51,6 +51,7 @@ const NovaEspecialideComponent = ({idLoja, setModalAtiva, modalAtiva, atualizarD
         .then(resposta => resposta.text())
         .then(article => {console.log(article)})
         .then(() => {setAtualizarData(!atualizarData)})
+        .catch(error  => console.log(error))
 
     }
 
@@ -92,7 +93,7 @@ const RenderEspecialidade = ({idLoja, item, indice, atualizarData, setAtualizarD
         
             console.log(listaDeEspecialidades);
 
-            fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(idLoja)}/specialtys`, {
+            fetch(`http://ec2-18-231-183-113.sa-east-1.compute.amazonaws.com:5000/store/${encodeURIComponent(idLoja)}/specialtys`, {
                 method: 'PUT',
                 headers: new Headers({
                     'Accept': 'application/json',
@@ -106,6 +107,7 @@ const RenderEspecialidade = ({idLoja, item, indice, atualizarData, setAtualizarD
             .then(article => {console.log(article)})
             .then(() => {row[indice].close()})
             .then(() => {setAtualizarData(!atualizarData)})
+            .catch(error  => console.log(error))
         }
 
         return (
@@ -162,7 +164,7 @@ const Especialidades = ({idLoja, atualizarData, setAtualizarData, setListaDeEspe
 
     async function setaDados() {
 
-        timeout(5000, fetch(`http://192.168.1.103:5000/store/${encodeURIComponent(idLoja)}/specialtys`, {
+        timeout(5000, fetch(`http://ec2-18-231-183-113.sa-east-1.compute.amazonaws.com:5000/store/${encodeURIComponent(idLoja)}/specialtys`, {
             method: 'GET',
         }))
         .then(resposta => {console.log(resposta); return resposta.json()})

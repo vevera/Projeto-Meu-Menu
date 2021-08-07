@@ -11,6 +11,10 @@ CREATE TABLE store (
 	adress_street text NOT NULL
 );
 
+INSERT INTO store 
+(name, phone, email, password, specialtys, adress_country, adress_city, adress_borough, adress_street)
+values ('Loja 1', 'loja@gmail', '1234' ,'123', '[pao, carne]', 'Brasil', 'Cidade', 'Bairro', 'Rua'); 
+
 
 CREATE TABLE schedule (
 	id serial PRIMARY KEY,
