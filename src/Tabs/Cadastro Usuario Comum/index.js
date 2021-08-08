@@ -13,17 +13,13 @@ export default function CadastroUsuarioComum(){
     return (
         <View style = {{height: '100%', justifyContent: 'space-between'}}>
             <View>
-                <View style = {{marginTop: 25}}> 
-                    <Text style={{ fontSize: 20, fontWeight: 'bold', alignSelf: 'center'}}>
-                        Cadastro de Usuário
-                    </Text>
-                </View>
+                
         
                 <View>
             
-                    <Campo nome = 'Nome:' setEstado = {setNome} secure = {false} iconName = 'lock' /> 
-                    <Campo nome = 'Email:' setEstado = {setEmail} secure = {false} iconName = 'lock' /> 
-                    <Campo nome = 'Senha:' setEstado = {setSenha} secure = {false} iconName = 'lock' />    
+                    <Campo nome = 'Nome:' setEstado = {setNome} secure = {false} iconName = 'user' /> 
+                    <Campo nome = 'Email:' setEstado = {setEmail} secure = {false} iconName = 'envelope' /> 
+                    <Campo nome = 'Senha:' setEstado = {setSenha} secure = {true} iconName = 'lock' />    
                 
                 </View>
             </View>

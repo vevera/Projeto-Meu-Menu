@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#10d177',
+    backgroundColor: '#18BC9C',
   },
   containerLogo: {
     flex: 1,

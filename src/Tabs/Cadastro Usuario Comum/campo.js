@@ -2,8 +2,11 @@ import React from 'react';
 import { View, Text, TextInput} from 'react-native';
 import {Icon} from 'react-native-elements';
 
+import * as data from '../../connection.json';
+
 export default function Campo({nome, setEstado, secure, iconName, keyboardtype}){
 
+    console.log(data.endereco)
     return (
         
         <View style = {styles.InputView}>
@@ -18,6 +21,7 @@ export default function Campo({nome, setEstado, secure, iconName, keyboardtype})
                         keyboardType = {keyboardtype}
                         secureTextEntry = {secure}
                     />
+                    
                 </View>
         </View>
     );
