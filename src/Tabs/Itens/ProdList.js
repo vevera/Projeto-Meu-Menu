@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Icon} from 'react-native-elements/dist/icons/Icon';
 
 import {
@@ -10,6 +10,30 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {Image} from 'react-native';
+
+function listGet() {
+  const [dadosCat, setDadosCat] = useState(null);
+  const [dadosProd, setDadosProd] = useState(null);
+
+  fetch(
+    `http://192.168.1.103:5000/store/${encodeURIComponent(id)}/categories`,
+    {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({
+        store_id: idCat,
+      }),
+    },
+  )
+    .then(resposta => resposta.json())
+    .then(article => {
+      setDadosCat(article);
+    });
+}
+//const DATA = [];
 
 const DATA = [
   {

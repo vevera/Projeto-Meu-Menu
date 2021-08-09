@@ -40,18 +40,17 @@ export const addData = [
   },
 ];
 
+function removerOpcional() {
+  console.log('OK! adicional removido');
+}
+
 function ListaOp() {
   return (
     <View>
       <FlatList
         data={addData}
         keyExtractor={item => item.id}
-        renderItem={({item}) => (
-          <ListItem
-            data={item}
-            handleRight={() => alert('Opcional excluido!')}
-          />
-        )}
+        renderItem={({item}) => <ListItem data={item} handleRight={() => {}} />}
         ItemSeparatorComponent={() => <Separator />}
       />
     </View>
@@ -65,9 +64,9 @@ const Separator = () => (
 const RenderItem = ({item}) => {
   //const [shouldShow, setshouldShow] = useState(false);
   const Remove = () => {
-    function removerAdicional() {
-      console.log('remover opção adicional');
-    }
+    //function removerAdicional() {
+    //  console.log('remover opção adicional');
+    //}
 
     return (
       <View
@@ -84,7 +83,9 @@ const RenderItem = ({item}) => {
             borderRadius: 10,
             justifyContent: 'center',
           }}
-          onPress={removerAdicional()}>
+          onPress={() => {
+            removerOpcional();
+          }}>
           <Icon type="font-awesome" name="trash" size={45} color="white" />
         </TouchableOpacity>
       </View>
@@ -134,6 +135,14 @@ export default ({route, navigation}) => {
     );
   }
 
+  function removerPromocao() {
+    console.log('Promoção removida');
+  }
+
+  function adicionarPromocao() {
+    console.log('Promoção adicionada');
+  }
+
   function promocaoAtiva(promocao) {
     if (promocao.desconto != null) {
       return (
@@ -163,7 +172,9 @@ export default ({route, navigation}) => {
               marginBottom: 10,
               marginHorizontal: '1%',
             }}
-            onPress={() => {}}>
+            onPress={() => {
+              removerPromocao();
+            }}>
             <Icon name={'remove'} size={30} color="#ff0000" />
           </TouchableOpacity>
         </View>
@@ -184,7 +195,10 @@ export default ({route, navigation}) => {
             alignSelf: 'center',
             marginBottom: 10,
           }}
-          onPress={() => {}}>
+          onPress={() => {
+            changeModalVisible(true);
+            adicionarPromocao();
+          }}>
           <Icon name={'add'} size={30} color="#01a699" />
         </TouchableOpacity>
       );
@@ -259,6 +273,14 @@ export default ({route, navigation}) => {
     console.log('Nome = ', nomeProduto);
     console.log('Preço = ', precoProduto);
     console.log('info = ', infoProduto);
+  }
+
+  const [opcionalNome, setOpcionalNome] = useState('');
+  const [opcionalPreco, setOpcionalPreco] = useState('');
+
+  function adicionarOpicional() {
+    console.log(opcionalNome);
+    console.log(opcionalPreco);
   }
 
   return (
@@ -429,11 +451,17 @@ export default ({route, navigation}) => {
               <Text style={style.textView}>Adicionar Opicional</Text>
               <Text style={style.textadd}>Nome do adicional</Text>
               <Input
+                onChangeText={text => {
+                  setOpcionalNome(text);
+                }}
                 placeholder="informe o nomedo adicional"
                 rightIcon={{type: 'font-awesome', name: 'edit'}}
               />
               <Text style={style.textadd}>Preço</Text>
               <Input
+                onChangeText={text => {
+                  setOpcionalPreco(text);
+                }}
                 placeholder="informe o custo do adicional"
                 rightIcon={{type: 'font-awesome', name: 'edit'}}
               />
@@ -460,6 +488,7 @@ export default ({route, navigation}) => {
                     color: 'white',
                   }}
                   onPress={() => {
+                    adicionarOpicional();
                     setAddModalVisible(!addModalVisible);
                   }}
                 />
