@@ -1,7 +1,10 @@
 
+import * as data from '../connection.json';
+
+
 async function login(name, phone, email, password, specialtys, adress_country, adress_city, adress_borough, adress_street) {
 
-    return fetch(`http://ec2-18-231-183-113.sa-east-1.compute.amazonaws.com:5000/store/sign`, {
+    return fetch(`${data.endereco}store/sign`, {
         method: 'POST',
         headers: new Headers({
             'Accept': 'application/json',

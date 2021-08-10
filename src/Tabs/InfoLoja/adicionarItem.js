@@ -36,7 +36,7 @@ const AdicionarItem = ({idLoja, Componente, buttonTitle, setAtualizarData, atual
             style = {stylesInfoLoja.AdicionarHorarioAtendimentoBotao}
             onPress ={() => {setModalAtiva(!modalAtiva)}}
         >
-            <Icon name = 'plus' type = 'antdesign' size = {29} color = 'lightgreen'/>
+            <Icon name = 'plus' type = 'antdesign' size = {29} color = 'white'/>
         </TouchableOpacity>
         
     </View>

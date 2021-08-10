@@ -11,6 +11,9 @@ import {
   Text,
 } from 'react-native';
 
+import * as data from '../connection.json';
+
+
 export default ({navigation}) => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -19,16 +22,14 @@ export default ({navigation}) => {
 
   function login(senha, email) {
     fetch(
-      `http://ec2-18-231-183-113.sa-east-1.compute.amazonaws.com:5000/store/login?email=${encodeURIComponent(
-        email,
-      )}&password=${encodeURIComponent(senha)}`,
+      `${data.endereco}store/login?email=${encodeURIComponent(email)}&password=${encodeURIComponent(senha)}`,
       {
         method: 'GET',
       },
     )
       .then(response => {
         if (response.ok) {
-          setErrorLogin(true);
+          //setErrorLogin(true);
           return response.json();
         } else {
           return null;
@@ -98,7 +99,8 @@ export default ({navigation}) => {
         {email === '' || senha === '' ? (
           <TouchableOpacity
             style={styles.btnsubmit}
-            onPress={() => setErrorLogin(true)}>
+            onPress={() => setErrorLogin(true)}
+            >
             <Text style={styles.textsubmit}>Acessar</Text>
           </TouchableOpacity>
         ) : (

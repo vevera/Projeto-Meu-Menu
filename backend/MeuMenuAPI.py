@@ -6,8 +6,8 @@ CONNECTION = {
     'host': 'localhost',
     'port': 5432,
     'database': 'meumenu',
-    'user': 'mme-bd-hml-usr',
-    'password': 'CBeHf*n8ew4E'
+    'user': 'postgres',
+    'password': '999590188aA'
 }
 conn = DatabaseDAO(**CONNECTION)
 conn.DEBUG = False

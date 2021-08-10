@@ -206,16 +206,17 @@ export default props => {
           renderSectionHeader={({section: {title, descricao}}) => (
             <View
               style={{
-                backgroundColor: '#036d19',
-                height: 50,
+                justifyContent: 'center',
+                backgroundColor: '#2c3e50',
+                height: 60,
                 borderRadius: 10,
                 width: '98%',
                 alignSelf: 'center',
               }}>
               <TouchableOpacity
-                onPress={() =>
-                  props.navigation.navigate('EditarCat', {title, descricao})
-                }>
+                onPress={() => props.navigation.navigate('EditarCat', {title, descricao})}
+                style = {{justifyContent: 'center'}}
+              >
                 <Text style={styles.header}>{title}</Text>
               </TouchableOpacity>
             </View>

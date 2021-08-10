@@ -22,7 +22,7 @@ const MeuMenu = () => {
     <NavigationContainer>
       <Stack.Navigator
         //initialRouteName="LojistaNavigator"
-        initialRouteName="LojistaNavigator">
+        initialRouteName="Login">
         <Stack.Screen
           name="CadastroLogin"
           component={telaCadastro}

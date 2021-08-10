@@ -53,7 +53,6 @@ stylesInfoLoja = StyleSheet.create({
     },
     container: {
         flex: 1,
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         alignItems: "center",
         backgroundColor: 'white',
 
@@ -139,7 +138,7 @@ stylesInfoLoja = StyleSheet.create({
         //top: 60,
         height: 60,
         width: '100%',
-        backgroundColor: '#036d19',
+        backgroundColor: '#2c3e50',
         justifyContent: 'space-between',
         alignItems: 'center',
        

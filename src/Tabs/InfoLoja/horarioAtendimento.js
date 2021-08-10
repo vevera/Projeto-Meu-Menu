@@ -7,6 +7,7 @@ import {Picker} from '@react-native-picker/picker';
 import { Swipeable } from 'react-native-gesture-handler';
 
 import OptionsHeader from './optionsHeader';
+import * as data from '../../connection.json';
 
 const TimePicker = ({setTime,texto}) => {
     const [isDisabled, setIsDisabled] = useState(true);
@@ -62,7 +63,7 @@ const NovoHorarioAtendimento = ({idLoja, setModalAtiva, modalAtiva, setAtualizar
 
     function adicionarHorario() {
 
-        fetch(`http://ec2-18-231-183-113.sa-east-1.compute.amazonaws.com:5000/store/${encodeURIComponent(idLoja)}/schedules`, {
+        fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/schedules`, {
             method: 'POST',
             headers: new Headers({
                 'Accept': 'application/json',
@@ -125,7 +126,7 @@ const RenderHorario = ({idLoja, item, setAtualizarData, atualizarData}) =>{
 
         function Delete() {
             
-            fetch(`http://ec2-18-231-183-113.sa-east-1.compute.amazonaws.com:5000/store/${encodeURIComponent(idLoja)}/schedules/delete`, {
+            fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/schedules/delete`, {
                 method: 'POST',
                 headers: new Headers({
                     'Accept': 'application/json',
@@ -194,7 +195,7 @@ const HorariosDeAtendimento = ({idLoja, atualizarData, setAtualizarData}) => {
 
     async function setaDados() {
 
-        timeout(5000, fetch(`http://ec2-18-231-183-113.sa-east-1.compute.amazonaws.com:5000/store/${encodeURIComponent(idLoja)}/schedules`, {
+        timeout(5000, fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/schedules`, {
             method: 'GET',
         }))
         .then(resposta => {console.log(resposta); return resposta.json()})

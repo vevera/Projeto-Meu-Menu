@@ -7,6 +7,8 @@ import { Swipeable } from 'react-native-gesture-handler';
 
 import OptionsHeader from './optionsHeader';
 
+import * as data from '../../connection.json';
+
 let row = [];
 
 const Item = ({item, itemTouchIconContainer, itemStyle, textStyle,  touchItemStyle, indice}) => {
@@ -38,7 +40,7 @@ const NovaEspecialideComponent = ({idLoja, setModalAtiva, modalAtiva, atualizarD
         
         console.log(listaDeEspecialidades);
 
-        fetch(`http://ec2-18-231-183-113.sa-east-1.compute.amazonaws.com:5000/store/${encodeURIComponent(idLoja)}/specialtys`, {
+        fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/specialtys`, {
             method: 'PUT',
             headers: new Headers({
                 'Accept': 'application/json',
@@ -93,7 +95,7 @@ const RenderEspecialidade = ({idLoja, item, indice, atualizarData, setAtualizarD
         
             console.log(listaDeEspecialidades);
 
-            fetch(`http://ec2-18-231-183-113.sa-east-1.compute.amazonaws.com:5000/store/${encodeURIComponent(idLoja)}/specialtys`, {
+            fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/specialtys`, {
                 method: 'PUT',
                 headers: new Headers({
                     'Accept': 'application/json',
@@ -164,7 +166,7 @@ const Especialidades = ({idLoja, atualizarData, setAtualizarData, setListaDeEspe
 
     async function setaDados() {
 
-        timeout(5000, fetch(`http://ec2-18-231-183-113.sa-east-1.compute.amazonaws.com:5000/store/${encodeURIComponent(idLoja)}/specialtys`, {
+        timeout(5000, fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/specialtys`, {
             method: 'GET',
         }))
         .then(resposta => {console.log(resposta); return resposta.json()})
