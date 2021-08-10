@@ -21,14 +21,8 @@ const MeuMenu = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-<<<<<<< Updated upstream
         //initialRouteName="LojistaNavigator"
         initialRouteName="LojistaNavigator">
-=======
-        initialRouteName="LojistaNavigator"
-        //initialRouteName="Login"
-      >
->>>>>>> Stashed changes
         <Stack.Screen
           name="CadastroLogin"
           component={telaCadastro}
