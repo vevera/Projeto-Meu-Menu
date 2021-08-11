@@ -12,8 +12,10 @@ import CadastroCat from "./CadastroCat.js";
 const Stack = createStackNavigator();
 
 
-export default function ProdutosNavigator() {
+export default function ProdutosNavigator({route}) {
     
+    const idLoja = route.params.idLoja
+
     return (
 
     <NavigationContainer independent = {true}>
@@ -27,6 +29,7 @@ export default function ProdutosNavigator() {
                   headerShown: false,
                 };
               }}
+              initialParams={idLoja}
           />
           <Stack.Screen
             name="CadastroProd"

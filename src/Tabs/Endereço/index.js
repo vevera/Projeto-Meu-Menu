@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { TouchableOpacity } from 'react-native';
 import {Text, View, StyleSheet, TextInput} from 'react-native'
 import {Icon} from 'react-native-elements';
+import * as data from '../../connection.json';
 
 
 const CampoDoEndereco = ({nome, setEstado, secure, defaultVal}) => {
@@ -46,14 +47,30 @@ export default function Endereco({route}) {
     const [rua, setRua] = useState("");
     const [bairro, setBairro] = useState("");
 
+    const [mudarEndereco, setMudar] = useState(false);
+
     async function GetAddress(){
 
         fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/address`, {method: 'GET'})
-        .then(resposta => resposta.text())
-        .then(article => {console.log(article)})
+        .then(resposta => resposta.json())
+        .then((resposta) => resposta.response)
+        .then((article) => {
+            setPais(article.adress_country);
+            setCidade(article.adress_city);
+            setRua(article.adress_street);
+            setBairro(article.adress_borough);
+        })
         .catch(error  => console.log(error))
 
     }
+
+    useEffect(() => {
+
+        GetAddress();
+
+    }, [mudarEndereco])
+
+    
 
 
     async function UpdateAddress(){
@@ -78,21 +95,21 @@ export default function Endereco({route}) {
     }
 
     return (
+
         <View style = {styleEndereco.EnderecoContainer}>
 
-            
             <View style = {{width:"100%",paddingTop: 20}}>
-                <CampoDoEndereco nome = 'País' setEstado = {setPais} secure = {false} defaultVal = 'Ceara'/>
-                <CampoDoEndereco nome = 'Cidade' setEstado = {setCidade} secure = {false} defaultVal = 'Cascavel'/>
-                <CampoDoEndereco nome = 'Rua' setEstado = {setRua} secure = {false} defaultVal = 'Rua das Lurdes'/>
-                <CampoDoEndereco nome = 'Bairro' setEstado = {setBairro} secure = {false} defaultVal = 'Rio Novo'/>
+                <CampoDoEndereco nome = 'País' setEstado = {setPais} secure = {false} defaultVal = {pais}/>
+                <CampoDoEndereco nome = 'Cidade' setEstado = {setCidade} secure = {false} defaultVal = {cidade}/>
+                <CampoDoEndereco nome = 'Rua' setEstado = {setRua} secure = {false} defaultVal = {rua}/>
+                <CampoDoEndereco nome = 'Bairro' setEstado = {setBairro} secure = {false} defaultVal = {bairro}/>
             
             </View>
             
             <View style = {styleEndereco.BotaoEditar}>
 
                 <TouchableOpacity
-                //onPress = {() => {setSalvarAtivo(true)}} 
+                onPress = {UpdateAddress} 
                 style = {styleEndereco.BotaoEditarTouchable}>
                     <Text style = {styleEndereco.BotaoEditarText}>Salvar</Text>
 

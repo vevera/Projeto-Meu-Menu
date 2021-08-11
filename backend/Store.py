@@ -22,11 +22,11 @@ class Store:
                 FROM product
                 LEFT JOIN category 
                     ON category_id = category.id
-                WHERE store_id = 1
+                WHERE store_id = %s
                 GROUP BY category_id
             ) alias
                 ON category_id = category.id
-            WHERE store.id = 1
+            WHERE store.id = %s
         """, [self.store_id, self.store_id]).to_dict(orient = 'records')
     
     def create_category(self, name, description):

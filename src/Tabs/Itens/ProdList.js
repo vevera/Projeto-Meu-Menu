@@ -1,6 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Icon} from 'react-native-elements/dist/icons/Icon';
-
 import {
   StyleSheet,
   Text,
@@ -11,6 +10,9 @@ import {
 } from 'react-native';
 import {Image} from 'react-native';
 
+import * as data from '../../connection.json';
+
+/*
 const DATA = [
   {
     title: 'Main dishes',
@@ -111,7 +113,7 @@ const DATA = [
     ],
   },
 ];
-
+*/
 function temImagem(imagem) {
   return imagem ? (
     <Image
@@ -141,7 +143,23 @@ const Item = ({title, image, info, price}) => (
   </View>
 );
 
-export default props => {
+//export default props => {
+export default function Lista({route}) {
+  const [DATA, setDATA] = useState([])
+  const idLoja = route.params.idLoja
+
+  function getProdutoCategoria() {
+    fetch(
+      `${data.endereco}store/${encodeURIComponent(idLoja)}/categories`,
+      {
+        method: 'GET',
+      },
+    )
+      .then(response => response.json())
+      .then(response => setDATA(response.response));
+
+    }
+  getProdutoCategoria()
   function Footer() {
     return (
       <View style={{height: 50, width: '100%'}}>
