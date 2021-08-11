@@ -163,9 +163,8 @@ export default ({route, navigation}) => {
 
 const style = StyleSheet.create({
   form: {
-    //alignItems: "center",
     padding: 12,
-    //marginTop: "8%",
+
   },
   input: {
     height: 40,

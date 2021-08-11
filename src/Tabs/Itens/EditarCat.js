@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, Alert} from 'react-native';
 import {Button, Input, Icon} from 'react-native-elements';
 
 export default ({route}) => {
-  const id = route.params;
+  const id = route.params.idLoja;
   const idCat = '';
   const [section, setSection] = useState(route.params ? route.params : {});
   const [nomeCategoria, setNomeCategoria] = useState(section.title);

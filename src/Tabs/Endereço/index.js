@@ -37,19 +37,52 @@ const CampoDoEndereco = ({nome, setEstado, secure, defaultVal}) => {
     );
 };
 
-export default function Endereco() {
+export default function Endereco({route}) {
 
-    const [estadoReg, setEstadoReg] = useState("");
+    const idLoja = route.params.idLoja
+
+    const [pais, setPais] = useState("");
     const [cidade, setCidade] = useState("");
     const [rua, setRua] = useState("");
-    
     const [bairro, setBairro] = useState("");
+
+    async function GetAddress(){
+
+        fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/address`, {method: 'GET'})
+        .then(resposta => resposta.text())
+        .then(article => {console.log(article)})
+        .catch(error  => console.log(error))
+
+    }
+
+
+    async function UpdateAddress(){
+
+        fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/address`, {
+            method: 'POST',
+            headers: new Headers({
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify({
+                adress_country: pais, 
+                adress_city: cidade, 
+                adress_borough: rua, 
+                adress_street: bairro,
+        })
+        })
+        .then(resposta => resposta.text())
+        .then(article => {console.log(article)})
+        .catch(error  => console.log(error))
+
+    }
+
     return (
         <View style = {styleEndereco.EnderecoContainer}>
 
             
             <View style = {{width:"100%",paddingTop: 20}}>
-                <CampoDoEndereco nome = 'País' setEstado = {setEstadoReg} secure = {false} defaultVal = 'Ceara'/>
+                <CampoDoEndereco nome = 'País' setEstado = {setPais} secure = {false} defaultVal = 'Ceara'/>
                 <CampoDoEndereco nome = 'Cidade' setEstado = {setCidade} secure = {false} defaultVal = 'Cascavel'/>
                 <CampoDoEndereco nome = 'Rua' setEstado = {setRua} secure = {false} defaultVal = 'Rua das Lurdes'/>
                 <CampoDoEndereco nome = 'Bairro' setEstado = {setBairro} secure = {false} defaultVal = 'Rio Novo'/>
@@ -85,7 +118,6 @@ styleEndereco = StyleSheet.create({
         width: "100%",
         height: "100%",
         flexDirection: 'column',
-        //backgroundColor: "blue",
     },
     InputView: {
         paddingLeft: 10,
@@ -100,7 +132,6 @@ styleEndereco = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         flexDirection: 'row', 
-        //borderColor: "none",
         borderBottomColor: "black",
         borderBottomWidth: 1.3,
         height: 40,
