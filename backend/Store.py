@@ -10,12 +10,24 @@ class Store:
         return self.conn.read_query("""
             SELECT 
                 category.*, 
-                store.name AS store_name
+                store.name AS store_name,
+                *
             FROM category
             LEFT JOIN store 
                 ON store_id = store.id
-            WHERE store.id = %s
-        """, [self.store_id]).to_dict(orient = 'records')
+            LEFT JOIN (
+                SELECT category_id, jsonb_agg(
+                    row_to_json(product)
+                ) AS products
+                FROM product
+                LEFT JOIN category 
+                    ON category_id = category.id
+                WHERE store_id = 1
+                GROUP BY category_id
+            ) alias
+                ON category_id = category.id
+            WHERE store.id = 1
+        """, [self.store_id, self.store_id]).to_dict(orient = 'records')
     
     def create_category(self, name, description):
         return self.conn.read_query("""
