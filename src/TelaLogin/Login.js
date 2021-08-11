@@ -29,7 +29,6 @@ export default ({navigation}) => {
     )
       .then(response => {
         if (response.ok) {
-          //setErrorLogin(true);
           return response.json();
         } else {
           return null;
