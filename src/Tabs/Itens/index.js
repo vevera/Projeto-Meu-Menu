@@ -29,7 +29,7 @@ export default function ProdutosNavigator({route}) {
                   headerShown: false,
                 };
               }}
-              initialParams={{idLoja}}
+              initialParams={{idLoja, 'mudar': true}}
           />
           <Stack.Screen
             name="CadastroProd"

@@ -1,27 +1,36 @@
 import React, {useState} from 'react';
 import {Text, View, StyleSheet, Alert} from 'react-native';
 import {Button, Input, Icon} from 'react-native-elements';
+import * as data from '../../connection.json';
 
 export default ({route}) => {
-  const id = route.params.idLoja;
-  const idCat = '';
+ 
   const [section, setSection] = useState(route.params ? route.params : {});
   const [nomeCategoria, setNomeCategoria] = useState(section.name);
   const [infoCategoria, setInfoCategoria] = useState(section.description);
+  const idCat = section.id;
+  const idLoja = section.idLoja;
+  console.log("ID LOJA =>> ", idLoja);
 
   function atualizarCategoria() {
-    console.log('ATUALIZAR');
-    console.log('nome = ', nomeCategoria);
-    console.log('info = ', infoCategoria);
+    
+    
+    
+    
+    
+    
+    //console.log('ATUALIZAR');
+    //console.log('nome = ', nomeCategoria);
+    //console.log('info = ', infoCategoria);
   }
 
   function removerCategoria() {
     fetch(
-      `http://192.168.1.103:5000/store/${encodeURIComponent(id)}/categories`,
+      `${data.endereco}store/${encodeURIComponent(idLoja)}/categories`,
       {
         method: 'DELETE',
         headers: new Headers({
-          Accept: 'application/json',
+          'Accept': 'application/json',
           'Content-Type': 'application/json',
         }),
         body: JSON.stringify({
@@ -30,13 +39,12 @@ export default ({route}) => {
       },
     )
       .then(resposta => resposta.text())
-      .then(article => {
+      .then(resposta => console.log(resposta))
+      .then(() => {
         Alert.alert('Categoria removida com sucesso!');
-      });
+      })
+      .catch(error => console.log(error));
 
-    console.log('REMOVER');
-    console.log('nome = ', nomeCategoria);
-    console.log('info = ', infoCategoria);
   }
 
   console.log(section);

@@ -16,6 +16,7 @@ import ListItem from './ListaRender';
 import {SimpleModal} from './SimpleModal';
 import {Swipeable} from 'react-native-gesture-handler';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import * as data from '../../connection.json';
 
 export const addData = [
   {
@@ -192,8 +193,9 @@ export default ({route, navigation}) => {
     }
   }
 
-  const id = route.params;
-  const idProd = '';
+  const id = route.params.idLoja;
+  const idProd = prod.id;
+  console.log("id do produto: ", idProd)
   const [nomeProduto, setNomeProduto] = useState(prod.name);
   const [precoProduto, setPrecoProduto] = useState(prod.price.toString());
   const [infoProduto, setInfoProduto] = useState(prod.description);
@@ -239,7 +241,7 @@ export default ({route, navigation}) => {
 
   function removerProduto() {
     fetch(
-      `http://192.168.1.103:5000/store/${encodeURIComponent(id)}/products`,
+      `${data.endereco}store/${encodeURIComponent(id)}/products`,
       {
         method: 'DELETE',
         headers: new Headers({

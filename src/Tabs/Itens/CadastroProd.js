@@ -41,14 +41,15 @@ export default ({route, navigation}) => {
         alert(response.errorMessage);
         return;
       }
-
+      //console.log(response.assets[0]);
+      //console.log("RESPONSE +>>>>", response);
       setBase64Image(response.assets[0].base64);
     });
   };
 
   function cadastrarProduto() {
     fetch(
-      `${encodeURIComponent(data.endereco)}store/${encodeURIComponent(idLoja)}/products`,
+      `${data.endereco}store/${encodeURIComponent(idLoja)}/products`,
       {
         method: 'POST',
         headers: new Headers({
@@ -68,7 +69,8 @@ export default ({route, navigation}) => {
       .then(resposta => console.log(resposta))
       .then(() => {
         Alert.alert('Produto adicionado com sucesso!');
-      });
+      })
+      .catch(error => console.log(error));
 
     //console.log('imagem = ', base64Image);
     //console.log('produto = ', nomeProduto);
@@ -154,6 +156,7 @@ export default ({route, navigation}) => {
                 text: 'CONFIRMAR',
                 onPress: () => {
                   cadastrarProduto();
+                  navigation.navigate('ProdList', {'mudar': false})
                 },
               },
             ],

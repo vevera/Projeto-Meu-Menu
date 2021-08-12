@@ -2,35 +2,36 @@ import React, {useState} from 'react';
 import {TextInput, Text, View, StyleSheet, Alert} from 'react-native';
 //import {  } from "react-native-gesture-handler";
 import {Button, Input, Icon} from 'react-native-elements';
+import * as data from '../../connection.json';
 
 export default ({route, navigation}) => {
-  const id = route.params;
+  
+  const idLoja = route.params.idLoja;
   const [nomeCategoria, setNomeCategoria] = useState('');
   const [infoCategoria, setInfoCategoria] = useState('');
 
   function cadastrarCategoria() {
     fetch(
-      `http://192.168.1.103:5000/store/${encodeURIComponent(id)}/categories`,
+      `${data.endereco}store/${encodeURIComponent(idLoja)}/categories`,
       {
         method: 'POST',
         headers: new Headers({
-          Accept: 'application/json',
+          'Accept': 'application/json',
           'Content-Type': 'application/json',
         }),
         body: JSON.stringify({
           name: nomeCategoria,
           description: infoCategoria,
-          store_id: id,
         }),
       },
     )
       .then(resposta => resposta.text())
-      .then(article => {
+      .then(resposta => console.log(resposta))
+      .then(() => {
         Alert.alert('Categoria adicionada com sucesso!');
-      });
+      })
+      .catch(error => console.log(error));
 
-    console.log('nome = ', nomeCategoria);
-    console.log('info = ', infoCategoria);
   }
 
   return (
