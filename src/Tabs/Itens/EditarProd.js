@@ -196,7 +196,7 @@ export default ({route, navigation}) => {
   const idProd = '';
   const [nomeProduto, setNomeProduto] = useState(prod.name);
   const [precoProduto, setPrecoProduto] = useState(prod.price.toString());
-  const [infoProduto, setInfoProduto] = useState(prod.info);
+  const [infoProduto, setInfoProduto] = useState(prod.description);
   const [base64Image, setBase64Image] = useState('');
 
   const chooseFile = () => {
@@ -326,7 +326,7 @@ export default ({route, navigation}) => {
         <View style={style.header}>
           <Text style={style.viewHeader}>Promoção</Text>
         </View>
-        {promocaoAtiva(prod.promo)}
+        {/*promocaoAtiva(prod.promo)*/}
         <View
           style={{
             flexDirection: 'row',

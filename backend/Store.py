@@ -9,16 +9,17 @@ class Store:
     def categories(self):
         return self.conn.read_query("""
             SELECT 
-                category.*, 
-                store.name AS store_name,
-                *
+                category.name,
+                category.description,
+                category.id,
+                data
             FROM category
             LEFT JOIN store 
                 ON store_id = store.id
             LEFT JOIN (
                 SELECT category_id, jsonb_agg(
                     row_to_json(product)
-                ) AS products
+                ) AS data
                 FROM product
                 LEFT JOIN category 
                     ON category_id = category.id

@@ -166,7 +166,7 @@ const Especialidades = ({idLoja, atualizarData, setAtualizarData, setListaDeEspe
 
     async function setaDados() {
 
-        timeout(5000, fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/specialtys`, {
+        timeout(1000, fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/specialtys`, {
             method: 'GET',
         }))
         .then(resposta => {console.log(resposta); return resposta.json()})

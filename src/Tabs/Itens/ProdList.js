@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Icon} from 'react-native-elements/dist/icons/Icon';
 import {
   StyleSheet,
@@ -115,7 +115,7 @@ const DATA = [
 ];
 */
 function temImagem(imagem) {
-  return imagem ? (
+  return imagem != "\\x" ? (
     <Image
       style={styles.imagem}
       source={{
@@ -144,23 +144,51 @@ const Item = ({title, image, info, price}) => (
 );
 
 //export default props => {
-export default function Lista({route}) {
+export default function Lista({route,  navigation}) {
+
   const [DATA, setDATA] = useState([])
   const idLoja = route.params.idLoja
 
+  const [updateData, setUpdateData] = useState(false);
+
+  function timeout(ms, promise) {
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        reject(new Error('TIMEOUT'))
+      }, ms)
+  
+      promise
+        .then(value => {
+          clearTimeout(timer)
+          resolve(value)
+        })
+        .catch(reason => {
+          clearTimeout(timer)
+          reject(reason)
+        })
+    })
+  }
+
   function getProdutoCategoria() {
-    fetch(
-      `${data.endereco}store/${encodeURIComponent(idLoja)}/categories`,
+    /*timeout(5000, fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/schedules`, {
+      method: 'GET',
+    }))*/
+    fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/categories`,
       {
         method: 'GET',
-      },
+      }
     )
       .then(response => response.json())
       .then(response => setDATA(response.response));
 
     }
-  getProdutoCategoria()
-  function Footer() {
+    //${encodeURIComponent(idLoja)}
+  useEffect(()=>{
+    getProdutoCategoria();
+  },[updateData])  
+  
+  console.log(DATA);
+  function Footer({section}) {
     return (
       <View style={{height: 50, width: '100%'}}>
         <TouchableOpacity
@@ -171,7 +199,7 @@ export default function Lista({route}) {
             alignItems: 'center',
             justifyContent: 'center',
           }}
-          onPress={() => props.navigation.navigate('CadastroProd')}>
+          onPress={() => navigation.navigate('CadastroProd', {"idCat": section.section.id, "idLoja": idLoja})}>
           <Icon name="add" size={35} color="#18bc9c" />
           <Text style={{fontSize: 17, fontWeight: 'bold'}}>
             Adicionar Produto
@@ -191,7 +219,7 @@ export default function Lista({route}) {
             alignItems: 'center',
             justifyContent: 'center',
           }}
-          onPress={() => props.navigation.navigate('CadastroCat')}>
+          onPress={() => navigation.navigate('CadastroCat')}>
           <Icon name="add" size={35} color="#18bc9c" />
           <Text style={{fontSize: 17, fontWeight: 'bold'}}>
             Adicionar Categoria
@@ -209,19 +237,19 @@ export default function Lista({route}) {
           renderItem={({item}) => (
             <View>
               <TouchableOpacity
-                onPress={() => props.navigation.navigate('EditarProd', item)}>
+                onPress={() => navigation.navigate('EditarProd', item)}>
                 <View>
                   <Item
                     title={item.name}
-                    image={item.image}
-                    info={item.info}
+                    image={item.photo}
+                    info={item.description}
                     price={item.price}
                   />
                 </View>
               </TouchableOpacity>
             </View>
           )}
-          renderSectionHeader={({section: {title, descricao}}) => (
+          renderSectionHeader={({section: {name, description}}) => (
             <View
               style={{
                 justifyContent: 'center',
@@ -232,14 +260,14 @@ export default function Lista({route}) {
                 alignSelf: 'center',
               }}>
               <TouchableOpacity
-                onPress={() => props.navigation.navigate('EditarCat', {title, descricao})}
+                onPress={() => navigation.navigate('EditarCat', {name, description})}
                 style = {{justifyContent: 'center'}}
               >
-                <Text style={styles.header}>{title}</Text>
+                <Text style={styles.header}>{name}</Text>
               </TouchableOpacity>
             </View>
           )}
-          renderSectionFooter={Footer}
+          renderSectionFooter={(section) => {return (<Footer section = {section}/>)}}
           ListFooterComponent={FooterCat}
         />
       </SafeAreaView>

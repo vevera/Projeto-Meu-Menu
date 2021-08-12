@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { TouchableOpacity } from 'react-native';
-import {Text, View, StyleSheet, TextInput} from 'react-native'
+import {Text, View, StyleSheet, TextInput, ToastAndroid} from 'react-native'
 import {Icon} from 'react-native-elements';
 import * as data from '../../connection.json';
 
@@ -109,7 +109,16 @@ export default function Endereco({route}) {
             <View style = {styleEndereco.BotaoEditar}>
 
                 <TouchableOpacity
-                onPress = {UpdateAddress} 
+                onPress = {() => {
+                    UpdateAddress(); 
+                    ToastAndroid.show(
+                        "Endereço Atualizado!", 
+                        ToastAndroid.SHORT,
+                        ToastAndroid.BOTTOM,
+                        10,
+                        50
+                    );
+                }} 
                 style = {styleEndereco.BotaoEditarTouchable}>
                     <Text style = {styleEndereco.BotaoEditarText}>Salvar</Text>
 

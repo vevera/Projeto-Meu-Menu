@@ -194,10 +194,10 @@ const HorariosDeAtendimento = ({idLoja, atualizarData, setAtualizarData}) => {
     }
 
     async function setaDados() {
-
-        timeout(5000, fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/schedules`, {
+        
+        fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/schedules`, {
             method: 'GET',
-        }))
+        })
         .then(resposta => {console.log(resposta); return resposta.json()})
         .then(article => setDataHorarios(article))
         .catch(error => console.log(error))
@@ -205,7 +205,7 @@ const HorariosDeAtendimento = ({idLoja, atualizarData, setAtualizarData}) => {
     }
     useEffect(() => {
 
-        setaDados();
+        setTimeout(setaDados,100);
        
     },[atualizarData])
 

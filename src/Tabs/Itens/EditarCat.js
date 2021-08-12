@@ -6,8 +6,8 @@ export default ({route}) => {
   const id = route.params.idLoja;
   const idCat = '';
   const [section, setSection] = useState(route.params ? route.params : {});
-  const [nomeCategoria, setNomeCategoria] = useState(section.title);
-  const [infoCategoria, setInfoCategoria] = useState(section.descricao);
+  const [nomeCategoria, setNomeCategoria] = useState(section.name);
+  const [infoCategoria, setInfoCategoria] = useState(section.description);
 
   function atualizarCategoria() {
     console.log('ATUALIZAR');
