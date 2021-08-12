@@ -12,108 +12,133 @@ import {Image} from 'react-native';
 
 import * as data from '../../connection.json';
 
-/*
-const DATA = [
+
+/*const DATA = [
   {
-    title: 'Main dishes',
-    descricao: 'Aqui está a descrição do produto',
+    id: 1,
+    name: 'Main dishes',
+    description: 'Aqui está a descrição do produto',
     data: [
       {
+        category_id: 1,
         name: 'Pizza',
         price: 15,
-        info: 'Calabresa, queijo, tomate, pimenta',
-        image:
+        description: 'Calabresa, queijo, tomate, pimenta',
+        photo:
           'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
-        promo: {desconto: 50, validade: '16:00 04/10'},
       },
       {
-        name: 'Burguer',
-        price: 12,
-        info: 'Carne, queijo, bacon',
-        promo: {},
+        category_id: 1,
+        name: 'Pizza',
+        price: 15,
+        description: 'Calabresa, queijo, tomate, pimenta',
+        photo:
+          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
       },
       {
-        name: 'Risotto',
-        price: 12,
-        info: 'tradicional',
-        promo: {},
-      },
-    ],
-  },
+        category_id: 1,
+        name: 'Pizza',
+        price: 15,
+        description: 'Calabresa, queijo, tomate, pimenta',
+        photo:
+          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
+      }
+    ]
+  }/*,
   {
-    title: 'Sides',
-    descricao: 'Aqui está a descrição do produto',
+    id: 2,
+    name: 'Main dishes',
+    description: 'Aqui está a descrição do produto',
     data: [
       {
-        name: 'French Fries',
-        price: 10,
-        info: 'batata, bacon, molho especial',
-        promo: {},
+        category_id: 2,
+        name: 'Pizza',
+        price: 15,
+        description: 'Calabresa, queijo, tomate, pimenta',
+        photo:
+          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
       },
       {
-        name: 'Onion Rings',
-        price: 12,
-        info: 'Cebola, molho especial',
-        promo: {},
+        category_id: 2,
+        name: 'Pizza',
+        price: 15,
+        description: 'Calabresa, queijo, tomate, pimenta',
+        photo:
+          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
       },
       {
-        name: 'Fried Shrimps',
-        price: 8,
-        info: 'Especial',
-        promo: {},
-      },
-    ],
+        category_id: 2,
+        name: 'Pizza',
+        price: 15,
+        description: 'Calabresa, queijo, tomate, pimenta',
+        photo:
+          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
+      }
+    ]
   },
   {
-    title: 'Drinks',
-    descricao: 'Aqui está a descrição do produto',
+    id: 3,
+    name: 'Main dishes',
+    description: 'Aqui está a descrição do produto',
     data: [
       {
-        name: 'Water',
-        price: 3,
-        info: '250ml, sem gás',
-        promo: {},
+        category_id: 3,
+        name: 'Pizza',
+        price: 15,
+        description: 'Calabresa, queijo, tomate, pimenta',
+        photo:
+          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
       },
       {
-        name: 'Coke',
-        price: 4,
-        info: '500ml',
-        promo: {},
+        category_id: 3,
+        name: 'Pizza',
+        price: 15,
+        description: 'Calabresa, queijo, tomate, pimenta',
+        photo:
+          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
       },
       {
-        name: 'Beer',
-        price: 4,
-        info: '250ml',
-        promo: {},
-      },
-    ],
+        category_id: 3,
+        name: 'Pizza',
+        price: 15,
+        description: 'Calabresa, queijo, tomate, pimenta',
+        photo:
+          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
+      }
+    ]
   },
   {
-    title: 'Desserts',
-    descricao: 'Aqui está a descrição do produto',
+    id: 4,
+    name: 'Main dishes',
+    description: 'Aqui está a descrição do produto',
     data: [
       {
-        name: 'Cheese Cake',
-        price: 9,
-        info: 'queijo, bolo',
-        promo: {},
+        category_id: 4,
+        name: 'Pizza',
+        price: 15,
+        description: 'Calabresa, queijo, tomate, pimenta',
+        photo:
+          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
       },
       {
-        name: 'Ice Cream',
-        price: 6,
-        info: 'Chocolate, morango e creme',
-        promo: {},
+        category_id: 4,
+        name: 'Pizza',
+        price: 15,
+        description: 'Calabresa, queijo, tomate, pimenta',
+        photo:
+          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
       },
       {
-        name: 'Fried Shrimps',
-        price: 8,
-        info: 'Epecial',
-        promo: {},
-      },
-    ],
-  },
-];
-*/
+        category_id: 4,
+        name: 'Pizza',
+        price: 15,
+        description: 'Calabresa, queijo, tomate, pimenta',
+        photo:
+          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
+      }
+    ]
+  }];*/
+
 function temImagem(imagem) {
   return imagem != "\\x" ? (
     <Image
@@ -151,29 +176,9 @@ export default function Lista({route,  navigation}) {
 
   const [updateData, setUpdateData] = useState(false);
 
-  function timeout(ms, promise) {
-    return new Promise((resolve, reject) => {
-      const timer = setTimeout(() => {
-        reject(new Error('TIMEOUT'))
-      }, ms)
-  
-      promise
-        .then(value => {
-          clearTimeout(timer)
-          resolve(value)
-        })
-        .catch(reason => {
-          clearTimeout(timer)
-          reject(reason)
-        })
-    })
-  }
-
   function getProdutoCategoria() {
-    /*timeout(5000, fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/schedules`, {
-      method: 'GET',
-    }))*/
-    fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/categories`,
+    
+    fetch(`http://192.168.1.103:5000/store/21/categories`,
       {
         method: 'GET',
       }
@@ -182,10 +187,10 @@ export default function Lista({route,  navigation}) {
       .then(response => setDATA(response.response));
 
     }
-    //${encodeURIComponent(idLoja)}
+    
   useEffect(()=>{
     getProdutoCategoria();
-  },[updateData])  
+  },[updateData]) 
   
   console.log(DATA);
   function Footer({section}) {

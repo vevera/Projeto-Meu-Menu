@@ -136,15 +136,15 @@ export default ({route, navigation}) => {
   }
 
   function promocaoAtiva(promocao) {
-    if (promocao.desconto != null) {
+    if (20 != null) {
       return (
         <View style={{flexDirection: 'column'}}>
           <TouchableOpacity onPress={() => changeModalVisible(true)}>
             <Text style={style.itemP}>
-              Produto: {prod.name}
+              Produto: Carne
               {'\n'}
-              Desconto: {promocao.desconto}%{'\n'}
-              Novo valor: {(prod.price * promocao.desconto) / 100}
+              Desconto: 20%{'\n'}
+              Novo valor: R$ 30,00
               {'\n'}
             </Text>
           </TouchableOpacity>
@@ -326,7 +326,7 @@ export default ({route, navigation}) => {
         <View style={style.header}>
           <Text style={style.viewHeader}>Promoção</Text>
         </View>
-        {/*promocaoAtiva(prod.promo)*/}
+        {promocaoAtiva(prod.promo)}
         <View
           style={{
             flexDirection: 'row',
@@ -475,7 +475,8 @@ export default ({route, navigation}) => {
 
 const style = StyleSheet.create({
   viewHeader: {
-    fontSize: 27,
+    fontSize: 23,
+    marginLeft: 10,
     fontWeight: 'bold',
     height: 40,
     color: 'white',
@@ -489,12 +490,9 @@ const style = StyleSheet.create({
     justifyContent: 'center',
   },
   form: {
-    //marginTop: "8%",
-    //marginBottom: 40,
     backgroundColor: 'white',
     flex: 0,
     padding: 12,
-    //alignItems: "center",
   },
   input: {
     height: 40,
@@ -515,9 +513,9 @@ const style = StyleSheet.create({
   },
   header: {
     width: '100%',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     height: 40,
-    backgroundColor: '#036d19',
+    backgroundColor: '#18BC9C',
     borderRadius: 10,
   },
   item: {

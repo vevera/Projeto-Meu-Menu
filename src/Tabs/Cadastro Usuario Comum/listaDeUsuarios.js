@@ -52,40 +52,6 @@ const DATA = [
   
       
   },
-  {
- 
-     id: 6,
-     nome: 'Marcus',
-     email: 'Marcus@gmail',
-     senha: '123',
-     
-  },
-  {
-
-    id: 7,
-    nome: 'Joaquim',
-    email: 'Joaquim@gmail',
-    senha: '123',
- 
-     
- },
- {
- 
-     id: 8,
-     nome: 'Joaquina',
-     email: 'Joaquina@gmail',
-     senha: '123',
-  
-      
-  },
-  {
- 
-     id: 9,
-     nome: 'Marcus',
-     email: 'Marcus@gmail',
-     senha: '123',
-     
-  },
 
     
 ];
@@ -118,10 +84,10 @@ const RenderUsuario = ({usuario}) => {
         >
             <View style={{ backgroundColor: '#f8f8ff', marginTop: 2, borderBottomWidth: 0.5, padding: 10}}>
                 <Text style = {styleListaUsuario.textoUsuarios}>
-                    Nome: {usuario.nome}
+                    <Text style = {{fontWeight: 'bold'}}>Nome:</Text> {usuario.nome}
                 </Text>
                 <Text style = {styleListaUsuario.textoUsuarios}>
-                    Email: {usuario.email}
+                    <Text style = {{fontWeight: 'bold'}}>Email:</Text> {usuario.email}
                 </Text>
             </View>
         </Swipeable>
@@ -141,26 +107,30 @@ export default function ListaUsuariosComuns({navigation}) {
         
         <View style = {{backgroundColor: 'white'}}>
             <ScrollView>
-
-                <View style = {{alignItems: 'center', backgroundColor: '#2c3e50'}}>
-                    <Text style =  {styleListaUsuario.headerText}>
-                        Usuarios Cadastrados
-                    </Text>
-                </View>
-
-                {usuarios}
-                <View style={{backgroundColor: '#f8f8ff'}}>
-                    <TouchableOpacity
-                        style = {styleListaUsuario.botaoCadastro}
-                        onPress={() => {navigation.navigate('CadastroUsuarios')}}
-                    >
-                        <View>
-                            <Text style={styleListaUsuario.textoBotao}>
-                                Cadastrar
+                <View style = {{flexDirection: 'column', justifyContent: 'space-between'}}>
+                    <View>
+                        <View style = {{alignItems: 'center', backgroundColor: '#2c3e50'}}>
+                            <Text style =  {styleListaUsuario.headerText}>
+                                Usuarios Cadastrados
                             </Text>
                         </View>
-                    </TouchableOpacity>
-                </View>
+
+                        {usuarios}
+                    </View>
+                    
+                    <View style={{backgroundColor: '#f8f8ff'}}>
+                        <TouchableOpacity
+                            style = {styleListaUsuario.botaoCadastro}
+                            onPress={() => {navigation.navigate('CadastroUsuarios')}}
+                        >
+                            <View>
+                                <Text style={styleListaUsuario.textoBotao}>
+                                    Cadastrar
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View> 
             </ScrollView>
             
         </View>
