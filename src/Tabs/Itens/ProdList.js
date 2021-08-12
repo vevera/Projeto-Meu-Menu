@@ -12,139 +12,15 @@ import {Image} from 'react-native';
 
 import * as data from '../../connection.json';
 
-
-/*const DATA = [
-  {
-    id: 1,
-    name: 'Main dishes',
-    description: 'Aqui está a descrição do produto',
-    data: [
-      {
-        category_id: 1,
-        name: 'Pizza',
-        price: 15,
-        description: 'Calabresa, queijo, tomate, pimenta',
-        photo:
-          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
-      },
-      {
-        category_id: 1,
-        name: 'Pizza',
-        price: 15,
-        description: 'Calabresa, queijo, tomate, pimenta',
-        photo:
-          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
-      },
-      {
-        category_id: 1,
-        name: 'Pizza',
-        price: 15,
-        description: 'Calabresa, queijo, tomate, pimenta',
-        photo:
-          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
-      }
-    ]
-  }/*,
-  {
-    id: 2,
-    name: 'Main dishes',
-    description: 'Aqui está a descrição do produto',
-    data: [
-      {
-        category_id: 2,
-        name: 'Pizza',
-        price: 15,
-        description: 'Calabresa, queijo, tomate, pimenta',
-        photo:
-          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
-      },
-      {
-        category_id: 2,
-        name: 'Pizza',
-        price: 15,
-        description: 'Calabresa, queijo, tomate, pimenta',
-        photo:
-          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
-      },
-      {
-        category_id: 2,
-        name: 'Pizza',
-        price: 15,
-        description: 'Calabresa, queijo, tomate, pimenta',
-        photo:
-          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
-      }
-    ]
-  },
-  {
-    id: 3,
-    name: 'Main dishes',
-    description: 'Aqui está a descrição do produto',
-    data: [
-      {
-        category_id: 3,
-        name: 'Pizza',
-        price: 15,
-        description: 'Calabresa, queijo, tomate, pimenta',
-        photo:
-          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
-      },
-      {
-        category_id: 3,
-        name: 'Pizza',
-        price: 15,
-        description: 'Calabresa, queijo, tomate, pimenta',
-        photo:
-          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
-      },
-      {
-        category_id: 3,
-        name: 'Pizza',
-        price: 15,
-        description: 'Calabresa, queijo, tomate, pimenta',
-        photo:
-          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
-      }
-    ]
-  },
-  {
-    id: 4,
-    name: 'Main dishes',
-    description: 'Aqui está a descrição do produto',
-    data: [
-      {
-        category_id: 4,
-        name: 'Pizza',
-        price: 15,
-        description: 'Calabresa, queijo, tomate, pimenta',
-        photo:
-          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
-      },
-      {
-        category_id: 4,
-        name: 'Pizza',
-        price: 15,
-        description: 'Calabresa, queijo, tomate, pimenta',
-        photo:
-          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
-      },
-      {
-        category_id: 4,
-        name: 'Pizza',
-        price: 15,
-        description: 'Calabresa, queijo, tomate, pimenta',
-        photo:
-          'https://img.freepik.com/fotos-gratis/uma-fatia-cortada-da-pizza-de-pepperoni-classica-com-rolos-de-pimenta-verde_114579-1963.jpg?size=626&ext=jpg',
-      }
-    ]
-  }];*/
-
 function temImagem(imagem) {
-  return imagem != "\\x" ? (
+  console.log("Linha 144 Prodlist:", imagem);
+  return imagem ? (
+    
     <Image
       style={styles.imagem}
       source={{
-        uri: imagem,
+        //uri: imagem,
+        uri: 'https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png',
       }}
     />
   ) : (
@@ -155,6 +31,11 @@ function temImagem(imagem) {
       }}
     />
   );
+}
+
+function useForceUpdate(){
+  const [value, setValue] = useState(0); 
+  return () => setValue(value => value + 1); 
 }
 
 const Item = ({title, image, info, price}) => (
@@ -168,72 +49,54 @@ const Item = ({title, image, info, price}) => (
   </View>
 );
 
-//export default props => {
-export default function Lista({route,  navigation}) {
-
-  const [DATA, setDATA] = useState([])
-  const idLoja = route.params.idLoja
-
-  const [updateData, setUpdateData] = useState(false);
-
-  function getProdutoCategoria() {
-    
-    fetch(`http://192.168.1.103:5000/store/21/categories`,
-      {
-        method: 'GET',
-      }
-    )
-      .then(response => response.json())
-      .then(response => setDATA(response.response));
-
-    }
-    
-  useEffect(()=>{
-    getProdutoCategoria();
-  },[updateData]) 
-  
-  console.log(DATA);
-  function Footer({section}) {
-    return (
-      <View style={{height: 50, width: '100%'}}>
-        <TouchableOpacity
-          style={{
-            height: '100%',
-            width: '100%',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          onPress={() => navigation.navigate('CadastroProd', {"idCat": section.section.id, "idLoja": idLoja})}>
-          <Icon name="add" size={35} color="#18bc9c" />
-          <Text style={{fontSize: 17, fontWeight: 'bold'}}>
-            Adicionar Produto
-          </Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
-  function FooterCat() {
-    return (
-      <View style={{height: 50, width: '100%'}}>
-        <TouchableOpacity
-          style={{
-            height: '100%',
-            width: '100%',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          onPress={() => navigation.navigate('CadastroCat')}>
-          <Icon name="add" size={35} color="#18bc9c" />
-          <Text style={{fontSize: 17, fontWeight: 'bold'}}>
-            Adicionar Categoria
-          </Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
+function Footer({section, idLoja, navigation}) {
   return (
+    <View style={{height: 50, width: '100%'}}>
+      <TouchableOpacity
+        style={{
+          height: '100%',
+          width: '100%',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        onPress={() => navigation.navigate('CadastroProd', {"idCat": section.section.id, "idLoja": idLoja})}>
+        <Icon name="add" size={35} color="#18bc9c" />
+        <Text style={{fontSize: 17, fontWeight: 'bold'}}>
+          Adicionar Produto
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+function FooterCat({idLoja, navigation}) {
+  return (
+    <View style={{height: 50, width: '100%'}}>
+      <TouchableOpacity
+        style={{
+          height: '100%',
+          width: '100%',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        onPress={() => navigation.navigate('CadastroCat', {'idLoja': idLoja})}>
+        <Icon name="add" size={35} color="#18bc9c" />
+        <Text style={{fontSize: 17, fontWeight: 'bold'}}>
+          Adicionar Categoria
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const ListaDeProdutosPorCategoria = ({DATA, idLoja, navigation}) => {
+
+  const forceUpdate = useForceUpdate();
+
+  return (
+
     <View style={{backgroundColor: 'white'}}>
       <SafeAreaView style={styles.container}>
         <SectionList
@@ -254,7 +117,7 @@ export default function Lista({route,  navigation}) {
               </TouchableOpacity>
             </View>
           )}
-          renderSectionHeader={({section: {name, description}}) => (
+          renderSectionHeader={({section: {name, description, id}}) => (
             <View
               style={{
                 justifyContent: 'center',
@@ -265,18 +128,60 @@ export default function Lista({route,  navigation}) {
                 alignSelf: 'center',
               }}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('EditarCat', {name, description})}
+                onPress={() => navigation.navigate('EditarCat', {name, description, id, idLoja})}
                 style = {{justifyContent: 'center'}}
               >
                 <Text style={styles.header}>{name}</Text>
               </TouchableOpacity>
             </View>
           )}
-          renderSectionFooter={(section) => {return (<Footer section = {section}/>)}}
-          ListFooterComponent={FooterCat}
+          renderSectionFooter={(section) => <Footer section = {section} idLoja = {idLoja} navigation = {navigation}/>}
+          ListFooterComponent={(section) => <FooterCat idLoja = {idLoja} navigation = {navigation}/>}
         />
       </SafeAreaView>
     </View>
+
+  );
+
+}
+
+
+export default function Lista({route,  navigation}) {
+
+  const [DATA, setDATA] = useState([]);
+  const idLoja = route.params.idLoja;
+
+  const [updateData, setUpdateData] = useState(route.params.mudar);
+  
+  console.log(updateData);
+  async function getProdutoCategoria() {
+    
+    fetch(`http://192.168.1.103:5000/store/21/categories`,
+      {
+        method: 'GET',
+        headers: new Headers({
+          'Accept': '*/*',
+          'Content-Type': '*/*',
+        }),
+        
+      }
+    )
+      .then(response => response.json())
+      .then(response => setDATA(response.response))
+      .catch(error => console.log(error));
+
+    }
+    
+  useEffect(()=>{
+    getProdutoCategoria();
+    setUpdateData(true);
+    () => {useForceUpdate};
+  },[updateData]) 
+  
+  console.log(DATA);
+  
+  return (
+    <ListaDeProdutosPorCategoria DATA = {DATA} idLoja = {idLoja} navigation = {navigation}/>
   );
 };
 

@@ -12,7 +12,7 @@ class Store:
                 category.name,
                 category.description,
                 category.id,
-                data
+                COALESCE(data, '[]') as data
             FROM category
             LEFT JOIN store 
                 ON store_id = store.id
@@ -31,7 +31,7 @@ class Store:
                 LEFT JOIN category 
                     ON category_id = category.id
                 WHERE store_id = %s
-                GROUP BY category_id
+                GROUP BY category_id          
             ) alias
                 ON category_id = category.id
             WHERE store.id = %s
