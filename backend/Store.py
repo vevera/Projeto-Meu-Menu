@@ -18,7 +18,14 @@ class Store:
                 ON store_id = store.id
             LEFT JOIN (
                 SELECT category_id, jsonb_agg(
-                    row_to_json(product)
+                    jsonb_build_object(
+                        'id', product.id,
+                        'name', product.name,
+                        'description', product.description,
+                        'price', product.price,
+                        'category_id', product.category_id,
+                        'photo', encode(product.photo::bytea, 'base64')
+                    )
                 ) AS data
                 FROM product
                 LEFT JOIN category 
@@ -47,7 +54,7 @@ class Store:
     
     def products(self):
         data = self.conn.read_query("""
-            SELECT *
+            SELECT product.id, product.name, product.description, product.price, product.category_id, product.photo
             FROM product
             LEFT JOIN category
                 ON category_id = category.id
@@ -59,12 +66,13 @@ class Store:
     
     def one_category_products(self, category_id):
         data = self.conn.read_query("""
-            SELECT *
+            SELECT product.id, product.name, product.description, product.price, product.category_id, product.photo
             FROM product
             LEFT JOIN category
-                ON category_id = %s
+                ON category_id = category.id
             WHERE store_id = %s
-        """, [category_id, self.store_id])
+            AND category_id = %s
+        """, [self.store_id, category_id])
         data['photo'] = data['photo'].apply(lambda x: base64.b64encode(x).decode("utf8"))
 
         return data.to_dict(orient = 'records')
