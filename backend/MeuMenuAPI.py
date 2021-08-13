@@ -49,7 +49,7 @@ def app_store_information():
     else:
         return make_response("Non Authorized", 401)
 
-@app.route("/store/<store_id>/categories", methods = ["GET", "POST", "DELETE"])
+@app.route("/store/<store_id>/categories", methods = ["GET", "POST", "PUT", "DELETE"])
 def app_categories(store_id):
 
     store = Store(conn, store_id)
@@ -61,6 +61,10 @@ def app_categories(store_id):
         data = request.get_json()
         return jsonify(store.create_category(**data))
         
+    elif request.method == 'PUT':
+        data = request.get_json()
+        return jsonify(store.update_category(**data))
+
     elif request.method == 'DELETE':
         data = request.get_json()
         return jsonify(store.delete_category(**data))
@@ -68,7 +72,7 @@ def app_categories(store_id):
 import base64
 import io
 
-@app.route("/store/<store_id>/products", methods = ["GET", "POST", "DELETE"])
+@app.route("/store/<store_id>/products", methods = ["GET", "POST", "PUT", "DELETE"])
 def app_products(store_id):
 
     store = Store(conn, store_id)
@@ -86,6 +90,16 @@ def app_products(store_id):
         
         return jsonify(store.create_product(**data))
         
+    elif request.method == 'PUT':
+        data = request.get_json()
+        
+        im_b64 = data.pop('photo')
+        img_bytes = base64.b64decode(im_b64.encode('utf-8'))
+        img = io.BytesIO(img_bytes)
+        data['photo'] = img_bytes
+        
+        return jsonify(store.update_product(**data))
+
     elif request.method == 'DELETE':
         data = request.get_json()
         return jsonify(store.delete_product(**data))
