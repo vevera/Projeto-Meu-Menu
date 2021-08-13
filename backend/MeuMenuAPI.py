@@ -7,14 +7,14 @@ CONNECTION = {
     'port': 5432,
     'database': 'meumenu',
     'user': 'postgres',
-    'password': '999590188aA'
+    'password': 'postgres'
 }
 conn = DatabaseDAO(**CONNECTION)
 conn.DEBUG = False
 
 
 # API
-from flask import Flask, request, make_response
+from flask import Flask, request, make_response, jsonify
 import json
 
 app = Flask(__name__)
@@ -55,15 +55,15 @@ def app_categories(store_id):
     store = Store(conn, store_id)
     if request.method == 'GET':
         params = request.args
-        return {'response': store.categories()}
+        return jsonify({'response': store.categories()})
     
     elif request.method == 'POST':
         data = request.get_json()
-        return store.create_category(**data)
+        return jsonify(store.create_category(**data))
         
     elif request.method == 'DELETE':
         data = request.get_json()
-        return store.delete_category(**data)
+        return jsonify(store.delete_category(**data))
 
 import base64
 import io
@@ -74,7 +74,7 @@ def app_products(store_id):
     store = Store(conn, store_id)
     if request.method == 'GET':
         params = request.args
-        return {'response': store.products()}
+        return jsonify({'response': store.products()})
     
     elif request.method == 'POST':
         data = request.get_json()
@@ -84,16 +84,16 @@ def app_products(store_id):
         img = io.BytesIO(img_bytes)
         data['photo'] = img_bytes
         
-        return store.create_product(**data)
+        return jsonify(store.create_product(**data))
         
     elif request.method == 'DELETE':
         data = request.get_json()
-        return store.delete_product(**data)
+        return jsonify(store.delete_product(**data))
     
 @app.route("/store/<store_id>/categories_products", methods = ["GET"])
 def app_categories_products(store_id):
     store = Store(conn, store_id)
-    return {'response': store.categoria_products()}
+    return jsonify({'response': store.categoria_products()})
 
 @app.route("/store/<store_id>/specialtys", methods = ["GET", "PUT"])
 def app_specialtys(store_id):
@@ -101,11 +101,11 @@ def app_specialtys(store_id):
     store = Store(conn, store_id)
     if request.method == 'GET':
         params = request.args
-        return json.dumps(store.specialtys()[0])
+        return jsonify(json.dumps(store.specialtys()[0]))
     
     elif request.method == 'PUT':
         data = request.get_json()
-        return store.update_specialtys(**data)
+        return jsonify(store.update_specialtys(**data))
 
 @app.route("/store/<store_id>/schedules", methods = ["GET", "POST", "DELETE"])
 def app_schedules(store_id):
@@ -113,15 +113,15 @@ def app_schedules(store_id):
     store = Store(conn, store_id)
     if request.method == 'GET':
         params = request.args
-        return {'response': store.schedules()}
+        return jsonify({'response': store.schedules()})
     
     elif request.method == 'POST':
         data = request.get_json()
-        return store.add_schedule(**data)
+        return jsonify(store.add_schedule(**data))
         
     elif request.method == 'DELETE':
         data = request.get_json()
-        return store.delete_schedule(**data)
+        return jsonify(store.delete_schedule(**data))
     
 @app.route("/store/<store_id>/address", methods = ["GET", "POST"])
 def app_address(store_id):
@@ -129,16 +129,16 @@ def app_address(store_id):
     store = Store(conn, store_id)
     if request.method == 'GET':
         params = request.args
-        return {'response': store.address()}
+        return jsonify({'response': store.address()})
     
     elif request.method == 'POST':
         data = request.get_json()
-        return store.update_address(**data)
+        return jsonify(store.update_address(**data))
         
 @app.route("/store/<store_id>/schedules/delete", methods = ["POST"])
 def app_schedulesDelete(store_id):
     store = Store(conn, store_id)
     data = request.get_json()
-    return store.delete_schedule(**data)
+    return jsonify(store.delete_schedule(**data))
 
 app.run("0.0.0.0", port = 5000)
