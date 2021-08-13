@@ -24,7 +24,7 @@ class Store:
                         'description', product.description,
                         'price', product.price,
                         'category_id', product.category_id,
-                        'photo', encode(product.photo::bytea, 'base64')
+                        'photo', encode(product.photo, 'base64')
                     )
                 ) AS data
                 FROM product
@@ -52,6 +52,16 @@ class Store:
             RETURNING *
         """, [category_id]).to_dict(orient = 'records')[0]
     
+    def update_category(self, category_id, name, description):
+        return self.conn.read_query("""
+            UPDATE category
+            SET 
+                name = %s,
+                description = %s
+            WHERE id = %s
+            RETURNING *
+        """, [name, description, category_id]).to_dict(orient = 'records')[0]
+
     def products(self):
         data = self.conn.read_query("""
             SELECT product.id, product.name, product.description, product.price, product.category_id, product.photo
@@ -92,6 +102,22 @@ class Store:
         return data.to_dict(orient = 'records')[0]
 
         
+    def update_product(self, product_id, name, description, price, photo):
+        data = self.conn.read_query("""
+            UPDATE product
+            SET 
+                name = %s,
+                description = %s,
+                price = %s,
+                photo = %s
+            WHERE id = %s
+            RETURNING *
+        """, [name, description, price, photo, product_id])
+
+        data['photo'] = data['photo'].apply(lambda x: base64.b64encode(x).decode("utf8"))
+
+        return data.to_dict(orient = 'records')[0]
+
     def delete_product(self, product_id):
         data = self.conn.read_query("""
             DELETE FROM product
