@@ -7,7 +7,7 @@ CONNECTION = {
     'port': 5432,
     'database': 'meumenu',
     'user': 'postgres',
-    'password': 'postgres'
+    'password': '999590188aA'
 }
 conn = DatabaseDAO(**CONNECTION)
 conn.DEBUG = False

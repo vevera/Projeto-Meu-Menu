@@ -170,7 +170,7 @@ const Especialidades = ({idLoja, atualizarData, setAtualizarData, setListaDeEspe
             method: 'GET',
         }))
         .then(resposta => {console.log(resposta); return resposta.json()})
-        .then(article => setDadosEspecialidades(article))
+        .then(article => setDadosEspecialidades(JSON.parse(article)))
         .catch(error => console.log(error))
     }
     useEffect(()=> {

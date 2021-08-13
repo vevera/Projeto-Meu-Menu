@@ -124,8 +124,8 @@ export default ({route, navigation}) => {
 
   function temImagem(imagem) {
     console.log(imagem);
-    return (imagem != null) & (imagem != 'data:image/jpg;base64,') ? (
-      <Image style={style.imagem} source={{uri: imagem}} />
+    return (imagem != '') ? (
+      <Image style={style.imagem} source={{uri: `data:image/jpg;base64,${imagem}`}} />
     ) : (
       <Image
         style={style.imagem}
@@ -193,13 +193,13 @@ export default ({route, navigation}) => {
     }
   }
 
-  const id = route.params.idLoja;
+  const idLoja = route.params.idLoja;
   const idProd = prod.id;
   console.log("id do produto: ", idProd)
   const [nomeProduto, setNomeProduto] = useState(prod.name);
   const [precoProduto, setPrecoProduto] = useState(prod.price.toString());
   const [infoProduto, setInfoProduto] = useState(prod.description);
-  const [base64Image, setBase64Image] = useState('');
+  const [base64Image, setBase64Image] = useState(prod.image);
 
   const chooseFile = () => {
     let options = {
@@ -241,7 +241,7 @@ export default ({route, navigation}) => {
 
   function removerProduto() {
     fetch(
-      `${data.endereco}store/${encodeURIComponent(id)}/products`,
+      `${data.endereco}store/${encodeURIComponent(idLoja)}/products`,
       {
         method: 'DELETE',
         headers: new Headers({
@@ -254,24 +254,15 @@ export default ({route, navigation}) => {
       },
     )
       .then(resposta => resposta.text())
-      .then(article => {
+      .then(() => {
         Alert.alert('Produto removido com sucesso!');
       });
-
-    console.log('Remover');
-    console.log('Nome = ', nomeProduto);
-    console.log('Preço = ', precoProduto);
-    console.log('info = ', infoProduto);
   }
 
   return (
     <View>
       <ScrollView style={style.form}>
-        {temImagem(
-          base64Image === ''
-            ? prod.image
-            : `data:image/jpg;base64,${base64Image}`,
-        )}
+        {temImagem(base64Image)}
         <TouchableOpacity style={{alignItems: 'center'}} onPress={chooseFile}>
           <Text style={{fontWeight: 'bold', textDecorationLine: 'underline'}}>
             Atualizar Imagem{'\n'}
@@ -356,6 +347,7 @@ export default ({route, navigation}) => {
                     text: 'CONFIRMAR',
                     onPress: () => {
                       removerProduto();
+                      navigation.navigate('ProdList');
                     },
                   },
                 ],

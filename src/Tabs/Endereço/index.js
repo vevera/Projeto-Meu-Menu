@@ -8,7 +8,7 @@ import * as data from '../../connection.json';
 const CampoDoEndereco = ({nome, setEstado, secure, defaultVal}) => {
 
     const [editable, setEditable] = useState(false);
-    const color = editable? "green": "black";
+    const color = editable? "#188C9C": "black";
     return (
         <View style = {styleEndereco.InputView}>
                 <Text style = {styleEndereco.HeaderText}>
@@ -188,9 +188,10 @@ styleEndereco = StyleSheet.create({
     },
     BotaoEditarTouchable: {
         width: "100%",
-        backgroundColor: "orange",
+        backgroundColor: "#18bc9c",
         height: 40,
         alignSelf: 'flex-end',
+        justifyContent: 'center',
         borderRadius: 20,
         alignItems: 'center',
         borderWidth: 0.2,

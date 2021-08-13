@@ -66,7 +66,7 @@ export default ({route, navigation}) => {
         //buttonStyle={{ backgroundColor: "green" }}
         onPress={() => {
           Alert.alert(
-            'Salvar',
+            'Salvar Alterações',
             'Deseja aplicar as alterações do Produto?',
             [
               {
@@ -79,7 +79,8 @@ export default ({route, navigation}) => {
                 onPress: () => {
                   (nomeCategoria === '') | (nomeCategoria === '')
                     ? {}
-                    : cadastrarCategoria();
+                    : cadastrarCategoria() 
+                    navigation.navigate('ProdList');
                 },
               },
             ],

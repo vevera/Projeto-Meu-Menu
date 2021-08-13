@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { useIsFocused } from '@react-navigation/native'
 import {Icon} from 'react-native-elements/dist/icons/Icon';
 import {
   StyleSheet,
@@ -10,17 +11,18 @@ import {
 } from 'react-native';
 import {Image} from 'react-native';
 
+import axios from 'axios';
+
 import * as data from '../../connection.json';
 
 function temImagem(imagem) {
-  console.log("Linha 144 Prodlist:", imagem);
-  return imagem ? (
+  return imagem != '' ? (
     
     <Image
       style={styles.imagem}
       source={{
-        //uri: imagem,
-        uri: 'https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png',
+        uri: `data:image/jpg;base64,${imagem}`,
+        //uri: 'https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png',
       }}
     />
   ) : (
@@ -44,7 +46,7 @@ const Item = ({title, image, info, price}) => (
     <View>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.subtitulo}>{info}</Text>
-      <Text style={styles.subtitulo}>à partir de R$:{price}</Text>
+      <Text style={styles.subtitulo}>à partir de R$:{price.toFixed(2)}</Text>
     </View>
   </View>
 );
@@ -91,12 +93,35 @@ function FooterCat({idLoja, navigation}) {
   );
 }
 
-const ListaDeProdutosPorCategoria = ({DATA, idLoja, navigation}) => {
+const ListaDeProdutosPorCategoria = ({route, idLoja, navigation}) => {
 
-  const forceUpdate = useForceUpdate();
+  const [DATA, setDATA] = useState([]);
+
+  const [updateData, setUpdateData] = useState(route.params.mudar);
+  
+  console.log(updateData);
+  async function getProdutoCategoria() {
+
+    axios.get('http://192.168.1.103:5000/store/21/categories', {
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(article => article.data)
+    .then(data => {setDATA(data.response)})
+    .catch(error => console.log(error))
+  }
+    
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+      getProdutoCategoria();
+  }, [isFocused])
+   
+  console.log(DATA);
 
   return (
-
+    
     <View style={{backgroundColor: 'white'}}>
       <SafeAreaView style={styles.container}>
         <SectionList
@@ -147,41 +172,31 @@ const ListaDeProdutosPorCategoria = ({DATA, idLoja, navigation}) => {
 
 
 export default function Lista({route,  navigation}) {
-
-  const [DATA, setDATA] = useState([]);
+  
+  //const [DATA, setDATA] = useState([]);
   const idLoja = route.params.idLoja;
 
-  const [updateData, setUpdateData] = useState(route.params.mudar);
+  /*const [updateData, setUpdateData] = useState(route.params.mudar);
   
   console.log(updateData);
   async function getProdutoCategoria() {
-    
-    fetch(`http://192.168.1.103:5000/store/21/categories`,
-      {
-        method: 'GET',
-        headers: new Headers({
-          'Accept': '*/*',
-          'Content-Type': '*/*',
-        }),
-        
-      }
-    )
-      .then(response => response.json())
-      .then(response => setDATA(response.response))
-      .catch(error => console.log(error));
 
-    }
+    axios.get('http://192.168.1.103:5000/store/21/categories')
+    .then(article => article.data)
+    .then(data => {setDATA(data.response)})
+    .catch(error => console.log(error))
+  }
     
   useEffect(()=>{
     getProdutoCategoria();
-    setUpdateData(true);
-    () => {useForceUpdate};
+    //setUpdateData(!updateData); 
   },[updateData]) 
   
   console.log(DATA);
+  */
   
   return (
-    <ListaDeProdutosPorCategoria DATA = {DATA} idLoja = {idLoja} navigation = {navigation}/>
+    <ListaDeProdutosPorCategoria route = {route} idLoja = {idLoja} navigation = {navigation}/>
   );
 };
 

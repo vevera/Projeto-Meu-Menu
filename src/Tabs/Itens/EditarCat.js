@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, Alert} from 'react-native';
 import {Button, Input, Icon} from 'react-native-elements';
 import * as data from '../../connection.json';
 
-export default ({route}) => {
+export default ({route, navigation}) => {
  
   const [section, setSection] = useState(route.params ? route.params : {});
   const [nomeCategoria, setNomeCategoria] = useState(section.name);
@@ -95,6 +95,7 @@ export default ({route}) => {
                   text: 'CONFIRMAR',
                   onPress: () => {
                     removerCategoria();
+                    navigation.navigate('ProdList');
                   },
                 },
               ],

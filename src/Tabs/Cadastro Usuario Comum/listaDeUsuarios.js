@@ -43,15 +43,7 @@ const DATA = [
  
      
  },
- {
- 
-     id: 5,
-     nome: 'Joaquina',
-     email: 'Joaquina@gmail',
-     senha: '123',
-  
-      
-  },
+
 
     
 ];
@@ -63,7 +55,7 @@ const Remove = () => {
 
     return (
       <View
-        style={{flexDirection: 'column',justifyContent: 'center',backgroundColor: '#f8f8ff',}}>
+        style={{flexDirection: 'column',justifyContent: 'center'}}>
         <TouchableOpacity
           style={styleListaUsuario.lixeira}
           onPress={removerAdicional()}>
@@ -82,13 +74,15 @@ const RenderUsuario = ({usuario}) => {
             rightThreshold = '50'
             
         >
-            <View style={{ backgroundColor: '#f8f8ff', marginTop: 2, borderBottomWidth: 0.5, padding: 10}}>
-                <Text style = {styleListaUsuario.textoUsuarios}>
-                    <Text style = {{fontWeight: 'bold'}}>Nome:</Text> {usuario.nome}
-                </Text>
-                <Text style = {styleListaUsuario.textoUsuarios}>
-                    <Text style = {{fontWeight: 'bold'}}>Email:</Text> {usuario.email}
-                </Text>
+            <View style={{marginHorizontal: 2}}>
+                <View style={styleListaUsuario.fichaUsuarios}>
+                    <Text style = {styleListaUsuario.textoUsuarios}>
+                        <Text style = {{fontWeight: 'bold'}}>Nome:</Text> {usuario.nome}
+                    </Text>
+                    <Text style = {styleListaUsuario.textoUsuarios}>
+                        <Text style = {{fontWeight: 'bold'}}>Email:</Text> {usuario.email}
+                    </Text>
+                </View>
             </View>
         </Swipeable>
         
@@ -105,11 +99,11 @@ export default function ListaUsuariosComuns({navigation}) {
     
     return (
         
-        <View style = {{backgroundColor: 'white'}}>
+        <View style = {{backgroundColor: '#f8f8ff', flex: 1}}>
             <ScrollView>
-                <View style = {{flexDirection: 'column', justifyContent: 'space-between'}}>
-                    <View>
-                        <View style = {{alignItems: 'center', backgroundColor: '#2c3e50'}}>
+                <View>
+                    <View style  ={{flex: 1}}>
+                        <View style = {{alignItems: 'center', backgroundColor: '#2c3e50', height: 60, justifyContent: 'center'}}>
                             <Text style =  {styleListaUsuario.headerText}>
                                 Usuarios Cadastrados
                             </Text>
@@ -117,12 +111,10 @@ export default function ListaUsuariosComuns({navigation}) {
 
                         {usuarios}
                     </View>
-                    
-                    <View style={{backgroundColor: '#f8f8ff'}}>
+                    <View >
                         <TouchableOpacity
                             style = {styleListaUsuario.botaoCadastro}
-                            onPress={() => {navigation.navigate('CadastroUsuarios')}}
-                        >
+                            onPress={() => {navigation.navigate('CadastroUsuarios')}}>
                             <View>
                                 <Text style={styleListaUsuario.textoBotao}>
                                     Cadastrar
@@ -130,19 +122,33 @@ export default function ListaUsuariosComuns({navigation}) {
                             </View>
                         </TouchableOpacity>
                     </View>
-                </View> 
+                </View>
+                
             </ScrollView>
             
+                 
         </View>
+        
     );
 
 };
 
 const styleListaUsuario = StyleSheet.create({
 
+    fichaUsuarios: { 
+        backgroundColor: 'lightgrey', 
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10, 
+        borderRadius: 10,
+        borderBottomWidth: 1, 
+        padding: 10,
+        borderColor: '#188C9C'
+    },
+
     textoUsuarios: {
         fontSize: 18,
-        marginBottom: 3,
+        marginBottom: 4,
         marginLeft: 10,
     },
     headerText: {
@@ -169,11 +175,15 @@ const styleListaUsuario = StyleSheet.create({
         fontWeight: 'bold',
     },
     lixeira: {
+        
         backgroundColor: 'red',
         width: 70,
         height: 70,
+        marginTop: 10,
+        marginRight: 10,
         borderRadius: 10,
         justifyContent: 'center',
+        alignSelf: 'center',
     },
     //2c3e50
 

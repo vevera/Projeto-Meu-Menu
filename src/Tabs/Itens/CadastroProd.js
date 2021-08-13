@@ -145,7 +145,7 @@ export default ({route, navigation}) => {
         }}
         onPress={() => {
           Alert.alert(
-            'Salvar',
+            'Salvar Alterações',
             'Deseja aplicar as alterações do Produto?',
             [
               {
