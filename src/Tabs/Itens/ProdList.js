@@ -132,7 +132,7 @@ const ListaDeProdutosPorCategoria = ({route, idLoja, navigation}) => {
       tam = dados1.length;
       limit += 1;
       console.log(limit);
-    }while(limit < 20 && tam == 0);
+    }while(limit < 30 && tam == 0);
     setDATA(dados1);
         
   }, [isFocused])

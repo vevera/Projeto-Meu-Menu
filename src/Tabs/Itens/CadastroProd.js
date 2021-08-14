@@ -63,21 +63,11 @@ export default ({route, navigation}) => {
         }),
       },
     )
-      .then(resposta => resposta.text())
-      .then(resposta => console.log(resposta))
-      .then(() => {
-        Alert.alert('Produto adicionado com sucesso!');
-      })
-      .catch(error => console.log(error));
-
-    //console.log('imagem = ', base64Image);
-    //console.log('produto = ', nomeProduto);
-    //console.log('preço = ', precoProduto);
-    //console.log('info = ', infoProduto);
+    .catch(error => console.log(error));
   }
 
   return (
-    <View style={{justifyContent: 'space-between'}}>
+    <View>
       <View>
         <View>
           {base64Image === '' ? (
