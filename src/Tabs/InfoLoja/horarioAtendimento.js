@@ -154,6 +154,12 @@ const RenderHorario = ({idLoja, item, setAtualizarData, atualizarData}) =>{
             </View>
         );
     }
+    function retornaDias(inicio, fim){
+        if (inicio == fim){
+            return inicio;
+        }
+        return inicio + '-' + fim;
+    }
     return (
         <Swipeable
             renderRightActions = {Remove}
@@ -162,7 +168,7 @@ const RenderHorario = ({idLoja, item, setAtualizarData, atualizarData}) =>{
                 <TouchableOpacity 
                     style = {stylesInfoLoja.StyleItemContainer} 
                 >
-                    <Text style = {stylesInfoLoja.StyleItemTextDia}>{diasSemana[item.dow_start]} - {diasSemana[item.dow_end]}</Text>
+                    <Text style = {stylesInfoLoja.StyleItemTextDia}>{retornaDias(diasSemana[item.dow_start], diasSemana[item.dow_end])}</Text>
                     <Text style = {stylesInfoLoja.StyleItemTextHora}>{item.opens_at.substring(0, 5)} - {item.closes_at.substring(0, 5)}</Text>
    
                 </TouchableOpacity> 
