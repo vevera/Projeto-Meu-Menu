@@ -41,8 +41,6 @@ export default ({route, navigation}) => {
         alert(response.errorMessage);
         return;
       }
-      //console.log(response.assets[0]);
-      //console.log("RESPONSE +>>>>", response);
       setBase64Image(response.assets[0].base64);
     });
   };
@@ -79,7 +77,7 @@ export default ({route, navigation}) => {
   }
 
   return (
-    <View>
+    <View style={{justifyContent: 'space-between'}}>
       <View>
         <View>
           {base64Image === '' ? (

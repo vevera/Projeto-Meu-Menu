@@ -14,6 +14,7 @@ import {Image} from 'react-native';
 import axios from 'axios';
 
 import * as data from '../../connection.json';
+import { withTheme } from 'react-native-elements';
 
 function temImagem(imagem) {
   return imagem != '' ? (
@@ -53,42 +54,48 @@ const Item = ({title, image, info, price}) => (
 
 function Footer({section, idLoja, navigation}) {
   return (
-    <View style={{height: 50, width: '100%'}}>
-      <TouchableOpacity
-        style={{
-          height: '100%',
-          width: '100%',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-        onPress={() => navigation.navigate('CadastroProd', {"idCat": section.section.id, "idLoja": idLoja})}>
-        <Icon name="add" size={35} color="#18bc9c" />
-        <Text style={{fontSize: 17, fontWeight: 'bold'}}>
-          Adicionar Produto
-        </Text>
-      </TouchableOpacity>
+    <View style={{marginHorizontal: '4%', marginTop: '2%', marginBottom: '2%'}}>
+      <View style={{height: 40, width: '100%'}}>
+        <TouchableOpacity
+          style={{
+            height: '100%',
+            width: '100%',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#f8f8ff',
+          }}
+          onPress={() => navigation.navigate('CadastroProd', {"idCat": section.section.id, "idLoja": idLoja})}>
+          <Icon name="add" size={35} color="#18bc9c" />
+          <Text style={{fontSize: 17, fontWeight: 'bold', color: 'black'}}>
+            Adicionar Produto
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
 
 function FooterCat({idLoja, navigation}) {
   return (
-    <View style={{height: 50, width: '100%'}}>
-      <TouchableOpacity
-        style={{
-          height: '100%',
-          width: '100%',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-        onPress={() => navigation.navigate('CadastroCat', {'idLoja': idLoja})}>
-        <Icon name="add" size={35} color="#18bc9c" />
-        <Text style={{fontSize: 17, fontWeight: 'bold'}}>
-          Adicionar Categoria
-        </Text>
-      </TouchableOpacity>
+    <View style={{marginHorizontal: '4%', marginTop: '2%', marginBottom: '2%'}}>
+      <View style={{height: 40}}>
+        <TouchableOpacity
+          style={{
+            height: '100%',
+            width: '100%',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#f8f8ff',
+          }}
+          onPress={() => navigation.navigate('CadastroCat', {'idLoja': idLoja})}>
+          <Icon name="add" size={35} color="#18bc9c" />
+          <Text style={{fontSize: 17, fontWeight: 'bold'}}>
+            Adicionar Categoria
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -97,32 +104,44 @@ const ListaDeProdutosPorCategoria = ({route, idLoja, navigation}) => {
 
   const [DATA, setDATA] = useState([]);
 
-  const [updateData, setUpdateData] = useState(route.params.mudar);
-  
-  console.log(updateData);
   async function getProdutoCategoria() {
 
-    axios.get('http://192.168.1.103:5000/store/21/categories', {
-      headers:{
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(article => article.data)
-    .then(data => {setDATA(data.response)})
-    .catch(error => console.log(error))
+    try{
+      const article = await axios.get(`${data.endereco}store/${idLoja}/categories`, {
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      });
+      const resposta = await article.data
+      return resposta.response;
+    }
+    catch(error){
+      return [];
+    }
+    
   }
     
   const isFocused = useIsFocused();
 
-  useEffect(() => {
-      getProdutoCategoria();
+  useEffect(async () => {
+    let limit = 0;
+    let tam = DATA.length;
+    let dados1;
+    do{
+      dados1 = await getProdutoCategoria();
+      tam = dados1.length;
+      limit += 1;
+      console.log(limit);
+    }while(limit < 20 && tam == 0);
+    setDATA(dados1);
+        
   }, [isFocused])
    
   console.log(DATA);
 
   return (
     
-    <View style={{backgroundColor: 'white'}}>
+    <View style={{minHeight: '100%',backgroundColor: 'white'}}>
       <SafeAreaView style={styles.container}>
         <SectionList
           sections={DATA}
@@ -172,31 +191,14 @@ const ListaDeProdutosPorCategoria = ({route, idLoja, navigation}) => {
 
 
 export default function Lista({route,  navigation}) {
-  
-  //const [DATA, setDATA] = useState([]);
+
   const idLoja = route.params.idLoja;
-
-  /*const [updateData, setUpdateData] = useState(route.params.mudar);
-  
-  console.log(updateData);
-  async function getProdutoCategoria() {
-
-    axios.get('http://192.168.1.103:5000/store/21/categories')
-    .then(article => article.data)
-    .then(data => {setDATA(data.response)})
-    .catch(error => console.log(error))
-  }
-    
-  useEffect(()=>{
-    getProdutoCategoria();
-    //setUpdateData(!updateData); 
-  },[updateData]) 
-  
-  console.log(DATA);
-  */
-  
+ 
   return (
-    <ListaDeProdutosPorCategoria route = {route} idLoja = {idLoja} navigation = {navigation}/>
+    <View>
+      <ListaDeProdutosPorCategoria route = {route} idLoja = {idLoja} navigation = {navigation}/>
+    </View>
+    
   );
 };
 

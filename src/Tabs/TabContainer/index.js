@@ -42,19 +42,23 @@ const TabNavigator = ({route}) =>{
                         else if(route.name === 'Endereço'){
                             iconName = 'map-marker';
                         }
+                        size = focused? 38: 27;
 
                         return <Icon  type='font-awesome' name = {iconName} size = {size} color = {color}/>
                     },
                 })}
                 tabBarOptions={{
+                    showLabel: false,
                     style:{
                         height: 50,
                         paddingBottom: 5,
-                        backgroundColor: '#188C9C' 
+                        backgroundColor: '#f8f8ff',
                     },
-                    activeTintColor: 'black',
-                    inactiveTintColor: 'white',
+                    
+                    activeTintColor: '#18BC9C',
+                    inactiveTintColor: 'black',
                 }}
+                
             >
                 <Tab.Screen name = "Inicio" component = {Home} initialParams={{idLoja}}/>
                 <Tab.Screen name = "Produtos" component = {Itens} initialParams={{idLoja}}/>

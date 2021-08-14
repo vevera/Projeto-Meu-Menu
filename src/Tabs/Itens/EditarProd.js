@@ -123,7 +123,7 @@ export default ({route, navigation}) => {
   };
 
   function temImagem(imagem) {
-    console.log(imagem);
+    console.log("SAIDA ++++++>>>>>>> ",imagem);
     return (imagem != '') ? (
       <Image style={style.imagem} source={{uri: `data:image/jpg;base64,${imagem}`}} />
     ) : (
@@ -199,7 +199,7 @@ export default ({route, navigation}) => {
   const [nomeProduto, setNomeProduto] = useState(prod.name);
   const [precoProduto, setPrecoProduto] = useState(prod.price.toString());
   const [infoProduto, setInfoProduto] = useState(prod.description);
-  const [base64Image, setBase64Image] = useState(prod.image);
+  const [base64Image, setBase64Image] = useState(prod.photo);
 
   const chooseFile = () => {
     let options = {
@@ -233,10 +233,30 @@ export default ({route, navigation}) => {
   };
 
   function atualizarProduto() {
-    console.log('Atualizar');
-    console.log('Nome = ', nomeProduto);
-    console.log('Preço = ', precoProduto);
-    console.log('info = ', infoProduto);
+
+    fetch(
+      `${data.endereco}store/${encodeURIComponent(idLoja)}/products`,
+      {
+        method: 'PUT',
+        headers: new Headers({
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          product_id: idProd,
+          name: nomeProduto,
+          description: infoProduto,
+          price: precoProduto,
+          photo: base64Image,
+        }),
+      },
+    )
+      .then(resposta => resposta.text())
+      .then(resposta => console.log(resposta))
+      .then(() => {
+        Alert.alert('Produto atualizado com sucesso!');
+      })
+      .catch(error => console.log(error));
   }
 
   function removerProduto() {
@@ -377,6 +397,7 @@ export default ({route, navigation}) => {
                     text: 'CONFIRMAR',
                     onPress: () => {
                       atualizarProduto();
+                      navigation.navigate('ProdList');
                     },
                   },
                 ],
@@ -551,7 +572,7 @@ const style = StyleSheet.create({
   },
   imagem: {
     width: '100%',
-    height: 200,
+    height: 300,
     marginBottom: 14,
   },
   btnAdd: {

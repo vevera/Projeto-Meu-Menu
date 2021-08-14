@@ -27,9 +27,6 @@ export default ({route, navigation}) => {
     )
       .then(resposta => resposta.text())
       .then(resposta => console.log(resposta))
-      .then(() => {
-        Alert.alert('Categoria adicionada com sucesso!');
-      })
       .catch(error => console.log(error));
 
   }
@@ -50,7 +47,7 @@ export default ({route, navigation}) => {
           setInfoCategoria(text);
         }}
         placeholder="Descrição do produto"
-        numberOfLines={4}
+        //numberOfLines={4}
         multiline
         rightIcon={{type: 'font-awesome', name: 'edit'}}
       />

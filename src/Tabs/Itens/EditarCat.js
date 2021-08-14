@@ -13,15 +13,22 @@ export default ({route, navigation}) => {
   console.log("ID LOJA =>> ", idLoja);
 
   function atualizarCategoria() {
-    
-    
-    
-    
-    
-    
-    //console.log('ATUALIZAR');
-    //console.log('nome = ', nomeCategoria);
-    //console.log('info = ', infoCategoria);
+    fetch(
+      `${data.endereco}store/${idLoja}/categories`,
+      {
+        method: 'PUT',
+        headers: new Headers({
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          category_id: idCat,
+          name: nomeCategoria,
+          description: infoCategoria,
+        }),
+      },
+    )
+    .catch(error => console.log(error));
   }
 
   function removerCategoria() {
@@ -38,12 +45,7 @@ export default ({route, navigation}) => {
         }),
       },
     )
-      .then(resposta => resposta.text())
-      .then(resposta => console.log(resposta))
-      .then(() => {
-        Alert.alert('Categoria removida com sucesso!');
-      })
-      .catch(error => console.log(error));
+    .catch(error => console.log(error));
 
   }
 
@@ -61,7 +63,7 @@ export default ({route, navigation}) => {
       <Input
         onChangeText={texto => setInfoCategoria(texto)}
         placeholder="Descrição do produto"
-        numberOfLines={4}
+        //numberOfLines={4}
         multiline
         rightIcon={{type: 'font-awesome', name: 'edit'}}
         //keyboardType="numeric"
@@ -105,7 +107,7 @@ export default ({route, navigation}) => {
         />
         <Button
           containerStyle={style.buttonS}
-          title="Salvar"
+          title="Salvar Alterações"
           type="clear"
           titleStyle={{
             color: 'blue',
@@ -126,6 +128,7 @@ export default ({route, navigation}) => {
                   text: 'CONFIRMAR',
                   onPress: () => {
                     atualizarCategoria();
+                    navigation.navigate('ProdList');
                   },
                 },
               ],
