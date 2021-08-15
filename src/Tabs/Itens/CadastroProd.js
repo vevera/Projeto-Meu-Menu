@@ -120,7 +120,6 @@ export default ({route, navigation}) => {
         }}
         placeholder="Informações do produto"
         rightIcon={{type: 'font-awesome', name: 'edit'}}
-        //keyboardType="numeric"
       />
       <Button
         containerStyle={style.buttonS}

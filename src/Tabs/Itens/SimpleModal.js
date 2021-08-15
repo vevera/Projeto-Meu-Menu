@@ -9,16 +9,77 @@ import {
 } from "react-native";
 import { Slider, Icon } from "react-native-elements";
 
+import * as data from '../../connection.json';
+
 const WIDTH = Dimensions.get("window").width;
 const HEIGHT_MODAL = 300;
 
 const SimpleModal = (props) => {
+
+  const price = props.params.promotional_price != null? props.params.promotional_price : props.params.price;
+
   const [mostrarValor, setMostrarValor] = useState(1);
-  const [valor, setValor] = useState(1);
-  const closeModal = (bool, data) => {
+
+  const [valor, setValor] = useState(100 - ((price * 100)/props.params.price));
+  const [novoValorPromocional, setNovoValorPromocional] = useState(price);
+  const idProduto = props.params.id;
+
+  
+  const closeModal = (bool) => {
     props.changeModalVisible(bool);
-    //props.setData(data);
+   
   };
+
+  console.log("ajsholajbsidloja: ",props.idLoja);
+
+  function atualizarPromocao() {
+
+    fetch(
+      `${data.endereco}store/${props.idLoja}/promotion`,
+      {
+        method: 'PUT',
+        headers: new Headers({
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          promotional_price: novoValorPromocional,
+          product_id: idProduto,
+        }),
+      },
+    )
+    .then(resposta => resposta.text())
+    .then(resposta => console.log(resposta))
+    .catch(error => console.log(error));
+  }
+
+
+  /*
+  function atualizaPromocao(){
+    
+    fetch(
+      `${data.endereco}store/${idLoja)}/products`,
+      {
+        method: 'PUT',
+        headers: new Headers({
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          //product_id: idProd,
+          //name: nomeProduto,
+          //description: infoProduto,
+          //price: precoProduto,
+          //photo: base64Image,
+        }),
+      },
+    )
+    .then(resposta => resposta.text())
+    .catch(error => console.log(error));
+
+  }
+  */
+
   return (
     <View
       style={{
@@ -47,7 +108,12 @@ const SimpleModal = (props) => {
                 minimumValue={1}
                 step={1}
                 onSlidingComplete={(value) => setMostrarValor(value)}
-                onValueChange={(value) => setValor(value)}
+                onValueChange={(value) => {setValor(value); setNovoValorPromocional(props.params.price - (props.params.price * (value / 100)))}}
+                
+                /**
+                 * props.params.price - (props.params.price * (valor / 100))
+                 * 
+                 */
                 trackStyle={{
                   height: 10,
                   backgroundColor: "blue",
@@ -61,13 +127,11 @@ const SimpleModal = (props) => {
                 thumbProps={{
                   children: (
                     <Icon
-                      //name="heartbeat"
                       type="font-awesome"
                       size={10}
                       reverse
                       containerStyle={{ bottom: 10, right: 10 }}
                       color="lightblue"
-                      //backgroundColor="#f50"
                     />
                   ),
                 }}
@@ -82,7 +146,7 @@ const SimpleModal = (props) => {
                 fontWeight: "bold",
               }}
             >
-              Porcentagem de desconto: {valor}%
+              Porcentagem de desconto: {valor.toFixed(0)}%
             </Text>
             <Text
               style={{
@@ -101,7 +165,12 @@ const SimpleModal = (props) => {
           <View style={styles.buttonsView}>
             <TouchableOpacity
               style={styles.TouchableOpacity}
-              onPress={() => closeModal(false)}
+              onPress={() => {
+                atualizarPromocao();
+                console.log(novoValorPromocional, "->>",valor);
+                closeModal(false)
+                props.navigation.navigate('ProdList');
+              }}
             >
               <Text style={(styles.text, { color: "blue" })}>Aplicar</Text>
             </TouchableOpacity>

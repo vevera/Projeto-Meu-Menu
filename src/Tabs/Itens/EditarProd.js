@@ -109,21 +109,47 @@ const itemsListArr = addData.map(item => (
   <RenderItem key={item.id} item={item} />
 ));
 
-export default ({route, navigation}) => {
-  const [prod, setprod] = useState(route.params ? route.params : {});
+
+const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
   const [isModalVisible, setisModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
-  const [showPromotion, setShowPromotion] = useState(false);
+  const idProd = prod.id;
+  
+  const [nomeProduto, setNomeProduto] = useState(prod.name);
+  const [precoProduto, setPrecoProduto] = useState(prod.price.toString());
+  const [infoProduto, setInfoProduto] = useState(prod.description);
+  const [promo, setPromo] = useState(prod.promotional_price);
+  const [base64Image, setBase64Image] = useState(prod.photo);
+
+
+  function removerPromocao() {
+
+    fetch(
+      `${data.endereco}store/${idLoja}/promotion`,
+      {
+        method: 'PUT',
+        headers: new Headers({
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          promotional_price: null,
+          product_id: idProd,
+        }),
+      },
+    )
+    .then(resposta => resposta.text())
+    .then(resposta => console.log(resposta))
+    .catch(error => console.log(error));
+
+  };
 
   const changeModalVisible = bool => {
+
     setisModalVisible(bool);
-  };
-  const setData = data => {
-    setprod(data);
   };
 
   function temImagem(imagem) {
-    console.log("SAIDA ++++++>>>>>>> ",imagem);
     return (imagem != '') ? (
       <Image style={style.imagem} source={{uri: `data:image/jpg;base64,${imagem}`}} />
     ) : (
@@ -136,16 +162,17 @@ export default ({route, navigation}) => {
     );
   }
 
-  function promocaoAtiva(promocao) {
-    if (20 != null) {
+  function promocaoAtiva(preco_normal, promocao, nome) {
+    if (promocao != null) {
+      const [disconto, setDisconto] = useState(100 - ((promocao * 100)/preco_normal));
       return (
         <View style={{flexDirection: 'column'}}>
           <TouchableOpacity onPress={() => changeModalVisible(true)}>
             <Text style={style.itemP}>
-              Produto: Carne
+              Produto: {nome}
               {'\n'}
-              Desconto: 20%{'\n'}
-              Novo valor: R$ 30,00
+              Desconto: {disconto.toFixed(2)}%{'\n'}
+              Novo valor: R${promocao.toFixed(2)}
               {'\n'}
             </Text>
           </TouchableOpacity>
@@ -165,7 +192,7 @@ export default ({route, navigation}) => {
               marginBottom: 10,
               marginHorizontal: '1%',
             }}
-            onPress={() => {}}>
+            onPress={() => {removerPromocao()}}>
             <Icon name={'remove'} size={30} color="#ff0000" />
           </TouchableOpacity>
         </View>
@@ -186,20 +213,12 @@ export default ({route, navigation}) => {
             alignSelf: 'center',
             marginBottom: 10,
           }}
-          onPress={() => {}}>
+          onPress={() => {changeModalVisible(true)}}>
           <Icon name={'add'} size={30} color="#01a699" />
         </TouchableOpacity>
       );
     }
   }
-
-  const idLoja = route.params.idLoja;
-  const idProd = prod.id;
-  console.log("id do produto: ", idProd)
-  const [nomeProduto, setNomeProduto] = useState(prod.name);
-  const [precoProduto, setPrecoProduto] = useState(prod.price.toString());
-  const [infoProduto, setInfoProduto] = useState(prod.description);
-  const [base64Image, setBase64Image] = useState(prod.photo);
 
   const chooseFile = () => {
     let options = {
@@ -278,7 +297,6 @@ export default ({route, navigation}) => {
         Alert.alert('Produto removido com sucesso!');
       });
   }
-
   return (
     <View>
       <ScrollView style={style.form}>
@@ -339,7 +357,7 @@ export default ({route, navigation}) => {
         <View style={style.header}>
           <Text style={style.viewHeader}>Promoção</Text>
         </View>
-        {promocaoAtiva(prod.promo)}
+        {promocaoAtiva(precoProduto, promo, nomeProduto)}
         <View
           style={{
             flexDirection: 'row',
@@ -408,6 +426,7 @@ export default ({route, navigation}) => {
         </View>
       </ScrollView>
       <View>
+        
         <Modal
           transparent={true}
           animationType="fade"
@@ -416,8 +435,9 @@ export default ({route, navigation}) => {
           onRequestClose={() => changeModalVisible(false)}>
           <SimpleModal
             changeModalVisible={changeModalVisible}
-            setData={setData}
             params={prod}
+            idLoja = {idLoja}
+            navigation = {navigation}
           />
         </Modal>
       </View>
@@ -485,6 +505,17 @@ export default ({route, navigation}) => {
         </Modal>
       </View>
     </View>
+  );
+}
+
+export default ({route, navigation}) => {
+
+  const prod = route.params.item;
+  
+  const idLoja = route.params.idLoja;
+
+  return (
+    <RenderProdutoInformacoes prod = {prod} idLoja = {idLoja} navigation = {navigation}/>
   );
 };
 

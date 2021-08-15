@@ -24,7 +24,8 @@ class Store:
                         'description', product.description,
                         'price', product.price,
                         'category_id', product.category_id,
-                        'photo', encode(product.photo, 'base64')
+                        'photo', encode(product.photo, 'base64'),
+                        'promotional_price', product.promotional_price
                     )
                 ) AS data
                 FROM product
@@ -73,7 +74,16 @@ class Store:
         data['photo'] = data['photo'].apply(lambda x: base64.b64encode(x).decode("utf8"))
 
         return data.to_dict(orient = 'records')
-        
+    
+    def update_promotional_price(self, promotional_price, product_id):
+        data = self.conn.read_query("""
+            UPDATE product
+            SET promotional_price = %s
+            WHERE id = %s
+            RETURNING *
+        """, [promotional_price, product_id])
+        return "Sucesso"
+          
     def create_product(self, name, description, price, photo, category_id):
         if self.conn.DEBUG:
             self.conn.DEBUG = False

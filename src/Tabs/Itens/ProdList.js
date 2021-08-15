@@ -41,16 +41,26 @@ function useForceUpdate(){
   return () => setValue(value => value + 1); 
 }
 
-const Item = ({title, image, info, price}) => (
-  <View style={styles.item}>
-    {temImagem(image)}
-    <View>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.subtitulo}>{info}</Text>
-      <Text style={styles.subtitulo}>à partir de R$:{price.toFixed(2)}</Text>
+const Item = ({title, image, info, price, promotional_price}) => 
+{
+  const promo = promotional_price != null? true : false;
+
+  function retornaPreco(){
+
+    return promo? promotional_price.toFixed(2): price.toFixed(2);
+    
+  }
+
+  return(
+    <View style={styles.item}>
+      {temImagem(image)}
+      <View>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.subtitulo}>{info}</Text>
+        <Text style={styles.subtitulo}>à partir de R$:{retornaPreco()}</Text>
+      </View>
     </View>
-  </View>
-);
+)};
 
 function Footer({section, idLoja, navigation}) {
   return (
@@ -133,8 +143,8 @@ const ListaDeProdutosPorCategoria = ({route, idLoja, navigation}) => {
       limit += 1;
       console.log(limit);
     }while(limit < 30 && tam == 0);
-    setDATA(dados1);
-        
+    setDATA(dados1);    
+      
   }, [isFocused])
    
   console.log(DATA);
@@ -149,13 +159,14 @@ const ListaDeProdutosPorCategoria = ({route, idLoja, navigation}) => {
           renderItem={({item}) => (
             <View>
               <TouchableOpacity
-                onPress={() => navigation.navigate('EditarProd', item)}>
+                onPress={() => navigation.navigate('EditarProd', {item, idLoja})}>
                 <View>
                   <Item
                     title={item.name}
                     image={item.photo}
                     info={item.description}
                     price={item.price}
+                    promotional_price={item.promotional_price}
                   />
                 </View>
               </TouchableOpacity>
@@ -220,6 +231,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   subtitulo: {
+    fontWeight: 'bold',
+    color: 'grey',
+  },
+  subtitulo_promo: {
+    textDecorationLine: 'line-through',
     fontWeight: 'bold',
     color: 'grey',
   },
