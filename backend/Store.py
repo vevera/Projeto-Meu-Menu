@@ -75,6 +75,15 @@ class Store:
 
         return data.to_dict(orient = 'records')
     
+    def get_promotional_price(self, id):
+        data = self.conn.read_query("""
+            SELECT product.promotional_price
+            FROM product
+            WHERE product.id = %s
+        """, [id])
+        
+        return data.to_dict(orient = 'records')[0]
+        
     def update_promotional_price(self, promotional_price, product_id):
         data = self.conn.read_query("""
             UPDATE product
@@ -83,7 +92,34 @@ class Store:
             RETURNING *
         """, [promotional_price, product_id])
         return "Sucesso"
-          
+    
+    def additional_options(self, product_id):
+        data = self.conn.read_query("""
+            SELECT * 
+            FROM additional_options
+            WHERE product_id = %s
+        """, [product_id])
+        return data.to_dict(orient = 'records')
+    
+    def add_additional_options(self, name, price, product_id):
+        data = self.conn.read_query("""
+            INSERT INTO additional_options (name, price, product_id)
+            VALUES
+            (%s, %s, %s)
+            RETURNING *
+        """, [name, price, product_id])
+        
+        return 'Opção Adicional Adicionada'
+
+    def delete_additional_options(self, id):
+        data = self.conn.read_query("""
+            DELETE FROM additional_options
+            WHERE id = %s
+            RETURNING *
+        """, [id])
+        
+        return 'Opção Adicional Deletada'
+
     def create_product(self, name, description, price, photo, category_id):
         if self.conn.DEBUG:
             self.conn.DEBUG = False

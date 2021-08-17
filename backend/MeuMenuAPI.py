@@ -104,14 +104,32 @@ def app_products(store_id):
         data = request.get_json()
         return jsonify(store.delete_product(**data))
     
-@app.route("/store/<store_id>/promotion", methods = ["PUT"])
+@app.route("/store/<store_id>/promotion", methods = ["PUT", "GET"])
 def app_promotion(store_id):
     store = Store(conn, store_id)
-    if request.method == 'PUT':
+    
+    if request.method == 'GET':
+        params = request.args
+        return jsonify(store.get_promotional_price(**params))
+    elif request.method == 'PUT':
         data = request.get_json()
-        print(data)
         return store.update_promotional_price(**data)
 
+
+@app.route("/store/<store_id>/additional_options", methods = ["POST", "GET", "DELETE"])
+def app_additional_options(store_id):
+    store = Store(conn, store_id)
+    
+    if request.method == 'GET':
+        params = request.args
+        return jsonify({'response': store.additional_options(**params)})
+    elif request.method == 'POST':
+        data = request.get_json()
+        return store.add_additional_options(**data)
+    elif request.method == 'DELETE':
+        data = request.get_json()
+        return store.delete_additional_options(**data)
+    
 @app.route("/store/<store_id>/specialtys", methods = ["GET", "PUT"])
 def app_specialtys(store_id):
 

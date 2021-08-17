@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {TouchableOpacity} from 'react-native';
-import {Text, Image, View, StyleSheet, Alert} from 'react-native';
+import {Text, Image, View, StyleSheet, Alert, ScrollView} from 'react-native';
 import {Button, Input, Icon} from 'react-native-elements';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import * as data from '../../connection.json';
@@ -9,7 +9,6 @@ export default ({route, navigation}) => {
 
   const idLoja = route.params.idLoja;
   const idCat = route.params.idCat;
-  console.log(idLoja, idCat);
   const [nomeProduto, setNomeProduto] = useState('');
   const [precoProduto, setPrecoProduto] = useState('');
   const [infoProduto, setInfoProduto] = useState('');
@@ -67,91 +66,93 @@ export default ({route, navigation}) => {
   }
 
   return (
-    <View>
+    <ScrollView>
       <View>
         <View>
-          {base64Image === '' ? (
-            <View
-              style={{
-                alignItems: 'center',
-                margin: '10%',
-              }}>
-              <TouchableOpacity onPress={chooseFile}>
-                <Text
-                  style={{
-                    textDecorationLine: 'underline',
-                    fontWeight: 'bold',
-                  }}>
-                  Escolha uma imagem
-                </Text>
-              </TouchableOpacity>
-            </View>
-          ) : (
-            <Image
-              style={style.imagem}
-              source={{uri: `data:image/jpg;base64,${base64Image}`}}
-              resizeMode="contain"
-            />
-          )}
+          <View>
+            {base64Image === '' ? (
+              <View
+                style={{
+                  alignItems: 'center',
+                  margin: '10%',
+                }}>
+                <TouchableOpacity onPress={chooseFile}>
+                  <Text
+                    style={{
+                      textDecorationLine: 'underline',
+                      fontWeight: 'bold',
+                    }}>
+                    Escolha uma imagem
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <Image
+                style={style.imagem}
+                source={{uri: `data:image/jpg;base64,${base64Image}`}}
+                resizeMode="contain"
+              />
+            )}
+          </View>
         </View>
-      </View>
 
-      <Text style={style.text}>Produto</Text>
-      <Input
-        onChangeText={text => {
-          setNomeProduto(text);
-        }}
-        placeholder="informe o nome do produto"
-        rightIcon={{type: 'font-awesome', name: 'edit'}}
-      />
-      <Text style={style.text}>Preço</Text>
-      <Input
-        onChangeText={text => {
-          setPrecoProduto(text);
-        }}
-        placeholder="informe o preço do produto"
-        rightIcon={{type: 'font-awesome', name: 'edit'}}
-        keyboardType="numeric"
-      />
-      <Text style={style.text}>Informações</Text>
-      <Input
-        onChangeText={text => {
-          setInfoProduto(text);
-        }}
-        placeholder="Informações do produto"
-        rightIcon={{type: 'font-awesome', name: 'edit'}}
-      />
-      <Button
-        containerStyle={style.buttonS}
-        title="Salvar"
-        type="clear"
-        titleStyle={{
-          color: 'blue',
-          fontWeight: 'bold',
-          textDecorationLine: 'underline',
-        }}
-        onPress={() => {
-          Alert.alert(
-            'Salvar Alterações',
-            'Deseja aplicar as alterações do Produto?',
-            [
-              {
-                text: 'CANCELAR',
-                onPress: () => {},
-              },
-              {
-                text: 'CONFIRMAR',
-                onPress: () => {
-                  cadastrarProduto();
-                  navigation.navigate('ProdList', {'mudar': false})
+        <Text style={style.text}>Produto</Text>
+        <Input
+          onChangeText={text => {
+            setNomeProduto(text);
+          }}
+          placeholder="informe o nome do produto"
+          rightIcon={{type: 'font-awesome', name: 'edit'}}
+        />
+        <Text style={style.text}>Preço</Text>
+        <Input
+          onChangeText={text => {
+            setPrecoProduto(text);
+          }}
+          placeholder="informe o preço do produto"
+          rightIcon={{type: 'font-awesome', name: 'edit'}}
+          keyboardType="numeric"
+        />
+        <Text style={style.text}>Informações</Text>
+        <Input
+          onChangeText={text => {
+            setInfoProduto(text);
+          }}
+          placeholder="Informações do produto"
+          rightIcon={{type: 'font-awesome', name: 'edit'}}
+        />
+        <Button
+          containerStyle={style.buttonS}
+          title="Salvar"
+          type="clear"
+          titleStyle={{
+            color: 'blue',
+            fontWeight: 'bold',
+            textDecorationLine: 'underline',
+          }}
+          onPress={() => {
+            Alert.alert(
+              'Salvar Alterações',
+              'Deseja aplicar as alterações do Produto?',
+              [
+                {
+                  text: 'CANCELAR',
+                  onPress: () => {},
                 },
-              },
-            ],
-            {cancelable: false},
-          );
-        }}
-      />
-    </View>
+                {
+                  text: 'CONFIRMAR',
+                  onPress: () => {
+                    cadastrarProduto();
+                    navigation.navigate('ProdList', {'mudar': false})
+                  },
+                },
+              ],
+              {cancelable: false},
+            );
+          }}
+        />
+      </View>
+    </ScrollView>
   );
 };
 
@@ -177,8 +178,9 @@ const style = StyleSheet.create({
   },
   imagem: {
     alignSelf: 'center',
-    width: 200,
-    height: 200,
+    width: '100%',
+    height: 300,
+    marginBottom: 14,
   },
   buttonS: {
     alignSelf: 'center',

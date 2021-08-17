@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {TextInput, Text, View, StyleSheet, Alert} from 'react-native';
-//import {  } from "react-native-gesture-handler";
 import {Button, Input, Icon} from 'react-native-elements';
 import * as data from '../../connection.json';
 
@@ -47,7 +46,6 @@ export default ({route, navigation}) => {
           setInfoCategoria(text);
         }}
         placeholder="Descrição do produto"
-        //numberOfLines={4}
         multiline
         rightIcon={{type: 'font-awesome', name: 'edit'}}
       />
@@ -60,7 +58,6 @@ export default ({route, navigation}) => {
           fontWeight: 'bold',
           textDecorationLine: 'underline',
         }}
-        //buttonStyle={{ backgroundColor: "green" }}
         onPress={() => {
           Alert.alert(
             'Salvar Alterações',

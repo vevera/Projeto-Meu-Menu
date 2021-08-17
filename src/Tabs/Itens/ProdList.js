@@ -141,13 +141,13 @@ const ListaDeProdutosPorCategoria = ({route, idLoja, navigation}) => {
       dados1 = await getProdutoCategoria();
       tam = dados1.length;
       limit += 1;
-      console.log(limit);
+      
     }while(limit < 30 && tam == 0);
     setDATA(dados1);    
       
   }, [isFocused])
    
-  console.log(DATA);
+  
 
   return (
     

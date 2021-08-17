@@ -53,33 +53,6 @@ const SimpleModal = (props) => {
     .catch(error => console.log(error));
   }
 
-
-  /*
-  function atualizaPromocao(){
-    
-    fetch(
-      `${data.endereco}store/${idLoja)}/products`,
-      {
-        method: 'PUT',
-        headers: new Headers({
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify({
-          //product_id: idProd,
-          //name: nomeProduto,
-          //description: infoProduto,
-          //price: precoProduto,
-          //photo: base64Image,
-        }),
-      },
-    )
-    .then(resposta => resposta.text())
-    .catch(error => console.log(error));
-
-  }
-  */
-
   return (
     <View
       style={{
@@ -109,11 +82,6 @@ const SimpleModal = (props) => {
                 step={1}
                 onSlidingComplete={(value) => setMostrarValor(value)}
                 onValueChange={(value) => {setValor(value); setNovoValorPromocional(props.params.price - (props.params.price * (value / 100)))}}
-                
-                /**
-                 * props.params.price - (props.params.price * (valor / 100))
-                 * 
-                 */
                 trackStyle={{
                   height: 10,
                   backgroundColor: "blue",
@@ -168,8 +136,8 @@ const SimpleModal = (props) => {
               onPress={() => {
                 atualizarPromocao();
                 console.log(novoValorPromocional, "->>",valor);
-                closeModal(false)
-                props.navigation.navigate('ProdList');
+                closeModal(false);
+                props.setAtualizar(props.atualizarPromo);
               }}
             >
               <Text style={(styles.text, { color: "blue" })}>Aplicar</Text>
@@ -207,7 +175,6 @@ const styles = StyleSheet.create({
   },
   textView: {
     flex: 1,
-    //alignItems: "center",
   },
   text: {
     margin: 5,

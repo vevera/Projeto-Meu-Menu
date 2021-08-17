@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {Modal} from 'react-native';
 import {View} from 'react-native';
@@ -18,28 +18,8 @@ import {Swipeable} from 'react-native-gesture-handler';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import * as data from '../../connection.json';
 
-export const addData = [
-  {
-    id: '1',
-    title: 'Opção Adicional 1',
-    price: 1,
-  },
-  {
-    id: '2',
-    title: 'Opção Adicional 2',
-    price: 3,
-  },
-  {
-    id: '3',
-    title: 'Opção Adicional 3',
-    price: 2,
-  },
-  {
-    id: '4',
-    title: 'Opção Adicional 4',
-    price: 1,
-  },
-];
+import { getAdditionalOptions, addAdditionalOptions, deleteAdditionalOptions, getPromotionalPrice } from '../../conn/produtos.js'
+
 
 function ListaOp() {
   return (
@@ -64,39 +44,42 @@ const Separator = () => (
   <View style={{flex: 1, height: 1, backgroundColor: '#FFF'}} />
 );
 
-const RenderItem = ({item}) => {
-  //const [shouldShow, setshouldShow] = useState(false);
-  const Remove = () => {
-    function removerAdicional() {
-      console.log('remover opção adicional');
-    }
+function removerAdicional(idLoja, idProd, id) {
+  deleteAdditionalOptions(idLoja, idProd, id);
+}
 
-    return (
-      <View
+const Remove = ({idLoja, id, product_id, atualizarData, setAtualizarData}) => {
+  return (
+    <View
+      style={{
+        flexDirection: 'column',
+        justifyContent: 'center',
+        backgroundColor: '#f8f8ff',
+      }}>
+      <TouchableOpacity
         style={{
-          flexDirection: 'column',
+          backgroundColor: 'red',
+          width: 70,
+          height: 70,
+          borderRadius: 10,
           justifyContent: 'center',
-          backgroundColor: '#f8f8ff',
-        }}>
-        <TouchableOpacity
-          style={{
-            backgroundColor: 'red',
-            width: 70,
-            height: 70,
-            borderRadius: 10,
-            justifyContent: 'center',
-          }}
-          onPress={removerAdicional()}>
-          <Icon type="font-awesome" name="trash" size={45} color="white" />
-        </TouchableOpacity>
-      </View>
-    );
-  };
+        }}
+        onPress={() => {removerAdicional(idLoja, product_id, id); setAtualizarData(!atualizarData)}}>
+        <Icon type="font-awesome" name="trash" size={45} color="white" />
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const RenderItem = ({item, idLoja, atualizarData, setAtualizarData}) => {
+
+  //const [shouldShow, setshouldShow] = useState(false);
+  
   return (
     <SafeAreaView>
-      <Swipeable renderRightActions={Remove}>
+      <Swipeable renderRightActions={() => <Remove atualizarData ={atualizarData} setAtualizarData = {setAtualizarData} idLoja = {idLoja} id = {item.id} product_id = {item.product_id}/>}>
         <Text style={style.item}>
-          {item.title}
+          {item.name}
           {'\n'}
           Valor: R${item.price}
         </Text>
@@ -105,16 +88,46 @@ const RenderItem = ({item}) => {
   );
 };
 
-const itemsListArr = addData.map(item => (
-  <RenderItem key={item.id} item={item} />
-));
+const OpcoesAdicionais = ({atualizarOpcoesData, setAtualizarData, idLoja, idProd}) =>{
+
+
+  const[addData, setAddData] = useState(null);
+  const [itemsListArr, setItemsListArr] = useState([]);
+
+  useEffect(() => {
+    getAdditionalOptions(idLoja, idProd)
+    .then(resp => setAddData(resp))
+
+  }, [atualizarOpcoesData])
+
+  useEffect(() => {
+
+    if(addData != null){
+      setItemsListArr(
+        addData.map(item => (
+          <RenderItem key={item.id} item={item} idLoja = {idLoja} atualizarData = {atualizarOpcoesData} setAtualizarData = {setAtualizarData}/>
+        ))
+      )
+    }
+      
+  }, [addData])
+
+  return (
+
+      <SafeAreaView>
+          {itemsListArr}
+      </SafeAreaView>
+  );
+
+};
+
 
 
 const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
   const [isModalVisible, setisModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
   const idProd = prod.id;
-  
+  console.log(idProd);
   const [nomeProduto, setNomeProduto] = useState(prod.name);
   const [precoProduto, setPrecoProduto] = useState(prod.price.toString());
   const [infoProduto, setInfoProduto] = useState(prod.description);
@@ -139,7 +152,6 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
       },
     )
     .then(resposta => resposta.text())
-    .then(resposta => console.log(resposta))
     .catch(error => console.log(error));
 
   };
@@ -162,9 +174,29 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
     );
   }
 
-  function promocaoAtiva(preco_normal, promocao, nome) {
-    if (promocao != null) {
-      const [disconto, setDisconto] = useState(100 - ((promocao * 100)/preco_normal));
+  const PromocaoAtiva = ({preco_normal, promocao, nome, atualizarPromo, setAtualizarData}) => {
+
+    const[promocaoPrice, setPromocaoPrice] = useState({promotional_price: null});
+
+    const [disconto, setDisconto] = useState(0);
+
+    useEffect(()=> {
+   
+      getPromotionalPrice(idLoja, idProd)
+      .then(res => {
+        if(res != null){
+          setPromocaoPrice(res);    
+        }  
+      })
+       
+    }, [atualizarPromo])
+
+    useEffect(() => {
+      setDisconto(promocaoPrice.promotional_price === null? 0 : 100 - ((promocaoPrice.promotional_price * 100)/preco_normal))
+    },[promocaoPrice])
+
+
+    if (promocaoPrice.promotional_price != null) {   
       return (
         <View style={{flexDirection: 'column'}}>
           <TouchableOpacity onPress={() => changeModalVisible(true)}>
@@ -172,27 +204,13 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
               Produto: {nome}
               {'\n'}
               Desconto: {disconto.toFixed(2)}%{'\n'}
-              Novo valor: R${promocao.toFixed(2)}
+              Novo valor: R${promocaoPrice.promotional_price.toFixed(2)}
               {'\n'}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={{
-              borderWidth: 1,
-              borderColor: 'rgba(0,0,0,0.2)',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 100,
-              height: 50,
-              elevation: 3,
-              backgroundColor: '#fff',
-              borderRadius: 50,
-              alignSelf: 'center',
-              marginTop: 15,
-              marginBottom: 10,
-              marginHorizontal: '1%',
-            }}
-            onPress={() => {removerPromocao()}}>
+            style={style.styleBtnAdicionarPromo}
+            onPress={() => {removerPromocao(); setAtualizarData(!atualizarPromo)}}>
             <Icon name={'remove'} size={30} color="#ff0000" />
           </TouchableOpacity>
         </View>
@@ -200,19 +218,7 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
     } else {
       return (
         <TouchableOpacity
-          style={{
-            borderWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 100,
-            height: 50,
-            elevation: 3,
-            backgroundColor: '#fff',
-            borderRadius: 50,
-            alignSelf: 'center',
-            marginBottom: 10,
-          }}
+          style={style.styleBtnRemoverPromo}
           onPress={() => {changeModalVisible(true)}}>
           <Icon name={'add'} size={30} color="#01a699" />
         </TouchableOpacity>
@@ -271,7 +277,6 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
       },
     )
       .then(resposta => resposta.text())
-      .then(resposta => console.log(resposta))
       .then(() => {
         Alert.alert('Produto atualizado com sucesso!');
       })
@@ -297,6 +302,14 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
         Alert.alert('Produto removido com sucesso!');
       });
   }
+
+  const [atualizarOpcoesData, setAtualizarData] = useState(true);
+  const [atualizarPromocaoData, setAtualizarPromocaoData] = useState(true);
+
+
+  const [nameAdd, setNameAdd] = useState('');
+  const [priceAdd, setPriceAdd] = useState('');
+
   return (
     <View>
       <ScrollView style={style.form}>
@@ -334,7 +347,7 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
         <View style={style.header}>
           <Text style={style.viewHeader}>Opções Adicionais</Text>
         </View>
-        <SafeAreaView>{itemsListArr}</SafeAreaView>
+        <OpcoesAdicionais atualizarOpcoesData = {atualizarOpcoesData} setAtualizarData = {setAtualizarData} idLoja = {idLoja} idProd = {idProd}/>
         <TouchableOpacity
           style={{
             borderWidth: 1,
@@ -357,7 +370,13 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
         <View style={style.header}>
           <Text style={style.viewHeader}>Promoção</Text>
         </View>
-        {promocaoAtiva(precoProduto, promo, nomeProduto)}
+        <PromocaoAtiva 
+          preco_normal = {precoProduto} 
+          promocao = {promo} 
+          nome = {nomeProduto} 
+          atualizarPromo = {atualizarPromocaoData}
+          setAtualizarData = {setAtualizarPromocaoData}
+        />
         <View
           style={{
             flexDirection: 'row',
@@ -438,11 +457,13 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
             params={prod}
             idLoja = {idLoja}
             navigation = {navigation}
+            atualizarPromo = {atualizarPromocaoData}
+            setAtualizar = {setAtualizarPromocaoData}
           />
         </Modal>
       </View>
 
-      <View>
+      <View style={{marginHorizontal: 20}}>
         <Modal
           style={{}}
           visible={addModalVisible}
@@ -452,7 +473,7 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
           <View
             style={{
               flex: 1,
-
+              
               justifyContent: 'center',
               backgroundColor: 'rgba(0,0,0,0.6)',
             }}>
@@ -460,18 +481,21 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
               style={{
                 backgroundColor: 'white',
                 borderRadius: 10,
-                marginHorizontal: '2%',
+                marginHorizontal: 20,
               }}>
               <Text style={style.textView}>Adicionar Opicional</Text>
               <Text style={style.textadd}>Nome do adicional</Text>
               <Input
                 placeholder="informe o nomedo adicional"
                 rightIcon={{type: 'font-awesome', name: 'edit'}}
+                onChangeText = {(name) => {setNameAdd(name)}}
               />
               <Text style={style.textadd}>Preço</Text>
               <Input
                 placeholder="informe o custo do adicional"
                 rightIcon={{type: 'font-awesome', name: 'edit'}}
+                onChangeText={priceAdd => setPriceAdd(priceAdd)}
+                keyboardType="numeric"
               />
 
               <View
@@ -496,7 +520,10 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
                     color: 'white',
                   }}
                   onPress={() => {
+                    addAdditionalOptions(idLoja, nameAdd, priceAdd, idProd);
                     setAddModalVisible(!addModalVisible);
+                    setAtualizarData(!atualizarOpcoesData);
+
                   }}
                 />
               </View>
@@ -588,14 +615,14 @@ const style = StyleSheet.create({
     alignSelf: 'center',
   },
   buttonR: {
-    marginHorizontal: '10%',
+    marginRight: 20,
     marginBottom: 40,
     marginTop: 20,
     width: '40%',
     borderRadius: 50,
   },
   buttonS: {
-    marginHorizontal: '10%',
+    marginLeft: 20,
     marginBottom: 40,
     marginTop: 20,
     width: '40%',
@@ -631,13 +658,44 @@ const style = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   textView: {
+    color: 'grey',
+    alignSelf: 'center',
     margin: 5,
     fontSize: 26,
     fontWeight: 'bold',
   },
   textadd: {
+    marginLeft: 13,
     margin: 5,
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  styleBtnAdicionarPromo: {
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 100,
+    height: 50,
+    elevation: 3,
+    backgroundColor: '#fff',
+    borderRadius: 50,
+    alignSelf: 'center',
+    marginTop: 15,
+    marginBottom: 10,
+    marginHorizontal: '1%',
+  },
+  styleBtnRemoverPromo: {
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 100,
+    height: 50,
+    elevation: 3,
+    backgroundColor: '#fff',
+    borderRadius: 50,
+    alignSelf: 'center',
+    marginBottom: 10,
   },
 });

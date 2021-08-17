@@ -10,7 +10,6 @@ export default ({route, navigation}) => {
   const [infoCategoria, setInfoCategoria] = useState(section.description);
   const idCat = section.id;
   const idLoja = section.idLoja;
-  console.log("ID LOJA =>> ", idLoja);
 
   function atualizarCategoria() {
     fetch(
@@ -49,7 +48,6 @@ export default ({route, navigation}) => {
 
   }
 
-  console.log(section);
   return (
     <View style={style.form}>
       <Text style={style.text}>Categoria</Text>
