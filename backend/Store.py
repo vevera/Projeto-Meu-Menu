@@ -63,6 +63,18 @@ class Store:
             RETURNING *
         """, [name, description, category_id]).to_dict(orient = 'records')[0]
 
+    def update_payment(self, aceita_credito, aceita_debito, aceita_dinheiro, aceita_pix):
+        return self.conn.read_query("""
+            UPDATE store
+            SET 
+            aceita_credito = %s,
+            aceita_debito = %s,
+            aceita_dinheiro = %s,
+            aceita_pix = %s
+            WHERE id = %s
+            RETURNING *
+        """, [aceita_credito, aceita_debito, aceita_dinheiro, aceita_pix, self.store_id]).to_dict(orient = 'records')[0]
+
     def products(self):
         data = self.conn.read_query("""
             SELECT product.id, product.name, product.description, product.price, product.category_id, product.photo

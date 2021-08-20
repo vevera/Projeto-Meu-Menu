@@ -7,7 +7,7 @@ CONNECTION = {
     'port': 5432,
     'database': 'meumenu',
     'user': 'postgres',
-    'password': '999590188aA'
+    'password': 'postgres'
 }
 conn = DatabaseDAO(**CONNECTION)
 conn.DEBUG = False
@@ -48,6 +48,15 @@ def app_store_information():
         return data.to_dict(orient = 'records')[0]
     else:
         return make_response("Non Authorized", 401)
+
+@app.route("/store/<store_id>/payment", methods = ["PUT"])
+def app_payment(store_id):
+
+    store = Store(conn, store_id)
+
+    if request.method == 'PUT':
+        data = request.get_json()
+        return jsonify(store.update_payment(**data))
 
 @app.route("/store/<store_id>/categories", methods = ["GET", "POST", "PUT", "DELETE"])
 def app_categories(store_id):
