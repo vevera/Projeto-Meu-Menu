@@ -1,0 +1,10 @@
+ALTER TABLE store ADD COLUMN aceita_credito boolean NOT NULL DEFAULT FALSE;
+ALTER TABLE store ADD COLUMN aceita_debito boolean NOT NULL DEFAULT FALSE;
+ALTER TABLE store ADD COLUMN aceita_dinheiro boolean NOT NULL DEFAULT FALSE;
+ALTER TABLE store ADD COLUMN aceita_pix boolean NOT NULL DEFAULT FALSE;
+
+select * from product
+
+ALTER TABLE product ADD CONSTRAINT uniq UNIQUE (category_id, name);
+
+ALTER TABLE category ADD CONSTRAINT uniq2 UNIQUE (store_id, name);

@@ -1,0 +1,10 @@
+
+
+pg_dump -h ec2-18-231-183-113.sa-east-1.compute.amazonaws.com -p 5432 -U postgres --clean --create --no-owner --verbose -F directory -f meumenu2 meumenu
+
+
+
+
+pg_restore -h HOST -p 5432 -U postgres --role=postgres --no-owner --verbose -F directory -d meu_menu meumenu2
+
+
