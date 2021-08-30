@@ -77,7 +77,6 @@ const RenderMetodoDePagamentoPix = ({texto}) => {
                         placeholder = 'Digite...'
                         defaultValue = {chave}
                         editable= {editable}
-
                     />
                     <Icon  
                         color = 'green' 
@@ -113,7 +112,7 @@ const MetodosDePagementoSection = () => {
 
     return (
         <SafeAreaView>
-            < OptionsHeader title = 'Metodos de Pagamento' buttonAdd = {false}/>
+            <OptionsHeader title = 'Metodos de Pagamento' buttonAdd = {false}/>
             <MetodosDePagemento />
         </SafeAreaView>
     );

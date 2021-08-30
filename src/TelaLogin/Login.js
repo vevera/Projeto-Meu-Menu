@@ -111,13 +111,7 @@ export default ({navigation}) => {
           </TouchableOpacity>
         )}
 
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('CadastroLogin');
-          }}
-          style={styles.btnregister}>
-          <Text style={styles.textregister}>Cadastrar</Text>
-        </TouchableOpacity>
+        
       </View>
     </KeyboardAvoidingView>
   );

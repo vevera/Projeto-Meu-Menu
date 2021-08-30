@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import {TextInput, Text, View, StyleSheet, Alert} from 'react-native';
 import {Button, Input, Icon} from 'react-native-elements';
 import * as data from '../../connection.json';
+import {styleCadastroCategoria} from './StyleItem.js'
+
+import {cadastrarCategoria} from '../../conn/categoria.js'
 
 export default ({route, navigation}) => {
   
@@ -9,30 +12,9 @@ export default ({route, navigation}) => {
   const [nomeCategoria, setNomeCategoria] = useState('');
   const [infoCategoria, setInfoCategoria] = useState('');
 
-  function cadastrarCategoria() {
-    fetch(
-      `${data.endereco}store/${encodeURIComponent(idLoja)}/categories`,
-      {
-        method: 'POST',
-        headers: new Headers({
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify({
-          name: nomeCategoria,
-          description: infoCategoria,
-        }),
-      },
-    )
-      .then(resposta => resposta.text())
-      .then(resposta => console.log(resposta))
-      .catch(error => console.log(error));
-
-  }
-
   return (
-    <View style={style.form}>
-      <Text style={style.text}>Categoria</Text>
+    <View style={styleCadastroCategoria.form}>
+      <Text style={styleCadastroCategoria.text}>Categoria</Text>
       <Input
         onChangeText={text => {
           setNomeCategoria(text);
@@ -40,7 +22,7 @@ export default ({route, navigation}) => {
         placeholder="informe o nome da Categoria"
         rightIcon={{type: 'font-awesome', name: 'edit'}}
       />
-      <Text style={style.text}>Descrição</Text>
+      <Text style={styleCadastroCategoria.text}>Descrição</Text>
       <Input
         onChangeText={text => {
           setInfoCategoria(text);
@@ -50,14 +32,10 @@ export default ({route, navigation}) => {
         rightIcon={{type: 'font-awesome', name: 'edit'}}
       />
       <Button
-        containerStyle={style.buttonS}
+        containerStyle={styleCadastroCategoria.buttonS}
         title="Salvar"
         type="clear"
-        titleStyle={{
-          color: 'blue',
-          fontWeight: 'bold',
-          textDecorationLine: 'underline',
-        }}
+        titleStyle={styleCadastroCategoria.titleButton}
         onPress={() => {
           Alert.alert(
             'Salvar Alterações',
@@ -69,11 +47,10 @@ export default ({route, navigation}) => {
               },
               {
                 text: 'CONFIRMAR',
-                // TESTAR AQUI
                 onPress: () => {
                   (nomeCategoria === '') | (nomeCategoria === '')
                     ? {}
-                    : cadastrarCategoria() 
+                    : cadastrarCategoria(idLoja, nomeCategoria, infoCategoria) 
                     navigation.navigate('ProdList');
                 },
               },
@@ -85,27 +62,3 @@ export default ({route, navigation}) => {
     </View>
   );
 };
-
-const style = StyleSheet.create({
-  form: {
-    padding: 12,
-  },
-  input: {
-    height: 40,
-    borderColor: 'grey',
-    borderWidth: 1,
-    marginBottom: 15,
-  },
-  text: {
-    padding: 10,
-    fontSize: 20,
-  },
-  buttonS: {
-    alignSelf: 'center',
-    marginHorizontal: '10%',
-    marginBottom: 40,
-    marginTop: 20,
-    width: '40%',
-    borderRadius: 50,
-  },
-});

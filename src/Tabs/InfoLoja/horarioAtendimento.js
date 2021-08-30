@@ -5,9 +5,8 @@ import { View, SafeAreaView, Text} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {Picker} from '@react-native-picker/picker';
 import { Swipeable } from 'react-native-gesture-handler';
-
 import OptionsHeader from './optionsHeader';
-import * as data from '../../connection.json';
+import {adicionarHorario, deletaHorario, setaDadosHorario} from '../../conn/horarioAtendimento.js';
 
 const TimePicker = ({setTime,texto}) => {
     const [isDisabled, setIsDisabled] = useState(true);
@@ -61,23 +60,9 @@ const NovoHorarioAtendimento = ({idLoja, setModalAtiva, modalAtiva, setAtualizar
     const [horaInicio, setHoraInicio] = useState(new Date());
     const [horaFim, setHoraFim] = useState(new Date());
 
-    function adicionarHorario() {
+    function addHorario() {
 
-        fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/schedules`, {
-            method: 'POST',
-            headers: new Headers({
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }),
-            body: JSON.stringify({
-                dow_start: diaInicio,
-                dow_end: diaFim,
-                opens_at: horaInicio.getHours() + ":" + horaInicio.getMinutes(),
-                closes_at: horaFim.getHours() +":"+ horaFim.getMinutes(),
-           })
-        })
-        .then(resposta => resposta.text())
-        .then(article => {console.log(article)})
+        adicionarHorario(idLoja, diaInicio, diaFim, horaInicio, horaFim)
         .then(() => {setAtualizarData(!atualizarData)})
         .catch(error  => console.log(error))
 
@@ -105,7 +90,7 @@ const NovoHorarioAtendimento = ({idLoja, setModalAtiva, modalAtiva, setAtualizar
             </View>
             <TouchableOpacity 
                 style = {stylesInfoLoja.CadastrarHorarioAtendimentoBotao}
-                onPress ={() => {setModalAtiva(!modalAtiva); adicionarHorario();}}
+                onPress ={() => {setModalAtiva(!modalAtiva); addHorario();}}
             >
                 <Text style = {stylesInfoLoja.CadastrarHorarioAtendimentoText}>
                     Adicionar
@@ -126,18 +111,7 @@ const RenderHorario = ({idLoja, item, setAtualizarData, atualizarData}) =>{
 
         function Delete() {
             
-            fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/schedules/delete`, {
-                method: 'POST',
-                headers: new Headers({
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }),
-                body: JSON.stringify({
-                    schedule_id: item.id,
-               })
-            })
-            .then(res => res.text()) // or res.json()
-            .then(res => console.log(res))
+            deletaHorario(idLoja, item.id)
             .then(() => {setAtualizarData(!atualizarData)})
             .catch(error  => console.log(error))
 
@@ -181,37 +155,17 @@ const HorariosDeAtendimento = ({idLoja, atualizarData, setAtualizarData}) => {
     const [DataHorarios, setDataHorarios] = useState("");
     const [listHorarios, setListHorarios] = useState(null);
 
-    function timeout(ms, promise) {
-        return new Promise((resolve, reject) => {
-          const timer = setTimeout(() => {
-            reject(new Error('TIMEOUT'))
-          }, ms)
-      
-          promise
-            .then(value => {
-              clearTimeout(timer)
-              resolve(value)
-            })
-            .catch(reason => {
-              clearTimeout(timer)
-              reject(reason)
-            })
-        })
-    }
-
     async function setaDados() {
         
-        fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/schedules`, {
-            method: 'GET',
-        })
-        .then(resposta => {console.log(resposta); return resposta.json()})
+        setaDadosHorario(idLoja)
+        .then(resposta => resposta.json())
         .then(article => setDataHorarios(article))
         .catch(error => console.log(error))
 
     }
     useEffect(() => {
 
-        setTimeout(setaDados,100);
+        setaDados();
        
     },[atualizarData])
 

@@ -9,6 +9,9 @@ CONNECTION = {
     'user': 'postgres',
     'password': 'CBeHf*n8ew4E'
 }
+
+#'password': 'CBeHf*n8ew4E'
+#ec2-18-231-183-113.sa-east-1.compute.amazonaws.com
 conn = DatabaseDAO(**CONNECTION, nconn = 10)
 conn.DEBUG = False
 
@@ -49,7 +52,7 @@ def app_store_information():
     else:
         return make_response("Non Authorized", 401)
 
-@app.route("/store/<store_id>/payment", methods = ["PUT"])
+@app.route("/store/<store_id>/payment", methods = ["PUT","GET"])
 def app_payment(store_id):
 
     store = Store(conn, store_id)
@@ -57,6 +60,11 @@ def app_payment(store_id):
     if request.method == 'PUT':
         data = request.get_json()
         return jsonify(store.update_payment(**data))
+    
+    if request.method == 'GET':
+        return jsonify(store.get_payment())
+    
+    
 
 @app.route("/store/<store_id>/categories", methods = ["GET", "POST", "PUT", "DELETE"])
 def app_categories(store_id):

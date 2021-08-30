@@ -9,6 +9,8 @@ import OptionsHeader from './optionsHeader';
 
 import * as data from '../../connection.json';
 
+import {adicionarEspecialidade, deleteEspecialidade, setaDados} from '../../conn/especialidades.js';
+
 let row = [];
 
 const Item = ({item, itemTouchIconContainer, itemStyle, textStyle,  touchItemStyle, indice}) => {
@@ -31,30 +33,11 @@ const NovaEspecialideComponent = ({idLoja, setModalAtiva, modalAtiva, atualizarD
 
     const [especialidade, setEspecialidade] = useState("");
 
-    function adicionarEspecialidade(novaEspecialidade) {
+    function addEspecilidade() {
 
-        var listaDeEspecialidades = especialidadesAtuais;
-        if ((/[a-z0-9]/i.test(especialidade))){
-            listaDeEspecialidades.push(novaEspecialidade);
-        }
+        adicionarEspecialidade(especialidade, especialidadesAtuais, idLoja)
+        .then(() => {setAtualizarData(!atualizarData)});
         
-        console.log(listaDeEspecialidades);
-
-        fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/specialtys`, {
-            method: 'PUT',
-            headers: new Headers({
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }),
-            body: JSON.stringify({
-                specialtys: listaDeEspecialidades,
-           })
-        })
-        .then(resposta => resposta.text())
-        .then(article => {console.log(article)})
-        .then(() => {setAtualizarData(!atualizarData)})
-        .catch(error  => console.log(error))
-
     }
 
     return (
@@ -73,7 +56,10 @@ const NovaEspecialideComponent = ({idLoja, setModalAtiva, modalAtiva, atualizarD
 
             <TouchableOpacity 
                 style = {stylesInfoLoja.CadastrarHorarioAtendimentoBotao}
-                onPress ={() => {setModalAtiva(!modalAtiva); adicionarEspecialidade(especialidade)}}
+                onPress ={() => {
+                    setModalAtiva(!modalAtiva); 
+                    addEspecilidade();
+                }}
             >
                 <Text style = {stylesInfoLoja.CadastrarHorarioAtendimentoText}>
                     Adicionar
@@ -90,26 +76,10 @@ const RenderEspecialidade = ({idLoja, item, indice, atualizarData, setAtualizarD
 
         function Delete() {
             
-            var listaDeEspecialidades = especialidadesAtuais;
-            listaDeEspecialidades.splice(indice, 1);
-        
-            console.log(listaDeEspecialidades);
-
-            fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/specialtys`, {
-                method: 'PUT',
-                headers: new Headers({
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }),
-                body: JSON.stringify({
-                    specialtys: listaDeEspecialidades,
-            })
-            })
-            .then(resposta => resposta.text())
-            .then(article => {console.log(article)})
+            deleteEspecialidade(especialidadesAtuais, indice, idLoja)
             .then(() => {row[indice].close()})
             .then(() => {setAtualizarData(!atualizarData)})
-            .catch(error  => console.log(error))
+            
         }
 
         return (
@@ -146,38 +116,17 @@ const Especialidades = ({idLoja, atualizarData, setAtualizarData, setListaDeEspe
     const [dadosEspecialidades, setDadosEspecialidades] = useState("");
     const [listEspecialidades, setListEspecialidades] = useState(null);
     
-    function timeout(ms, promise) {
-        return new Promise((resolve, reject) => {
-          const timer = setTimeout(() => {
-            reject(new Error('TIMEOUT'))
-          }, ms)
-      
-          promise
-            .then(value => {
-              clearTimeout(timer)
-              resolve(value)
-            })
-            .catch(reason => {
-              clearTimeout(timer)
-              reject(reason)
-            })
-        })
-    }
+    async function getEspecialidades() {
 
-    async function setaDados() {
-
-        timeout(1000, fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/specialtys`, {
-            method: 'GET',
-        }))
-        .then(resposta => {console.log(resposta); return resposta.json()})
+        setaDados(idLoja)
         .then(article => setDadosEspecialidades(JSON.parse(article)))
         .catch(error => console.log(error))
     }
+
     useEffect(()=> {
 
-        setaDados();
-        
-
+        getEspecialidades();
+    
     },[atualizarData])
 
     useEffect(() => {

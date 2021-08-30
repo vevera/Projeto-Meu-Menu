@@ -74,7 +74,14 @@ class Store:
             WHERE id = %s
             RETURNING *
         """, [aceita_credito, aceita_debito, aceita_dinheiro, aceita_pix, self.store_id]).to_dict(orient = 'records')[0]
-
+        
+    def get_payment(self):
+        return self.conn.read_query("""
+            SELECT s.aceita_credito, s.aceita_debito, s.aceita_dinheiro, s.aceita_pix
+            FROM store s
+            WHERE id = %s
+        """, [self.store_id]).to_dict(orient = 'records')[0]
+        
     def products(self):
         data = self.conn.read_query("""
             SELECT product.id, product.name, product.description, product.price, product.category_id, product.photo

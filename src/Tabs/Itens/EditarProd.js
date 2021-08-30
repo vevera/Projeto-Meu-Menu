@@ -17,6 +17,7 @@ import {SimpleModal} from './SimpleModal';
 import {Swipeable} from 'react-native-gesture-handler';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import * as data from '../../connection.json';
+import {styleEditarProduto} from './StyleItem.js'
 
 import { getAdditionalOptions, addAdditionalOptions, deleteAdditionalOptions, getPromotionalPrice } from '../../conn/produtos.js'
 
@@ -51,19 +52,9 @@ function removerAdicional(idLoja, idProd, id) {
 const Remove = ({idLoja, id, product_id, atualizarData, setAtualizarData}) => {
   return (
     <View
-      style={{
-        flexDirection: 'column',
-        justifyContent: 'center',
-        backgroundColor: '#f8f8ff',
-      }}>
+      style={styleEditarProduto.viewRemove}>
       <TouchableOpacity
-        style={{
-          backgroundColor: 'red',
-          width: 70,
-          height: 70,
-          borderRadius: 10,
-          justifyContent: 'center',
-        }}
+        style={styleEditarProduto.touchableRemove}
         onPress={() => {removerAdicional(idLoja, product_id, id); setAtualizarData(!atualizarData)}}>
         <Icon type="font-awesome" name="trash" size={45} color="white" />
       </TouchableOpacity>
@@ -72,13 +63,11 @@ const Remove = ({idLoja, id, product_id, atualizarData, setAtualizarData}) => {
 };
 
 const RenderItem = ({item, idLoja, atualizarData, setAtualizarData}) => {
-
-  //const [shouldShow, setshouldShow] = useState(false);
   
   return (
     <SafeAreaView>
       <Swipeable renderRightActions={() => <Remove atualizarData ={atualizarData} setAtualizarData = {setAtualizarData} idLoja = {idLoja} id = {item.id} product_id = {item.product_id}/>}>
-        <Text style={style.item}>
+        <Text style={styleEditarProduto.item}>
           {item.name}
           {'\n'}
           Valor: R${item.price}
@@ -163,10 +152,10 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
 
   function temImagem(imagem) {
     return (imagem != '') ? (
-      <Image style={style.imagem} source={{uri: `data:image/jpg;base64,${imagem}`}} />
+      <Image style={styleEditarProduto.imagem} source={{uri: `data:image/jpg;base64,${imagem}`}} />
     ) : (
       <Image
-        style={style.imagem}
+        style={styleEditarProduto.imagem}
         source={{
           uri: 'https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png',
         }}
@@ -200,7 +189,7 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
       return (
         <View style={{flexDirection: 'column'}}>
           <TouchableOpacity onPress={() => changeModalVisible(true)}>
-            <Text style={style.itemP}>
+            <Text style={styleEditarProduto.itemP}>
               Produto: {nome}
               {'\n'}
               Desconto: {disconto.toFixed(2)}%{'\n'}
@@ -209,7 +198,7 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={style.styleBtnAdicionarPromo}
+            style={styleEditarProduto.styleBtnAdicionarPromo}
             onPress={() => {removerPromocao(); setAtualizarData(!atualizarPromo)}}>
             <Icon name={'remove'} size={30} color="#ff0000" />
           </TouchableOpacity>
@@ -218,7 +207,7 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
     } else {
       return (
         <TouchableOpacity
-          style={style.styleBtnRemoverPromo}
+          style={styleEditarProduto.styleBtnRemoverPromo}
           onPress={() => {changeModalVisible(true)}}>
           <Icon name={'add'} size={30} color="#01a699" />
         </TouchableOpacity>
@@ -312,7 +301,7 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
 
   return (
     <View>
-      <ScrollView style={style.form}>
+      <ScrollView style={styleEditarProduto.form}>
         {temImagem(base64Image)}
         <TouchableOpacity style={{alignItems: 'center'}} onPress={chooseFile}>
           <Text style={{fontWeight: 'bold', textDecorationLine: 'underline'}}>
@@ -320,14 +309,14 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
           </Text>
         </TouchableOpacity>
         <View>
-          <Text style={style.text}>Produto</Text>
+          <Text style={styleEditarProduto.text}>Produto</Text>
           <Input
             onChangeText={name => setNomeProduto(name)}
             placeholder="informe o nome do produto"
             rightIcon={{type: 'font-awesome', name: 'edit'}}
             value={nomeProduto ? nomeProduto : ''}
           />
-          <Text style={style.text}>Preço</Text>
+          <Text style={styleEditarProduto.text}>Preço</Text>
           <Input
             onChangeText={price => setPrecoProduto(price)}
             placeholder="informe o preço do produto"
@@ -335,40 +324,27 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
             keyboardType="numeric"
             value={precoProduto.toString() ? precoProduto.toString() : ''}
           />
-          <Text style={style.text}>Informações</Text>
+          <Text style={styleEditarProduto.text}>Informações</Text>
           <Input
             onChangeText={info => setInfoProduto(info)}
             placeholder="informe o preço do produto"
             rightIcon={{type: 'font-awesome', name: 'edit'}}
-            //keyboardType="numeric"
             value={infoProduto ? infoProduto : ''}
           />
         </View>
-        <View style={style.header}>
-          <Text style={style.viewHeader}>Opções Adicionais</Text>
+        <View style={styleEditarProduto.header}>
+          <Text style={styleEditarProduto.viewHeader}>Opções Adicionais</Text>
         </View>
         <OpcoesAdicionais atualizarOpcoesData = {atualizarOpcoesData} setAtualizarData = {setAtualizarData} idLoja = {idLoja} idProd = {idProd}/>
         <TouchableOpacity
-          style={{
-            borderWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 100,
-            height: 50,
-            elevation: 3,
-            backgroundColor: '#fff',
-            borderRadius: 50,
-            alignSelf: 'center',
-            marginBottom: 10,
-          }}
+          style={styleEditarProduto.buttonAddOP}
           onPress={() => {
             setAddModalVisible(!addModalVisible);
           }}>
           <Icon name={'add'} size={30} color="#01a699" />
         </TouchableOpacity>
-        <View style={style.header}>
-          <Text style={style.viewHeader}>Promoção</Text>
+        <View style={styleEditarProduto.header}>
+          <Text style={styleEditarProduto.viewHeader}>Promoção</Text>
         </View>
         <PromocaoAtiva 
           preco_normal = {precoProduto} 
@@ -378,19 +354,12 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
           setAtualizarData = {setAtualizarPromocaoData}
         />
         <View
-          style={{
-            flexDirection: 'row',
-            alignSelf: 'center',
-          }}>
+          style={styleEditarProduto.viewButtons}>
           <Button
-            containerStyle={style.buttonR}
+            containerStyle={styleEditarProduto.buttonR}
             title="Remover"
             type="clear"
-            titleStyle={{
-              color: 'red',
-              fontWeight: 'bold',
-              textDecorationLine: 'underline',
-            }}
+            titleStyle={styleEditarProduto.buttonRTitle}
             onPress={() => {
               Alert.alert(
                 'Remover produto',
@@ -398,7 +367,6 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
                 [
                   {
                     text: 'CANCELAR',
-                    onPress: () => {},
                   },
                   {
                     text: 'CONFIRMAR',
@@ -413,14 +381,10 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
             }}
           />
           <Button
-            containerStyle={style.buttonS}
+            containerStyle={styleEditarProduto.buttonS}
             title="Salvar"
             type="clear"
-            titleStyle={{
-              color: 'blue',
-              fontWeight: 'bold',
-              textDecorationLine: 'underline',
-            }}
+            titleStyle={styleEditarProduto.buttonSTitle}
             onPress={() => {
               Alert.alert(
                 'Salvar alterações',
@@ -428,7 +392,6 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
                 [
                   {
                     text: 'CANCELAR',
-                    onPress: {},
                   },
                   {
                     text: 'CONFIRMAR',
@@ -465,32 +428,22 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
 
       <View style={{marginHorizontal: 20}}>
         <Modal
-          style={{}}
           visible={addModalVisible}
           transparent={true}
           animationType="fade"
           backgroundColor="rgba(0, 0, 0, 0.4)">
           <View
-            style={{
-              flex: 1,
-              
-              justifyContent: 'center',
-              backgroundColor: 'rgba(0,0,0,0.6)',
-            }}>
+            style={styleEditarProduto.viewModal1}>
             <View
-              style={{
-                backgroundColor: 'white',
-                borderRadius: 10,
-                marginHorizontal: 20,
-              }}>
-              <Text style={style.textView}>Adicionar Opicional</Text>
-              <Text style={style.textadd}>Nome do adicional</Text>
+              style={styleEditarProduto.viewModal2}>
+              <Text style={styleEditarProduto.textView}>Adicionar Opicional</Text>
+              <Text style={styleEditarProduto.textadd}>Nome do adicional</Text>
               <Input
                 placeholder="informe o nomedo adicional"
                 rightIcon={{type: 'font-awesome', name: 'edit'}}
                 onChangeText = {(name) => {setNameAdd(name)}}
               />
-              <Text style={style.textadd}>Preço</Text>
+              <Text style={styleEditarProduto.textadd}>Preço</Text>
               <Input
                 placeholder="informe o custo do adicional"
                 rightIcon={{type: 'font-awesome', name: 'edit'}}
@@ -504,7 +457,7 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
                   alignSelf: 'center',
                 }}>
                 <Button
-                  containerStyle={style.buttonR}
+                  containerStyle={styleEditarProduto.buttonR}
                   title="Cancelar"
                   titleStyle={{
                     color: 'white',
@@ -514,7 +467,7 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
                   }}
                 />
                 <Button
-                  containerStyle={style.buttonS}
+                  containerStyle={styleEditarProduto.buttonS}
                   title="Adicionar"
                   titleStyle={{
                     color: 'white',
@@ -545,157 +498,3 @@ export default ({route, navigation}) => {
     <RenderProdutoInformacoes prod = {prod} idLoja = {idLoja} navigation = {navigation}/>
   );
 };
-
-const style = StyleSheet.create({
-  viewHeader: {
-    fontSize: 23,
-    marginLeft: 10,
-    fontWeight: 'bold',
-    height: 40,
-    color: 'white',
-    fontStyle: 'italic',
-    textDecorationLine: 'underline',
-  },
-  modalAdicionar: {
-    flex: 1,
-    backgroundColor: 'green',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  form: {
-    backgroundColor: 'white',
-    flex: 0,
-    padding: 12,
-  },
-  input: {
-    height: 40,
-    borderColor: 'grey',
-    borderWidth: 1,
-    marginBottom: 15,
-  },
-  text: {
-    fontWeight: 'bold',
-    padding: 10,
-    fontSize: 20,
-  },
-  text2: {
-    padding: 10,
-    fontSize: 30,
-
-    //textAlign: "center",
-  },
-  header: {
-    width: '100%',
-    justifyContent: 'center',
-    height: 40,
-    backgroundColor: '#18BC9C',
-    borderRadius: 10,
-  },
-  item: {
-    flexDirection: 'row',
-    padding: 10,
-    fontSize: 20,
-    marginTop: 2,
-    marginBottom: 4,
-    backgroundColor: '#f8f8ff',
-    borderRadius: 8,
-    width: '95%',
-    height: 80,
-    alignSelf: 'center',
-  },
-  itemP: {
-    padding: 10,
-    fontSize: 20,
-    marginTop: 2,
-    marginBottom: 4,
-    backgroundColor: '#f8f8ff',
-    borderRadius: 8,
-    width: '95%',
-    //height: 80,
-    alignSelf: 'center',
-  },
-  buttonR: {
-    marginRight: 20,
-    marginBottom: 40,
-    marginTop: 20,
-    width: '40%',
-    borderRadius: 50,
-  },
-  buttonS: {
-    marginLeft: 20,
-    marginBottom: 40,
-    marginTop: 20,
-    width: '40%',
-    borderRadius: 50,
-  },
-  imagem: {
-    width: '100%',
-    height: 300,
-    marginBottom: 14,
-  },
-  btnAdd: {
-    marginBottom: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    //elevation: 3,
-    backgroundColor: 'white',
-  },
-  btnProm: {
-    marginBottom: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    //elevation: 3,
-    backgroundColor: 'white',
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#FFF',
-  },
-  textView: {
-    color: 'grey',
-    alignSelf: 'center',
-    margin: 5,
-    fontSize: 26,
-    fontWeight: 'bold',
-  },
-  textadd: {
-    marginLeft: 13,
-    margin: 5,
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  styleBtnAdicionarPromo: {
-    borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.2)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 100,
-    height: 50,
-    elevation: 3,
-    backgroundColor: '#fff',
-    borderRadius: 50,
-    alignSelf: 'center',
-    marginTop: 15,
-    marginBottom: 10,
-    marginHorizontal: '1%',
-  },
-  styleBtnRemoverPromo: {
-    borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.2)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 100,
-    height: 50,
-    elevation: 3,
-    backgroundColor: '#fff',
-    borderRadius: 50,
-    alignSelf: 'center',
-    marginBottom: 10,
-  },
-});

@@ -4,6 +4,9 @@ import {Text, Image, View, StyleSheet, Alert, ScrollView} from 'react-native';
 import {Button, Input, Icon} from 'react-native-elements';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import * as data from '../../connection.json';
+import {styleCadastroProduto} from './StyleItem.js';
+
+import {cadastrarProduto} from '../../conn/produtos.js'
 
 export default ({route, navigation}) => {
 
@@ -44,27 +47,6 @@ export default ({route, navigation}) => {
     });
   };
 
-  function cadastrarProduto() {
-    fetch(
-      `${data.endereco}store/${encodeURIComponent(idLoja)}/products`,
-      {
-        method: 'POST',
-        headers: new Headers({
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify({
-          name: nomeProduto,
-          description: infoProduto,
-          price: precoProduto,
-          photo: base64Image,
-          category_id: idCat,
-        }),
-      },
-    )
-    .catch(error => console.log(error));
-  }
-
   return (
     <ScrollView>
       <View>
@@ -72,10 +54,7 @@ export default ({route, navigation}) => {
           <View>
             {base64Image === '' ? (
               <View
-                style={{
-                  alignItems: 'center',
-                  margin: '10%',
-                }}>
+                style={styleCadastroProduto.viewImagem}>
                 <TouchableOpacity onPress={chooseFile}>
                   <Text
                     style={{
@@ -88,7 +67,7 @@ export default ({route, navigation}) => {
               </View>
             ) : (
               <Image
-                style={style.imagem}
+                style={styleCadastroProduto.imagem}
                 source={{uri: `data:image/jpg;base64,${base64Image}`}}
                 resizeMode="contain"
               />
@@ -96,7 +75,7 @@ export default ({route, navigation}) => {
           </View>
         </View>
 
-        <Text style={style.text}>Produto</Text>
+        <Text style={styleCadastroProduto.text}>Produto</Text>
         <Input
           onChangeText={text => {
             setNomeProduto(text);
@@ -104,7 +83,7 @@ export default ({route, navigation}) => {
           placeholder="informe o nome do produto"
           rightIcon={{type: 'font-awesome', name: 'edit'}}
         />
-        <Text style={style.text}>Preço</Text>
+        <Text style={styleCadastroProduto.text}>Preço</Text>
         <Input
           onChangeText={text => {
             setPrecoProduto(text);
@@ -113,7 +92,7 @@ export default ({route, navigation}) => {
           rightIcon={{type: 'font-awesome', name: 'edit'}}
           keyboardType="numeric"
         />
-        <Text style={style.text}>Informações</Text>
+        <Text style={styleCadastroProduto.text}>Informações</Text>
         <Input
           onChangeText={text => {
             setInfoProduto(text);
@@ -122,14 +101,10 @@ export default ({route, navigation}) => {
           rightIcon={{type: 'font-awesome', name: 'edit'}}
         />
         <Button
-          containerStyle={style.buttonS}
+          containerStyle={styleCadastroProduto.buttonS}
           title="Salvar"
           type="clear"
-          titleStyle={{
-            color: 'blue',
-            fontWeight: 'bold',
-            textDecorationLine: 'underline',
-          }}
+          titleStyle={styleCadastroProduto.titleButton}
           onPress={() => {
             Alert.alert(
               'Salvar Alterações',
@@ -137,12 +112,11 @@ export default ({route, navigation}) => {
               [
                 {
                   text: 'CANCELAR',
-                  onPress: () => {},
                 },
                 {
                   text: 'CONFIRMAR',
                   onPress: () => {
-                    cadastrarProduto();
+                    cadastrarProduto(idLoja, nomeProduto, infoProduto, precoProduto, base64Image, idCat);
                     navigation.navigate('ProdList', {'mudar': false})
                   },
                 },
@@ -155,58 +129,3 @@ export default ({route, navigation}) => {
     </ScrollView>
   );
 };
-
-const style = StyleSheet.create({
-  form: {
-    padding: 12,
-
-  },
-  input: {
-    height: 40,
-    borderColor: 'grey',
-    borderWidth: 1,
-    marginBottom: 15,
-  },
-  text: {
-    padding: 10,
-    fontSize: 20,
-  },
-  text2: {
-    padding: 10,
-    fontSize: 50,
-    textAlign: 'center',
-  },
-  imagem: {
-    alignSelf: 'center',
-    width: '100%',
-    height: 300,
-    marginBottom: 14,
-  },
-  buttonS: {
-    alignSelf: 'center',
-    marginHorizontal: '10%',
-    marginBottom: 40,
-    marginTop: 20,
-    width: '40%',
-    borderRadius: 50,
-  },
-});
-
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/

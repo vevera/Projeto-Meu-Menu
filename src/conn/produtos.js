@@ -63,5 +63,26 @@ async function deleteAdditionalOptions(store_id, product_id, id) {
     
 }
 
-export {getAdditionalOptions, addAdditionalOptions, deleteAdditionalOptions, getPromotionalPrice};
+function cadastrarProduto(idLoja, nomeProduto, infoProduto, precoProduto, base64Image, idCat) {
+    fetch(
+      `${data.endereco}store/${encodeURIComponent(idLoja)}/products`,
+      {
+        method: 'POST',
+        headers: new Headers({
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify({
+          name: nomeProduto,
+          description: infoProduto,
+          price: precoProduto,
+          photo: base64Image,
+          category_id: idCat,
+        }),
+      },
+    )
+    .catch(error => console.log(error));
+}
+
+export {getAdditionalOptions, addAdditionalOptions, deleteAdditionalOptions, getPromotionalPrice, cadastrarProduto};
 

@@ -15,20 +15,22 @@ import axios from 'axios';
 
 import * as data from '../../connection.json';
 import { withTheme } from 'react-native-elements';
+import {styleListaProduto} from './StyleItem.js';
+
+import {getProdutoCategoria} from '../../conn/categoria.js'
 
 function temImagem(imagem) {
   return imagem != '' ? (
     
     <Image
-      style={styles.imagem}
+      style={styleListaProduto.imagem}
       source={{
         uri: `data:image/jpg;base64,${imagem}`,
-        //uri: 'https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png',
       }}
     />
   ) : (
     <Image
-      style={styles.imagem}
+      style={styleListaProduto.imagem}
       source={{
         uri: 'https://p.kindpng.com/picc/s/79-798754_hoteles-y-centros-vacacionales-dish-placeholder-hd-png.png',
       }}
@@ -52,12 +54,12 @@ const Item = ({title, image, info, price, promotional_price}) =>
   }
 
   return(
-    <View style={styles.item}>
+    <View style={styleListaProduto.item}>
       {temImagem(image)}
       <View>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subtitulo}>{info}</Text>
-        <Text style={styles.subtitulo}>à partir de R$:{retornaPreco()}</Text>
+        <Text style={styleListaProduto.title}>{title}</Text>
+        <Text style={styleListaProduto.subtitulo}>{info}</Text>
+        <Text style={styleListaProduto.subtitulo}>à partir de R$:{retornaPreco()}</Text>
       </View>
     </View>
 )};
@@ -67,14 +69,7 @@ function Footer({section, idLoja, navigation}) {
     <View style={{marginHorizontal: '4%', marginTop: '2%', marginBottom: '2%'}}>
       <View style={{height: 40, width: '100%'}}>
         <TouchableOpacity
-          style={{
-            height: '100%',
-            width: '100%',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: '#f8f8ff',
-          }}
+          style={styleListaProduto.viewFooter}
           onPress={() => navigation.navigate('CadastroProd', {"idCat": section.section.id, "idLoja": idLoja})}>
           <Icon name="add" size={35} color="#18bc9c" />
           <Text style={{fontSize: 17, fontWeight: 'bold', color: 'black'}}>
@@ -91,14 +86,7 @@ function FooterCat({idLoja, navigation}) {
     <View style={{marginHorizontal: '4%', marginTop: '2%', marginBottom: '2%'}}>
       <View style={{height: 40}}>
         <TouchableOpacity
-          style={{
-            height: '100%',
-            width: '100%',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: '#f8f8ff',
-          }}
+          style={styleListaProduto.viewFooterCat}
           onPress={() => navigation.navigate('CadastroCat', {'idLoja': idLoja})}>
           <Icon name="add" size={35} color="#18bc9c" />
           <Text style={{fontSize: 17, fontWeight: 'bold'}}>
@@ -113,24 +101,7 @@ function FooterCat({idLoja, navigation}) {
 const ListaDeProdutosPorCategoria = ({route, idLoja, navigation}) => {
 
   const [DATA, setDATA] = useState([]);
-
-  async function getProdutoCategoria() {
-
-    try{
-      const article = await axios.get(`${data.endereco}store/${idLoja}/categories`, {
-        headers:{
-          'Content-Type': 'application/json'
-        }
-      });
-      const resposta = await article.data
-      return resposta.response;
-    }
-    catch(error){
-      return [];
-    }
-    
-  }
-    
+ 
   const isFocused = useIsFocused();
 
   useEffect(async () => {
@@ -138,7 +109,7 @@ const ListaDeProdutosPorCategoria = ({route, idLoja, navigation}) => {
     let tam = DATA.length;
     let dados1;
     do{
-      dados1 = await getProdutoCategoria();
+      dados1 = await getProdutoCategoria(idLoja);
       tam = dados1.length;
       limit += 1;
       
@@ -152,7 +123,7 @@ const ListaDeProdutosPorCategoria = ({route, idLoja, navigation}) => {
   return (
     
     <View style={{minHeight: '100%',backgroundColor: 'white'}}>
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styleListaProduto.container}>
         <SectionList
           sections={DATA}
           keyExtractor={(item, index) => item + index}
@@ -174,19 +145,12 @@ const ListaDeProdutosPorCategoria = ({route, idLoja, navigation}) => {
           )}
           renderSectionHeader={({section: {name, description, id}}) => (
             <View
-              style={{
-                justifyContent: 'center',
-                backgroundColor: '#2c3e50',
-                height: 60,
-                borderRadius: 10,
-                width: '98%',
-                alignSelf: 'center',
-              }}>
+              style={styleListaProduto.viewHeader}>
               <TouchableOpacity
                 onPress={() => navigation.navigate('EditarCat', {name, description, id, idLoja})}
                 style = {{justifyContent: 'center'}}
               >
-                <Text style={styles.header}>{name}</Text>
+                <Text style={styleListaProduto.header}>{name}</Text>
               </TouchableOpacity>
             </View>
           )}
@@ -213,51 +177,3 @@ export default function Lista({route,  navigation}) {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    //marginTop: '1%',
-    flex: 0,
-    backgroundColor: 'white',
-  },
-  item: {
-    flexDirection: 'row',
-    marginTop: 2,
-    marginBottom: 2,
-    marginTop: 2,
-    backgroundColor: '#f8f8ff',
-    borderRadius: 8,
-    width: '95%',
-    height: 80,
-    alignSelf: 'center',
-  },
-  subtitulo: {
-    fontWeight: 'bold',
-    color: 'grey',
-  },
-  subtitulo_promo: {
-    textDecorationLine: 'line-through',
-    fontWeight: 'bold',
-    color: 'grey',
-  },
-  header: {
-    marginHorizontal: '2%',
-    marginBottom: '2%',
-    width: '100%',
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: 'white',
-    fontStyle: 'italic',
-    textDecorationLine: 'underline',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  imagem: {
-    marginHorizontal: '2%',
-    alignSelf: 'flex-end',
-    width: 80,
-    height: '90%',
-    borderRadius: 10,
-  },
-});
