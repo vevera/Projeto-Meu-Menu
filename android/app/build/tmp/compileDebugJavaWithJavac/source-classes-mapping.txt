@@ -1,0 +1,14 @@
+com/meumenu/MainActivity.java
+ com.meumenu.MainActivity
+com/meumenu/MainApplication.java
+ com.meumenu.MainApplication
+ com.meumenu.MainApplication$1
+com/meumenu/BuildConfig.java
+ com.meumenu.BuildConfig
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
+com/meumenu/ReactNativeFlipper.java
+ com.meumenu.ReactNativeFlipper
+ com.meumenu.ReactNativeFlipper$1
+ com.meumenu.ReactNativeFlipper$2
+ com.meumenu.ReactNativeFlipper$2$1
