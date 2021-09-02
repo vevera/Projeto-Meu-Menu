@@ -3,6 +3,8 @@ import { TouchableOpacity} from 'react-native';
 import { View, Modal} from 'react-native';
 import {Icon} from 'react-native-elements';
 
+
+// Modal onde ficam as componente de adicionar especialidade e horario de atendimento
 const AdicionarItem = ({idLoja, Componente, buttonTitle, setAtualizarData, atualizarData, especialidesList}) => {
 
     const [modalAtiva, setModalAtiva] = useState(false);
@@ -21,7 +23,9 @@ const AdicionarItem = ({idLoja, Componente, buttonTitle, setAtualizarData, atual
         >
             <View style={stylesInfoLoja.ModalCentralizado}>
                 <View style = {stylesInfoLoja.ModalView}>
-                    <Componente
+                    <Componente 
+                        /* Componente pode ser tanto o NovoHorarioAtendimento do arquivo horarioAtendimento.js
+                        quanto NovaEspecialideComponent do arquivo especialidades.js*/
                         idLoja = {idLoja}
                         setModalAtiva = {setModalAtiva} 
                         modalAtiva = {modalAtiva} 

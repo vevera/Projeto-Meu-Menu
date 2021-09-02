@@ -5,6 +5,8 @@ import {Icon} from 'react-native-elements';
 import { Get , Update} from '../../conn/endereco';
 import {styleEndereco} from './enderecoStyle';
 
+
+//Renderiza um campo como (Pais, Cidade, Rua, Bairro)
 const CampoDoEndereco = ({nome, setEstado, secure, defaultVal}) => {
 
     const [editable, setEditable] = useState(false);
@@ -25,7 +27,7 @@ const CampoDoEndereco = ({nome, setEstado, secure, defaultVal}) => {
                         secureTextEntry = {secure}
                     />
                     <Icon 
-                        style = {styles.IconStyle} 
+                        style = {styleEndereco.IconStyle} 
                         name = 'pencil' 
                         
                         color = {color}
@@ -38,9 +40,13 @@ const CampoDoEndereco = ({nome, setEstado, secure, defaultVal}) => {
     );
 };
 
+//Retorna o endereço de uma loja com a opção de muda-lo
 export default function Endereco({route}) {
 
     const idLoja = route.params.idLoja
+
+    /*Endereço de uma loja, são inicializados com "" mas
+    serão atribuidos ao endereço cadastrado no banco de dados*/
 
     const [pais, setPais] = useState("");
     const [cidade, setCidade] = useState("");
@@ -49,6 +55,7 @@ export default function Endereco({route}) {
 
     const [mudarEndereco, setMudar] = useState(false);
 
+    //Recupera o endereço de uma loja
     async function GetAddress(){
 
         Get(idLoja)
@@ -68,7 +75,7 @@ export default function Endereco({route}) {
 
     }, [mudarEndereco])
 
-
+    //Atualiza o endereço de uma loja
     async function UpdateAddress(){
 
         Update(idLoja, pais, cidade, rua, bairro);

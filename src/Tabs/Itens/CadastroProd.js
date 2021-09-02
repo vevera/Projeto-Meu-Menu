@@ -3,20 +3,26 @@ import {TouchableOpacity} from 'react-native';
 import {Text, Image, View, StyleSheet, Alert, ScrollView} from 'react-native';
 import {Button, Input, Icon} from 'react-native-elements';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import * as data from '../../connection.json';
-import {styleCadastroProduto} from './StyleItem.js';
+import {styleCadastroProduto} from './StyleItem.js'; // E importado o estilo do arquivo StyleItem.js
+import {cadastrarProduto} from '../../conn/produtos.js';  // Aqui importamos as funcoes necessarias para fazermos a comunicacao com o banco 
 
-import {cadastrarProduto} from '../../conn/produtos.js'
-
+// Esta componente é referente a tela cadastro de produtos, Apos o usuario digitar os dados e informações do produto e clicar em salvar é feita a adição desse novo produto no banco 
 export default ({route, navigation}) => {
 
+  // Todos os const abaixo criados vão ser usados na chamada da função cadastrarProdutos
+  // É nessessario setarmos o id da loja e da categoria para podermos efetuar o cadastro
   const idLoja = route.params.idLoja;
   const idCat = route.params.idCat;
+  // Aqui temos as variaveis necessarias para serem feitas o cadastro e são modificadas a medida que o usuari digita no input
   const [nomeProduto, setNomeProduto] = useState('');
   const [precoProduto, setPrecoProduto] = useState('');
   const [infoProduto, setInfoProduto] = useState('');
   const [base64Image, setBase64Image] = useState('');
 
+  
+  // com o chosseFile sera possivel ter acesso a galeria do aparelho do usuario e este podera escolher uma imagem para o produto
+  // A imagem escolhida vai ser convertida em base64 e enviada posteriormente, caso seja clicado em salvar, ao banco
+  // aqui é utilizada a funcao launchImageLibrary
   const chooseFile = () => {
     let options = {
       mediaType: 'photo',
@@ -47,6 +53,8 @@ export default ({route, navigation}) => {
     });
   };
 
+  // Aqui temos a interface sendo composta tambem de 3 inputs no qual serão definidos pelo usuario o nome, preco e as informações do produto
+  // Temos tambem uma opção Escolha Uma Imagem que ao ser interagida abre a galeria do usuario e ele podera escolher a partir dai uma imagem para o produto
   return (
     <ScrollView>
       <View>
@@ -100,7 +108,11 @@ export default ({route, navigation}) => {
           placeholder="Informações do produto"
           rightIcon={{type: 'font-awesome', name: 'edit'}}
         />
-        <Button
+        <Button 
+        /* Temos um botão de salvar, ao clicar é acionado um alerta com opções de cancelar e confitmar 
+         * Ao clicar em CONFIRMAR é chamada a função cadastrarProduto e o navigate para a tela da lista de produtos
+         * Ao clicar em CANCELAR o salvamento é cancelado        
+        */
           containerStyle={styleCadastroProduto.buttonS}
           title="Salvar"
           type="clear"

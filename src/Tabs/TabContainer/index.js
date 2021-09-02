@@ -14,6 +14,8 @@ import StackUsuarios from '../Cadastro Usuario Comum/usuariosStack.js';
 
 const Tab = createBottomTabNavigator();
 
+
+//Contem todas as Abas do aplicatio (Home, Produtos, Informações da Loja, Endereço e Usuarios Cadastrados)
 const TabNavigator = ({route}) =>{
 
     const idLoja = route.params;

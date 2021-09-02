@@ -6,44 +6,16 @@ import {
   Alert,
   SafeAreaView,
   Text,
-  StyleSheet,
   ScrollView,
   Image,
-  FlatList,
 } from 'react-native';
 import {Button, Input, Icon} from 'react-native-elements';
-import ListItem from './ListaRender';
 import {SimpleModal} from './SimpleModal';
 import {Swipeable} from 'react-native-gesture-handler';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import * as data from '../../connection.json';
-import {styleEditarProduto} from './StyleItem.js'
+import {launchImageLibrary} from 'react-native-image-picker';
+import {styleEditarProduto} from './StyleItem.js';
 
-import { getAdditionalOptions, addAdditionalOptions, deleteAdditionalOptions, getPromotionalPrice } from '../../conn/produtos.js'
-
-
-function ListaOp() {
-  return (
-    <View>
-      <FlatList
-        data={addData}
-        keyExtractor={item => item.id}
-        renderItem={({item}) => (
-          <ListItem
-            data={item}
-            handleRight={() => alert('Opcional excluido!')}
-          />
-        )}
-        ItemSeparatorComponent={() => <Separator />}
-      />
-    </View>
-  );
-}
-
-const ShowList = <ListaOp />;
-const Separator = () => (
-  <View style={{flex: 1, height: 1, backgroundColor: '#FFF'}} />
-);
+import { getAdditionalOptions, addAdditionalOptions, deleteAdditionalOptions, getPromotionalPrice, removerPromocao, atualizarProduto, removerProduto } from '../../conn/produtos.js'
 
 function removerAdicional(idLoja, idProd, id) {
   deleteAdditionalOptions(idLoja, idProd, id);
@@ -110,8 +82,6 @@ const OpcoesAdicionais = ({atualizarOpcoesData, setAtualizarData, idLoja, idProd
 
 };
 
-
-
 const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
   const [isModalVisible, setisModalVisible] = useState(false);
   const [addModalVisible, setAddModalVisible] = useState(false);
@@ -122,28 +92,6 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
   const [infoProduto, setInfoProduto] = useState(prod.description);
   const [promo, setPromo] = useState(prod.promotional_price);
   const [base64Image, setBase64Image] = useState(prod.photo);
-
-
-  function removerPromocao() {
-
-    fetch(
-      `${data.endereco}store/${idLoja}/promotion`,
-      {
-        method: 'PUT',
-        headers: new Headers({
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify({
-          promotional_price: null,
-          product_id: idProd,
-        }),
-      },
-    )
-    .then(resposta => resposta.text())
-    .catch(error => console.log(error));
-
-  };
 
   const changeModalVisible = bool => {
 
@@ -199,7 +147,7 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styleEditarProduto.styleBtnAdicionarPromo}
-            onPress={() => {removerPromocao(); setAtualizarData(!atualizarPromo)}}>
+            onPress={() => {removerPromocao(idLoja, idProd); setAtualizarData(!atualizarPromo)}}>
             <Icon name={'remove'} size={30} color="#ff0000" />
           </TouchableOpacity>
         </View>
@@ -246,50 +194,21 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
     });
   };
 
-  function atualizarProduto() {
+  function atualizarInfoProduto() {
 
-    fetch(
-      `${data.endereco}store/${encodeURIComponent(idLoja)}/products`,
-      {
-        method: 'PUT',
-        headers: new Headers({
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify({
-          product_id: idProd,
-          name: nomeProduto,
-          description: infoProduto,
-          price: precoProduto,
-          photo: base64Image,
-        }),
-      },
-    )
-      .then(resposta => resposta.text())
-      .then(() => {
-        Alert.alert('Produto atualizado com sucesso!');
-      })
-      .catch(error => console.log(error));
+    atualizarProduto(idLoja, idProd, nomeProduto, infoProduto, precoProduto, base64Image)
+    .then(() => {
+      Alert.alert('Produto atualizado com sucesso!');
+    })
+    .catch(error => console.log(error));
   }
 
-  function removerProduto() {
-    fetch(
-      `${data.endereco}store/${encodeURIComponent(idLoja)}/products`,
-      {
-        method: 'DELETE',
-        headers: new Headers({
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify({
-          product_id: idProd,
-        }),
-      },
-    )
-      .then(resposta => resposta.text())
-      .then(() => {
-        Alert.alert('Produto removido com sucesso!');
-      });
+  function removerUmProduto() {
+    removerProduto(idLoja, idProd)
+    .then(() => {
+      Alert.alert('Produto removido com sucesso!');
+    })
+    .catch(error => console.log(error));
   }
 
   const [atualizarOpcoesData, setAtualizarData] = useState(true);
@@ -371,7 +290,7 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
                   {
                     text: 'CONFIRMAR',
                     onPress: () => {
-                      removerProduto();
+                      removerUmProduto();
                       navigation.navigate('ProdList');
                     },
                   },
@@ -396,7 +315,7 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
                   {
                     text: 'CONFIRMAR',
                     onPress: () => {
-                      atualizarProduto();
+                      atualizarInfoProduto();
                       navigation.navigate('ProdList');
                     },
                   },

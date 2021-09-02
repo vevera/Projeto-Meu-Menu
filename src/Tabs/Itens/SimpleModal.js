@@ -8,14 +8,20 @@ import {
   Dimensions,
 } from "react-native";
 import { Slider, Icon } from "react-native-elements";
+import { atualizarPromocao } from "../../conn/produtos";
+import * as data from '../../connection.json'; // importamos aqui os dados do banco para podermos fazer a comunicação
 
-import * as data from '../../connection.json';
+// Aqui serão setadas as proporções do modal tendo como referencia o tamanho da tela do celular
 
 const WIDTH = Dimensions.get("window").width;
 const HEIGHT_MODAL = 300;
 
+// SimpleModal é o modal que vai ser chamado em EditarProd quando formos fazer a edição ou cadastro de uma promoção
+
 const SimpleModal = (props) => {
 
+  // Vamos pegar o preco e o preco promocional que está em props para podermos fazer as atualizações necessarias
+  
   const price = props.params.promotional_price != null? props.params.promotional_price : props.params.price;
 
   const [mostrarValor, setMostrarValor] = useState(1);
@@ -24,35 +30,12 @@ const SimpleModal = (props) => {
   const [novoValorPromocional, setNovoValorPromocional] = useState(price);
   const idProduto = props.params.id;
 
-  
+  // Caso seja clicado algum botão é chamado ecloseModal que fecha o modal
   const closeModal = (bool) => {
     props.changeModalVisible(bool);
-   
   };
 
-  console.log("ajsholajbsidloja: ",props.idLoja);
-
-  function atualizarPromocao() {
-
-    fetch(
-      `${data.endereco}store/${props.idLoja}/promotion`,
-      {
-        method: 'PUT',
-        headers: new Headers({
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify({
-          promotional_price: novoValorPromocional,
-          product_id: idProduto,
-        }),
-      },
-    )
-    .then(resposta => resposta.text())
-    .then(resposta => console.log(resposta))
-    .catch(error => console.log(error));
-  }
-
+  // Aqui vamos ter a parte que será retornada e visualizada pelo usuário
   return (
     <View
       style={{
@@ -62,6 +45,7 @@ const SimpleModal = (props) => {
         backgroundColor: "rgba(0,0,0,0.6)",
       }}
     >
+
       <TouchableOpacity disabled={true} style={StyleSheet.container}>
         <View style={styles.modal}>
           <View style={styles.textView}>
@@ -75,7 +59,8 @@ const SimpleModal = (props) => {
                 marginHorizontal: "5%",
               }}
             >
-              <Slider
+
+              <Slider /* Aqui temos un slider que conseguimos definir a porcentagem da promoção em um certo produto */
                 value={valor}
                 maximumValue={100}
                 minimumValue={1}
@@ -104,10 +89,13 @@ const SimpleModal = (props) => {
                   ),
                 }}
               />
+
             </View>
           </View>
+
           <View style={{ alignItems: "center" }}>
-            <Text
+            
+            <Text /* Temos aqui mostrando para o usuario o preco atualizando na medida que o slider é atualizado */
               style={{
                 marginBottom: 40,
                 fontSize: 20,
@@ -130,11 +118,13 @@ const SimpleModal = (props) => {
               ).toFixed(2)}
             </Text>
           </View>
-          <View style={styles.buttonsView}>
-            <TouchableOpacity
+
+          <View style={styles.buttonsView}  /* Nessa view temos dois touchableOpacity (botões) um escrito Aplicar e outro Cancelar*/ >
+            
+            <TouchableOpacity /* Esse primeiro botão serve para salvar as alterações chamando as funções atualizarPromocao() e closeModal alem de props.setAtualizar  */
               style={styles.TouchableOpacity}
               onPress={() => {
-                atualizarPromocao();
+                atualizarPromocao(props.idLoja, novoValorPromocional, idProduto);
                 console.log(novoValorPromocional, "->>",valor);
                 closeModal(false);
                 props.setAtualizar(props.atualizarPromo);
@@ -142,12 +132,14 @@ const SimpleModal = (props) => {
             >
               <Text style={(styles.text, { color: "blue" })}>Aplicar</Text>
             </TouchableOpacity>
-            <TouchableOpacity
+            
+            <TouchableOpacity /* Esse segundo botão é referente ao cancelamento da acao fechando o modal */
               style={styles.TouchableOpacity}
               onPress={() => closeModal(false)}
             >
               <Text style={(styles.text, { color: "blue" })}>Cancelar</Text>
             </TouchableOpacity>
+        
           </View>
         </View>
       </TouchableOpacity>
@@ -155,6 +147,7 @@ const SimpleModal = (props) => {
   );
 };
 
+// Aqui fica o estilo do modal que será chamado no codigo acima com a const styles
 const styles = StyleSheet.create({
   textHeader: {
     fontSize: 25,

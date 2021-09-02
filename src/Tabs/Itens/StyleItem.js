@@ -1,6 +1,8 @@
 import {StyleSheet} from 'react-native';
 
+// Nesse arquivo estão todos os estilos dos Itens (CadastroCat, CadastroProd, EditarCat, EditarProd e ProdList)
 
+// Aqui temos uma StyleSheet referente ao Cadastro de categoria que sera chamado em CadastroCat
 const styleCadastroCategoria = StyleSheet.create({
     form: {
       padding: 12,
@@ -31,7 +33,7 @@ const styleCadastroCategoria = StyleSheet.create({
     },
   });
 
-
+// Aqui temos uma StyleSheet referente a edicao de categoria que sera chamado em EditarCat
 const styleEditarCategoria = StyleSheet.create({
     form: {
       padding: 12,
@@ -81,6 +83,7 @@ const styleEditarCategoria = StyleSheet.create({
     },
   });
 
+// Aqui temos uma StyleSheet referente ao Cadastro de produtos que sera chamado em CadastroProd
 const styleCadastroProduto = StyleSheet.create({
     form: {
       padding: 12,
@@ -126,6 +129,7 @@ const styleCadastroProduto = StyleSheet.create({
     },
   });
 
+// Aqui temos uma StyleSheet referente a edicao de produtos que sera chamado em EditarProd
 const styleEditarProduto = StyleSheet.create({
     viewHeader: {
       fontSize: 23,
@@ -324,6 +328,7 @@ const styleEditarProduto = StyleSheet.create({
       },
   });
 
+// Aqui temos uma StyleSheet referente a Lista de Produtos e Categorias que sera chamado em ProdList
 const styleListaProduto = StyleSheet.create({
     container: {
       flex: 0,
@@ -396,4 +401,5 @@ const styleListaProduto = StyleSheet.create({
     },
   });
 
+// Exporta-se os estilos criadas que serão usadas no programa
 export {styleEditarCategoria , styleCadastroCategoria, styleCadastroProduto, styleEditarProduto, styleListaProduto};

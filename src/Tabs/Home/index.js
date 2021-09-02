@@ -12,7 +12,7 @@ const Home = ({route}) =>{
 
         <View>
 
-        <Text> {idLoja.idLoja} </Text>
+            <Text> {idLoja.idLoja} </Text>
 
         </View>
     );

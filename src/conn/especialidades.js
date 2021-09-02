@@ -39,7 +39,7 @@ async function deleteEspecialidade(especialidadesAtuais, indice, idLoja) {
     .catch(error  => console.log(error))
 }
 
-async function setaDados(idLoja) {
+async function getDadosEspecialidades(idLoja) {
 
     return fetch(`${data.endereco}store/${encodeURIComponent(idLoja)}/specialtys`, {
         method: 'GET',
@@ -49,4 +49,4 @@ async function setaDados(idLoja) {
 }
 
 
-export {adicionarEspecialidade, deleteEspecialidade, setaDados};
+export {adicionarEspecialidade, deleteEspecialidade, getDadosEspecialidades};

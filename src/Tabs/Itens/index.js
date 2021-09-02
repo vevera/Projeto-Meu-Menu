@@ -1,9 +1,9 @@
-
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import ProdList from './ProdList.js'
+// Aqui importamos as telas referentes a lista de categorias e produtos e do cadastro e atualização destas
+import ProdList from './ProdList.js';
 import CadastroProd from "./CadastroProd.js";
 import EditarProd from "./EditarProd.js";
 import EditarCat from "./EditarCat.js";
@@ -11,7 +11,7 @@ import CadastroCat from "./CadastroCat.js";
 
 const Stack = createStackNavigator();
 
-
+// Aqui temos as telas referentes aos itens/produtos e o NavigationContainer responsável pelo controle da navegação entre as telas 
 export default function ProdutosNavigator({route}) {
     
     const idLoja = route.params.idLoja

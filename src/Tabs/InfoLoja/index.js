@@ -5,7 +5,8 @@ import { SafeAreaView, StyleSheet ,ScrollView} from 'react-native';
 import SectionEspecialidade from './especialidades';
 import SectionHorarioAtendimento from './horarioAtendimento';
 import MetodosDePagementoSection from './metodosPagamento';
-      
+
+//Renderiza todos as opçoes (Especialidades, Horarios De Atendimento e Metodos de Pagamento)
 const InfoLoja = ({route}) =>{
 
     const idLoja = route.params;
@@ -15,16 +16,12 @@ const InfoLoja = ({route}) =>{
 
         <SafeAreaView style={stylesInfoLoja.container}>
             <ScrollView style = {stylesInfoLoja.scrollOptions}>
-                
-                
-                <SectionEspecialidade id = {idLoja.idLoja}/>
-                
-                <SectionHorarioAtendimento id = {idLoja.idLoja}/>
 
+                <SectionEspecialidade id = {idLoja.idLoja}/>
+                <SectionHorarioAtendimento id = {idLoja.idLoja}/>
                 <MetodosDePagementoSection />
 
-            </ScrollView>
-                    
+            </ScrollView>       
         </SafeAreaView>
     );
 }

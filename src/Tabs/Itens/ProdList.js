@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import { useIsFocused } from '@react-navigation/native'
 import {Icon} from 'react-native-elements/dist/icons/Icon';
 import {
-  StyleSheet,
   Text,
   View,
   SafeAreaView,
@@ -11,14 +10,11 @@ import {
 } from 'react-native';
 import {Image} from 'react-native';
 
-import axios from 'axios';
+import {styleListaProduto} from './StyleItem.js'; // E importado o estilo do arquivo StyleItem.js
 
-import * as data from '../../connection.json';
-import { withTheme } from 'react-native-elements';
-import {styleListaProduto} from './StyleItem.js';
+import {getProdutoCategoria} from '../../conn/categoria.js'; // Aqui importamos as funcoes necessarias para fazermos a comunicacao com o banco 
 
-import {getProdutoCategoria} from '../../conn/categoria.js'
-
+// a função temImagem vai possibilitar ao usuario selecionar uma imagem da galeria e atualizar a imagem do produto
 function temImagem(imagem) {
   return imagem != '' ? (
     
@@ -38,11 +34,7 @@ function temImagem(imagem) {
   );
 }
 
-function useForceUpdate(){
-  const [value, setValue] = useState(0); 
-  return () => setValue(value => value + 1); 
-}
-
+// Abaixo será renderizado o Item e aparecerá na inerface com as informações do produto
 const Item = ({title, image, info, price, promotional_price}) => 
 {
   const promo = promotional_price != null? true : false;
@@ -64,6 +56,7 @@ const Item = ({title, image, info, price, promotional_price}) =>
     </View>
 )};
 
+// Na funcao footer temos um touchable (clicavel) em que ao clicar somos redirecionados a tela de cadastro de produto
 function Footer({section, idLoja, navigation}) {
   return (
     <View style={{marginHorizontal: '4%', marginTop: '2%', marginBottom: '2%'}}>
@@ -81,6 +74,7 @@ function Footer({section, idLoja, navigation}) {
   );
 }
 
+// Na funcao footerCat temos um touchable (clicavel) em que ao clicar somos redirecionados a tela de cadastro de Categoria
 function FooterCat({idLoja, navigation}) {
   return (
     <View style={{marginHorizontal: '4%', marginTop: '2%', marginBottom: '2%'}}>
@@ -98,6 +92,7 @@ function FooterCat({idLoja, navigation}) {
   );
 }
 
+// Em ListaProdutosPorCategoria vai ser mostrada a lista contendo as categorias e os produtos dessa categoria
 const ListaDeProdutosPorCategoria = ({route, idLoja, navigation}) => {
 
   const [DATA, setDATA] = useState([]);
@@ -114,7 +109,7 @@ const ListaDeProdutosPorCategoria = ({route, idLoja, navigation}) => {
       limit += 1;
       
     }while(limit < 30 && tam == 0);
-    setDATA(dados1);    
+    setDATA(dados1);
       
   }, [isFocused])
    

@@ -6,31 +6,25 @@ import { Switch } from 'react-native';
 
 import OptionsHeader from './optionsHeader';
 
-const RenderMetodoDePagamento = ({texto,isPix,iconName, color}) => {
+
+//Render dos seguintes metodos de pagamento: Cartão de Credito, Cartão de Debito e Dinheiro
+const RenderMetodoDePagamento = ({texto, iconName, color}) => {
     const [switchOn, setSwitchOn] = useState(false);
         
     return (
         <View style = {{alignItens: 'center', justifyContent: 'space-between', flexDirection: 'row', width: '100%', height: 70, paddingBottom: 15}}>
             <View style = {stylesInfoLoja.MetodosDePagementoContainer}>
                 
-                {isPix &&
-                    <View style = {{marginLeft: 10,width: 50, alignItems: 'center'}}>
-                        <Image
-                            style={{width: 30, height: 30}}
-                            source={require('../../../assets/pix.png')}
-                        />
-                    </View> 
-                }
-                {!isPix && 
-                    <Icon
-                        style = {{marginLeft: 10, width: 50}}
-                        name = {iconName}
-                        type = 'font-awesome'
-                        size = {30}
-                        color = {color}
-                    />
-                }
+                <Icon
+                    style = {{marginLeft: 10, width: 50}}
+                    name = {iconName}
+                    type = 'font-awesome'
+                    size = {30}
+                    color = {color}
+                />
+                
                 <Text style = {stylesInfoLoja.TextoMetodoDePagamento}>{texto}</Text>
+
             </View>
             <Switch
                 style = {{marginRight: 10}} 
@@ -42,7 +36,7 @@ const RenderMetodoDePagamento = ({texto,isPix,iconName, color}) => {
     );
 }
 
-
+//Renderiza apenas o metodo pix pois este contem algumas diferenças, como o uso de Imagem ao invez de um Icon
 const RenderMetodoDePagamentoPix = ({texto}) => {
 
     const [switchOn, setSwitchOn] = useState(false);
@@ -93,21 +87,23 @@ const RenderMetodoDePagamentoPix = ({texto}) => {
 
 }
 
+//Renderiza todos os metodos de pagamentos juntos
 const MetodosDePagemento = () => {
 
 
     return (
 
         <SafeAreaView>
-            <RenderMetodoDePagamento texto = 'Cartão de Credito' isPix = {false} iconName = 'credit-card-alt' color = 'blue'/>
-            <RenderMetodoDePagamento texto = 'Cartão de Debito' isPix = {false} iconName = 'credit-card-alt' color = 'red'/>
-            <RenderMetodoDePagamento texto = 'Dinheiro' isPix = {false} iconName = 'money' color = 'green'/>
+            <RenderMetodoDePagamento texto = 'Cartão de Credito' iconName = 'credit-card-alt' color = 'blue'/>
+            <RenderMetodoDePagamento texto = 'Cartão de Debito' iconName = 'credit-card-alt' color = 'red'/>
+            <RenderMetodoDePagamento texto = 'Dinheiro' iconName = 'money' color = 'green'/>
             <RenderMetodoDePagamentoPix texto = 'Pix'/>
         </SafeAreaView>
 
     );
 };
 
+//Renderiza os metodos de pagamento e um header
 const MetodosDePagementoSection = () => {
 
     return (

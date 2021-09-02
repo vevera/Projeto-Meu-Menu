@@ -9,10 +9,12 @@ import OptionsHeader from './optionsHeader';
 
 import * as data from '../../connection.json';
 
-import {adicionarEspecialidade, deleteEspecialidade, setaDados} from '../../conn/especialidades.js';
+import {adicionarEspecialidade, deleteEspecialidade, getDadosEspecialidades} from '../../conn/especialidades.js';
 
 let row = [];
 
+
+//Componente que renderiza uma Especialidade
 const Item = ({item, itemTouchIconContainer, itemStyle, textStyle,  touchItemStyle, indice}) => {
     return (
         <View style = {itemStyle}>
@@ -70,6 +72,8 @@ const NovaEspecialideComponent = ({idLoja, setModalAtiva, modalAtiva, atualizarD
 
 };
 
+
+//RenderEspecialidade renderiza uma Especialidade junto com a lixeira de deleta-la
 const RenderEspecialidade = ({idLoja, item, indice, atualizarData, setAtualizarData, especialidadesAtuais}) => {
 
     const Remove = () => {
@@ -111,14 +115,17 @@ const RenderEspecialidade = ({idLoja, item, indice, atualizarData, setAtualizarD
     );
 
 };
+
+//
 const Especialidades = ({idLoja, atualizarData, setAtualizarData, setListaDeEspecialidades}) => {
 
     const [dadosEspecialidades, setDadosEspecialidades] = useState("");
     const [listEspecialidades, setListEspecialidades] = useState(null);
     
+    //recuperamos as Especialidades de uma determidada loja
     async function getEspecialidades() {
 
-        setaDados(idLoja)
+        getDadosEspecialidades(idLoja)
         .then(article => setDadosEspecialidades(JSON.parse(article)))
         .catch(error => console.log(error))
     }
@@ -159,6 +166,7 @@ const Especialidades = ({idLoja, atualizarData, setAtualizarData, setListaDeEspe
     );
 
 };
+
 const SectionEspecialidade = ({id}) => {
 
     const [atualizarData, setAtualizarData] = useState(true);

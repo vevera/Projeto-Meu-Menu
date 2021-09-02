@@ -7,12 +7,10 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   TextInput,
-  StyleSheet,
   Text,
 } from 'react-native';
-
-import * as data from '../connection.json';
-
+import { login_autenticacao } from '../conn/login';
+import { styles } from './styleLogin.js';
 
 export default ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -21,19 +19,7 @@ export default ({navigation}) => {
   const [variavel, setvariavel] = useState(null);
 
   function login(senha, email) {
-    fetch(
-      `${data.endereco}store/login?email=${encodeURIComponent(email)}&password=${encodeURIComponent(senha)}`,
-      {
-        method: 'GET',
-      },
-    )
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return null;
-        }
-      })
+      login_autenticacao(senha, email)
       .then(json => {
         setvariavel(json);
         return json;
@@ -109,68 +95,8 @@ export default ({navigation}) => {
             onPress={() => login(senha, email)}>
             <Text style={styles.textsubmit}>Acessar</Text>
           </TouchableOpacity>
-        )}
-
-        
+        )}   
       </View>
     </KeyboardAvoidingView>
   );
 };
-
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#18BC9C',
-  },
-  containerLogo: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    width: '90%',
-    justifyContent: 'center',
-  },
-  input: {
-    backgroundColor: '#fff',
-    width: '90%',
-    marginBottom: 15,
-    color: '#222',
-    fontSize: 17,
-    borderRadius: 7,
-    padding: 10,
-  },
-  btnsubmit: {
-    width: 200,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'darkorange',
-    borderRadius: 50,
-    marginTop: 10,
-  },
-  textsubmit: {
-    color: '#fff',
-    fontSize: 18,
-  },
-  btnregister: {
-    marginTop: 10,
-  },
-  textregister: {
-    color: '#fff',
-  },
-  contentAlert: {
-    marginTop: 20,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  warningAlert: {
-    paddingLeft: 10,
-    color: '#bdbdbd',
-    fontSize: 16,
-  },
-});
