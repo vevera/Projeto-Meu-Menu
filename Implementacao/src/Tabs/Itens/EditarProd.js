@@ -2,20 +2,22 @@ import React, {useEffect, useState} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {Modal} from 'react-native';
 import {View} from 'react-native';
-import {
-  Alert,
-  SafeAreaView,
-  Text,
-  ScrollView,
-  Image,
-} from 'react-native';
+import {Alert, SafeAreaView, Text, ScrollView, Image} from 'react-native';
 import {Button, Input, Icon} from 'react-native-elements';
 import {SimpleModal} from './SimpleModal';
 import {Swipeable} from 'react-native-gesture-handler';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {styleEditarProduto} from './StyleItem.js';
 
-import { getAdditionalOptions, addAdditionalOptions, deleteAdditionalOptions, getPromotionalPrice, removerPromocao, atualizarProduto, removerProduto } from '../../conn/produtos.js'
+import {
+  getAdditionalOptions,
+  addAdditionalOptions,
+  deleteAdditionalOptions,
+  getPromotionalPrice,
+  removerPromocao,
+  atualizarProduto,
+  removerProduto,
+} from '../../conn/produtos.js';
 
 function removerAdicional(idLoja, idProd, id) {
   deleteAdditionalOptions(idLoja, idProd, id);
@@ -23,11 +25,13 @@ function removerAdicional(idLoja, idProd, id) {
 
 const Remove = ({idLoja, id, product_id, atualizarData, setAtualizarData}) => {
   return (
-    <View
-      style={styleEditarProduto.viewRemove}>
+    <View style={styleEditarProduto.viewRemove}>
       <TouchableOpacity
         style={styleEditarProduto.touchableRemove}
-        onPress={() => {removerAdicional(idLoja, product_id, id); setAtualizarData(!atualizarData)}}>
+        onPress={() => {
+          removerAdicional(idLoja, product_id, id);
+          setAtualizarData(!atualizarData);
+        }}>
         <Icon type="font-awesome" name="trash" size={45} color="white" />
       </TouchableOpacity>
     </View>
@@ -35,51 +39,56 @@ const Remove = ({idLoja, id, product_id, atualizarData, setAtualizarData}) => {
 };
 
 const RenderItem = ({item, idLoja, atualizarData, setAtualizarData}) => {
-  
   return (
     <SafeAreaView>
-      <Swipeable renderRightActions={() => <Remove atualizarData ={atualizarData} setAtualizarData = {setAtualizarData} idLoja = {idLoja} id = {item.id} product_id = {item.product_id}/>}>
+      <Swipeable
+        renderRightActions={() => (
+          <Remove
+            atualizarData={atualizarData}
+            setAtualizarData={setAtualizarData}
+            idLoja={idLoja}
+            id={item.id}
+            product_id={item.product_id}
+          />
+        )}>
         <Text style={styleEditarProduto.item}>
-          {item.name}
-          {'\n'}
-          Valor: R${item.price}
+          {item.name} - R${item.price}
         </Text>
       </Swipeable>
     </SafeAreaView>
   );
 };
 
-const OpcoesAdicionais = ({atualizarOpcoesData, setAtualizarData, idLoja, idProd}) =>{
-
-
-  const[addData, setAddData] = useState(null);
+const OpcoesAdicionais = ({
+  atualizarOpcoesData,
+  setAtualizarData,
+  idLoja,
+  idProd,
+}) => {
+  const [addData, setAddData] = useState(null);
   const [itemsListArr, setItemsListArr] = useState([]);
 
   useEffect(() => {
-    getAdditionalOptions(idLoja, idProd)
-    .then(resp => setAddData(resp))
-
-  }, [atualizarOpcoesData])
+    getAdditionalOptions(idLoja, idProd).then(resp => setAddData(resp));
+  }, [atualizarOpcoesData]);
 
   useEffect(() => {
-
-    if(addData != null){
+    if (addData != null) {
       setItemsListArr(
         addData.map(item => (
-          <RenderItem key={item.id} item={item} idLoja = {idLoja} atualizarData = {atualizarOpcoesData} setAtualizarData = {setAtualizarData}/>
-        ))
-      )
+          <RenderItem
+            key={item.id}
+            item={item}
+            idLoja={idLoja}
+            atualizarData={atualizarOpcoesData}
+            setAtualizarData={setAtualizarData}
+          />
+        )),
+      );
     }
-      
-  }, [addData])
+  }, [addData]);
 
-  return (
-
-      <SafeAreaView>
-          {itemsListArr}
-      </SafeAreaView>
-  );
-
+  return <SafeAreaView>{itemsListArr}</SafeAreaView>;
 };
 
 const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
@@ -94,13 +103,15 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
   const [base64Image, setBase64Image] = useState(prod.photo);
 
   const changeModalVisible = bool => {
-
     setisModalVisible(bool);
   };
 
   function temImagem(imagem) {
-    return (imagem != '') ? (
-      <Image style={styleEditarProduto.imagem} source={{uri: `data:image/jpg;base64,${imagem}`}} />
+    return imagem != '' ? (
+      <Image
+        style={styleEditarProduto.imagem}
+        source={{uri: `data:image/jpg;base64,${imagem}`}}
+      />
     ) : (
       <Image
         style={styleEditarProduto.imagem}
@@ -111,43 +122,59 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
     );
   }
 
-  const PromocaoAtiva = ({preco_normal, promocao, nome, atualizarPromo, setAtualizarData}) => {
-
-    const[promocaoPrice, setPromocaoPrice] = useState({promotional_price: null});
+  const PromocaoAtiva = ({
+    preco_normal,
+    promocao,
+    nome,
+    atualizarPromo,
+    setAtualizarData,
+  }) => {
+    const [promocaoPrice, setPromocaoPrice] = useState({
+      promotional_price: null,
+    });
 
     const [disconto, setDisconto] = useState(0);
 
-    useEffect(()=> {
-   
-      getPromotionalPrice(idLoja, idProd)
-      .then(res => {
-        if(res != null){
-          setPromocaoPrice(res);    
-        }  
-      })
-       
-    }, [atualizarPromo])
+    useEffect(() => {
+      getPromotionalPrice(idLoja, idProd).then(res => {
+        if (res != null) {
+          setPromocaoPrice(res);
+        }
+      });
+    }, [atualizarPromo]);
 
     useEffect(() => {
-      setDisconto(promocaoPrice.promotional_price === null? 0 : 100 - ((promocaoPrice.promotional_price * 100)/preco_normal))
-    },[promocaoPrice])
+      setDisconto(
+        promocaoPrice.promotional_price === null
+          ? 0
+          : 100 - (promocaoPrice.promotional_price * 100) / preco_normal,
+      );
+    }, [promocaoPrice]);
 
-
-    if (promocaoPrice.promotional_price != null) {   
+    if (promocaoPrice.promotional_price != null) {
       return (
         <View style={{flexDirection: 'column'}}>
           <TouchableOpacity onPress={() => changeModalVisible(true)}>
             <Text style={styleEditarProduto.itemP}>
-              Produto: {nome}
+              {nome}
               {'\n'}
-              Desconto: {disconto.toFixed(2)}%{'\n'}
-              Novo valor: R${promocaoPrice.promotional_price.toFixed(2)}
+              Desconto:{' '}
+              <Text style={{fontWeight: 'bold'}}>
+                {disconto.toFixed(2)}%{'\n'}
+              </Text>
+              Novo valor: R$
+              <Text style={{fontWeight: 'bold'}}>
+                {promocaoPrice.promotional_price.toFixed(2)}
+              </Text>
               {'\n'}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styleEditarProduto.styleBtnAdicionarPromo}
-            onPress={() => {removerPromocao(idLoja, idProd); setAtualizarData(!atualizarPromo)}}>
+            onPress={() => {
+              removerPromocao(idLoja, idProd);
+              setAtualizarData(!atualizarPromo);
+            }}>
             <Icon name={'remove'} size={30} color="#ff0000" />
           </TouchableOpacity>
         </View>
@@ -156,12 +183,14 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
       return (
         <TouchableOpacity
           style={styleEditarProduto.styleBtnRemoverPromo}
-          onPress={() => {changeModalVisible(true)}}>
+          onPress={() => {
+            changeModalVisible(true);
+          }}>
           <Icon name={'add'} size={30} color="#01a699" />
         </TouchableOpacity>
       );
     }
-  }
+  };
 
   const chooseFile = () => {
     let options = {
@@ -195,25 +224,30 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
   };
 
   function atualizarInfoProduto() {
-
-    atualizarProduto(idLoja, idProd, nomeProduto, infoProduto, precoProduto, base64Image)
-    .then(() => {
-      Alert.alert('Produto atualizado com sucesso!');
-    })
-    .catch(error => console.log(error));
+    atualizarProduto(
+      idLoja,
+      idProd,
+      nomeProduto,
+      infoProduto,
+      precoProduto,
+      base64Image,
+    )
+      .then(() => {
+        Alert.alert('Produto atualizado com sucesso!');
+      })
+      .catch(error => console.log(error));
   }
 
   function removerUmProduto() {
     removerProduto(idLoja, idProd)
-    .then(() => {
-      Alert.alert('Produto removido com sucesso!');
-    })
-    .catch(error => console.log(error));
+      .then(() => {
+        Alert.alert('Produto removido com sucesso!');
+      })
+      .catch(error => console.log(error));
   }
 
   const [atualizarOpcoesData, setAtualizarData] = useState(true);
   const [atualizarPromocaoData, setAtualizarPromocaoData] = useState(true);
-
 
   const [nameAdd, setNameAdd] = useState('');
   const [priceAdd, setPriceAdd] = useState('');
@@ -254,7 +288,12 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
         <View style={styleEditarProduto.header}>
           <Text style={styleEditarProduto.viewHeader}>Opções Adicionais</Text>
         </View>
-        <OpcoesAdicionais atualizarOpcoesData = {atualizarOpcoesData} setAtualizarData = {setAtualizarData} idLoja = {idLoja} idProd = {idProd}/>
+        <OpcoesAdicionais
+          atualizarOpcoesData={atualizarOpcoesData}
+          setAtualizarData={setAtualizarData}
+          idLoja={idLoja}
+          idProd={idProd}
+        />
         <TouchableOpacity
           style={styleEditarProduto.buttonAddOP}
           onPress={() => {
@@ -265,15 +304,14 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
         <View style={styleEditarProduto.header}>
           <Text style={styleEditarProduto.viewHeader}>Promoção</Text>
         </View>
-        <PromocaoAtiva 
-          preco_normal = {precoProduto} 
-          promocao = {promo} 
-          nome = {nomeProduto} 
-          atualizarPromo = {atualizarPromocaoData}
-          setAtualizarData = {setAtualizarPromocaoData}
+        <PromocaoAtiva
+          preco_normal={precoProduto}
+          promocao={promo}
+          nome={nomeProduto}
+          atualizarPromo={atualizarPromocaoData}
+          setAtualizarData={setAtualizarPromocaoData}
         />
-        <View
-          style={styleEditarProduto.viewButtons}>
+        <View style={styleEditarProduto.viewButtons}>
           <Button
             containerStyle={styleEditarProduto.buttonR}
             title="Remover"
@@ -327,7 +365,6 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
         </View>
       </ScrollView>
       <View>
-        
         <Modal
           transparent={true}
           animationType="fade"
@@ -337,10 +374,10 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
           <SimpleModal
             changeModalVisible={changeModalVisible}
             params={prod}
-            idLoja = {idLoja}
-            navigation = {navigation}
-            atualizarPromo = {atualizarPromocaoData}
-            setAtualizar = {setAtualizarPromocaoData}
+            idLoja={idLoja}
+            navigation={navigation}
+            atualizarPromo={atualizarPromocaoData}
+            setAtualizar={setAtualizarPromocaoData}
           />
         </Modal>
       </View>
@@ -351,16 +388,18 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
           transparent={true}
           animationType="fade"
           backgroundColor="rgba(0, 0, 0, 0.4)">
-          <View
-            style={styleEditarProduto.viewModal1}>
-            <View
-              style={styleEditarProduto.viewModal2}>
-              <Text style={styleEditarProduto.textView}>Adicionar Opicional</Text>
+          <View style={styleEditarProduto.viewModal1}>
+            <View style={styleEditarProduto.viewModal2}>
+              <Text style={styleEditarProduto.textView}>
+                Adicionar Opicional
+              </Text>
               <Text style={styleEditarProduto.textadd}>Nome do adicional</Text>
               <Input
                 placeholder="informe o nomedo adicional"
                 rightIcon={{type: 'font-awesome', name: 'edit'}}
-                onChangeText = {(name) => {setNameAdd(name)}}
+                onChangeText={name => {
+                  setNameAdd(name);
+                }}
               />
               <Text style={styleEditarProduto.textadd}>Preço</Text>
               <Input
@@ -395,7 +434,6 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
                     addAdditionalOptions(idLoja, nameAdd, priceAdd, idProd);
                     setAddModalVisible(!addModalVisible);
                     setAtualizarData(!atualizarOpcoesData);
-
                   }}
                 />
               </View>
@@ -405,15 +443,18 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
       </View>
     </View>
   );
-}
+};
 
 export default ({route, navigation}) => {
-
   const prod = route.params.item;
-  
+
   const idLoja = route.params.idLoja;
 
   return (
-    <RenderProdutoInformacoes prod = {prod} idLoja = {idLoja} navigation = {navigation}/>
+    <RenderProdutoInformacoes
+      prod={prod}
+      idLoja={idLoja}
+      navigation={navigation}
+    />
   );
 };
