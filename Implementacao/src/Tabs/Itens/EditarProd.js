@@ -162,9 +162,9 @@ const RenderProdutoInformacoes = ({prod, idLoja, navigation}) => {
               <Text style={{fontWeight: 'bold'}}>
                 {disconto.toFixed(2)}%{'\n'}
               </Text>
-              Novo valor: R$
+              Novo valor: 
               <Text style={{fontWeight: 'bold'}}>
-                {promocaoPrice.promotional_price.toFixed(2)}
+                <Text style = {{paddingRight: 0.7}}>R$</Text>{promocaoPrice.promotional_price.toFixed(2)}
               </Text>
               {'\n'}
             </Text>

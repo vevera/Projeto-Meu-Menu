@@ -228,12 +228,12 @@ stylesInfoLoja = StyleSheet.create({
         alignSelf: 'center',
     },
     RemoverHorarioAtendimento: {
-        height: '90%',
-        marginRight: 10,
         backgroundColor: 'red',
-        width: 100,
-        alignItems: 'center',
+        width: 70,
+        height: 70,
+        borderRadius: 10,
         justifyContent: 'center',
+        marginRight: 10,
     },
     RemoverHorarioAtendimentoText: {
         fontSize: 20,
