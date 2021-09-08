@@ -1,3 +1,5 @@
+![alt text](\MEUMENU.png)
+
 # Projeto-Meu-Menu
 O sistema tem como objetivo facilitar o gerenciamento de produtos, e com isso facilitar as vendas já que o produto estará melhor exposto.
 O nosso sistema é focado em pequenos comércios como padarias, lanchonetes e pequenos restaurantes. 
