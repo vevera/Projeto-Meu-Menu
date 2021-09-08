@@ -6,7 +6,7 @@ Fornece uma maior praticidade, eficiência e comodidade, tudo isso com um foco n
 
 ## Tecnologias Utilizadas 
 
-> React Native - Desenvolvimento Aplicativo Móvel
+> React Native - Desenvolvimento Aplicativo Móvel \n
 > Flask - Desenvolver API de Dados
 > Django - Desenvolver API de Autenticação
 > API do Telegram - Fazer comunicação entre clientes e fornecedores
