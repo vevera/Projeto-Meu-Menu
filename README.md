@@ -8,9 +8,9 @@ Fornece uma maior praticidade, eficiência e comodidade, tudo isso com um foco n
 
 ## Tecnologias Utilizadas 
 
-> React Native - Desenvolvimento Aplicativo Móvel \n
-> Flask - Desenvolver API de Dados
-> Django - Desenvolver API de Autenticação
-> API do Telegram - Fazer comunicação entre clientes e fornecedores
-> PostgreSQL - Sistema de Gerenciamento de Banco de Dados Relacional
+> React Native - Desenvolvimento Aplicativo Móvel\
+> Flask - Desenvolver API de Dados\
+> Django - Desenvolver API de Autenticação\
+> API do Telegram - Fazer comunicação entre clientes e fornecedores\
+> PostgreSQL - Sistema de Gerenciamento de Banco de Dados Relacional\
 
