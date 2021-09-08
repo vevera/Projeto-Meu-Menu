@@ -15,8 +15,8 @@ Fornece uma maior praticidade, eficiência e comodidade, tudo isso com um foco n
 
 ## Implementação
 
-* **Implementacao/src/conn**  Estão todas as conecções com a API de dados, separados por entidades
-* **Implementacao/src/Tabs** Está contida a implementação todas as BottomTabs (as abas que o usuario lojista pode navegar), separadas por pasta, cada pasta representa uma aba com exceção da pasta TabContainer que como ja diz o nome guarda a implementação do container das abas
-* **Implementacao/src/TelaLogin** está a parte de autenticação do aplicativo em Login.js e seu estilo em styleLogin.js
+* **Implementacao/src/conn**, estão todas as conecções com a API de dados, separados por entidades
+* **Implementacao/src/Tabs**, está contida a implementação todas as BottomTabs (as abas que o usuario lojista pode navegar), separadas por pasta, cada pasta representa uma aba com exceção da pasta TabContainer que como ja diz o nome guarda a implementação do container das abas
+* **Implementacao/src/TelaLogin**, está a parte de autenticação do aplicativo em Login.js e seu estilo em styleLogin.js
 * **Implementacao/src/connection.json**, estão os dados para conecção com o banco
 * **Implementacao/App.js**, o aquivo que guarda a componente principal da nossa aplicação
